@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KAFA Learn 🌙 Pusat Ilmu Digital</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── KOD DIKEMASKINI: COFFEE SUPPORT (MINIMALIST STYLE - TIADA BACKGROUND MERAH) ── */
+    .support-btn-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .coffee-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent; /* Latar belakang dibuang */
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: coffee-float 3s ease-in-out infinite;
+    }
+
+    .coffee-btn:hover {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    /* Ikon SVG dengan Animasi Wap */
+    .coffee-btn svg {
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    }
+
+    .steam {
+      stroke: #FF9D6C; /* Warna wap ditukar ke peach/orange supaya lebih jelas */
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 10;
+      stroke-dashoffset: 20;
+      animation: steam-move 2s linear infinite;
+      opacity: 0;
+    }
+
+    .steam-2 { animation-delay: 0.7s; }
+
+    @keyframes steam-move {
+      0% { stroke-dashoffset: 20; opacity: 0; }
+      50% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    @keyframes coffee-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Bubble Tooltip Style */
+    .coffee-bubble {
+      position: absolute;
+      right: 60px;
+      background: white;
+      color: #333;
+      padding: 8px 15px;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      font-family: 'Nunito', sans-serif;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: all 0.5s ease;
+      z-index: 100;
+    }
+
+    .coffee-bubble.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .coffee-bubble::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid white;
+    }
+
+    /* ── CSS ASAL ANDA (100% KEKAL) ── */
+    .games-section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 16px;
+    }
+
+    .games-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .games-section-header .section-title {
+      margin-bottom: 0;
+    }
+
+    .games-live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(46, 204, 138, 0.12);
+      border: 1.5px solid rgba(46, 204, 138, 0.35);
+      color: #7FFFCA;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 5px 13px;
+      border-radius: 30px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .games-live-badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2ECC8A;
+      box-shadow: 0 0 8px #2ECC8A;
+      animation: blink-dot 1.4s infinite;
+    }
+
+    @keyframes blink-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .game-card {
+      position: relative;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #0E1B44, #070E2A);
+      border: 2px solid rgba(245, 200, 66, 0.22);
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 200, 66, 0.45);
+      box-shadow: 0 16px 56px rgba(0,0,0,0.6), 0 0 32px rgba(245,200,66,0.12);
+    }
+
+    .game-card-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .game-card-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .game-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #F5C842, #C9962A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 14px rgba(245,200,66,0.35);
+      flex-shrink: 0;
+    }
+
+    .game-card-meta { display: flex; flex-direction: column; gap: 1px; }
+
+    .game-card-label {
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .game-card-name {
+      font-family: 'Baloo 2', cursive;
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .game-open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #F5C842, #C9962A);
+      color: #0A0F2E;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 7px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(245,200,66,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .game-open-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 6px 24px rgba(245,200,66,0.55);
+    }
+
+    .game-open-btn svg {
+      width: 12px; height: 12px; fill: #0A0F2E;
+    }
+
+    .game-iframe-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #060B1F;
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .game-iframe-wrap { padding-bottom: 115%; }
+      /* FIX 1: Bubble dipaparkan di mobile - baris display:none dibuang */
+    }
+
+    .game-iframe-wrap::before {
+      content: '🎮 Memuatkan permainan...';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(245,200,66,0.45);
+      font-family: 'Baloo 2', cursive;
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .game-iframe-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+      z-index: 1;
+    }
+
+    .game-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .game-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .game-chip {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 11px;
+      border-radius: 20px;
+    }
+
+    .game-chip.green {
+      background: rgba(46,204,138,0.12);
+      border: 1px solid rgba(46,204,138,0.25);
+      color: #7FFFCA;
+    }
+
+    .game-chip.gold {
+      background: rgba(245,200,66,0.1);
+      border: 1px solid rgba(245,200,66,0.25);
+      color: #F5C842;
+    }
+
+    .game-chip.purple {
+      background: rgba(124,95,212,0.12);
+      border: 1px solid rgba(124,95,212,0.28);
+      color: #C5ACFF;
+    }
+
+    .game-fullscreen-link {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .game-fullscreen-link:hover { color: #F5C842; }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Stars Background -->
+  <div class="stars-bg" id="starsBg"></div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-icon">🕌</div>
+        <div class="logo-text">
+          <span class="logo-title">KAFA<span class="logo-accent">Learn</span></span>
+          <span class="logo-sub">Nota Digital</span>
+        </div>
+      </div>
+      
+      <!-- SUPPORT COFFEE SECTION (Minimalist) -->
+      <div class="support-btn-wrapper">
+        <div class="coffee-bubble" id="coffeeBubble">Suka web ini? Jom belanja saya kopi! ☕️</div>
+        <a href="https://kafa-smart-digital.pages.dev/sokong-saya" class="coffee-btn" title="Sokong Kami">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Wap Kopi Beranimasi -->
+            <path class="steam steam-1" d="M9 4C9 4 7.5 5.5 9 7C10.5 8.5 9 10 9 10" fill="none" />
+            <path class="steam steam-2" d="M13 3C13 3 11.5 4.5 13 6C14.5 7.5 13 9 13 9" fill="none" />
+            <!-- Badan Cawan (Putih) -->
+            <path d="M18 10H4C2.89543 10 2 10.8954 2 12V15C2 18.3137 4.68629 21 8 21H14C17.3137 21 20 18.3137 20 15V12C20 10.8954 19.1046 10 18 10Z" fill="#FFFFFF" />
+            <!-- Pemegang Cawan -->
+            <path d="M20 12C20 12 22 12 22 14.5C22 17 20 17 20 17" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Welcome -->
+  <section class="hero-section">
+    <div class="hero-mascot">
+      <div class="mascot-bubble">Assalamualaikum! Selamat belajar hari ini! 📚</div>
+      <!-- FIX 3: Ditukar daripada emoji kepada gambar avatar -->
+      <div class="mascot-char">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgx5PLtj3UiyscaqouAC1dRerEKicHqgZe0Hq__tSaviV0Vo-XXHW4ULOJklqE-2RePJyZPJEFT1E9ke5kZHXudB5D2RySD1f-ZDd-qfOTL4e49BXt54nuT2bJqja-EYALWseb-kDwrJb-qcBByq67_EO6Pl5bQEEVSkIT8g0e2fZCi_-Yq5tqCa9fXuKli=s16000" alt="Avatar Maskot" style="width:80px;height:80px;object-fit:contain;display:block;" />
+      </div>
+    </div>
+    <div class="hero-text">
+      <h1>Hai, Pelajar Hebat! <span class="wave">👋</span></h1>
+      <p>Pilih subjek yang ingin kamu ulang kaji hari ini</p>
+<a href="https://smart-nota.github.io/nota-digital/akses-pantas.html" class="quick-access-btn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="7 10 12 15 17 10"></polyline>
+    <line x1="12" y1="15" x2="12" y2="3"></line>
+  </svg>
+  Pasang untuk Akses Pantas
+</a>
+    </div>
+  </section>
+
+  <!-- Subject Cards -->
+  <main class="subjects-grid">
+    <a href="subjek-sirah.html" class="subject-card card-sirah">
+      <div class="card-glow"></div>
+      <div class="card-emoji">🌟</div>
+      <div class="card-body">
+        <div class="card-tag">Subjek</div>
+        <h2 class="card-title">Sirah</h2>
+        <p class="card-desc">Kisah Nabi Muhammad SAW & sejarah Islam yang menakjubkan</p>
+        <div class="card-lessons">
+          <span class="lesson-chip">📖 4 Topik</span>
+          <span class="lesson-chip unlocked">✅ Aktif</span>
+        </div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="subjek-ibadah.html" class="subject-card card-ibadah">
+      <div class="card-glow"></div>
+      <div class="card-emoji">🤲</div>
+      <div class="card-body">
+        <div class="card-tag">Subjek</div>
+        <h2 class="card-title">Ibadah</h2>
+        <p class="card-desc">Cara solat, doa harian & amalan yang disukai Allah</p>
+        <div class="card-lessons">
+          <span class="lesson-chip">📖 5 Topik</span>
+          <span class="lesson-chip unlocked">✅ Aktif</span>
+        </div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="subjek-jawi.html" class="subject-card card-jawi">
+      <div class="card-glow"></div>
+      <div class="card-emoji">✍️</div>
+      <div class="card-body">
+        <div class="card-tag">Subjek</div>
+        <h2 class="card-title">Jawi</h2>
+        <p class="card-desc">Tulisan Jawi yang cantik & cara membaca Al-Quran</p>
+        <div class="card-lessons">
+          <span class="lesson-chip">📖 Akan Datang</span>
+          <span class="lesson-chip coming">🔔 Soon</span>
+        </div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  </main>
+
+  <!-- ── Uji Kefahaman ── -->
+  <section class="games-section">
+    <div class="games-section-header">
+      <h3 class="section-title">🎮 Uji Kefahaman</h3>
+      <span class="games-live-badge">Aktif Sekarang</span>
+    </div>
+
+    <div class="game-card">
+      <div class="game-card-topbar">
+        <div class="game-card-topbar-left">
+          <div class="game-icon-wrap">🧠</div>
+          <div class="game-card-meta">
+            <span class="game-card-label">Permainan Ilmu</span>
+            <span class="game-card-name">KAFA Learning Game</span>
+          </div>
+        </div>
+        <a href="https://game-kafa.pages.dev/"
+            target="_blank" rel="noopener" class="game-open-btn">
+          Buka Penuh
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14V3zM5 5h7V3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7H5V5z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="game-iframe-wrap">
+        <iframe
+          src="https://game-kafa.pages.dev/"
+          title="KAFA Learning Game"
+          allow="fullscreen"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="game-card-footer">
+        <div class="game-chips">
+          <span class="game-chip green">✅ Sirah</span>
+          <span class="game-chip gold">⭐ Ibadah</span>
+          <span class="game-chip purple">✍️ Jawi</span>
+        </div>
+        <a href="https://game-kafa.pages.dev/"
+            target="_blank" rel="noopener" class="game-fullscreen-link">
+          ⛶ Skrin penuh
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="main-footer">
+  <p>🌙 KAFA Learn · Dibina oleh Wan Hasbullah dengan ❤️ untuk pelajar KAFA SK Seri Geliga</p>
+  <div style="margin-top: 15px;">
+     <a href="https://smart-nota.github.io/nota-digital/akses-pantas.html" class="quick-access-btn" style="font-size: 0.65rem;">
+       📲 Pasang App Sekarang
+     </a>
+  </div>
+</footer>
+
+  <script src="js/main.js"></script>
+
+  <!-- SCRIPT UNTUK BUBBLE ANIMASI -->
+  <script>
+    const messages = [
+      "Suka web ini? ❤️",
+      "Bantu saya kekal PERCUMA 😊",
+      "Belanja saya kopi Rm1 ☕️"
+    ];
+    
+    let currentIndex = 0;
+    const bubble = document.getElementById('coffeeBubble');
+
+    function updateBubble() {
+      bubble.classList.remove('show');
+      
+      setTimeout(() => {
+        bubble.innerText = messages[currentIndex];
+        bubble.classList.add('show');
+        currentIndex = (currentIndex + 1) % messages.length;
+      }, 500); 
+    }
+
+    // FIX 2: Masa ditukar kepada 5 saat (5000ms), pertama kali muncul selepas 2 saat
+    setInterval(updateBubble, 5000);
+    setTimeout(updateBubble, 2000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasang Aplikasi Kami - Akses Pantas</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gold: #c5a059; /* Warna emas fintech */
+            --bg-dark: #0f172a; /* Biru gelap premium */
+            --card-glass: rgba(30, 41, 59, 0.7);
+            --android: #3DDC84;
+            --ios: #ffffff;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            background: var(--card-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #ffffff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-android {
+            background-color: rgba(61, 220, 132, 0.1);
+            color: var(--android);
+            border: 1px solid rgba(61, 220, 132, 0.3);
+        }
+
+        .btn-android:hover {
+            background-color: var(--android);
+            color: #000;
+        }
+
+        .btn-ios {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-ios:hover {
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        /* Butang Kembali - Gaya Fintech Eksklusif */
+        .btn-back {
+            margin-top: 2rem;
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .btn-back:hover {
+            color: var(--primary-gold);
+            opacity: 1;
+        }
+
+        .btn-back svg {
+            margin-right: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-back:hover svg {
+            transform: translateX(-4px);
+        }
+
+        /* Modal / Popup */
+        #instructionModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 350px;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .modal-content h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .close-btn {
+            margin-top: 25px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        ol li {
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Akses Pantas 100% PERCUMA</h1>
+    <p>Pilih peranti anda untuk melihat panduan cara menyimpan laman ini sebagai aplikasi (shortcut).</p>
+
+    <div class="btn-group">
+        <button class="btn btn-android" onclick="showModal('android')">
+            <span><i style="font-style: normal; font-size: 1.2rem;">🤖</i></span> Pengguna Android
+        </button>
+        <button class="btn btn-ios" onclick="showModal('ios')">
+            <span><i style="font-style: normal; font-size: 1.2rem;">🍎</i></span> Pengguna iPhone / iOS
+        </button>
+    </div>
+
+    <!-- Tambahan: Butang Kembali -->
+    <a href="https://kafa-smart-digital.pages.dev/" class="btn-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Kembali ke Laman Utama
+    </a>
+</div>
+
+<!-- Modal Panduan -->
+<div id="instructionModal">
+    <div class="modal-content">
+        <h2 id="modalTitle">Panduan</h2>
+        <div id="modalBody" style="text-align: left; font-size: 0.9rem; line-height: 1.7; color: #cbd5e1;">
+            <!-- Arahan akan dimasukkan melalui JS -->
+        </div>
+        <button class="close-btn" onclick="closeModal()">Tutup</button>
+    </div>
+</div>
+
+<script>
+    function showModal(platform) {
+        const modal = document.getElementById('instructionModal');
+        const title = document.getElementById('modalTitle');
+        const body = document.getElementById('modalBody');
+
+        if (platform === 'android') {
+            title.innerText = "Panduan Android (Chrome)";
+            body.innerHTML = `
+                <ol>
+                    <li>Klik ikon <b>tiga titik (⋮)</b> di pojok kanan atas Chrome.</li>
+                    <li>Cari dan pilih menu <b>"Add to Home screen"</b> atau "Tambahkan ke Layar Utama".</li>
+                    <li>Klik <b>"Add"</b> untuk mengesahkan.</li>
+                </ol>
+            `;
+        } else {
+            title.innerText = "Panduan iOS (Safari)";
+            body.innerHTML = `
+                <ol>
+                    <li>Buka Safari dan klik butang <b>Share</b> (ikon kotak dengan panah ke atas) di tengah bawah.</li>
+                    <li>Skrol ke bawah dan pilih <b>"Add to Home Screen"</b> atau "Tambah ke Layar Utama".</li>
+                    <li>Klik <b>"Add"</b> di penjuru kanan atas.</li>
+                </ol>
+            `;
+        }
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('instructionModal').style.display = 'none';
+    }
+
+    // Tutup modal jika klik di luar kawasan putih
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('instructionModal')) {
+            closeModal();
+        }
+    }
+</script>
+
+</body>
+</html>

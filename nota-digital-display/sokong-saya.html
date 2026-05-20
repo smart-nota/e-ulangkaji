@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sokong KAFA Smart Digital</title>
+    <!-- Menggunakan Tailwind CSS untuk antaramuka moden -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes bounce-in {
+            0% { transform: scale(0.9); opacity: 0; }
+            70% { transform: scale(1.02); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .animate-bounce-in {
+            animation: bounce-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-4 font-sans">
+
+    <!-- Fintech Support Card -->
+    <div class="w-full max-w-md overflow-hidden bg-white shadow-2xl rounded-[2.5rem] animate-bounce-in border border-white">
+        
+        <!-- Header Gradient Premium -->
+        <div class="p-8 text-center text-white bg-gradient-to-br from-yellow-400 via-orange-400 to-pink-500">
+            <h2 class="text-2xl font-extrabold tracking-tight leading-tight">
+                Suka Menggunakan <br>KAFA Smart Digital? 😊
+            </h2>
+        </div>
+
+        <!-- Pandangan Pertama: Mesej Sokongan -->
+        <div id="initialView" class="p-8 text-center">
+            <div class="space-y-4 text-gray-600">
+                <p class="font-medium">
+                    Assalamualaikum! Saya harap web app ini membantu pembelajaran anak-anak. Saya bangunkan platform ini secara <span class="text-orange-500 font-bold">percuma</span>.
+                </p>
+                <p class="text-sm">
+                    Jika ibu/bapa rasa web ini bermanfaat, jemputlah "belanja" saya kopi. Sumbangan kecil anda sangat besar maknanya untuk saya terus kemas kini aplikasi ini.
+                </p>
+            </div>
+
+            <div class="mt-8 flex flex-col gap-4">
+                <button onclick="showDonationDetails()" class="w-full py-4 font-bold text-white transition-all bg-blue-500 shadow-lg shadow-blue-100 rounded-2xl active:scale-95 hover:bg-blue-600">
+                    🚀 Sokong Sekarang (QR/Akaun)
+                </button>
+                <a href="index.html" class="w-full py-3 font-semibold text-gray-400 transition-colors bg-gray-50 rounded-2xl hover:bg-gray-100 text-center">
+                    Mungkin Nanti
+                </a>
+            </div>
+        </div>
+
+        <!-- Pandangan Kedua: QR Code & Maklumat Bank -->
+        <div id="donationView" class="hidden p-8 text-center">
+            <div class="flex flex-col items-center p-5 mb-6 border-2 border-dashed border-pink-100 rounded-[2rem] bg-pink-50/30">
+                
+                <!-- Imej QR (Menggunakan pautan yang anda berikan) -->
+                <div class="bg-white p-3 rounded-2xl shadow-md mb-4">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgrhWmYm-iSuL-kxI9pCr0hB13WwwmHD63zOWYcPK16R121N1A9mhv_mqe3Szk3FL-za15jp9eNN-1219UIWLErClNqSeC57u34gwXRrTSJr1QWHMWe2pgWn5LPo4n5eiUQpvbwpRq8XBZTOSVqZsGY5pgI9Qv1ZHgpi6j-qZVJn6xybM07c5bhJnltFR9o=s16000" 
+                         alt="Maybank QR" 
+                         class="w-56 h-auto rounded-xl">
+                </div>
+                
+                <!-- Maklumat Bank Terperinci -->
+                <div class="w-full p-4 bg-white shadow-sm rounded-2xl border border-gray-100 text-center">
+                    <p class="text-[10px] font-black tracking-[0.2em] text-gray-400 uppercase mb-1">Maybank</p>
+                    <p id="accNumber" class="text-xl font-bold text-gray-800 tracking-wide">162740196672</p>
+                    <p class="mb-4 text-[11px] font-medium text-gray-500 uppercase">Wan Hasbullah Wan Hussin</p>
+                    
+                    <button onclick="copyAccNumber()" class="flex items-center justify-center w-full gap-2 py-3 text-sm font-bold text-blue-600 transition-all bg-blue-50 rounded-xl hover:bg-blue-100 active:scale-95">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                        </svg>
+                        <span id="copyText">Salin No. Akaun</span>
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="location.reload()" class="text-sm font-bold text-gray-400 hover:text-gray-600 transition-colors">
+                ← Kembali
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk tukar view
+        function showDonationDetails() {
+            document.getElementById('initialView').classList.add('hidden');
+            document.getElementById('donationView').classList.remove('hidden');
+        }
+
+        // Fungsi salin nombor akaun
+        function copyAccNumber() {
+            const accNo = "162740196672";
+            navigator.clipboard.writeText(accNo).then(() => {
+                const btnSpan = document.getElementById('copyText');
+                const btnParent = btnSpan.parentElement;
+                
+                btnSpan.innerText = "Berjaya Disalin! ✅";
+                btnParent.classList.add('bg-green-50', 'text-green-600');
+                
+                setTimeout(() => {
+                    btnSpan.innerText = "Salin No. Akaun";
+                    btnParent.classList.remove('bg-green-50', 'text-green-600');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

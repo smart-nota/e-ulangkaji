@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KAFA Insight — Papan Pemantauan Guru</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════
+   KAFA INSIGHT — DESIGN SYSTEM
+═══════════════════════════════════════ */
+:root {
+  --ink:       #0d1117;
+  --ink-2:     #161b22;
+  --ink-3:     #1c2333;
+  --border:    rgba(255,255,255,0.07);
+  --border-2:  rgba(255,255,255,0.12);
+  --gold:      #d4a843;
+  --gold-dim:  rgba(212,168,67,0.15);
+  --gold-glow: rgba(212,168,67,0.08);
+  --silver:    #94a3b8;
+  --bronze:    #cd7f50;
+  --text:      #e6edf3;
+  --muted:     #7d8590;
+  --green:     #3fb950;
+  --green-dim: rgba(63,185,80,0.12);
+  --red:       #f85149;
+  --red-dim:   rgba(248,81,73,0.12);
+  --blue:      #58a6ff;
+  --blue-dim:  rgba(88,166,255,0.1);
+  --radius:    12px;
+  --radius-lg: 18px;
+  --mono:      'DM Mono', monospace;
+  --sans:      'Plus Jakarta Sans', sans-serif;
+  --serif:     'Fraunces', serif;
+  --shadow:    0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,0.6);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--sans);
+  background: var(--ink);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Grid background texture ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Top glow orb ── */
+body::after {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(212,168,67,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════ */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-icon {
+  width: 52px; height: 52px;
+  background: var(--gold-dim);
+  border: 1.5px solid rgba(212,168,67,0.4);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.brand-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,168,67,0.2) 0%, transparent 60%);
+}
+
+.brand-text h1 {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+.brand-text h1 span {
+  color: var(--gold);
+  font-style: italic;
+}
+.brand-text p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-dim);
+  border: 1px solid rgba(63,185,80,0.25);
+  color: var(--green);
+  border-radius: 99px;
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 1.4s ease infinite;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+.last-updated {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.btn-refresh {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink-3);
+  border: 1px solid var(--border-2);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-refresh:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.btn-refresh.loading .btn-icon { animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ═══════════════════════════════════════
+   CONTROLS BAR
+═══════════════════════════════════════ */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.config-block {
+  background: var(--ink-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 220px;
+}
+.config-block label {
+  font-size: 0.7rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.config-block input,
+.config-block select {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  outline: none;
+  min-width: 0;
+}
+.config-block input::placeholder { color: var(--muted); }
+
+.pill-group {
+  display: flex;
+  gap: 4px;
+  background: var(--ink-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px;
+}
+.pill {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.pill.active {
+  background: var(--gold-dim);
+  color: var(--gold);
+  border: 1px solid rgba(212,168,67,0.3);
+}
+
+.btn-load {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-load:hover { background: #e0b84d; transform: translateY(-1px); }
+
+/* ═══════════════════════════════════════
+   STAT CARDS
+═══════════════════════════════════════ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--ink-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.4s ease both;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent-line, var(--gold));
+  opacity: 0.6;
+}
+.stat-card .stat-icon {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  opacity: 0.85;
+}
+.stat-card .stat-value {
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-card .stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-family: var(--mono);
+}
+.stat-card .stat-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.stat-card .stat-sub b { color: var(--text); }
+
+.stat-card[data-color="gold"]   { --accent-line: var(--gold); }
+.stat-card[data-color="green"]  { --accent-line: var(--green); }
+.stat-card[data-color="blue"]   { --accent-line: var(--blue); }
+.stat-card[data-color="silver"] { --accent-line: var(--silver); }
+.stat-card[data-color="red"]    { --accent-line: var(--red); }
+
+/* ═══════════════════════════════════════
+   MAIN GRID
+═══════════════════════════════════════ */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 960px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════
+   PANEL
+═══════════════════════════════════════ */
+.panel {
+  background: var(--ink-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: fadeUp 0.4s ease both;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.panel-title {
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel-title span {
+  font-size: 1rem;
+}
+.panel-badge {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  background: var(--ink-3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* ── Search ── */
+.search-wrap {
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.search-input {
+  width: 100%;
+  background: var(--ink-3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-input:focus { border-color: var(--gold); }
+.search-input::placeholder { color: var(--muted); }
+
+/* ═══════════════════════════════════════
+   RANKING TABLE
+═══════════════════════════════════════ */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  padding: 10px 18px;
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  background: var(--ink-3);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+thead th:first-child { width: 52px; text-align: center; }
+thead th.th-right { text-align: right; }
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+  animation: fadeUp 0.3s ease both;
+}
+tbody tr:hover { background: rgba(255,255,255,0.02); }
+tbody tr:last-child { border-bottom: none; }
+
+tbody td {
+  padding: 13px 18px;
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+tbody td:first-child { text-align: center; }
+tbody td.td-right { text-align: right; }
+
+/* Rank number */
+.rank-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.rank-1 { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(212,168,67,0.3); }
+.rank-2 { background: rgba(148,163,184,0.12); color: var(--silver); border: 1px solid rgba(148,163,184,0.25); }
+.rank-3 { background: rgba(205,127,80,0.12); color: var(--bronze); border: 1px solid rgba(205,127,80,0.25); }
+.rank-n { background: var(--ink-3); color: var(--muted); border: 1px solid var(--border); }
+
+.medal { font-size: 1rem; margin-left: 4px; }
+
+/* Student name */
+.student-name {
+  font-weight: 600;
+  color: #fff;
+}
+.student-kelas {
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Score bar */
+.score-cell { min-width: 160px; }
+.score-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.score-bar-bg {
+  flex: 1;
+  height: 5px;
+  background: var(--ink-3);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--gold), #e8c56a);
+  transition: width 0.8s cubic-bezier(.4,0,.2,1);
+}
+.score-bar-fill.low  { background: linear-gradient(90deg, var(--red), #f9817a); }
+.score-bar-fill.mid  { background: linear-gradient(90deg, var(--blue), #7cb9ff); }
+.score-bar-fill.high { background: linear-gradient(90deg, var(--green), #6fd97c); }
+.score-val {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+  min-width: 44px;
+  text-align: right;
+}
+
+.date-cell {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* Highlight current top */
+tbody tr.top-row { background: var(--gold-glow); }
+tbody tr.top-row:hover { background: rgba(212,168,67,0.07); }
+
+/* ═══════════════════════════════════════
+   SIDE PANELS
+═══════════════════════════════════════ */
+.side-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Kelas breakdown ── */
+.kelas-list {
+  padding: 4px 0;
+}
+.kelas-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+  cursor: default;
+}
+.kelas-item:last-child { border-bottom: none; }
+.kelas-item:hover { background: rgba(255,255,255,0.02); }
+.kelas-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.kelas-info { flex: 1; min-width: 0; }
+.kelas-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kelas-count {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 1px;
+}
+.kelas-avg {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #fff;
+}
+.kelas-bar-small {
+  width: 48px;
+  height: 3px;
+  background: var(--ink-3);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 3px;
+}
+.kelas-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.8s ease;
+}
+
+/* ── Top pelajar mini list ── */
+.top-list { padding: 0; }
+.top-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 22px;
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.3s ease both;
+}
+.top-item:last-child { border-bottom: none; }
+.top-pos {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  min-width: 18px;
+}
+.top-name {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.top-score {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   BOTTOM ROW
+═══════════════════════════════════════ */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 700px) {
+  .bottom-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Distribution chart ── */
+.dist-chart {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dist-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dist-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  min-width: 52px;
+  text-align: right;
+}
+.dist-bar-bg {
+  flex: 1;
+  height: 20px;
+  background: var(--ink-3);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.dist-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+.dist-bar-fill span {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: rgba(0,0,0,0.7);
+  font-weight: 500;
+}
+.dist-count {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  min-width: 24px;
+  text-align: right;
+}
+
+/* ── Attempts tracker ── */
+.attempt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 20px 22px;
+}
+.attempt-card {
+  background: var(--ink-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+}
+.attempt-num {
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.attempt-lbl {
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ═══════════════════════════════════════
+   EMPTY / LOADING / ERROR STATES
+═══════════════════════════════════════ */
+.state-box {
+  padding: 56px 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.state-box .state-icon {
+  font-size: 2.5rem;
+  margin-bottom: 14px;
+  opacity: 0.6;
+}
+.state-box p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.state-box .state-hint {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  margin-top: 8px;
+  color: var(--gold);
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, var(--ink-3) 25%, var(--ink-2) 50%, var(--ink-3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.footer {
+  text-align: center;
+  padding-top: 32px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.footer span { color: var(--gold); }
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Stagger delays ── */
+.stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stat-card:nth-child(2) { animation-delay: 0.10s; }
+.stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stat-card:nth-child(4) { animation-delay: 0.20s; }
+.stat-card:nth-child(5) { animation-delay: 0.25s; }
+
+tbody tr:nth-child(1) { animation-delay: 0.05s; }
+tbody tr:nth-child(2) { animation-delay: 0.08s; }
+tbody tr:nth-child(3) { animation-delay: 0.11s; }
+tbody tr:nth-child(4) { animation-delay: 0.14s; }
+tbody tr:nth-child(5) { animation-delay: 0.17s; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .wrapper { padding: 16px 12px 40px; }
+  .brand-text h1 { font-size: 1.35rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .controls-bar { flex-direction: column; align-items: stretch; }
+  .pill-group { justify-content: center; }
+  .btn-load { justify-content: center; }
+}
+
+/* ── Topik tab pills ── */
+.topik-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.topik-tab {
+  padding: 5px 12px;
+  border-radius: 99px;
+  border: 1px solid var(--border-2);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.topik-tab.active {
+  background: var(--gold-dim);
+  border-color: rgba(212,168,67,0.4);
+  color: var(--gold);
+}
+.topik-tab:hover:not(.active) {
+  border-color: var(--border-2);
+  color: var(--text);
+}
+
+/* ── Print / export hint ── */
+.export-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ═══════ HEADER ═══════ -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🌙</div>
+      <div class="brand-text">
+        <h1>KAFA <span>Insight</span></h1>
+        <p>Papan Pemantauan Guru · Tahun 2</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        LIVE DATA
+      </div>
+      <div class="last-updated" id="lastUpdated">—</div>
+      <button class="btn-refresh" id="btnRefresh" onclick="refreshData()">
+        <span class="btn-icon" id="refreshIcon">↻</span>
+        Kemaskini
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════ CONTROLS BAR ═══════ -->
+  <div class="controls-bar">
+    <div class="config-block">
+      <label>GAS URL</label>
+      <input type="text" id="gasUrl" placeholder="https://script.google.com/macros/s/..." />
+    </div>
+    <div class="pill-group" id="subjekPills">
+      <button class="pill active" data-subjek="Sirah" onclick="setSubjek(this)">Sirah</button>
+      <button class="pill" data-subjek="Ibadah" onclick="setSubjek(this)">Ibadah</button>
+      <button class="pill" data-subjek="Jawi" onclick="setSubjek(this)">Jawi</button>
+    </div>
+    <button class="btn-load" onclick="loadData()">
+      ⬇ Muatkan Data
+    </button>
+  </div>
+
+  <!-- ═══════ STAT CARDS ═══════ -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card" data-color="gold">
+      <div class="stat-icon">👥</div>
+      <div class="stat-value" id="statTotal">—</div>
+      <div class="stat-label">Jumlah Pelajar</div>
+    </div>
+    <div class="stat-card" data-color="green">
+      <div class="stat-icon">⭐</div>
+      <div class="stat-value" id="statAvg">—</div>
+      <div class="stat-label">Purata Markah</div>
+      <div class="stat-sub">daripada <b>75</b> markah penuh</div>
+    </div>
+    <div class="stat-card" data-color="blue">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-value" id="statTop">—</div>
+      <div class="stat-label">Markah Tertinggi</div>
+      <div class="stat-sub" id="statTopName">—</div>
+    </div>
+    <div class="stat-card" data-color="silver">
+      <div class="stat-icon">📊</div>
+      <div class="stat-value" id="statPass">—</div>
+      <div class="stat-label">Lulus (≥ 38)</div>
+      <div class="stat-sub" id="statPassPct">—</div>
+    </div>
+    <div class="stat-card" data-color="red">
+      <div class="stat-icon">📉</div>
+      <div class="stat-value" id="statLowest">—</div>
+      <div class="stat-label">Markah Terendah</div>
+      <div class="stat-sub" id="statLowestName">—</div>
+    </div>
+  </div>
+
+  <!-- ═══════ MAIN GRID ═══════ -->
+  <div class="main-grid">
+
+    <!-- ── Ranking Table Panel ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>📋</span> Jadual Ranking Penuh
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="panel-badge" id="rowCount">0 rekod</span>
+          <button class="btn-refresh" onclick="exportCSV()" title="Eksport CSV" style="padding:5px 10px;font-size:0.72rem">
+            ⬇ CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Topik filter tabs -->
+      <div class="topik-tabs" id="topikTabs">
+        <span style="font-size:0.72rem;font-family:var(--mono);color:var(--muted);align-self:center">Topik:</span>
+      </div>
+
+      <!-- Search -->
+      <div class="search-wrap">
+        <input class="search-input" id="searchInput" type="text"
+          placeholder="🔍  Cari nama pelajar atau kelas..."
+          oninput="filterTable()"/>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <table id="rankingTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nama Pelajar</th>
+              <th>Kelas</th>
+              <th class="th-right" style="min-width:180px">Markah</th>
+              <th>Tahap 1</th>
+              <th>Tahap 2</th>
+              <th>Tahap 3</th>
+              <th>Tarikh</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="8">
+              <div class="state-box">
+                <div class="state-icon">📡</div>
+                <p>Data belum dimuatkan.</p>
+                <p class="state-hint">Masukkan GAS URL dan klik "Muatkan Data"</p>
+              </div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="export-hint">
+        <span>⌨</span> Tekan Ctrl+F untuk cari dalam pelayar &nbsp;·&nbsp; CSV akan dimuat turun apabila klik ⬇ CSV
+      </div>
+    </div>
+
+    <!-- ── Side Panels ── -->
+    <div class="side-panels">
+
+      <!-- Top 5 -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title"><span>🥇</span> Juara 5 Teratas</div>
+        </div>
+        <div class="top-list" id="top5List">
+          <div class="state-box" style="padding:28px">
+            <div class="state-icon" style="font-size:1.5rem">🏅</div>
+            <p>Belum ada data</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kelas breakdown -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title"><span>🏫</span> Prestasi Mengikut Kelas</div>
+        </div>
+        <div class="kelas-list" id="kelasList">
+          <div class="state-box" style="padding:28px">
+            <div class="state-icon" style="font-size:1.5rem">🏫</div>
+            <p>Belum ada data</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ BOTTOM GRID ═══════ -->
+  <div class="bottom-grid">
+
+    <!-- Taburan markah -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title"><span>📊</span> Taburan Markah</div>
+      </div>
+      <div class="dist-chart" id="distChart">
+        <div class="state-box" style="padding:28px">
+          <div class="state-icon" style="font-size:1.5rem">📊</div>
+          <p>Belum ada data</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ringkasan percubaan -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title"><span>🔄</span> Ringkasan Percubaan</div>
+      </div>
+      <div class="attempt-grid" id="attemptGrid">
+        <div class="attempt-card">
+          <div class="attempt-num" id="att1" style="color:var(--green)">—</div>
+          <div class="attempt-lbl">1 Percubaan</div>
+        </div>
+        <div class="attempt-card">
+          <div class="attempt-num" id="att2" style="color:var(--gold)">—</div>
+          <div class="attempt-lbl">2 Percubaan</div>
+        </div>
+        <div class="attempt-card">
+          <div class="attempt-num" id="att3" style="color:var(--red)">—</div>
+          <div class="attempt-lbl">3 Percubaan</div>
+        </div>
+      </div>
+      <div style="padding:0 22px 20px">
+        <div class="kelas-bar-small" style="width:100%;height:6px;margin-bottom:8px">
+          <div id="attProgressBar" class="kelas-bar-fill" style="background:var(--gold);width:0%"></div>
+        </div>
+        <div style="font-family:var(--mono);font-size:0.72rem;color:var(--muted)" id="attProgressLabel">
+          — pelajar telah hantar markah
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <div class="footer" style="margin-top:32px">
+    <span>KAFA Insight</span> · Papan Pemantauan Guru · Data langsung dari Google Sheets
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+// ────────────────────────────────────────
+//  STATE
+// ────────────────────────────────────────
+let allData      = [];   // Data penuh dari GAS
+let filteredData = [];   // Data selepas filter carian
+let activeSubjek = 'Sirah';
+let activeTopik  = '';   // topikId aktif
+let topikList    = [];   // senarai topik dalam data semasa
+
+const KELAS_COLORS = [
+  '#d4a843', '#58a6ff', '#3fb950', '#f78166',
+  '#a371f7', '#79c0ff', '#56d364', '#ffa657'
+];
+
+// ────────────────────────────────────────
+//  FORMAT HELPERS
+// ────────────────────────────────────────
+function formatNama(nama) {
+  return nama.split(' ').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
+}
+
+function scoreColor(score, max = 75) {
+  const pct = score / max;
+  if (pct >= 0.8) return 'high';
+  if (pct >= 0.5) return 'mid';
+  return 'low';
+}
+
+function nowStr() {
+  return new Date().toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
+// ────────────────────────────────────────
+//  SUBJEK SWITCHER
+// ────────────────────────────────────────
+function setSubjek(btn) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  activeSubjek = btn.dataset.subjek;
+}
+
+// ────────────────────────────────────────
+//  LOAD DATA (main entry)
+// ────────────────────────────────────────
+async function loadData() {
+  const url = document.getElementById('gasUrl').value.trim();
+  if (!url) {
+    alert('Sila masukkan URL Google Apps Script anda.');
+    return;
+  }
+
+  // Simpan URL dalam localStorage supaya tidak perlu taip semula
+  localStorage.setItem('kafaInsightUrl', url);
+
+  setLoading(true);
+  renderSkeletonTable();
+
+  // Kumpul semua topik untuk subjek aktif
+  const topiks = getTopikList();
+
+  let combined = [];
+  const topikMeta = [];
+
+  for (const t of topiks) {
+    try {
+      const endpoint = `${url}?action=getRanking&topik=${encodeURIComponent(t.id)}&subjek=${encodeURIComponent(activeSubjek)}`;
+      const res  = await fetch(endpoint);
+      const data = await res.json();
+
+      if (Array.isArray(data) && data.length > 0) {
+        // Tag setiap rekod dengan topikId
+        const tagged = data.map(d => ({ ...d, topikId: t.id, topikNama: t.nama }));
+        combined = combined.concat(tagged);
+        topikMeta.push({ ...t, count: data.length });
+      }
+    } catch (e) {
+      console.warn('Gagal muatkan topik:', t.id, e);
+    }
+  }
+
+  allData     = combined;
+  topikList   = topikMeta;
+  activeTopik = topikMeta.length > 0 ? topikMeta[0].id : '';
+
+  renderAll();
+  setLoading(false);
+  document.getElementById('lastUpdated').textContent = 'Dikemaskini: ' + nowStr();
+}
+
+// ────────────────────────────────────────
+//  REFRESH
+// ────────────────────────────────────────
+function refreshData() {
+  const url = document.getElementById('gasUrl').value.trim();
+  if (!url) { loadData(); return; }
+  loadData();
+}
+
+// ────────────────────────────────────────
+//  TOPIK LIST (berdasarkan SUBJEK_TOPIK dari game)
+// ────────────────────────────────────────
+const SUBJEK_TOPIK_MAP = {
+  'Sirah':  [{ id: 'sirah-biodata-nabi', nama: 'Biodata Nabi Muhammad SAW' }],
+  'Ibadah': [],
+  'Jawi':   []
+};
+
+function getTopikList() {
+  return SUBJEK_TOPIK_MAP[activeSubjek] || [];
+}
+
+// ────────────────────────────────────────
+//  RENDER ALL
+// ────────────────────────────────────────
+function renderAll() {
+  const data = activeTopik
+    ? allData.filter(d => d.topikId === activeTopik)
+    : allData;
+
+  data.sort((a, b) => b.markah - a.markah);
+  filteredData = data;
+
+  renderTopikTabs();
+  renderStats(data);
+  renderTable(data);
+  renderTop5(data);
+  renderKelas(data);
+  renderDist(data);
+  renderAttempts(data);
+}
+
+// ────────────────────────────────────────
+//  TOPIK TABS
+// ────────────────────────────────────────
+function renderTopikTabs() {
+  const container = document.getElementById('topikTabs');
+  container.innerHTML = '<span style="font-size:0.72rem;font-family:var(--mono);color:var(--muted);align-self:center">Topik:</span>';
+
+  // Tab "Semua"
+  const allTab = document.createElement('button');
+  allTab.className = 'topik-tab' + (activeTopik === '' ? ' active' : '');
+  allTab.textContent = 'Semua';
+  allTab.onclick = () => { activeTopik = ''; renderAll(); };
+  container.appendChild(allTab);
+
+  topikList.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'topik-tab' + (activeTopik === t.id ? ' active' : '');
+    btn.textContent = t.nama + ' (' + t.count + ')';
+    btn.onclick = () => { activeTopik = t.id; renderAll(); };
+    container.appendChild(btn);
+  });
+}
+
+// ────────────────────────────────────────
+//  STATS
+// ────────────────────────────────────────
+function renderStats(data) {
+  const total = data.length;
+  const avg   = total > 0 ? Math.round(data.reduce((s, d) => s + d.markah, 0) / total) : 0;
+  const top   = data.length > 0 ? data[0] : null;
+  const low   = data.length > 0 ? data[data.length - 1] : null;
+  const pass  = data.filter(d => d.markah >= 38).length;
+
+  document.getElementById('statTotal').textContent    = total;
+  document.getElementById('statAvg').textContent      = avg || '—';
+  document.getElementById('statTop').textContent      = top ? top.markah : '—';
+  document.getElementById('statTopName').innerHTML    = top ? formatNama(top.nama) : '—';
+  document.getElementById('statPass').textContent     = pass;
+  document.getElementById('statPassPct').textContent  = total > 0 ? Math.round(pass / total * 100) + '% pelajar' : '—';
+  document.getElementById('statLowest').textContent   = low ? low.markah : '—';
+  document.getElementById('statLowestName').innerHTML = low ? formatNama(low.nama) : '—';
+  document.getElementById('rowCount').textContent     = total + ' rekod';
+}
+
+// ────────────────────────────────────────
+//  TABLE
+// ────────────────────────────────────────
+function renderTable(data) {
+  const body = document.getElementById('tableBody');
+
+  if (!data || data.length === 0) {
+    body.innerHTML = `<tr><td colspan="8"><div class="state-box">
+      <div class="state-icon">📭</div>
+      <p>Tiada data untuk topik ini.</p>
+    </div></td></tr>`;
+    return;
+  }
+
+  body.innerHTML = data.map((d, i) => {
+    const rank    = i + 1;
+    let rankClass = 'rank-n';
+    let medal     = '';
+    if (rank === 1) { rankClass = 'rank-1'; medal = '<span class="medal">🥇</span>'; }
+    else if (rank === 2) { rankClass = 'rank-2'; medal = '<span class="medal">🥈</span>'; }
+    else if (rank === 3) { rankClass = 'rank-3'; medal = '<span class="medal">🥉</span>'; }
+
+    const pct   = Math.round(d.markah / 75 * 100);
+    const cls   = scoreColor(d.markah, 75);
+    const isTop = rank === 1 ? 'top-row' : '';
+
+    const t1 = d.stageMark ? d.stageMark[0] : (d.tahap1 || '—');
+    const t2 = d.stageMark ? d.stageMark[1] : (d.tahap2 || '—');
+    const t3 = d.stageMark ? d.stageMark[2] : (d.tahap3 || '—');
+
+    return `<tr class="${isTop}">
+      <td>
+        <span class="rank-num ${rankClass}">${rank}</span>${medal}
+      </td>
+      <td>
+        <div class="student-name">${formatNama(d.nama)}</div>
+        <div class="student-kelas">${d.kelas || '—'}</div>
+      </td>
+      <td>
+        <span style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">${d.kelas || '—'}</span>
+      </td>
+      <td class="score-cell td-right">
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg">
+            <div class="score-bar-fill ${cls}" style="width:${pct}%"></div>
+          </div>
+          <div class="score-val">${d.markah}<span style="color:var(--muted);font-size:0.7rem">/75</span></div>
+        </div>
+      </td>
+      <td style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">${t1}</td>
+      <td style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">${t2}</td>
+      <td style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">${t3}</td>
+      <td class="date-cell">${d.masa || '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ────────────────────────────────────────
+//  FILTER (search)
+// ────────────────────────────────────────
+function filterTable() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const base = activeTopik ? allData.filter(d => d.topikId === activeTopik) : allData;
+  base.sort((a, b) => b.markah - a.markah);
+
+  if (!q) {
+    filteredData = base;
+  } else {
+    filteredData = base.filter(d =>
+      d.nama.toLowerCase().includes(q) ||
+      (d.kelas || '').toLowerCase().includes(q)
+    );
+  }
+
+  renderTable(filteredData);
+  document.getElementById('rowCount').textContent = filteredData.length + ' rekod';
+}
+
+// ────────────────────────────────────────
+//  TOP 5
+// ────────────────────────────────────────
+function renderTop5(data) {
+  const el  = document.getElementById('top5List');
+  const top = data.slice(0, 5);
+
+  if (top.length === 0) {
+    el.innerHTML = `<div class="state-box" style="padding:28px">
+      <div class="state-icon" style="font-size:1.5rem">🏅</div>
+      <p>Belum ada data</p></div>`;
+    return;
+  }
+
+  el.innerHTML = top.map((d, i) => `
+    <div class="top-item">
+      <div class="top-pos">${i + 1}.</div>
+      <div>
+        <div class="top-name">${formatNama(d.nama)}</div>
+        <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted)">${d.kelas || ''}</div>
+      </div>
+      <div class="top-score">${d.markah}/75</div>
+    </div>`).join('');
+}
+
+// ────────────────────────────────────────
+//  KELAS BREAKDOWN
+// ────────────────────────────────────────
+function renderKelas(data) {
+  const el = document.getElementById('kelasList');
+  if (data.length === 0) {
+    el.innerHTML = `<div class="state-box" style="padding:28px">
+      <div class="state-icon" style="font-size:1.5rem">🏫</div>
+      <p>Belum ada data</p></div>`;
+    return;
+  }
+
+  // Kumpul mengikut kelas
+  const map = {};
+  data.forEach(d => {
+    const k = d.kelas || 'Tidak diketahui';
+    if (!map[k]) map[k] = [];
+    map[k].push(d.markah);
+  });
+
+  const kelasArr = Object.entries(map).map(([k, marks]) => ({
+    nama:  k,
+    count: marks.length,
+    avg:   Math.round(marks.reduce((a, b) => a + b, 0) / marks.length)
+  })).sort((a, b) => b.avg - a.avg);
+
+  const maxAvg = kelasArr[0]?.avg || 75;
+
+  el.innerHTML = kelasArr.map((k, i) => {
+    const color = KELAS_COLORS[i % KELAS_COLORS.length];
+    const pct   = Math.round(k.avg / 75 * 100);
+    return `<div class="kelas-item">
+      <div class="kelas-dot" style="background:${color}"></div>
+      <div class="kelas-info">
+        <div class="kelas-name">${k.nama}</div>
+        <div class="kelas-count">${k.count} pelajar</div>
+        <div class="kelas-bar-small">
+          <div class="kelas-bar-fill" style="background:${color};width:${pct}%"></div>
+        </div>
+      </div>
+      <div>
+        <div class="kelas-avg">${k.avg}</div>
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted)">avg/75</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ────────────────────────────────────────
+//  TABURAN MARKAH
+// ────────────────────────────────────────
+function renderDist(data) {
+  const el = document.getElementById('distChart');
+  if (data.length === 0) {
+    el.innerHTML = `<div class="state-box" style="padding:28px">
+      <div class="state-icon" style="font-size:1.5rem">📊</div>
+      <p>Belum ada data</p></div>`;
+    return;
+  }
+
+  const bands = [
+    { label: '61-75', min: 61, max: 75, color: '#3fb950' },
+    { label: '46-60', min: 46, max: 60, color: '#58a6ff' },
+    { label: '38-45', min: 38, max: 45, color: '#d4a843' },
+    { label: '20-37', min: 20, max: 37, color: '#f78166' },
+    { label: '0-19',  min: 0,  max: 19, color: '#f85149' }
+  ];
+
+  const counts = bands.map(b => ({
+    ...b,
+    count: data.filter(d => d.markah >= b.min && d.markah <= b.max).length
+  }));
+
+  const maxCount = Math.max(...counts.map(c => c.count), 1);
+
+  el.innerHTML = counts.map(c => {
+    const pct = Math.round(c.count / maxCount * 100);
+    return `<div class="dist-row">
+      <div class="dist-label">${c.label}</div>
+      <div class="dist-bar-bg">
+        <div class="dist-bar-fill" style="background:${c.color};width:${pct}%">
+          ${c.count > 0 ? `<span>${c.count}</span>` : ''}
+        </div>
+      </div>
+      <div class="dist-count">${c.count}</div>
+    </div>`;
+  }).join('');
+}
+
+// ────────────────────────────────────────
+//  ATTEMPTS (dari _attempts sheet — jika ada)
+// ────────────────────────────────────────
+function renderAttempts(data) {
+  // Nota: GAS versi baru ada sheet _attempts dengan data percubaan.
+  // Untuk dashboard ini kita anggap setiap rekod dalam ranking = 1 pelajar
+  // yang telah hantar (dikunci). Kita tunjuk sahaja bilangan hantar.
+  const hantar = data.length;
+  const total  = hantar; // Boleh dikemaskini jika ada API getAllStatus
+
+  document.getElementById('att1').textContent = '—';
+  document.getElementById('att2').textContent = '—';
+  document.getElementById('att3').textContent = '—';
+  document.getElementById('attProgressLabel').textContent =
+    hantar + ' pelajar telah hantar markah';
+
+  // Progress bar (guna 100% sebagai asas jika tidak tahu jumlah pelajar)
+  document.getElementById('attProgressBar').style.width = '100%';
+}
+
+// ────────────────────────────────────────
+//  EXPORT CSV
+// ────────────────────────────────────────
+function exportCSV() {
+  if (filteredData.length === 0) {
+    alert('Tiada data untuk dieksport.');
+    return;
+  }
+
+  const headers = ['Ranking', 'Nama', 'Kelas', 'Markah', 'Tahap 1', 'Tahap 2', 'Tahap 3', 'Tarikh', 'Topik'];
+  const rows = filteredData.map((d, i) => [
+    i + 1,
+    `"${d.nama}"`,
+    `"${d.kelas || ''}"`,
+    d.markah,
+    d.stageMark ? d.stageMark[0] : '',
+    d.stageMark ? d.stageMark[1] : '',
+    d.stageMark ? d.stageMark[2] : '',
+    `"${d.masa || ''}"`,
+    `"${d.topikNama || d.topikId || ''}"`
+  ]);
+
+  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `kafa-ranking-${activeSubjek}-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ────────────────────────────────────────
+//  SKELETON LOADING
+// ────────────────────────────────────────
+function renderSkeletonTable() {
+  const body = document.getElementById('tableBody');
+  body.innerHTML = Array(6).fill('').map(() => `
+    <tr>
+      <td><div class="skeleton" style="width:28px;height:28px;border-radius:8px;margin:auto"></div></td>
+      <td><div class="skeleton" style="width:140px;height:14px;margin-bottom:5px"></div>
+          <div class="skeleton" style="width:80px;height:10px"></div></td>
+      <td><div class="skeleton" style="width:90px;height:12px"></div></td>
+      <td><div class="skeleton" style="width:100%;height:5px;border-radius:99px"></div></td>
+      <td><div class="skeleton" style="width:24px;height:12px"></div></td>
+      <td><div class="skeleton" style="width:24px;height:12px"></div></td>
+      <td><div class="skeleton" style="width:24px;height:12px"></div></td>
+      <td><div class="skeleton" style="width:70px;height:12px"></div></td>
+    </tr>`).join('');
+}
+
+// ────────────────────────────────────────
+//  LOADING STATE
+// ────────────────────────────────────────
+function setLoading(on) {
+  const btn  = document.getElementById('btnRefresh');
+  const icon = document.getElementById('refreshIcon');
+  btn.classList.toggle('loading', on);
+  icon.textContent = on ? '↻' : '↻';
+}
+
+// ────────────────────────────────────────
+//  INIT — baca URL tersimpan
+// ────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('kafaInsightUrl');
+  if (saved) {
+    document.getElementById('gasUrl').value = saved;
+  }
+});
+
+// ─── Nota untuk guru: Jika ingin tambah topik baru,
+//     tambah dalam SUBJEK_TOPIK_MAP di atas. ───
+</script>
+</body>
+</html>

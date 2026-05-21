@@ -91,9 +91,7 @@ body{
 .prog-wrap{height:6px;background:#e2e8f0;border-radius:99px;margin-bottom:18px;}
 .prog-bar{height:100%;background:linear-gradient(90deg,var(--navy3),var(--gold2));border-radius:99px;transition:width 0.4s;}
 
-/* ──────────────────────────────────
-   TAHAP 1: MCQ pilihan
-   ────────────────────────────────── */
+/* MCQ */
 .options-grid{display:flex;flex-direction:column;gap:9px;}
 .opt-btn{
   width:100%;padding:13px 16px;text-align:left;
@@ -116,9 +114,7 @@ body{
 .opt-btn.correct .opt-letter{background:var(--green);border-color:var(--green);color:#fff;}
 .opt-btn.wrong .opt-letter{background:var(--red);border-color:var(--red);color:#fff;}
 
-/* ──────────────────────────────────
-   TAHAP 2: DRAG & DROP
-   ────────────────────────────────── */
+/* DRAG DROP */
 .dnd-instruction{
   font-size:0.8rem;color:#64748b;text-align:center;
   margin-bottom:14px;padding:8px 14px;background:#f8fafc;
@@ -136,7 +132,6 @@ body{
 .drop-zone.wrong-zone{border-color:var(--red)!important;background:#fee2e2!important;}
 .drop-label{font-size:0.72rem;color:#94a3b8;position:absolute;top:-10px;left:12px;background:#f8faff;padding:0 6px;font-weight:700;}
 .drop-zone.filled .drop-label{background:#fff;}
-
 .drag-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:4px;}
 .drag-chip{
   padding:10px 16px;background:var(--navy);color:#fff;
@@ -150,32 +145,23 @@ body{
 .drag-chip.used{opacity:0.35;cursor:not-allowed;pointer-events:none;}
 .drag-chip.correct-chip{background:var(--green)!important;border-color:var(--green)!important;}
 .drag-chip.wrong-chip{background:var(--red)!important;border-color:var(--red)!important;}
-
 .placed-chip{
   padding:10px 16px;background:var(--navy2);color:#fff;
   border-radius:10px;font-weight:700;font-size:0.88rem;
   display:flex;align-items:center;gap:8px;cursor:pointer;
-  box-shadow:0 2px 8px rgba(15,39,70,0.15);
-  transition:all 0.18s;
+  box-shadow:0 2px 8px rgba(15,39,70,0.15);transition:all 0.18s;
 }
 .placed-chip .remove-x{font-size:0.9rem;opacity:0.6;}
 
-/* ──────────────────────────────────
-   TAHAP 3: SUSUN URUTAN (Sort)
-   ────────────────────────────────── */
-.sort-instruction{
-  font-size:0.8rem;color:#64748b;text-align:center;
-  margin-bottom:14px;padding:8px 14px;background:#f8fafc;
-  border-radius:10px;border:1px dashed #cbd5e1;
-}
+/* SORT */
+.sort-instruction{font-size:0.8rem;color:#64748b;text-align:center;margin-bottom:14px;padding:8px 14px;background:#f8fafc;border-radius:10px;border:1px dashed #cbd5e1;}
 .sort-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
 .sort-item{
   display:flex;align-items:center;gap:10px;
   background:var(--white);border:2px solid #e2e8f0;
   border-radius:12px;padding:12px 14px;cursor:grab;
   font-weight:700;font-size:0.88rem;color:var(--navy);
-  box-shadow:0 2px 8px rgba(15,39,70,0.06);
-  transition:all 0.18s;user-select:none;touch-action:none;
+  box-shadow:0 2px 8px rgba(15,39,70,0.06);transition:all 0.18s;user-select:none;touch-action:none;
 }
 .sort-item:hover{border-color:var(--navy3);background:#f0f4ff;}
 .sort-item.dragging-sort{opacity:0.3;transform:scale(0.97);}
@@ -183,16 +169,11 @@ body{
 .sort-item.correct-sort{border-color:var(--green);background:#d1fae5;color:#065f46;}
 .sort-item.wrong-sort{border-color:var(--red);background:#fee2e2;color:#991b1b;}
 .sort-handle{font-size:1.1rem;color:#94a3b8;min-width:20px;}
-.sort-num{
-  width:26px;height:26px;min-width:26px;border-radius:50%;
-  background:var(--bg);border:1.5px solid #e2e8f0;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.72rem;font-weight:800;color:var(--navy3);
-}
+.sort-num{width:26px;height:26px;min-width:26px;border-radius:50%;background:var(--bg);border:1.5px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:var(--navy3);}
 .sort-item.correct-sort .sort-num{background:var(--green);border-color:var(--green);color:#fff;}
 .sort-item.wrong-sort .sort-num{background:var(--red);border-color:var(--red);color:#fff;}
 
-/* ── SUBMIT BTN ── */
+/* SUBMIT BTN */
 .submit-btn{
   width:100%;padding:14px;
   background:linear-gradient(135deg,var(--navy2),var(--navy3));
@@ -206,182 +187,256 @@ body{
 .submit-btn:active{transform:translateY(0);}
 .submit-btn:disabled{background:#94a3b8;box-shadow:none;cursor:not-allowed;transform:none;}
 
-/* ── FEEDBACK ── */
-.feedback-box{
-  border-radius:var(--radius2);padding:12px 16px;
-  margin-bottom:10px;font-size:0.88rem;font-weight:700;
-  display:flex;align-items:flex-start;gap:10px;animation:fadeUp 0.3s ease;
-}
+/* FEEDBACK */
+.feedback-box{border-radius:var(--radius2);padding:12px 16px;margin-bottom:10px;font-size:0.88rem;font-weight:700;display:flex;align-items:flex-start;gap:10px;animation:fadeUp 0.3s ease;}
 .feedback-box.correct-fb{background:#d1fae5;border:1.5px solid var(--green);color:#065f46;}
 .feedback-box.wrong-fb{background:#fee2e2;border:1.5px solid var(--red);color:#991b1b;}
 .fb-icon{font-size:1.2rem;min-width:22px;}
 .fb-text{line-height:1.4;}
 
-/* ── NEXT BTN ── */
-.next-btn{
-  width:100%;padding:14px;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:var(--navy);border:none;border-radius:var(--radius2);
-  font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 20px rgba(245,158,11,0.35);
-  transition:all 0.2s;
-}
+/* NEXT BTN */
+.next-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;border-radius:var(--radius2);font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(245,158,11,0.35);transition:all 0.2s;}
 .next-btn:hover{transform:translateY(-2px);}
 
-/* ── STAGE RESULT ── */
-.stage-result{
-  background:var(--white);border-radius:var(--radius);padding:28px 20px;
-  box-shadow:var(--shadow);text-align:center;animation:fadeUp 0.4s ease;
-}
+/* STAGE RESULT */
+.stage-result{background:var(--white);border-radius:var(--radius);padding:28px 20px;box-shadow:var(--shadow);text-align:center;animation:fadeUp 0.4s ease;}
 .stage-result .big-star{font-size:3.5rem;margin-bottom:8px;}
 .stage-result h3{font-family:'Baloo 2',sans-serif;font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
 .stage-result p{color:#64748b;font-size:0.9rem;margin-bottom:20px;}
 .score-chips{display:flex;gap:10px;justify-content:center;margin-bottom:20px;}
-.score-chip{
-  padding:10px 20px;border-radius:12px;text-align:center;
-  background:var(--bg);border:1.5px solid #e2e8f0;
-}
+.score-chip{padding:10px 20px;border-radius:12px;text-align:center;background:var(--bg);border:1.5px solid #e2e8f0;}
 .sc-num{font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:800;color:var(--navy);}
 .sc-lbl{font-size:0.7rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;}
-.next-stage-btn{
-  width:100%;padding:14px;
-  background:linear-gradient(135deg,var(--navy2),var(--navy3));
-  color:#fff;border:none;border-radius:var(--radius2);
-  font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;
-  cursor:pointer;box-shadow:0 4px 20px rgba(37,99,168,0.35);
-  transition:all 0.2s;
-}
+.next-stage-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--navy2),var(--navy3));color:#fff;border:none;border-radius:var(--radius2);font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(37,99,168,0.35);transition:all 0.2s;}
 .next-stage-btn:hover{transform:translateY(-2px);}
 
-/* ──────────────────────────────────
-   🏆 FINAL RESULT — FINTECH KIDS CARD
-   ────────────────────────────────── */
+/* ══════════════════════════════════
+   🏆 FINAL RESULT — PREMIUM FINTECH KID CARD
+   ══════════════════════════════════ */
 .final-wrap{animation:fadeUp 0.5s ease;}
 
+/* NAME INPUT MODAL */
+.name-modal-overlay{
+  position:fixed;inset:0;background:rgba(10,20,40,0.7);
+  display:flex;align-items:center;justify-content:center;
+  z-index:10000;padding:20px;backdrop-filter:blur(6px);
+  animation:fadeUp 0.3s ease;
+}
+.name-modal{
+  background:#fff;border-radius:20px;padding:28px 24px;
+  width:100%;max-width:380px;box-shadow:0 24px 64px rgba(10,20,40,0.4);
+  text-align:center;
+}
+.name-modal-icon{font-size:2.8rem;margin-bottom:10px;}
+.name-modal h3{font-family:'Baloo 2',sans-serif;font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.name-modal p{font-size:0.82rem;color:#64748b;margin-bottom:18px;line-height:1.4;}
+.name-input{
+  width:100%;padding:13px 16px;border:2px solid #e2e8f0;
+  border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;
+  color:var(--navy);outline:none;transition:border 0.2s;margin-bottom:14px;
+  text-align:center;letter-spacing:0.3px;
+}
+.name-input:focus{border-color:var(--navy3);box-shadow:0 0 0 3px rgba(37,99,168,0.12);}
+.name-modal-btn{
+  width:100%;padding:13px;background:linear-gradient(135deg,var(--navy2),var(--navy3));
+  color:#fff;border:none;border-radius:12px;font-family:'Baloo 2',sans-serif;
+  font-size:1rem;font-weight:800;cursor:pointer;transition:all 0.2s;
+  box-shadow:0 4px 16px rgba(37,99,168,0.3);
+}
+.name-modal-btn:hover{transform:translateY(-2px);}
+.name-modal-btn:disabled{background:#94a3b8;box-shadow:none;transform:none;cursor:not-allowed;}
+
+/* PREMIUM FINTECH CARD */
 .fintech-card{
   position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#0f2746 0%,#1a3c5e 40%,#0a1f3d 100%);
-  border-radius:24px;padding:28px 22px;margin-bottom:16px;
-  box-shadow:0 12px 48px rgba(15,39,70,0.4),0 0 0 1px rgba(245,158,11,0.2);
+  background:linear-gradient(135deg,#0a1628 0%,#0f2746 35%,#1a3c5e 70%,#0d1f3c 100%);
+  border-radius:24px;padding:0;margin-bottom:16px;
+  box-shadow:0 20px 60px rgba(10,20,40,0.5),0 0 0 1px rgba(245,158,11,0.25),inset 0 1px 0 rgba(255,255,255,0.06);
 }
-.fintech-card::before{
-  content:'';position:absolute;top:-60px;right:-60px;
-  width:200px;height:200px;border-radius:50%;
-  background:radial-gradient(circle,rgba(245,158,11,0.18) 0%,transparent 70%);
+/* Card top accent strip */
+.fc-accent-strip{
+  height:4px;
+  background:linear-gradient(90deg,#f59e0b,#fbbf24,#fde68a,#fbbf24,#f59e0b);
+  background-size:200% 100%;
+  animation:goldShimmer 3s ease-in-out infinite;
 }
-.fintech-card::after{
-  content:'';position:absolute;bottom:-40px;left:-40px;
-  width:160px;height:160px;border-radius:50%;
-  background:radial-gradient(circle,rgba(37,99,168,0.25) 0%,transparent 70%);
+@keyframes goldShimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.fc-inner{padding:22px 22px 24px;}
+.fc-shine{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);animation:shine 4s ease-in-out infinite;pointer-events:none;}
+@keyframes shine{0%,100%{left:-100%}60%{left:120%}}
+
+/* Holographic overlay */
+.fc-holo{
+  position:absolute;top:0;right:0;bottom:0;left:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 2px,rgba(255,255,255,0.01) 2px,rgba(255,255,255,0.01) 4px);
+  pointer-events:none;border-radius:24px;
 }
-.fc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;position:relative;z-index:1;}
-.fc-logo{display:flex;align-items:center;gap:8px;}
-.fc-logo-icon{font-size:1.6rem;}
-.fc-logo-text{font-family:'Baloo 2',sans-serif;font-size:0.75rem;font-weight:800;color:rgba(255,255,255,0.9);line-height:1.2;}
-.fc-logo-sub{font-size:0.6rem;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+
+.fc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;position:relative;z-index:1;}
+.fc-logo{display:flex;align-items:center;gap:9px;}
+.fc-logo-icon{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(245,158,11,0.25),rgba(245,158,11,0.08));
+  border:1px solid rgba(245,158,11,0.35);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.fc-logo-text{font-family:'Baloo 2',sans-serif;font-size:0.82rem;font-weight:800;color:rgba(255,255,255,0.95);line-height:1.2;}
+.fc-logo-sub{font-size:0.58rem;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:1.2px;text-transform:uppercase;margin-top:1px;}
+.fc-badge-row{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
 .fc-chip{
-  background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.5);
-  border-radius:20px;padding:4px 10px;
-  font-size:0.65rem;font-weight:800;color:var(--gold2);letter-spacing:0.5px;
+  background:linear-gradient(135deg,rgba(245,158,11,0.2),rgba(245,158,11,0.08));
+  border:1px solid rgba(245,158,11,0.45);border-radius:20px;
+  padding:3px 10px;font-size:0.6rem;font-weight:800;color:var(--gold2);
+  letter-spacing:0.8px;text-transform:uppercase;
 }
-.fc-grade-section{text-align:center;margin-bottom:22px;position:relative;z-index:1;}
+.fc-verified{
+  display:flex;align-items:center;gap:3px;
+  font-size:0.58rem;color:rgba(255,255,255,0.35);font-weight:600;
+}
+
+/* Grade ring */
+.fc-grade-section{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:20px;position:relative;z-index:1;
+  padding:14px 16px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;backdrop-filter:blur(4px);
+}
 .fc-grade-ring{
-  width:90px;height:90px;border-radius:50%;
-  background:conic-gradient(var(--gold2) 0deg, var(--gold2) var(--ring-deg,270deg), rgba(255,255,255,0.1) var(--ring-deg,270deg));
+  flex-shrink:0;width:76px;height:76px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 10px;
-  box-shadow:0 0 0 4px rgba(245,158,11,0.15),0 4px 20px rgba(245,158,11,0.25);
   position:relative;
 }
-.fc-grade-ring::before{
-  content:'';position:absolute;
-  width:74px;height:74px;border-radius:50%;
-  background:linear-gradient(135deg,#0f2746,#1a3c5e);
-}
+.fc-grade-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
 .fc-grade-inner{position:relative;z-index:1;text-align:center;}
-.fc-grade-val{
-  font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:800;
-  color:var(--gold2);line-height:1;display:block;
-}
-.fc-grade-pct{font-size:0.6rem;color:rgba(255,255,255,0.6);display:block;}
-.fc-grade-label{
-  font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:800;
-  color:var(--white);letter-spacing:0.5px;
-}
-.fc-grade-sub{font-size:0.72rem;color:rgba(255,255,255,0.55);margin-top:2px;}
+.fc-grade-val{font-family:'Baloo 2',sans-serif;font-size:1.4rem;font-weight:800;color:var(--gold2);line-height:1;display:block;}
+.fc-grade-pct{font-size:0.58rem;color:rgba(255,255,255,0.5);display:block;margin-top:1px;}
+.fc-grade-info{flex:1;}
+.fc-grade-label{font-family:'Baloo 2',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);letter-spacing:0.3px;}
+.fc-grade-sub{font-size:0.7rem;color:rgba(255,255,255,0.45);margin-top:3px;line-height:1.3;}
+.fc-grade-stars{margin-top:6px;font-size:0.95rem;letter-spacing:2px;}
 
-.fc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;position:relative;z-index:1;}
+/* Stats grid */
+.fc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:18px;position:relative;z-index:1;}
 .fc-stat{
-  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
   border-radius:12px;padding:10px 6px;text-align:center;
-  backdrop-filter:blur(4px);
 }
-.fc-stat-val{font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:800;color:var(--gold2);}
-.fc-stat-lbl{font-size:0.6rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.fc-stat-val{font-family:'Baloo 2',sans-serif;font-size:1.15rem;font-weight:800;color:var(--gold2);}
+.fc-stat-lbl{font-size:0.58rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
 
-.fc-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);margin-bottom:16px;position:relative;z-index:1;}
+/* Divider */
+.fc-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),rgba(245,158,11,0.3),rgba(255,255,255,0.12),transparent);margin-bottom:16px;position:relative;z-index:1;}
 
-.fc-owner{position:relative;z-index:1;}
-.fc-owner-name{font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;color:var(--white);letter-spacing:1px;}
-.fc-owner-info{font-size:0.7rem;color:rgba(255,255,255,0.45);margin-top:3px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
-.fc-dots{display:flex;gap:3px;margin-top:8px;}
-.fc-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.25);}
-.fc-dot.gold{background:var(--gold2);}
-
-.fc-shine{
-  position:absolute;top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);
-  animation:shine 3s ease-in-out infinite;
+/* Owner section */
+.fc-owner{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;}
+.fc-owner-left{}
+.fc-owner-label{font-size:0.58rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:3px;}
+.fc-owner-name{font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;color:var(--white);letter-spacing:1px;text-transform:uppercase;}
+.fc-owner-info{font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:3px;font-weight:600;letter-spacing:0.3px;}
+.fc-nfc{
+  width:32px;height:32px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
 }
-@keyframes shine{0%,100%{left:-100%}50%{left:120%}}
+.fc-nfc::before,.fc-nfc::after{content:'';position:absolute;border-radius:50%;border:1.5px solid rgba(255,255,255,0.12);}
+.fc-nfc::before{width:20px;height:20px;}
+.fc-nfc::after{width:12px;height:12px;}
+.fc-card-no{
+  font-family:'Baloo 2',sans-serif;font-size:0.62rem;font-weight:700;
+  color:rgba(255,255,255,0.25);letter-spacing:2px;margin-top:8px;
+}
+
+/* Attempt counter */
+.attempt-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--white);border-radius:12px;padding:12px 16px;
+  border:1.5px solid #e2e8f0;margin-bottom:12px;
+  box-shadow:0 2px 8px rgba(15,39,70,0.06);
+}
+.attempt-label{font-size:0.78rem;font-weight:700;color:var(--navy);}
+.attempt-dots{display:flex;gap:6px;}
+.attempt-dot{
+  width:28px;height:28px;border-radius:50%;border:2px solid #e2e8f0;
+  background:#f8fafc;display:flex;align-items:center;justify-content:center;
+  font-size:0.65rem;font-weight:800;color:#94a3b8;transition:all 0.3s;
+}
+.attempt-dot.used{background:var(--navy2);border-color:var(--navy2);color:#fff;}
+.attempt-dot.current{background:var(--gold);border-color:var(--gold);color:var(--navy);}
+
+/* Submit section */
+.submit-section{margin-bottom:14px;}
+.submit-name-row{
+  display:flex;align-items:center;gap:8px;
+  background:var(--white);border:2px solid #e2e8f0;
+  border-radius:14px;padding:10px 14px;margin-bottom:10px;
+}
+.submit-name-icon{font-size:1.1rem;}
+.submit-name-input{
+  flex:1;border:none;outline:none;
+  font-family:'Nunito',sans-serif;font-size:0.92rem;font-weight:700;
+  color:var(--navy);background:transparent;
+}
+.submit-name-input::placeholder{color:#94a3b8;font-weight:600;}
+
+.hantar-btn{
+  width:100%;padding:15px;border:none;border-radius:14px;
+  font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;
+  cursor:pointer;transition:all 0.25s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#f59e0b,#fbbf24);
+  color:var(--navy);
+  box-shadow:0 6px 24px rgba(245,158,11,0.4),0 2px 8px rgba(245,158,11,0.2);
+  letter-spacing:0.3px;position:relative;overflow:hidden;
+}
+.hantar-btn::before{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+  animation:btnShine 2.5s ease-in-out infinite;
+}
+@keyframes btnShine{0%,100%{left:-100%}50%{left:120%}}
+.hantar-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,11,0.5);}
+.hantar-btn:disabled{background:#94a3b8;box-shadow:none;transform:none;cursor:not-allowed;}
+.hantar-btn:disabled::before{display:none;}
+
+/* LOCKED STATE */
+.locked-overlay{
+  background:linear-gradient(135deg,#d1fae5,#ecfdf5);
+  border:2px solid var(--green);border-radius:16px;
+  padding:20px;text-align:center;margin-bottom:12px;
+}
+.locked-icon{font-size:2.5rem;margin-bottom:8px;}
+.locked-title{font-family:'Baloo 2',sans-serif;font-size:1.1rem;font-weight:800;color:#065f46;margin-bottom:4px;}
+.locked-sub{font-size:0.8rem;color:#047857;line-height:1.4;}
+.locked-name-badge{
+  display:inline-block;background:#065f46;color:#fff;
+  border-radius:20px;padding:4px 14px;font-size:0.78rem;font-weight:800;
+  margin-top:10px;letter-spacing:0.5px;
+}
 
 /* Badge & Achievements */
 .achievement-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
-.badge{
-  display:flex;align-items:center;gap:6px;
-  background:var(--white);border:1.5px solid #e2e8f0;
-  border-radius:10px;padding:8px 12px;flex:1;min-width:140px;
-}
+.badge{display:flex;align-items:center;gap:6px;background:var(--white);border:1.5px solid #e2e8f0;border-radius:10px;padding:8px 12px;flex:1;min-width:140px;}
 .badge-icon{font-size:1.4rem;}
 .badge-text{font-size:0.75rem;font-weight:700;color:var(--navy);line-height:1.2;}
 .badge-sub{font-size:0.65rem;color:#64748b;}
 
 /* Action buttons */
 .action-row{display:flex;gap:10px;margin-bottom:14px;}
-.action-btn{
-  flex:1;padding:13px 10px;border:none;border-radius:12px;
-  font-family:'Baloo 2',sans-serif;font-size:0.85rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;
-  display:flex;align-items:center;justify-content:center;gap:6px;
-}
-.action-btn.primary{
-  background:linear-gradient(135deg,var(--navy2),var(--navy3));
-  color:#fff;box-shadow:0 4px 16px rgba(37,99,168,0.3);
-}
+.action-btn{flex:1;padding:13px 10px;border:none;border-radius:12px;font-family:'Baloo 2',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.action-btn.primary{background:linear-gradient(135deg,var(--navy2),var(--navy3));color:#fff;box-shadow:0 4px 16px rgba(37,99,168,0.3);}
 .action-btn.primary:hover{transform:translateY(-2px);}
-.action-btn.secondary{
-  background:var(--white);border:2px solid #e2e8f0;color:var(--navy);
-}
+.action-btn.secondary{background:var(--white);border:2px solid #e2e8f0;color:var(--navy);}
 .action-btn.secondary:hover{background:#f0f4ff;border-color:var(--navy3);}
+.action-btn:disabled{background:#e2e8f0!important;color:#94a3b8!important;box-shadow:none!important;cursor:not-allowed!important;transform:none!important;border-color:#e2e8f0!important;}
 
 /* Coffee float */
-.support-btn-wrapper{
-  position:fixed;bottom:20px;right:20px;z-index:999;
-  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
-}
-.coffee-bubble{
-  background:var(--navy);color:#fff;border-radius:12px 12px 2px 12px;
-  padding:7px 12px;font-size:0.8rem;font-weight:600;
-  box-shadow:var(--shadow);opacity:0;transform:translateY(6px);
-  transition:all 0.25s;pointer-events:none;white-space:nowrap;
-}
+.support-btn-wrapper{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.coffee-bubble{background:var(--navy);color:#fff;border-radius:12px 12px 2px 12px;padding:7px 12px;font-size:0.8rem;font-weight:600;box-shadow:var(--shadow);opacity:0;transform:translateY(6px);transition:all 0.25s;pointer-events:none;white-space:nowrap;}
 .support-btn-wrapper:hover .coffee-bubble{opacity:1;transform:translateY(0);}
-.coffee-btn{
-  width:50px;height:50px;border-radius:50%;
-  background:linear-gradient(135deg,var(--navy),var(--navy3));
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(15,39,70,0.3);transition:all 0.25s;text-decoration:none;
-}
+.coffee-btn{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy3));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(15,39,70,0.3);transition:all 0.25s;text-decoration:none;}
 .coffee-btn:hover{transform:scale(1.1);}
 .steam{stroke:#fff;stroke-width:2;stroke-linecap:round;fill:none;}
 .steam-1{animation:steam 1.8s ease-in-out infinite;}
@@ -401,6 +456,8 @@ body{
   .fc-stats{grid-template-columns:1fr 1fr 1fr;}
   .fc-grade-val{font-size:1.3rem;}
   .action-row{flex-direction:column;}
+  .fc-grade-section{flex-direction:column;text-align:center;}
+  .fc-grade-info{text-align:center;}
 }
 
 /* Loading */
@@ -409,14 +466,12 @@ body{
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 
 /* Confetti */
-.confetti-piece{
-  position:fixed;width:10px;height:10px;border-radius:2px;
-  pointer-events:none;z-index:9999;animation:confettiFall var(--dur,2s) linear var(--delay,0s) both;
-}
-@keyframes confettiFall{
-  0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
-  100%{transform:translateY(105vh) rotate(720deg);opacity:0;}
-}
+.confetti-piece{position:fixed;width:10px;height:10px;border-radius:2px;pointer-events:none;z-index:9999;animation:confettiFall var(--dur,2s) linear var(--delay,0s) both;}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(105vh) rotate(720deg);opacity:0;}}
+
+/* Sending state */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(15,39,70,0.2);border-top-color:var(--navy);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;}
 </style>
 </head>
 <body>
@@ -484,19 +539,20 @@ body{
 
 <script>
 // ═══════════════════════════════════════════════════
-// DATA SOALAN
+// CONFIG
 // ═══════════════════════════════════════════════════
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbwDnalkeOQ_g9eYtKFlaIRsCbx6WG7LK1X1pA6BidjHckNVcIk5CCT7kytIKxQDFXebfQ/exec';
+const MAX_ATTEMPTS = 3;
 
+// ═══════════════════════════════════════════════════
+// DATA SOALAN
+// ═══════════════════════════════════════════════════
 const SOALAN = [
-  // TAHAP 1 — MCQ pilihan
   {t:1, soalan:"Siapakah nama bapa Nabi Muhammad SAW?", pilihan:["Abdullah","Abdul Mutalib","Abu Talib","Aminah"], jawapan:"Abdullah"},
   {t:1, soalan:"Siapakah nama ibu Nabi Muhammad SAW?", pilihan:["Aminah binti Wahab","Khadijah binti Khuwailid","Halimah binti Abi Zuaib","Fatimah binti Asad"], jawapan:"Aminah binti Wahab"},
   {t:1, soalan:"Siapakah nama datuk Nabi Muhammad SAW yang memeliharanya?", pilihan:["Abdul Mutalib","Abdullah","Hashim","Qusai"], jawapan:"Abdul Mutalib"},
   {t:1, soalan:"Siapakah ibu susuan (ibu asuh) Nabi Muhammad SAW?", pilihan:["Halimah binti Abi Zuaib","Aminah binti Wahab","Suwaibah al-Aslamiyah","Ummu Aiman"], jawapan:"Halimah binti Abi Zuaib"},
   {t:1, soalan:"Siapakah isteri pertama Nabi Muhammad SAW?", pilihan:["Khadijah binti Khuwailid","Aisyah binti Abu Bakar","Saudah binti Zam'ah","Hafsah binti Umar"], jawapan:"Khadijah binti Khuwailid"},
-
-  // TAHAP 2 — Drag & Drop padanan
   {t:2, soalan:"Seret jawapan yang betul ke dalam kotak!", jenis:"dragdrop",
    pasangan:[
      {label:"Tarikh lahir Nabi", jawapan:"12 Rabiulawal", salah:["1 Muharram","27 Rejab","17 Ramadan"]},
@@ -506,8 +562,6 @@ const SOALAN = [
      {label:"Kabilah Nabi", jawapan:"Quraisy", salah:["Khazraj","Aus","Tamim"]},
    ]
   },
-
-  // TAHAP 3 — Susun / Tap-pilih pasangan (matching tap)
   {t:3, soalan:"Padankan dengan tepat: Ketuk soalan, kemudian ketuk jawapan!", jenis:"matching",
    pasangan:[
      {soal:"Jumlah anak Nabi", jawapan:"7 orang"},
@@ -527,14 +581,17 @@ const STATE = {
   stageScores:[0,0,0], stageCorrect:[0,0,0],
   totalTime:0, timer:null, timeLeft:20,
   answers:[],
-  dragAnswer:null,  // for dragdrop
+  dragAnswer:null,
   matchSelected:null, matchDone:[],
+  // Attempt & submit tracking
+  attemptNum:1,
+  submitted:false,
+  submittedName:'',
 };
 
 const LETTERS = ['A','B','C','D'];
 const STAGE_TIME = {1:20, 2:30, 3:30};
 
-// Soalan per tahap
 function getSoalanForStage(s){ return SOALAN.filter(q=>q.t===s); }
 
 // ═══════════════════════════════════════════════════
@@ -549,7 +606,6 @@ function startTimer(seconds, onTick, onEnd){
     if(circ){
       const offset = circumference - (STATE.timeLeft/seconds)*circumference;
       circ.style.strokeDashoffset = offset;
-      // Color warning
       if(STATE.timeLeft<=5) circ.style.stroke='#ef4444';
       else if(STATE.timeLeft<=10) circ.style.stroke='#f59e0b';
       else circ.style.stroke='#fbbf24';
@@ -564,14 +620,13 @@ function startTimer(seconds, onTick, onEnd){
 function stopTimer(){ clearInterval(STATE.timer); STATE.timer=null; }
 
 // ═══════════════════════════════════════════════════
-// SCORE BAR UPDATE
+// SCORE BAR
 // ═══════════════════════════════════════════════════
 function updateScoreBar(){
   document.getElementById('sbStage').textContent = STATE.stage;
   document.getElementById('sbScore').textContent = STATE.score;
   const stageQ = getSoalanForStage(STATE.stage);
   document.getElementById('sbQ').textContent = (STATE.qIdx+1)+'/'+stageQ.length;
-  // Update dots
   for(let i=1;i<=3;i++){
     const d=document.getElementById('dot'+i);
     d.className='stage-dot';
@@ -581,14 +636,13 @@ function updateScoreBar(){
 }
 
 // ═══════════════════════════════════════════════════
-// RENDER QUESTION
+// RENDER
 // ═══════════════════════════════════════════════════
 function renderQuestion(){
   const stageQ = getSoalanForStage(STATE.stage);
   if(STATE.qIdx>=stageQ.length){ showStageResult(); return; }
   const q = stageQ[STATE.qIdx];
   updateScoreBar();
-
   if(q.jenis==='dragdrop') renderDragDrop(q, stageQ);
   else if(q.jenis==='matching') renderMatching(q, stageQ);
   else renderMCQ(q, stageQ);
@@ -644,7 +698,6 @@ function processMCQResult(isCorrect, jawapan, pilihan){
   else STATE.wrong++;
   STATE.stageScores[STATE.stage-1]+=pts;
   STATE.answers.push({soalan:SOALAN[STATE.qIdx].soalan, pilihan, jawapan, betul:isCorrect});
-
   const fb=document.getElementById('feedbackArea');
   if(isCorrect){
     fb.innerHTML=`<div class="feedback-box correct-fb"><div class="fb-icon">✅</div><div class="fb-text">Tepat sekali! +10 markah</div></div>`;
@@ -658,16 +711,12 @@ function processMCQResult(isCorrect, jawapan, pilihan){
 // DRAG & DROP (Tahap 2)
 // ═══════════════════════════════════════════════════
 function renderDragDrop(q, stageQ){
-  // Build all chips (answers shuffled)
   const allAnswers = q.pasangan.map(p=>p.jawapan).sort(()=>Math.random()-0.5);
-  const pct = 0;
-
   let dropsHTML = q.pasangan.map((p,i)=>`
     <div class="drop-zone" id="dz${i}" ondragover="dzOver(event,${i})" ondragleave="dzLeave(event,${i})" ondrop="dzDrop(event,${i},'${p.jawapan.replace(/'/g,"\\'")}')">
       <span class="drop-label">${p.label}</span>
       <span id="dzContent${i}" style="font-size:0.85rem;color:#94a3b8;font-style:italic;padding:4px">Seret jawapan ke sini...</span>
     </div>`).join('');
-
   let chipsHTML = allAnswers.map((a,i)=>`
     <div class="drag-chip" id="chip_${i}"
       draggable="true"
@@ -677,7 +726,6 @@ function renderDragDrop(q, stageQ){
       ontouchmove="touchMove(event)"
       ontouchend="touchEnd(event)"
     >${a}</div>`).join('');
-
   document.getElementById('gameArea').innerHTML=`
   <div class="q-card">
     <div class="q-badge">🔗 Tahap 2 &nbsp;|&nbsp; Padanan Drag & Drop</div>
@@ -691,15 +739,11 @@ function renderDragDrop(q, stageQ){
       <button class="submit-btn" id="dndSubmit" onclick="submitDragDrop()" disabled>✔ Semak Jawapan</button>
     </div>
   </div>`;
-
-  // Touch drag state
   window._dnd = {dragging:null, chipId:null, placed:{}, totalDZ:q.pasangan.length, answers:q.pasangan};
   checkDNDReady();
-
   startTimer(STAGE_TIME[2], ()=>{}, ()=>{ submitDragDrop(true); });
 }
 
-// Desktop drag
 function chipDragStart(e,val,id){
   window._dnd.dragging=val; window._dnd.chipId=id;
   setTimeout(()=>{ const c=document.getElementById(id); if(c) c.classList.add('dragging'); },0);
@@ -717,12 +761,10 @@ function dzDrop(e,i,correct){
   placeDNDChip(i, val, chipId, correct);
 }
 
-// Touch drag
 let _touchChip=null, _touchVal=null, _touchChipId=null, _touchClone=null;
 function touchStart(e,val,id){
   _touchVal=val; _touchChipId=id;
   const chip=document.getElementById(id);
-  // Create visual clone
   _touchClone=chip.cloneNode(true);
   _touchClone.style.cssText=`position:fixed;z-index:9999;opacity:0.85;pointer-events:none;padding:10px 16px;background:#0f2746;color:#fff;border-radius:10px;font-weight:700;font-size:0.88rem;box-shadow:0 6px 20px rgba(15,39,70,0.4);`;
   document.body.appendChild(_touchClone);
@@ -737,23 +779,21 @@ function touchMove(e){
   const t=e.touches[0];
   _touchClone.style.left=(t.clientX-60)+'px';
   _touchClone.style.top=(t.clientY-24)+'px';
-  // Highlight drop zones
   document.querySelectorAll('.drop-zone').forEach(dz=>{
     const r=dz.getBoundingClientRect();
-    if(t.clientX>=r.left&&t.clientX<=r.right&&t.clientY>=r.top&&t.clientY<=r.bottom){
-      dz.classList.add('drag-over');
-    } else { dz.classList.remove('drag-over'); }
+    if(t.clientX>=r.left&&t.clientX<=r.right&&t.clientY>=r.top&&t.clientY<=r.bottom) dz.classList.add('drag-over');
+    else dz.classList.remove('drag-over');
   });
 }
 function touchEnd(e){
   if(!_touchClone) return;
   const t=e.changedTouches[0];
-  if(_touchClone) { _touchClone.remove(); _touchClone=null; }
+  if(_touchClone){ _touchClone.remove(); _touchClone=null; }
   document.querySelectorAll('.drop-zone').forEach((dz,i)=>{
     dz.classList.remove('drag-over');
     const r=dz.getBoundingClientRect();
     if(t.clientX>=r.left&&t.clientX<=r.right&&t.clientY>=r.top&&t.clientY<=r.bottom){
-      const correctAns = window._dnd.answers[i].jawapan;
+      const correctAns=window._dnd.answers[i].jawapan;
       placeDNDChip(i, _touchVal, _touchChipId, correctAns);
     }
   });
@@ -763,23 +803,17 @@ function touchEnd(e){
 }
 
 function placeDNDChip(dzIdx, val, chipId, correctJawapan){
-  const dz = document.getElementById('dz'+dzIdx);
-  const content = document.getElementById('dzContent'+dzIdx);
-  const dnd = window._dnd;
-
-  // If already had a chip here, return old chip to pool
+  const dz=document.getElementById('dz'+dzIdx);
+  const content=document.getElementById('dzContent'+dzIdx);
+  const dnd=window._dnd;
   if(dnd.placed[dzIdx]){
     const oldChipId=dnd.placed[dzIdx].chipId;
     const oldChip=document.getElementById(oldChipId);
-    if(oldChip){ oldChip.classList.remove('used'); }
+    if(oldChip) oldChip.classList.remove('used');
     delete dnd.placed[dzIdx];
   }
-
-  // Mark chip as used
   const chip=document.getElementById(chipId);
   if(chip) chip.classList.add('used');
-
-  // Place in drop zone
   dz.classList.add('filled');
   content.innerHTML=`<div class="placed-chip" onclick="removeDNDChip(${dzIdx},'${chipId}')">
     <span>${val}</span><span class="remove-x">✕</span>
@@ -813,14 +847,13 @@ function submitDragDrop(timeout=false){
   dnd.answers.forEach((p,i)=>{
     const placed=dnd.placed[i];
     const dz=document.getElementById('dz'+i);
-    const isRight = placed && placed.val===p.jawapan;
+    const isRight=placed&&placed.val===p.jawapan;
     if(isRight){ correct++; if(dz) dz.classList.add('correct-zone'); }
     else { if(dz) dz.classList.add('wrong-zone'); }
   });
   const pts=correct*10;
   STATE.score+=pts; STATE.correct+=correct; STATE.wrong+=(total-correct);
   STATE.stageScores[1]+=pts; STATE.stageCorrect[1]+=correct;
-
   const fb=document.getElementById('feedbackArea');
   if(correct===total){
     fb.innerHTML=`<div class="feedback-box correct-fb"><div class="fb-icon">🎉</div><div class="fb-text">Sempurna! Semua ${total} pasangan betul! +${pts} markah</div></div>`;
@@ -835,17 +868,13 @@ function submitDragDrop(timeout=false){
 // MATCHING TAP (Tahap 3)
 // ═══════════════════════════════════════════════════
 function renderMatching(q, stageQ){
-  const soals = q.pasangan.map(p=>p.soal);
-  const jawapans = [...q.pasangan.map(p=>p.jawapan)].sort(()=>Math.random()-0.5);
-  window._match = {
-    pairs: q.pasangan,
-    soals, jawapans,
-    selectedSoal: null,
-    selectedJawapan: null,
-    matched: {},
-    total: q.pasangan.length
+  const soals=q.pasangan.map(p=>p.soal);
+  const jawapans=[...q.pasangan.map(p=>p.jawapan)].sort(()=>Math.random()-0.5);
+  window._match={
+    pairs:q.pasangan, soals, jawapans,
+    selectedSoal:null, selectedJawapan:null,
+    matched:{}, total:q.pasangan.length
   };
-
   document.getElementById('gameArea').innerHTML=`
   <div class="q-card">
     <div class="q-badge">🎯 Tahap 3 &nbsp;|&nbsp; Padanan Ketuk</div>
@@ -855,29 +884,26 @@ function renderMatching(q, stageQ){
     <div id="feedbackArea"></div>
     <div id="nextArea" style="margin-top:10px"></div>
   </div>`;
-
   renderMatchGrid();
   startTimer(STAGE_TIME[3], ()=>{}, ()=>{ autoFinishMatch(); });
 }
 
 function renderMatchGrid(){
-  const m = window._match;
-  let soalHTML = m.soals.map((s,i)=>{
-    const isMatched = m.matched[s]!==undefined;
-    const isSelected = m.selectedSoal===s;
+  const m=window._match;
+  let soalHTML=m.soals.map((s,i)=>{
+    const isMatched=m.matched[s]!==undefined;
+    const isSelected=m.selectedSoal===s;
     let cls='match-btn soal-btn';
     if(isMatched) cls+=' matched-btn'; else if(isSelected) cls+=' selected-btn';
     return `<button class="${cls}" id="soal_${i}" onclick="selectSoal('${s.replace(/'/g,"\\'")}',${i})" ${isMatched?'disabled':''}>${s}</button>`;
   }).join('');
-
-  let jawapanHTML = m.jawapans.map((j,i)=>{
-    const isMatched = Object.values(m.matched).includes(j);
-    const isSelected = m.selectedJawapan===j;
+  let jawapanHTML=m.jawapans.map((j,i)=>{
+    const isMatched=Object.values(m.matched).includes(j);
+    const isSelected=m.selectedJawapan===j;
     let cls='match-btn jwp-btn';
     if(isMatched) cls+=' matched-btn'; else if(isSelected) cls+=' selected-btn';
     return `<button class="${cls}" id="jwp_${i}" onclick="selectJawapan('${j.replace(/'/g,"\\'")}',${i})" ${isMatched?'disabled':''}>${j}</button>`;
   }).join('');
-
   document.getElementById('matchArea').innerHTML=`
     <style>
       .match-btn{width:100%;padding:11px 14px;text-align:left;border-radius:11px;border:2px solid #e2e8f0;background:#fff;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;color:#0f2746;cursor:pointer;transition:all 0.18s;margin-bottom:0;}
@@ -899,22 +925,14 @@ function renderMatchGrid(){
     </div>`;
 }
 
-function selectSoal(s){
-  window._match.selectedSoal = s;
-  renderMatchGrid();
-  tryMatch();
-}
-function selectJawapan(j){
-  window._match.selectedJawapan = j;
-  renderMatchGrid();
-  tryMatch();
-}
+function selectSoal(s){ window._match.selectedSoal=s; renderMatchGrid(); tryMatch(); }
+function selectJawapan(j){ window._match.selectedJawapan=j; renderMatchGrid(); tryMatch(); }
 
 function tryMatch(){
-  const m = window._match;
-  if(!m.selectedSoal || !m.selectedJawapan) return;
-  const pair = m.pairs.find(p=>p.soal===m.selectedSoal);
-  const isRight = pair && pair.jawapan===m.selectedJawapan;
+  const m=window._match;
+  if(!m.selectedSoal||!m.selectedJawapan) return;
+  const pair=m.pairs.find(p=>p.soal===m.selectedSoal);
+  const isRight=pair&&pair.jawapan===m.selectedJawapan;
   if(isRight){
     m.matched[m.selectedSoal]=m.selectedJawapan;
     m.selectedSoal=null; m.selectedJawapan=null;
@@ -923,13 +941,11 @@ function tryMatch(){
     document.getElementById('matchProgress').textContent=`${done}/${m.total} dipadan`;
     if(done===m.total){ finishMatch(); }
     else {
-      // Brief flash
       const fb=document.getElementById('feedbackArea');
       fb.innerHTML=`<div class="feedback-box correct-fb" style="padding:8px 12px;margin-bottom:0"><div class="fb-icon" style="font-size:1rem">✅</div><div class="fb-text" style="font-size:0.8rem">Betul! Teruskan...</div></div>`;
       setTimeout(()=>{ if(fb) fb.innerHTML=''; },1200);
     }
   } else {
-    // Wrong flash then reset
     const fb=document.getElementById('feedbackArea');
     fb.innerHTML=`<div class="feedback-box wrong-fb" style="padding:8px 12px;margin-bottom:0"><div class="fb-icon" style="font-size:1rem">❌</div><div class="fb-text" style="font-size:0.8rem">Tidak sepadan, cuba lagi!</div></div>`;
     setTimeout(()=>{
@@ -982,12 +998,10 @@ function showStageResult(){
   const stageQ=getSoalanForStage(STATE.stage);
   const correct=STATE.stageCorrect[STATE.stage-1];
   const total=stageQ.length;
-  // For drag/match, count differently
   let stars='⭐⭐⭐';
   const pct=(correct/total)*100;
   if(pct<40) stars='⭐';
   else if(pct<70) stars='⭐⭐';
-
   const isLast=STATE.stage>=3;
   document.getElementById('gameArea').innerHTML=`
   <div class="stage-result">
@@ -995,18 +1009,9 @@ function showStageResult(){
     <h3>Tahap ${STATE.stage} Selesai!</h3>
     <p>${pct>=70?'Tahniah! Prestasi cemerlang!':'Cuba lagi untuk hasil lebih baik!'}</p>
     <div class="score-chips">
-      <div class="score-chip">
-        <div class="sc-num">${STATE.stageScores[STATE.stage-1]}</div>
-        <div class="sc-lbl">Markah</div>
-      </div>
-      <div class="score-chip">
-        <div class="sc-num">${correct}/${total}</div>
-        <div class="sc-lbl">Betul</div>
-      </div>
-      <div class="score-chip">
-        <div class="sc-num">${Math.round(pct)}%</div>
-        <div class="sc-lbl">Peratus</div>
-      </div>
+      <div class="score-chip"><div class="sc-num">${STATE.stageScores[STATE.stage-1]}</div><div class="sc-lbl">Markah</div></div>
+      <div class="score-chip"><div class="sc-num">${correct}/${total}</div><div class="sc-lbl">Betul</div></div>
+      <div class="score-chip"><div class="sc-num">${Math.round(pct)}%</div><div class="sc-lbl">Peratus</div></div>
     </div>
     <button class="next-stage-btn" onclick="${isLast?'showFinalResult()':'nextStage()'}">
       ${isLast?'🏆 Lihat Keputusan Akhir':'→ Teruskan ke Tahap '+(STATE.stage+1)}
@@ -1021,20 +1026,35 @@ function nextStage(){
 }
 
 // ═══════════════════════════════════════════════════
-// FINAL RESULT — FINTECH CARD
+// FINAL RESULT — PREMIUM FINTECH KIDS CARD
 // ═══════════════════════════════════════════════════
 function showFinalResult(){
   stopTimer();
   document.getElementById('coffeeWrap').style.display='flex';
 
-  const total=SOALAN.length;
-  const correct=STATE.correct;
-  const pct=Math.round((STATE.score/150)*100);
-  const grade=pct>=90?'A+':pct>=80?'A':pct>=70?'B+':pct>=60?'B':pct>=50?'C':'D';
-  const gradeLabel=pct>=90?'Cemerlang':pct>=70?'Baik':pct>=50?'Memuaskan':'Perlu Usaha';
-  const ringDeg = Math.round((pct/100)*360);
-  const now=new Date();
-  const dateStr=now.toLocaleDateString('ms-MY',{day:'2-digit',month:'long',year:'numeric'});
+  const total = SOALAN.length;
+  const correct = STATE.correct;
+  const pct = Math.round((STATE.score/150)*100);
+  const grade = pct>=90?'A+':pct>=80?'A':pct>=70?'B+':pct>=60?'B':pct>=50?'C':'D';
+  const gradeLabel = pct>=90?'Cemerlang':pct>=70?'Baik':pct>=50?'Memuaskan':'Perlu Usaha';
+  const gradeStars = pct>=90?'⭐⭐⭐':pct>=70?'⭐⭐':'⭐';
+  const ringPct = pct/100;
+  const circumference = 2*Math.PI*34;
+  const ringOffset = circumference*(1-ringPct);
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('ms-MY',{day:'2-digit',month:'long',year:'numeric'});
+  const timeStr = now.toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'});
+  const cardNum = 'KAFA-'+Math.random().toString(36).substring(2,6).toUpperCase()+'-'+new Date().getFullYear();
+
+  // Attempt dots
+  let attemptDotsHTML = '';
+  for(let i=1;i<=MAX_ATTEMPTS;i++){
+    if(i<STATE.attemptNum) attemptDotsHTML+=`<div class="attempt-dot used">${i}</div>`;
+    else if(i===STATE.attemptNum) attemptDotsHTML+=`<div class="attempt-dot current">${i}</div>`;
+    else attemptDotsHTML+=`<div class="attempt-dot">${i}</div>`;
+  }
+  const attemptsLeft = MAX_ATTEMPTS - STATE.attemptNum;
+  const canRetry = attemptsLeft > 0 && !STATE.submitted;
 
   // Badges
   let badges='';
@@ -1043,145 +1063,276 @@ function showFinalResult(){
   if(STATE.stageCorrect[2]>=4) badges+=`<div class="badge"><div class="badge-icon">🏅</div><div><div class="badge-text">Pejuang Sirah</div><div class="badge-sub">Tahap 3 lulus</div></div></div>`;
   if(pct===100) badges+=`<div class="badge"><div class="badge-icon">👑</div><div><div class="badge-text">Perfeksionis</div><div class="badge-sub">100% markah</div></div></div>`;
 
+  // Breakdown bars
+  const breakdownHTML = [1,2,3].map(s=>{
+    const sc=STATE.stageScores[s-1];
+    const cr=STATE.stageCorrect[s-1];
+    const tot=getSoalanForStage(s).length;
+    const p2=Math.round((sc/(tot*10))*100);
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:0.8rem;font-weight:700;color:#0f2746">Tahap ${s}</span>
+        <span style="font-size:0.75rem;font-weight:700;color:#64748b">${cr}/${tot} betul &nbsp;|&nbsp; +${sc} markah</span>
+      </div>
+      <div style="height:8px;background:#e2e8f0;border-radius:99px">
+        <div style="height:100%;width:${p2}%;background:${p2>=70?'#10b981':p2>=50?'#f59e0b':'#ef4444'};border-radius:99px;transition:width 0.6s"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Submit/locked section
+  let submitSection = '';
+  if(STATE.submitted){
+    submitSection = `
+    <div class="locked-overlay">
+      <div class="locked-icon">🔒</div>
+      <div class="locked-title">Markah Telah Dihantar!</div>
+      <div class="locked-sub">Rekod anda telah berjaya disimpan. Permainan ini kini dikunci.</div>
+      <div class="locked-name-badge">👤 ${STATE.submittedName}</div>
+    </div>`;
+  } else {
+    submitSection = `
+    <div class="submit-section">
+      <div style="font-size:0.75rem;font-weight:800;color:#1a3c5e;margin-bottom:8px;display:flex;align-items:center;gap:5px">
+        <span>📤</span> Hantar Markah ke Rekod Guru
+      </div>
+      <div class="submit-name-row">
+        <span class="submit-name-icon">👤</span>
+        <input class="submit-name-input" id="submitterName" type="text" placeholder="Masukkan nama anda..." maxlength="60" autocomplete="off"/>
+      </div>
+      <button class="hantar-btn" id="hantarBtn" onclick="hantarMarkah()">
+        <span>📤</span> Hantar Markah Sekarang
+      </button>
+      <div style="font-size:0.68rem;color:#94a3b8;text-align:center;margin-top:6px">Markah akan disimpan dalam rekod guru secara automatik</div>
+    </div>`;
+  }
+
+  // Retry button
+  const retryBtn = canRetry
+    ? `<button class="action-btn primary" onclick="retryGame()">🔄 Cuba Semula (${attemptsLeft} tinggal)</button>`
+    : STATE.submitted
+      ? `<button class="action-btn primary" disabled>🔒 Permainan Dikunci</button>`
+      : `<button class="action-btn primary" disabled>🚫 Had Percubaan Habis</button>`;
+
   document.getElementById('gameArea').innerHTML=`
   <div class="final-wrap">
-    <!-- FINTECH CARD -->
-    <div class="fintech-card">
-      <div class="fc-shine"></div>
-      <div class="fc-header">
-        <div class="fc-logo">
-          <div class="fc-logo-icon">🌙</div>
-          <div>
-            <div class="fc-logo-text">KAFA Academy</div>
-            <div class="fc-logo-sub">Islamic Learning</div>
-          </div>
-        </div>
-        <div class="fc-chip">SIJIL DIGITAL</div>
-      </div>
 
-      <div class="fc-grade-section">
-        <div class="fc-grade-ring" style="--ring-deg:${ringDeg}deg">
-          <div class="fc-grade-inner">
-            <span class="fc-grade-val">${grade}</span>
-            <span class="fc-grade-pct">${pct}%</span>
-          </div>
-        </div>
-        <div class="fc-grade-label">${gradeLabel}</div>
-        <div class="fc-grade-sub">Biodata Nabi Muhammad SAW ﷺ</div>
+    <!-- ATTEMPT BAR -->
+    <div class="attempt-bar">
+      <div>
+        <div class="attempt-label">🎯 Percubaan ke-${STATE.attemptNum}</div>
+        <div style="font-size:0.65rem;color:#94a3b8;margin-top:2px">${canRetry?`${attemptsLeft} percubaan lagi`:'Tiada percubaan lagi'}</div>
       </div>
-
-      <div class="fc-stats">
-        <div class="fc-stat">
-          <div class="fc-stat-val">${STATE.score}</div>
-          <div class="fc-stat-lbl">Markah</div>
-        </div>
-        <div class="fc-stat">
-          <div class="fc-stat-val">${correct}</div>
-          <div class="fc-stat-lbl">Betul</div>
-        </div>
-        <div class="fc-stat">
-          <div class="fc-stat-val">${pct}%</div>
-          <div class="fc-stat-lbl">Skor</div>
-        </div>
-      </div>
-
-      <div class="fc-divider"></div>
-
-      <div class="fc-owner">
-        <div class="fc-owner-name">PELAJAR KAFA</div>
-        <div class="fc-owner-info">Tarikh: ${dateStr} &nbsp;|&nbsp; Sirah Nabawiyah</div>
-        <div class="fc-dots">
-          <div class="fc-dot gold"></div>
-          <div class="fc-dot gold"></div>
-          <div class="fc-dot"></div>
-          <div class="fc-dot"></div>
-          <div class="fc-dot"></div>
-        </div>
-      </div>
+      <div class="attempt-dots">${attemptDotsHTML}</div>
     </div>
+
+    <!-- PREMIUM FINTECH CARD -->
+    <div class="fintech-card">
+      <div class="fc-accent-strip"></div>
+      <div class="fc-shine"></div>
+      <div class="fc-holo"></div>
+      <div class="fc-inner">
+
+        <!-- Header -->
+        <div class="fc-header">
+          <div class="fc-logo">
+            <div class="fc-logo-icon">🌙</div>
+            <div>
+              <div class="fc-logo-text">KAFA Academy</div>
+              <div class="fc-logo-sub">Islamic Learning</div>
+            </div>
+          </div>
+          <div class="fc-badge-row">
+            <div class="fc-chip">SIJIL DIGITAL</div>
+            <div class="fc-verified">✦ DISAHKAN</div>
+          </div>
+        </div>
+
+        <!-- Grade Ring + Info -->
+        <div class="fc-grade-section">
+          <div class="fc-grade-ring">
+            <svg width="76" height="76" viewBox="0 0 76 76">
+              <circle cx="38" cy="38" r="34" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="5"/>
+              <circle cx="38" cy="38" r="34" fill="none" stroke="#fbbf24" stroke-width="5"
+                stroke-linecap="round"
+                stroke-dasharray="${circumference.toFixed(2)}"
+                stroke-dashoffset="${ringOffset.toFixed(2)}"
+                style="transition:stroke-dashoffset 1.2s ease"/>
+            </svg>
+            <div class="fc-grade-inner">
+              <span class="fc-grade-val">${grade}</span>
+              <span class="fc-grade-pct">${pct}%</span>
+            </div>
+          </div>
+          <div class="fc-grade-info">
+            <div class="fc-grade-label">${gradeLabel}</div>
+            <div class="fc-grade-sub">Biodata Nabi Muhammad SAW ﷺ<br>Sirah Nabawiyah • 3 Tahap</div>
+            <div class="fc-grade-stars">${gradeStars}</div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="fc-stats">
+          <div class="fc-stat">
+            <div class="fc-stat-val">${STATE.score}</div>
+            <div class="fc-stat-lbl">Markah</div>
+          </div>
+          <div class="fc-stat">
+            <div class="fc-stat-val">${correct}/15</div>
+            <div class="fc-stat-lbl">Betul</div>
+          </div>
+          <div class="fc-stat">
+            <div class="fc-stat-val">${pct}%</div>
+            <div class="fc-stat-lbl">Skor</div>
+          </div>
+        </div>
+
+        <div class="fc-divider"></div>
+
+        <!-- Owner -->
+        <div class="fc-owner">
+          <div class="fc-owner-left">
+            <div class="fc-owner-label">Pelajar</div>
+            <div class="fc-owner-name" id="fcOwnerName">${STATE.submittedName||'—'}</div>
+            <div class="fc-owner-info">${dateStr} • ${timeStr}</div>
+          </div>
+          <div style="text-align:right">
+            <div class="fc-nfc"></div>
+            <div class="fc-card-no">${cardNum}</div>
+          </div>
+        </div>
+
+      </div><!-- /fc-inner -->
+    </div><!-- /fintech-card -->
 
     <!-- ACHIEVEMENTS -->
     ${badges?`<div class="achievement-row">${badges}</div>`:''}
 
+    <!-- SUBMIT SECTION -->
+    ${submitSection}
+
     <!-- BREAKDOWN -->
     <div class="q-card" style="margin-bottom:14px">
       <div style="font-size:0.8rem;font-weight:800;color:#1a3c5e;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">📊 Laporan Per Tahap</div>
-      ${[1,2,3].map(s=>{
-        const sc=STATE.stageScores[s-1];
-        const cr=STATE.stageCorrect[s-1];
-        const tot=getSoalanForStage(s).length;
-        const p2=Math.round((sc/(tot*10))*100);
-        return `<div style="margin-bottom:10px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-            <span style="font-size:0.8rem;font-weight:700;color:#0f2746">Tahap ${s}</span>
-            <span style="font-size:0.75rem;font-weight:700;color:#64748b">${cr}/${tot} betul &nbsp;|&nbsp; +${sc} markah</span>
-          </div>
-          <div style="height:8px;background:#e2e8f0;border-radius:99px">
-            <div style="height:100%;width:${p2}%;background:${p2>=70?'#10b981':p2>=50?'#f59e0b':'#ef4444'};border-radius:99px;transition:width 0.6s"></div>
-          </div>
-        </div>`;
-      }).join('')}
+      ${breakdownHTML}
     </div>
 
     <!-- ACTIONS -->
     <div class="action-row">
-      <button class="action-btn primary" onclick="restartGame()">🔄 Main Semula</button>
+      ${retryBtn}
       <button class="action-btn secondary" onclick="shareResult()">📤 Kongsi</button>
     </div>
     <button class="action-btn secondary" style="width:100%;margin-top:8px" onclick="window.location.href='../../index.html'">🏠 Halaman Utama</button>
   </div>`;
 
-  // Confetti for high score
   if(pct>=70) launchConfetti();
-
-  // Send to GAS
-  submitToGAS({
-    topikId:'sirah-biodata-nabi',
-    topikNama:'Biodata Nabi Muhammad SAW',
-    subjek:'Sirah',
-    markah:STATE.score,
-    betul:STATE.correct,
-    salah:STATE.wrong,
-    peratus:pct,
-    gred:grade,
-  });
 }
 
 // ═══════════════════════════════════════════════════
-// GAS SUBMISSION — FIXED
+// HANTAR MARKAH — dengan nama peserta
 // ═══════════════════════════════════════════════════
-function submitToGAS(data){
+function hantarMarkah(){
+  const nameInput = document.getElementById('submitterName');
+  const nama = nameInput ? nameInput.value.trim() : '';
+  if(!nama){
+    nameInput.style.border='2px solid #ef4444';
+    nameInput.placeholder='⚠ Sila masukkan nama dahulu!';
+    nameInput.focus();
+    setTimeout(()=>{
+      nameInput.style.border='2px solid #e2e8f0';
+      nameInput.placeholder='Masukkan nama anda...';
+    },2000);
+    return;
+  }
+
+  const btn = document.getElementById('hantarBtn');
+  if(btn){
+    btn.disabled=true;
+    btn.innerHTML=`<span class="spinner"></span> Menghantar...`;
+  }
+
+  const pct = Math.round((STATE.score/150)*100);
+  const grade = pct>=90?'A+':pct>=80?'A':pct>=70?'B+':pct>=60?'B':pct>=50?'C':'D';
+
   const payload = {
-    ...data,
+    nama: nama,
+    topikId: 'sirah-biodata-nabi',
+    topikNama: 'Biodata Nabi Muhammad SAW',
+    subjek: 'Sirah',
+    markah: STATE.score,
+    betul: STATE.correct,
+    salah: STATE.wrong,
+    peratus: pct,
+    gred: grade,
+    percubaan: STATE.attemptNum,
     tarikh: new Date().toISOString(),
     timestamp: Date.now(),
   };
-  // Method 1: fetch with no-cors (works with GAS doPost)
+
+  // Update card name display immediately
+  const fcName = document.getElementById('fcOwnerName');
+  if(fcName) fcName.textContent = nama.toUpperCase();
+
+  // Send via all 3 methods for reliability
+  submitToGAS(payload);
+
+  // Wait 1.5s then lock
+  setTimeout(()=>{
+    STATE.submitted = true;
+    STATE.submittedName = nama;
+    showFinalResult(); // re-render with locked state
+    launchConfetti();
+  }, 1500);
+}
+
+// ═══════════════════════════════════════════════════
+// GAS SUBMISSION — 3 methods, includes nama
+// ═══════════════════════════════════════════════════
+function submitToGAS(data){
+  // Method 1: JSON POST
   fetch(GAS_URL, {
     method:'POST',
     mode:'no-cors',
     headers:{'Content-Type':'application/json'},
-    body: JSON.stringify(payload)
+    body: JSON.stringify(data)
   }).catch(()=>{});
 
-  // Method 2: form-encoded fallback (more compatible with GAS)
+  // Method 2: FormData POST
   try{
     const form = new FormData();
-    Object.entries(payload).forEach(([k,v])=>form.append(k,String(v)));
+    Object.entries(data).forEach(([k,v])=>form.append(k, String(v)));
     fetch(GAS_URL, { method:'POST', mode:'no-cors', body:form }).catch(()=>{});
   }catch(e){}
 
-  // Method 3: GET with params (most reliable for GAS)
+  // Method 3: GET with URLSearchParams (most reliable for GAS doGet)
   try{
-    const params = new URLSearchParams(payload).toString();
-    fetch(GAS_URL+'?'+params, { method:'GET', mode:'no-cors' }).catch(()=>{});
+    const params = new URLSearchParams();
+    Object.entries(data).forEach(([k,v])=>params.append(k, String(v)));
+    fetch(GAS_URL+'?'+params.toString(), { method:'GET', mode:'no-cors' }).catch(()=>{});
   }catch(e){}
+}
+
+// ═══════════════════════════════════════════════════
+// RETRY GAME
+// ═══════════════════════════════════════════════════
+function retryGame(){
+  if(STATE.submitted){ alert('Permainan ini telah dikunci selepas markah dihantar.'); return; }
+  if(STATE.attemptNum>=MAX_ATTEMPTS){ alert('Had percubaan (3x) telah habis.'); return; }
+  STATE.attemptNum++;
+  STATE.stage=1; STATE.qIdx=0; STATE.score=0;
+  STATE.correct=0; STATE.wrong=0;
+  STATE.stageScores=[0,0,0]; STATE.stageCorrect=[0,0,0];
+  STATE.answers=[];
+  document.getElementById('coffeeWrap').style.display='none';
+  renderQuestion();
 }
 
 // ═══════════════════════════════════════════════════
 // UTILITIES
 // ═══════════════════════════════════════════════════
 function restartGame(){
+  // Full reset including attempts (for dev/testing use)
+  STATE.attemptNum=1; STATE.submitted=false; STATE.submittedName='';
   STATE.stage=1; STATE.qIdx=0; STATE.score=0;
   STATE.correct=0; STATE.wrong=0;
   STATE.stageScores=[0,0,0]; STATE.stageCorrect=[0,0,0];
@@ -1192,7 +1343,8 @@ function restartGame(){
 
 function shareResult(){
   const pct=Math.round((STATE.score/150)*100);
-  const txt=`🌙 Saya baru habis bermain 'Biodata Nabi Muhammad SAW' di KAFA!\n\nMarkah: ${STATE.score}/150\nBetul: ${STATE.correct}/15\nSkor: ${pct}%\n\nCuba kamu!`;
+  const nama=STATE.submittedName?` — ${STATE.submittedName}`:'';
+  const txt=`🌙 Saya baru habis bermain 'Biodata Nabi Muhammad SAW' di KAFA!${nama}\n\nMarkah: ${STATE.score}/150\nBetul: ${STATE.correct}/15\nSkor: ${pct}%\n\nCuba kamu!`;
   if(navigator.share){
     navigator.share({title:'KAFA Game',text:txt}).catch(()=>{});
   } else {

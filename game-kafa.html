@@ -10,9 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
 
   <style>
-  /* ════════════════════════════════════════════
-      RESET & VARIABLES
-  ════════════════════════════════════════════ */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -87,9 +84,7 @@
       radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.11), transparent);
   }
 
-  /* ════════════════════════════════════════════
-      HEADER
-  ════════════════════════════════════════════ */
+  /* ── HEADER ── */
   #mainHeader {
     position: sticky; top: 0; z-index: 100;
     height: var(--header-h);
@@ -157,9 +152,7 @@
     color: var(--red); background: var(--red-bg);
   }
 
-  /* ════════════════════════════════════════════
-      COFFEE BTN — FIXED BOTTOM RIGHT
-  ════════════════════════════════════════════ */
+  /* ── COFFEE BTN ── */
   .support-btn-wrapper {
     position: fixed;
     bottom: 22px; right: 18px;
@@ -183,8 +176,6 @@
     border-radius: 12px 12px 4px 12px;
     max-width: 185px; text-align: right;
     box-shadow: var(--shadow);
-    /* Sentiasa nampak — tukar mesej setiap 5 saat */
-    opacity: 1;
     transition: opacity .35s ease;
     pointer-events: none;
   }
@@ -222,26 +213,13 @@
     50%      { box-shadow: 0 4px 32px rgba(201,150,58,.70); }
   }
 
-  /* steam animation */
-  .steam-path:nth-child(1) { animation: steamRise 1.8s ease-in-out infinite; }
-  .steam-path:nth-child(2) { animation: steamRise 1.8s ease-in-out .45s infinite; }
-
-  @keyframes steamRise {
-    0%,100% { transform: translateY(0);  opacity: .8; }
-    50%      { transform: translateY(-5px); opacity: .2; }
-  }
-
-  /* ════════════════════════════════════════════
-      MAIN
-  ════════════════════════════════════════════ */
+  /* ── MAIN ── */
   main {
     position: relative; z-index: 1;
     min-height: calc(100vh - var(--header-h));
   }
 
-  /* ════════════════════════════════════════════
-      LOGIN SCREEN
-  ════════════════════════════════════════════ */
+  /* ── LOGIN ── */
   #loginScreen {
     display: flex; align-items: center; justify-content: center;
     min-height: calc(100vh - var(--header-h));
@@ -364,9 +342,7 @@
   .btn-masuk:hover  { transform: translateY(-2px); box-shadow: 0 12px 38px var(--gold-glow); filter: brightness(1.06); }
   .btn-masuk:active { transform: translateY(0); }
 
-  /* ════════════════════════════════════════════
-      DASHBOARD
-  ════════════════════════════════════════════ */
+  /* ── DASHBOARD ── */
   #welcomeSection {
     display: none;
     padding: 20px 16px 90px;
@@ -537,6 +513,12 @@
 
   .topic-card.locked .topic-status { color: var(--txt3); background: transparent; }
 
+  /* percubaan badge */
+  .topic-attempts {
+    font-size: 10px; color: var(--yellow); font-weight: 700;
+    margin-top: 2px; opacity: .8;
+  }
+
   /* ── Empty State ── */
   .empty-state { text-align: center; padding: 52px 20px; color: var(--txt3); }
   .empty-icon  { font-size: 42px; margin-bottom: 14px; }
@@ -608,6 +590,32 @@
 
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+  /* ── Loading overlay ── */
+  .loading-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(6,16,31,.85);
+    backdrop-filter: blur(8px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px;
+  }
+
+  .loading-overlay.hidden { display: none; }
+
+  .spinner {
+    width: 44px; height: 44px;
+    border: 3px solid var(--border2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-msg {
+    font-size: 13px; color: var(--txt2); font-weight: 600;
+  }
+
   /* ── Animations ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
@@ -642,9 +650,13 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════
-     HEADER
-════════════════════════════════ -->
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-msg" id="loadingMsg">Menyemak status permainan...</div>
+</div>
+
+<!-- HEADER -->
 <header id="mainHeader">
   <a class="header-logo" href="#">
     <div class="logo-icon">🌙</div>
@@ -661,9 +673,7 @@
   </button>
 </header>
 
-<!-- ══════════════════════════════
-     COFFEE BTN — BAWAH KANAN
-════════════════════════════════ -->
+<!-- COFFEE BTN -->
 <div class="support-btn-wrapper" id="coffeeBtnWrap">
   <div class="coffee-bubble" id="coffeeBubble">
     Suka web ini?<br>Jom belanja saya kopi! ☕
@@ -681,13 +691,10 @@
   </a>
 </div>
 
-<!-- ══════════════════════════════
-     MAIN
-════════════════════════════════ -->
 <main>
 
   <!-- LOGIN SCREEN -->
-  <section id="loginScreen">
+  <section id="loginScreen" style="display:none">
     <div class="login-card">
       <div class="login-logo">
         <div class="big-icon">🌙</div>
@@ -772,37 +779,31 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- ══════════════════════════════
-     SCRIPTS
-     PENTING: data.js MESTI PERTAMA
-════════════════════════════════ -->
+<!-- PENTING: data.js MESTI PERTAMA -->
 <script src="js/data.js"></script>
 
 <script>
-// ════════════════════════════════════════════════════════════
-//  KAFA GAME — LOGIK UTAMA (index.html)
-//  Semua fungsi dashboard, login, tab, topik & ranking di sini
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
+//  KONFIGURASI — SAMA DENGAN code.gs
+// ════════════════════════════════════════════
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwDnalkeOQ_g9eYtKFlaIRsCbx6WG7LK1X1pA6BidjHckNVcIk5CCT7kytIKxQDFXebfQ/exec';
 
-// GAS URL — gantikan dengan URL Google Apps Script anda
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwqS_zYmSlsaA5rCed753WQ2EOIUg1dff4u85jCh1NABd_OUZm9z7GfhRlbGwQ38vabow/exec';
+// ════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════
+var currentUser  = null;   // { nama, kelas, gender }
+var gasStatus    = {};     // cache: { topikId: { percubaan, dikunci } }
+var statusLoaded = false;
 
-// State semasa
-let currentUser    = null;   // { nama, kelas, gender }
-let activeSubjek   = '';     // subjek aktif untuk tiap-tiap tab
-
-// ────────────────────────────────
-//  HELPER: Format nama (Capitalize)
-// ────────────────────────────────
+// ════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════
 function fmtNama(nama) {
   return nama.split(' ')
     .map(function(w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); })
     .join(' ');
 }
 
-// ────────────────────────────────
-//  TOAST
-// ────────────────────────────────
 function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
@@ -810,37 +811,38 @@ function showToast(msg) {
   setTimeout(function() { t.classList.remove('show'); }, 3000);
 }
 
-// ════════════════════════════════════════════════════════════
-//  COFFEE BUBBLE — tukar mesej setiap 5 saat
-// ════════════════════════════════════════════════════════════
+function showLoading(msg) {
+  document.getElementById('loadingMsg').textContent = msg || 'Memuatkan...';
+  document.getElementById('loadingOverlay').classList.remove('hidden');
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.add('hidden');
+}
+
+// ════════════════════════════════════════════
+//  COFFEE BUBBLE — rotate mesej
+// ════════════════════════════════════════════
 (function() {
   var mesej = [
     'Suka web ini?\nJom belanja saya kopi! ☕',
     'Terima kasih kerana\nmenggunakan Game KAFA! 🌙',
     'Sokongan anda amat\nbermakna untuk kami! 💛',
-    'Bantu kami terus\nberkembang! ✨',
-    'Setiap sumbangan\nmemberi semangat! 🚀'
+    'Bantu kami terus\nberkembang! ✨'
   ];
   var idx    = 0;
   var bubble = document.getElementById('coffeeBubble');
   if (!bubble) return;
-
   setInterval(function() {
-    // Fade out
     bubble.style.opacity = '0';
     setTimeout(function() {
       idx = (idx + 1) % mesej.length;
-      // Guna <br> untuk baris baru
       bubble.innerHTML = mesej[idx].replace(/\n/g, '<br>');
-      // Fade in
       bubble.style.opacity = '1';
     }, 350);
   }, 5000);
 })();
 
-// ════════════════════════════════════════════════════════════
-//  COFFEE BTN — show / hide semasa bermain
-// ════════════════════════════════════════════════════════════
 function hideCoffeeBtn() {
   var el = document.getElementById('coffeeBtnWrap');
   if (el) el.classList.add('hidden');
@@ -850,9 +852,49 @@ function showCoffeeBtn() {
   if (el) el.classList.remove('hidden');
 }
 
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
+//  AMBIL STATUS SEMUA TOPIK DARI GAS
+//  (dipanggil sekali selepas login)
+// ════════════════════════════════════════════
+async function fetchAllStatus() {
+  if (!currentUser) return;
+  try {
+    var url = GAS_URL
+      + '?action=getAllStatus'
+      + '&nama='  + encodeURIComponent(currentUser.nama)
+      + '&kelas=' + encodeURIComponent(currentUser.kelas);
+    var res  = await fetch(url);
+    var data = await res.json();
+    // data = { "topikId": { percubaan, dikunci }, ... }
+    if (data && typeof data === 'object') {
+      gasStatus = data;
+    }
+  } catch (e) {
+    console.warn('Tidak dapat ambil status dari GAS:', e);
+    gasStatus = {};
+  }
+  statusLoaded = true;
+}
+
+// Ambil status satu topik (dari cache)
+function getTopikStatus(topikId) {
+  if (gasStatus[topikId]) {
+    return gasStatus[topikId];
+  }
+  return { percubaan: 0, dikunci: false };
+}
+
+function isGameLocked(topikId) {
+  return getTopikStatus(topikId).dikunci === true;
+}
+
+function getAttempts(topikId) {
+  return getTopikStatus(topikId).percubaan || 0;
+}
+
+// ════════════════════════════════════════════
 //  LOGIN
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
 
   var selKelas   = document.getElementById('selKelas');
@@ -860,14 +902,15 @@ document.addEventListener('DOMContentLoaded', function() {
   var btnMasuk   = document.getElementById('btnMasuk');
   var btnKeluar  = document.getElementById('btnKeluar');
 
-  // ── Semak data.js berjaya dimuatkan ──
+  // Semak data.js dimuatkan
   if (typeof KELAS_DATA === 'undefined') {
+    hideLoading();
+    document.getElementById('loginScreen').style.display = 'flex';
     showToast('⚠ Ralat: fail data.js tidak dapat dibaca!');
-    console.error('KELAS_DATA tidak dijumpai. Pastikan js/data.js dimuat sebelum script ini.');
     return;
   }
 
-  // ── Isi dropdown Kelas ──
+  // Isi dropdown Kelas
   Object.keys(KELAS_DATA).forEach(function(kelas) {
     var opt = document.createElement('option');
     opt.value = kelas;
@@ -875,7 +918,6 @@ document.addEventListener('DOMContentLoaded', function() {
     selKelas.appendChild(opt);
   });
 
-  // ── Bila kelas berubah → isi nama pelajar ──
   selKelas.addEventListener('change', function() {
     var kelas = selKelas.value;
     selPelajar.innerHTML = '';
@@ -892,8 +934,7 @@ document.addEventListener('DOMContentLoaded', function() {
     firstOpt.textContent = '— Pilih Nama Pelajar —';
     selPelajar.appendChild(firstOpt);
 
-    var pelajarList = KELAS_DATA[kelas] || [];
-    pelajarList.forEach(function(nama) {
+    (KELAS_DATA[kelas] || []).forEach(function(nama) {
       var opt = document.createElement('option');
       opt.value = nama;
       opt.textContent = fmtNama(nama);
@@ -901,24 +942,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // ── Klik Masuk ──
-  btnMasuk.addEventListener('click', function() {
+  // Klik Masuk
+  btnMasuk.addEventListener('click', async function() {
     var kelas = selKelas.value;
     var nama  = selPelajar.value;
 
     if (!kelas) { showToast('Sila pilih kelas dahulu! 😊'); return; }
     if (!nama)  { showToast('Sila pilih nama pelajar! 😊'); return; }
 
-    // Tentukan jantina
-    var gender = 'lelaki';
     var upper  = nama.toUpperCase();
-    if (upper.indexOf(' BINTI ') !== -1 || upper.indexOf(' BINTE ') !== -1) {
-      gender = 'perempuan';
-    }
+    var gender = (upper.indexOf(' BINTI ') !== -1 || upper.indexOf(' BINTE ') !== -1)
+                 ? 'perempuan' : 'lelaki';
 
     currentUser = { nama: nama, kelas: kelas, gender: gender };
 
-    // Sembunyikan login, tunjuk dashboard
+    // Ambil status dari GAS sebelum tunjuk dashboard
+    showLoading('Menyemak status permainan...');
+    await fetchAllStatus();
+    hideLoading();
+
     document.getElementById('loginScreen').style.display  = 'none';
     document.getElementById('welcomeSection').style.display = 'block';
     btnKeluar.style.display = 'flex';
@@ -929,10 +971,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initSubjek('ranking');
   });
 
-  // ── Klik Keluar ──
+  // Klik Keluar
   btnKeluar.addEventListener('click', function() {
     if (!confirm('Adakah anda ingin keluar?')) return;
-    currentUser = null;
+    currentUser   = null;
+    gasStatus     = {};
+    statusLoaded  = false;
     selKelas.value = '';
     selPelajar.innerHTML = '<option value="">— Pilih Kelas Dahulu —</option>';
     selPelajar.disabled  = true;
@@ -942,42 +986,50 @@ document.addEventListener('DOMContentLoaded', function() {
     showCoffeeBtn();
   });
 
-  // ── Handle redirect dari game (tab=ranking) ──
+  // Handle redirect dari game (tab=ranking)
   var params = new URLSearchParams(window.location.search);
   if (params.get('tab') === 'ranking') {
-    var nama  = params.get('nama');
-    var kelas = params.get('kelas');
-    if (nama && kelas) {
-      var upper  = nama.toUpperCase();
-      var gender = (upper.indexOf(' BINTI ') !== -1) ? 'perempuan' : 'lelaki';
-      currentUser = { nama: nama, kelas: kelas, gender: gender };
+    var rNama  = params.get('nama');
+    var rKelas = params.get('kelas');
+    if (rNama && rKelas) {
+      var rUpper  = rNama.toUpperCase();
+      var rGender = (rUpper.indexOf(' BINTI ') !== -1) ? 'perempuan' : 'lelaki';
+      currentUser = { nama: rNama, kelas: rKelas, gender: rGender };
 
-      document.getElementById('loginScreen').style.display  = 'none';
-      document.getElementById('welcomeSection').style.display = 'block';
-      btnKeluar.style.display = 'flex';
-      renderWelcome();
-      initTabs();
-      initSubjek('ujiminda');
-      initSubjek('ranking');
+      showLoading('Memuat semula data...');
+      fetchAllStatus().then(function() {
+        hideLoading();
+        document.getElementById('loginScreen').style.display  = 'none';
+        document.getElementById('welcomeSection').style.display = 'block';
+        btnKeluar.style.display = 'flex';
+        renderWelcome();
+        initTabs();
+        initSubjek('ujiminda');
+        initSubjek('ranking');
 
-      // Auto klik tab ranking
-      setTimeout(function() {
-        var rankBtn = document.querySelector('.tab-btn[data-tab="ranking"]');
-        if (rankBtn) rankBtn.click();
-      }, 300);
+        setTimeout(function() {
+          var rankBtn = document.querySelector('.tab-btn[data-tab="ranking"]');
+          if (rankBtn) rankBtn.click();
+        }, 300);
+      });
+      return; // jangan terus ke hideLoading di bawah
     }
   }
 
+  // Default: tunjuk login
+  hideLoading();
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('welcomeSection').style.display = 'none';
+
 }); // end DOMContentLoaded
 
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
 //  WELCOME CARD
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
 function renderWelcome() {
   document.getElementById('namaPelajar').textContent  = fmtNama(currentUser.nama);
   document.getElementById('kelasPelajar').textContent = currentUser.kelas;
 
-  // Avatar SVG mengikut jantina
   var wrap = document.getElementById('avatarWrap');
   if (currentUser.gender === 'perempuan') {
     wrap.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="54" height="54">'
@@ -1002,9 +1054,9 @@ function renderWelcome() {
   }
 }
 
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
 //  TAB NAVIGATION
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
 function initTabs() {
   document.querySelectorAll('.tab-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -1017,30 +1069,26 @@ function initTabs() {
   });
 }
 
-// ════════════════════════════════════════════════════════════
-//  SUBJEK BUTTONS (Uji Minda & Ranking)
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
+//  SUBJEK BUTTONS
+// ════════════════════════════════════════════
 function initSubjek(tab) {
-  if (typeof SUBJEK_TOPIK === 'undefined') {
-    console.error('SUBJEK_TOPIK tidak dijumpai dalam data.js');
-    return;
-  }
+  if (typeof SUBJEK_TOPIK === 'undefined') return;
 
-  var rowId    = tab + 'SubjekRow';
+  var rowId     = tab + 'SubjekRow';
   var container = document.getElementById(rowId);
   if (!container) return;
 
   container.innerHTML = '';
-  var subjekList = Object.keys(SUBJEK_TOPIK);
+  var subjekList   = Object.keys(SUBJEK_TOPIK);
   if (subjekList.length === 0) return;
 
-  // Subjek pertama aktif secara default
   var defaultSubjek = subjekList[0];
 
   subjekList.forEach(function(subjek, i) {
     var btn = document.createElement('button');
-    btn.className = 'selector-btn' + (i === 0 ? ' active' : '');
-    btn.textContent = subjek;
+    btn.className    = 'selector-btn' + (i === 0 ? ' active' : '');
+    btn.textContent  = subjek;
     btn.dataset.subjek = subjek;
 
     btn.addEventListener('click', function() {
@@ -1056,14 +1104,14 @@ function initSubjek(tab) {
     container.appendChild(btn);
   });
 
-  // Render kandungan untuk subjek pertama
   if (tab === 'ujiminda') renderTajukGrid(defaultSubjek);
   if (tab === 'ranking')  renderRankingTajuk(defaultSubjek);
 }
 
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
 //  UJI MINDA — GRID TAJUK
-// ════════════════════════════════════════════════════════════
+//  Status dikunci/percubaan diambil dari gasStatus (GAS)
+// ════════════════════════════════════════════
 function renderTajukGrid(subjek) {
   var container = document.getElementById('tajukGrid');
   if (!container) return;
@@ -1078,13 +1126,22 @@ function renderTajukGrid(subjek) {
   }
 
   topikList.forEach(function(t) {
-    var locked  = isGameLocked(t.id);
-    var card    = document.createElement('div');
+    var status    = getTopikStatus(t.id);
+    var locked    = status.dikunci;
+    var attempts  = status.percubaan || 0;
+
+    var card = document.createElement('div');
     card.className = 'topic-card' + (locked ? ' locked selesai' : '');
 
     var statusLabel = locked ? '🔒 Selesai' : '▶ Mula Bermain';
+    var attLabel    = '';
+    if (!locked && attempts > 0) {
+      attLabel = '<div class="topic-attempts">Percubaan: ' + attempts + '/3</div>';
+    }
+
     card.innerHTML = '<div class="topic-icon">' + t.icon + '</div>'
       + '<div class="topic-name">' + t.nama + '</div>'
+      + attLabel
       + '<div class="topic-status">' + statusLabel + '</div>';
 
     if (!locked) {
@@ -1099,18 +1156,18 @@ function renderTajukGrid(subjek) {
   });
 }
 
-// ════════════════════════════════════════════════════════════
-//  BUKA GAME — pass data melalui URL params
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
+//  BUKA GAME
+// ════════════════════════════════════════════
 function bukaGame(topik) {
-  // Semak percubaan
-  var attempts = getAttempts(topik.id);
+  var status   = getTopikStatus(topik.id);
+  var attempts = status.percubaan || 0;
+
   if (attempts >= 3) {
     showToast('Percubaan telah habis (3/3). Permainan dikunci. 🔒');
     return;
   }
 
-  // Sembunyikan coffee btn semasa dalam game
   hideCoffeeBtn();
 
   var params = new URLSearchParams({
@@ -1118,18 +1175,19 @@ function bukaGame(topik) {
     kelas:     currentUser.kelas,
     topikId:   topik.id,
     topikNama: topik.nama,
-    subjek:    topik.subjek || activeSubjek || ''
+    subjek:    topik.subjek || ''
   });
 
   window.location.href = topik.file + '?' + params.toString();
 }
 
-// ════════════════════════════════════════════════════════════
+// ════════════════════════════════════════════
 //  RANKING — TAJUK BUTTONS + TABLE
-// ════════════════════════════════════════════════════════════
+//  Ambil data dari GAS sahaja (tiada localStorage fallback)
+// ════════════════════════════════════════════
 function renderRankingTajuk(subjek) {
-  var rowContainer  = document.getElementById('rankingTajukRow');
-  var tableWrap     = document.getElementById('rankingTableWrap');
+  var rowContainer = document.getElementById('rankingTajukRow');
+  var tableWrap    = document.getElementById('rankingTableWrap');
   if (!rowContainer) return;
 
   rowContainer.innerHTML = '';
@@ -1157,30 +1215,23 @@ function renderRankingTajuk(subjek) {
     rowContainer.appendChild(btn);
   });
 
-  // Muatkan ranking topik pertama secara default
   loadRankingTable(topikList[0].id, tableWrap);
 }
 
 async function loadRankingTable(topikId, container) {
   container.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div>'
-    + '<p>Memuatkan ranking...</p></div>';
+    + '<p>Memuatkan ranking dari pelayan...</p></div>';
 
   var data = [];
 
-  // Cuba ambil dari GAS
   try {
-    if (GAS_URL && GAS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-      var url = GAS_URL + '?action=getRanking&topik=' + encodeURIComponent(topikId);
-      var res = await fetch(url);
-      data = await res.json();
-    }
-  } catch (e) { /* gagal — guna data tempatan */ }
-
-  // Fallback: data tempatan (localStorage)
-  if (!data || data.length === 0) {
-    try {
-      data = JSON.parse(localStorage.getItem('kafa_ranking_' + topikId) || '[]');
-    } catch (e) { data = []; }
+    var url = GAS_URL + '?action=getRanking&topik=' + encodeURIComponent(topikId);
+    var res  = await fetch(url);
+    data     = await res.json();
+    if (!Array.isArray(data)) data = [];
+  } catch (e) {
+    console.warn('Gagal ambil ranking dari GAS:', e);
+    data = [];
   }
 
   renderRankingTable(data, container);
@@ -1193,30 +1244,30 @@ function renderRankingTable(data, container) {
     return;
   }
 
-  // Sort markah tertinggi dulu
   data.sort(function(a, b) { return b.markah - a.markah; });
 
   var rows = data.map(function(d, i) {
-    var rank = i + 1;
-    var medal = '';
+    var rank      = i + 1;
+    var medal     = '';
     var rankClass = '';
     if (rank <= 5)       { medal = '🥇'; rankClass = 'rank-1'; }
     else if (rank <= 10) { medal = '🥈'; rankClass = 'rank-2'; }
     else if (rank <= 15) { medal = '🥉'; rankClass = 'rank-3'; }
 
     var isSaya = currentUser &&
-                 d.nama === currentUser.nama &&
+                 d.nama  === currentUser.nama &&
                  d.kelas === currentUser.kelas;
 
     return '<tr' + (isSaya ? ' class="saya"' : '') + '>'
       + '<td><span class="rank-num ' + rankClass + '">' + rank + '</span> ' + medal + '</td>'
       + '<td style="color:var(--txt);font-weight:' + (isSaya ? '800' : '500') + '">'
-      + fmtNama(d.nama) + (isSaya ? ' <span style="font-size:10px;color:var(--accent2)">(Anda)</span>' : '')
+      + fmtNama(d.nama)
+      + (isSaya ? ' <span style="font-size:10px;color:var(--accent2)">(Anda)</span>' : '')
       + '</td>'
-      + '<td>' + d.kelas + '</td>'
+      + '<td>' + (d.kelas || '—') + '</td>'
       + '<td style="color:var(--txt);font-weight:800">' + d.markah
       + ' <span style="color:var(--txt3);font-size:11px;font-weight:500">/ 75</span></td>'
-      + '<td style="font-size:12px">' + (d.masa || '-') + '</td>'
+      + '<td style="font-size:12px;color:var(--txt3)">' + (d.masa || '—') + '</td>'
       + '</tr>';
   }).join('');
 
@@ -1229,18 +1280,6 @@ function renderRankingTable(data, container) {
     + '</table></div>';
 }
 
-// ════════════════════════════════════════════════════════════
-//  PERCUBAAN & KUNCI (localStorage)
-// ════════════════════════════════════════════════════════════
-function getAttempts(topikId) {
-  if (!currentUser) return 0;
-  return parseInt(localStorage.getItem('kafa_attempts_' + currentUser.nama + '_' + topikId) || '0');
-}
-
-function isGameLocked(topikId) {
-  if (!currentUser) return false;
-  return localStorage.getItem('kafa_lock_' + currentUser.nama + '_' + topikId) === 'locked';
-}
 </script>
 
 </body>

@@ -1,6 +1,6 @@
 // ========================================
-// GAME KAFA - Game Engine (Versi 2.0)
-// Attempts & lock disimpan di Google Sheet
+// GAME KAFA - Game Engine (Versi 2.1)
+// Fix: CORS — mode no-cors + Content-Type text/plain
 // ========================================
 
 const ENGINE = {
@@ -25,10 +25,8 @@ const ENGINE = {
       subjek:    params.get('subjek')    || ''
     };
 
-    // Tunjuk skrin loading
     this.showLoading('Menyemak status permainan...');
 
-    // Semak attempts & lock dari Google Sheet
     const status = await this.fetchStatus();
     this.attempts = status.percubaan;
     this.isLocked = status.dikunci;
@@ -38,7 +36,6 @@ const ENGINE = {
       return;
     }
 
-    // Tambah percubaan dalam Sheet
     const newAttempts = await this.addAttemptToSheet();
     this.attempts = newAttempts;
 
@@ -58,7 +55,7 @@ const ENGINE = {
     }
   },
 
-  // ── Fetch status dari GAS ──
+  // ── Fetch status dari GAS (GET — tiada CORS issue) ──
   async fetchStatus() {
     try {
       const url = `${window.GAS_URL}?action=getAttempts`
@@ -73,18 +70,19 @@ const ENGINE = {
         dikunci:   data.dikunci   || false
       };
     } catch (e) {
-      // Jika GAS gagal, benarkan main (fail-safe)
       console.warn('Tidak dapat semak status dari Sheet:', e);
       return { percubaan: 0, dikunci: false };
     }
   },
 
   // ── Tambah percubaan dalam GAS ──
+  // FIX: tambah mode:'no-cors' + Content-Type:'text/plain'
   async addAttemptToSheet() {
     try {
-      const res = await fetch(window.GAS_URL, {
+      fetch(window.GAS_URL, {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body:    JSON.stringify({
           action:  'addAttempt',
           nama:    this.userInfo.nama,
@@ -92,12 +90,10 @@ const ENGINE = {
           topikId: this.userInfo.topikId
         })
       });
-      const data = await res.json();
-      return data.percubaan || (this.attempts + 1);
     } catch (e) {
       console.warn('Tidak dapat tambah percubaan:', e);
-      return this.attempts + 1;
     }
+    return this.attempts + 1;
   },
 
   // ── Header ──
@@ -168,8 +164,8 @@ const ENGINE = {
     const soalan = this.stageSoalan[this.currentQ];
     if (!soalan) return;
 
-    const el   = document.getElementById('gameArea');
-    if (!el)   return;
+    const el = document.getElementById('gameArea');
+    if (!el)  return;
 
     const opts    = this.shuffleOptions([...soalan.pilihan]);
     const letters = ['A', 'B', 'C', 'D'];
@@ -265,8 +261,8 @@ const ENGINE = {
 
     document.querySelectorAll('.option-btn').forEach(btn => {
       btn.disabled = true;
-      if (btn.dataset.ans === betul)                         btn.classList.add('correct');
-      if (btn.dataset.ans === selected && !isCorrect)        btn.classList.add('wrong');
+      if (btn.dataset.ans === betul)                  btn.classList.add('correct');
+      if (btn.dataset.ans === selected && !isCorrect) btn.classList.add('wrong');
     });
 
     setTimeout(() => this.nextQuestion(), 1400);
@@ -383,8 +379,8 @@ const ENGINE = {
     }
   },
 
+  // FIX: tambah mode:'no-cors' + Content-Type:'text/plain'
   async submitAndLock(total) {
-    // Tunjuk loading semasa hantar
     const actionsDiv = document.querySelector('.final-actions');
     if (actionsDiv) {
       actionsDiv.innerHTML = `<div style="text-align:center;color:#64748b;padding:12px">⏳ Menghantar markah...</div>`;
@@ -403,10 +399,10 @@ const ENGINE = {
     };
 
     try {
-      // Hantar ke GAS — action submitMarkah akan simpan markah DAN kunci game
       await fetch(window.GAS_URL, {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body:    JSON.stringify(payload)
       });
     } catch (e) {

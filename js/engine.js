@@ -1,46 +1,103 @@
 // ========================================
-// GAME KAFA - Game Engine
-// Digunakan oleh semua game pages
+// GAME KAFA - Game Engine (Versi 2.0)
+// Attempts & lock disimpan di Google Sheet
 // ========================================
 
-// ── Config (override dalam tiap game) ──
-// window.GAME_CONFIG = { soalan: [...], tajukNama, subjek, topikId }
-
 const ENGINE = {
-  // State
   currentStage: 1,
-  currentQ: 0,
-  stageMark: [0, 0, 0],
+  currentQ:     0,
+  stageMark:    [0, 0, 0],
   timerInterval: null,
-  timeLeft: 20,
-  answered: false,
-  userInfo: {},
-  attempts: 0,
+  timeLeft:     20,
+  answered:     false,
+  userInfo:     {},
+  attempts:     0,
+  isLocked:     false,
 
   // ── Init ──
-  init() {
-    // Ambil info dari URL params
+  async init() {
     const params = new URLSearchParams(window.location.search);
     this.userInfo = {
-      nama:  params.get('nama')  || '',
-      kelas: params.get('kelas') || '',
-      topikId:   params.get('topikId') || '',
+      nama:      params.get('nama')      || '',
+      kelas:     params.get('kelas')     || '',
+      topikId:   params.get('topikId')   || '',
       topikNama: params.get('topikNama') || '',
-      subjek:    params.get('subjek') || ''
+      subjek:    params.get('subjek')    || ''
     };
 
-    // Semak percubaan
-    this.attempts = this.getAttempts();
-    if (this.attempts >= 3) {
+    // Tunjuk skrin loading
+    this.showLoading('Menyemak status permainan...');
+
+    // Semak attempts & lock dari Google Sheet
+    const status = await this.fetchStatus();
+    this.attempts = status.percubaan;
+    this.isLocked = status.dikunci;
+
+    if (this.isLocked || this.attempts >= 3) {
       this.showLockedScreen();
       return;
     }
 
-    // Tambah percubaan
-    this.attempts = this.addAttempt();
+    // Tambah percubaan dalam Sheet
+    const newAttempts = await this.addAttemptToSheet();
+    this.attempts = newAttempts;
 
     this.renderGameHeader();
     this.startStage(1);
+  },
+
+  // ── Loading Screen ──
+  showLoading(msg) {
+    const el = document.getElementById('gameArea');
+    if (el) {
+      el.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#64748b">
+          <div style="font-size:2.5rem;margin-bottom:12px">⏳</div>
+          <p>${msg}</p>
+        </div>`;
+    }
+  },
+
+  // ── Fetch status dari GAS ──
+  async fetchStatus() {
+    try {
+      const url = `${window.GAS_URL}?action=getAttempts`
+        + `&nama=${encodeURIComponent(this.userInfo.nama)}`
+        + `&kelas=${encodeURIComponent(this.userInfo.kelas)}`
+        + `&topik=${encodeURIComponent(this.userInfo.topikId)}`;
+
+      const res  = await fetch(url);
+      const data = await res.json();
+      return {
+        percubaan: data.percubaan || 0,
+        dikunci:   data.dikunci   || false
+      };
+    } catch (e) {
+      // Jika GAS gagal, benarkan main (fail-safe)
+      console.warn('Tidak dapat semak status dari Sheet:', e);
+      return { percubaan: 0, dikunci: false };
+    }
+  },
+
+  // ── Tambah percubaan dalam GAS ──
+  async addAttemptToSheet() {
+    try {
+      const res = await fetch(window.GAS_URL, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          action:  'addAttempt',
+          nama:    this.userInfo.nama,
+          kelas:   this.userInfo.kelas,
+          topikId: this.userInfo.topikId
+        })
+      });
+      const data = await res.json();
+      return data.percubaan || (this.attempts + 1);
+    } catch (e) {
+      console.warn('Tidak dapat tambah percubaan:', e);
+      return this.attempts + 1;
+    }
   },
 
   // ── Header ──
@@ -63,16 +120,14 @@ const ENGINE = {
     this.currentQ     = 0;
     this.stageMark[stage - 1] = 0;
 
-    // Update stage dots
     for (let s = 1; s <= 3; s++) {
       const dot = document.getElementById('stageDot' + s);
       if (!dot) continue;
       dot.className = 'stage-dot';
-      if (s < stage)  dot.classList.add('done');
+      if (s < stage)   dot.classList.add('done');
       if (s === stage) dot.classList.add('active');
     }
 
-    // Get soalan for this stage
     const allSoalan = window.GAME_CONFIG.soalan;
     const perStage  = Math.floor(allSoalan.length / 3);
     const start     = (stage - 1) * perStage;
@@ -87,13 +142,25 @@ const ENGINE = {
     const el = document.getElementById('scoreBar');
     if (!el) return;
     el.innerHTML = `
-      <div class="score-item"><div class="s-val">Tahap ${this.currentStage}</div><div class="s-label">Tahap</div></div>
+      <div class="score-item">
+        <div class="s-val">Tahap ${this.currentStage}</div>
+        <div class="s-label">Tahap</div>
+      </div>
       <div class="score-divider"></div>
-      <div class="score-item"><div class="s-val" id="markahTahap">${this.stageMark[this.currentStage-1]}</div><div class="s-label">Markah</div></div>
+      <div class="score-item">
+        <div class="s-val" id="markahTahap">${this.stageMark[this.currentStage - 1]}</div>
+        <div class="s-label">Markah</div>
+      </div>
       <div class="score-divider"></div>
-      <div class="score-item"><div class="s-val" id="soalanNum">${this.currentQ+1}/5</div><div class="s-label">Soalan</div></div>
+      <div class="score-item">
+        <div class="s-val" id="soalanNum">${this.currentQ + 1}/5</div>
+        <div class="s-label">Soalan</div>
+      </div>
       <div class="score-divider"></div>
-      <div class="score-item"><div class="s-val" id="timerDisplay">20</div><div class="s-label">Saat</div></div>`;
+      <div class="score-item">
+        <div class="s-val" id="timerDisplay">20</div>
+        <div class="s-label">Saat</div>
+      </div>`;
   },
 
   // ── Question ──
@@ -101,15 +168,13 @@ const ENGINE = {
     const soalan = this.stageSoalan[this.currentQ];
     if (!soalan) return;
 
-    const el = document.getElementById('gameArea');
-    if (!el) return;
+    const el   = document.getElementById('gameArea');
+    if (!el)   return;
 
-    // Shuffled options
-    const opts = this.shuffleOptions([...soalan.pilihan]);
-
-    const letters = ['A','B','C','D'];
+    const opts    = this.shuffleOptions([...soalan.pilihan]);
+    const letters = ['A', 'B', 'C', 'D'];
     const optHtml = opts.map((opt, i) => `
-      <button class="option-btn" data-ans="${opt}" onclick="ENGINE.selectAnswer('${opt.replace(/'/g,"\\'")}')">
+      <button class="option-btn" data-ans="${opt}" onclick="ENGINE.selectAnswer('${opt.replace(/'/g, "\\'")}')">
         <span class="option-letter">${letters[i]}</span> ${opt}
       </button>`).join('');
 
@@ -165,8 +230,8 @@ const ENGINE = {
 
     if (el) {
       el.textContent = this.timeLeft;
-      el.className = 'time-left';
-      if (this.timeLeft <= 5)  el.classList.add('danger');
+      el.className   = 'time-left';
+      if (this.timeLeft <= 5)       el.classList.add('danger');
       else if (this.timeLeft <= 10) el.classList.add('warning');
     }
     if (bar) {
@@ -178,7 +243,6 @@ const ENGINE = {
   },
 
   timeUp() {
-    // Masa habis – tunjuk jawapan betul
     this.showFeedback(null);
   },
 
@@ -191,22 +255,20 @@ const ENGINE = {
   },
 
   showFeedback(selected) {
-    const soalan = this.stageSoalan[this.currentQ];
-    const betul  = soalan.jawapan;
+    const soalan    = this.stageSoalan[this.currentQ];
+    const betul     = soalan.jawapan;
     const isCorrect = selected === betul;
 
     if (isCorrect) {
       this.stageMark[this.currentStage - 1] += 5;
     }
 
-    // Highlight buttons
     document.querySelectorAll('.option-btn').forEach(btn => {
       btn.disabled = true;
-      if (btn.dataset.ans === betul)   btn.classList.add('correct');
-      if (btn.dataset.ans === selected && !isCorrect) btn.classList.add('wrong');
+      if (btn.dataset.ans === betul)                         btn.classList.add('correct');
+      if (btn.dataset.ans === selected && !isCorrect)        btn.classList.add('wrong');
     });
 
-    // Brief delay then next
     setTimeout(() => this.nextQuestion(), 1400);
   },
 
@@ -222,7 +284,7 @@ const ENGINE = {
   // ── End Stage ──
   endStage() {
     clearInterval(this.timerInterval);
-    const mark  = this.stageMark[this.currentStage - 1];
+    const mark    = this.stageMark[this.currentStage - 1];
     const isFinal = this.currentStage === 3;
 
     if (isFinal) {
@@ -233,12 +295,8 @@ const ENGINE = {
   },
 
   showStageResult(mark) {
-    const msgs = [
-      "Bagus! Teruskan usaha anda! 💪",
-      "Hebat! Anda semakin mahir! 🌟",
-      "Cemerlang! Hampir ke puncak! 🚀"
-    ];
-    const msg = mark >= 20 ? msgs[2] : mark >= 10 ? msgs[1] : msgs[0];
+    const msgs  = ['Bagus! Teruskan usaha anda! 💪', 'Hebat! Anda semakin mahir! 🌟', 'Cemerlang! Hampir ke puncak! 🚀'];
+    const msg   = mark >= 20 ? msgs[2] : mark >= 10 ? msgs[1] : msgs[0];
     const emoji = mark >= 20 ? '🎉' : mark >= 10 ? '⭐' : '💡';
 
     document.getElementById('gameArea').innerHTML = `
@@ -254,14 +312,16 @@ const ENGINE = {
   },
 
   showFinalResult() {
-    const total = this.stageMark.reduce((a, b) => a + b, 0);
-    const stars  = total >= 60 ? 3 : total >= 40 ? 2 : 1;
-    const starHtml = '⭐'.repeat(stars).split('').map((s,i) => `<span class="star-pop" style="animation-delay:${i*0.1}s">${s}</span>`).join('');
+    const total    = this.stageMark.reduce((a, b) => a + b, 0);
+    const stars    = total >= 60 ? 3 : total >= 40 ? 2 : 1;
+    const starHtml = '⭐'.repeat(stars).split('').map((s, i) =>
+      `<span class="star-pop" style="animation-delay:${i * 0.1}s">${s}</span>`
+    ).join('');
 
     const motivasi = [
-      "Jangan mudah putus asa. Setiap usaha ada nilainya! 💪",
-      "Bagus! Anda berjaya siapkan kesemuanya! 🌟",
-      "Luar Biasa! Anda Cemerlang! 🏆✨"
+      'Jangan mudah putus asa. Setiap usaha ada nilainya! 💪',
+      'Bagus! Anda berjaya siapkan kesemuanya! 🌟',
+      'Luar Biasa! Anda Cemerlang! 🏆✨'
     ];
 
     document.getElementById('gameArea').innerHTML = `
@@ -273,9 +333,9 @@ const ENGINE = {
         <div class="result-msg">${motivasi[stars - 1]}</div>
 
         <div class="total-breakdown">
-          ${this.stageMark.map((m,i) => `
+          ${this.stageMark.map((m, i) => `
             <div class="breakdown-row">
-              <span class="br-label">Tahap ${i+1}</span>
+              <span class="br-label">Tahap ${i + 1}</span>
               <span class="br-val">${m} / 25</span>
             </div>`).join('')}
           <div class="breakdown-row">
@@ -297,7 +357,6 @@ const ENGINE = {
         </div>
       </div>`;
 
-    // Show coffee btn again
     const coffeeWrap = document.querySelector('.support-btn-wrapper');
     if (coffeeWrap) coffeeWrap.style.display = 'flex';
   },
@@ -309,12 +368,10 @@ const ENGINE = {
       return;
     }
     this.currentStage = 1;
-    this.stageMark = [0, 0, 0];
-    this.attempts = this.addAttempt();
+    this.stageMark    = [0, 0, 0];
     this.renderGameHeader();
     this.startStage(1);
 
-    // Hide coffee during game
     const coffeeWrap = document.querySelector('.support-btn-wrapper');
     if (coffeeWrap) coffeeWrap.style.display = 'none';
   },
@@ -327,10 +384,14 @@ const ENGINE = {
   },
 
   async submitAndLock(total) {
-    // Lock game
-    this.lockGame();
+    // Tunjuk loading semasa hantar
+    const actionsDiv = document.querySelector('.final-actions');
+    if (actionsDiv) {
+      actionsDiv.innerHTML = `<div style="text-align:center;color:#64748b;padding:12px">⏳ Menghantar markah...</div>`;
+    }
 
     const payload = {
+      action:    'submitMarkah',
       nama:      this.userInfo.nama,
       kelas:     this.userInfo.kelas,
       markah:    total,
@@ -341,31 +402,24 @@ const ENGINE = {
       stageMark: this.stageMark
     };
 
-    // Simpan lokal
-    const localData = JSON.parse(localStorage.getItem('kafa_ranking_' + payload.topikId) || '[]');
-    const idx = localData.findIndex(d => d.nama === payload.nama && d.kelas === payload.kelas);
-    const entry = { nama: payload.nama, kelas: payload.kelas, markah: total, masa: payload.masa };
-    if (idx >= 0) { if (total > localData[idx].markah) localData[idx] = entry; }
-    else localData.push(entry);
-    localStorage.setItem('kafa_ranking_' + payload.topikId, JSON.stringify(localData));
-
-    // Hantar ke GAS
     try {
-      await fetch(window.GAS_URL || 'https://script.google.com/macros/s/AKfycbwqS_zYmSlsaA5rCed753WQ2EOIUg1dff4u85jCh1NABd_OUZm9z7GfhRlbGwQ38vabow/exec', {
-        method: 'POST',
-        mode: 'no-cors',
+      // Hantar ke GAS — action submitMarkah akan simpan markah DAN kunci game
+      await fetch(window.GAS_URL, {
+        method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body:    JSON.stringify(payload)
       });
-    } catch (e) { /* simpan lokal sahaja */ }
+    } catch (e) {
+      console.warn('GAS tidak dapat dihubungi:', e);
+    }
 
-    // Pergi ke ranking
     alert('✅ Markah anda telah dihantar! Tahniah!');
+
     const params = new URLSearchParams({
-      nama:  this.userInfo.nama,
-      kelas: this.userInfo.kelas,
-      tab: 'ranking',
-      subjek: this.userInfo.subjek,
+      nama:    this.userInfo.nama,
+      kelas:   this.userInfo.kelas,
+      tab:     'ranking',
+      subjek:  this.userInfo.subjek,
       topikId: this.userInfo.topikId
     });
     window.location.href = '../../index.html?' + params.toString();
@@ -379,27 +433,13 @@ const ENGINE = {
         <div class="result-card">
           <div class="result-emoji">🔒</div>
           <div class="result-title">Permainan Terkunci</div>
-          <div class="result-msg">Anda telah menggunakan semua 3 percubaan atau telah menghantar markah untuk topik ini.</div>
+          <div class="result-msg">Anda telah menghantar markah atau menggunakan semua 3 percubaan untuk topik ini.</div>
           <a href="../../index.html" class="btn-next" style="text-decoration:none;display:inline-flex;margin-top:8px">← Kembali</a>
         </div>`;
     }
   },
 
   // ── Helpers ──
-  getAttempts() {
-    const key = `kafa_attempts_${this.userInfo.nama}_${this.userInfo.topikId}`;
-    return parseInt(localStorage.getItem(key) || '0');
-  },
-  addAttempt() {
-    const key = `kafa_attempts_${this.userInfo.nama}_${this.userInfo.topikId}`;
-    const n = this.getAttempts() + 1;
-    localStorage.setItem(key, n);
-    return n;
-  },
-  lockGame() {
-    const key = `kafa_lock_${this.userInfo.nama}_${this.userInfo.topikId}`;
-    localStorage.setItem(key, 'locked');
-  },
   shuffleOptions(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -409,7 +449,6 @@ const ENGINE = {
   }
 };
 
-// Helper luar
 function formatNama(nama) {
   return nama.split(' ').map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
 }

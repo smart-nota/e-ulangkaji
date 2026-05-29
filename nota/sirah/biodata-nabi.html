@@ -1,995 +1,629 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Biodata Nabi Muhammad SAW 🌟 KAFA SKSG</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --bg-deep: #0a0a0f;
-  --bg-card: #12121a;
-  --bg-panel: #16161f;
-  --gold: #d4a017;
-  --gold-light: #f0c040;
-  --gold-bright: #ffe066;
-  --gold-dim: #8a6510;
-  --text: #f0e6c8;
-  --text-dim: #a89870;
-  --blue-soft: #1a2a4a;
-  --green: #2a5a2a;
-  --red: #5a1a1a;
-  --radius: 18px;
-  --shadow: 0 8px 32px rgba(0,0,0,0.6);
-  /* Comic Book Theme Colors */
-  --comic-border: #ffd700;
-  --bubble-bg: #1e1e2f;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Nunito',sans-serif;
-  background:var(--bg-deep);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* Stars BG */
-.stars-bg{
-  position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse at 20% 10%, rgba(212,160,23,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 90%, rgba(212,160,23,0.05) 0%, transparent 50%);
-}
-.stars-bg::before{
-  content:'';position:absolute;inset:0;
-  background-image:
-    radial-gradient(1px 1px at 10% 15%, rgba(255,230,102,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 25% 35%, rgba(255,230,102,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 40% 8%, rgba(255,230,102,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 55% 25%, rgba(255,230,102,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 12%, rgba(255,230,102,0.5) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 85% 30%, rgba(255,230,102,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 15% 55%, rgba(255,230,102,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 30% 70%, rgba(255,230,102,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 60% 60%, rgba(255,230,102,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 75% 75%, rgba(255,230,102,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 55%, rgba(255,230,102,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 5% 85%, rgba(255,230,102,0.3) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 45% 90%, rgba(255,230,102,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 95% 90%, rgba(255,230,102,0.2) 0%, transparent 100%);
-}
-
-/* HEADER */
-.page-header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(10,10,15,0.82);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border-bottom:2px solid var(--gold);
-  padding:0 20px;
-}
-.page-header-inner{
-  max-width:760px;margin:0 auto;
-  display:flex;align-items:center;gap:14px;
-  height:60px;
-}
-.back-btn{
-  font-family:'Nunito',sans-serif;
-  color:var(--gold-light);font-weight:800;font-size:0.9rem;
-  text-decoration:none;padding:6px 14px;
-  border:1.5px solid var(--gold-dim);border-radius:30px;
-  white-space:nowrap;transition:all 0.2s;
-}
-.back-btn:hover{background:rgba(212,160,23,0.15);border-color:var(--gold-light);}
-.page-title-area h2{
-  font-family:'Nunito',sans-serif;
-  font-size:1rem;font-weight:800;color:var(--gold-bright);line-height:1.2;
-}
-.page-title-area span{
-  font-size:0.75rem;color:var(--text-dim);font-weight:600;
-}
-
-/* WRAPPER */
-.wrapper{
-  position:relative;z-index:1;
-  max-width:720px;margin:0 auto;
-  padding:24px 16px 60px;
-}
-
-/* HERO */
-.hero{
-  text-align:center;padding:36px 20px 28px;
-  border-bottom:1px solid rgba(212,160,23,0.2);
-  margin-bottom:28px;
-}
-.hero-emoji{font-size:3.5rem;display:block;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.hero h1{
-  font-size:1.7rem;font-weight:900;
-  background:linear-gradient(135deg, var(--gold-bright), var(--gold), var(--gold-light));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:6px;
-}
-.hero p{color:var(--text-dim);font-size:0.95rem;font-weight:600;}
-.hero-chip{
-  display:inline-block;margin-top:12px;
-  background:rgba(212,160,23,0.15);border:1.5px solid var(--gold-dim);
-  color:var(--gold-light);border-radius:30px;padding:4px 16px;font-size:0.8rem;font-weight:700;
-}
-
-/* PROGRESS */
-.progress-wrap{margin-bottom:20px;}
-.progress-label{
-  display:flex;justify-content:space-between;
-  font-size:0.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px;
-}
-.progress-track{
-  height:8px;border-radius:4px;
-  background:rgba(212,160,23,0.12);
-  border:1px solid rgba(212,160,23,0.2);overflow:hidden;
-}
-.progress-fill{
-  height:100%;border-radius:4px;
-  background:linear-gradient(90deg, var(--gold), var(--gold-bright));
-  transition:width 0.5s cubic-bezier(.4,0,.2,1);
-}
-
-/* PANEL & COMIC STRIP LAYOUT */
-.panel{
-  background:var(--bg-panel);
-  border:3px solid var(--gold-dim);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,230,102,0.06);
-  padding:24px 20px;
-  display:none;
-  animation:panelIn 0.4s cubic-bezier(.4,0,.2,1);
-}
-.panel.active{display:block;}
-@keyframes panelIn{
-  from{opacity:0;transform:translateY(24px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.comic-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 15px;
-}
-@media(min-width: 600px) {
-  .comic-grid.two-cols { grid-template-columns: 1fr 1fr; }
-}
-
-/* PREMIUM COMIC PANEL CARD */
-.comic-box {
-  background: rgba(255, 255, 255, 0.02);
-  border: 2px dashed rgba(212,160,23,0.4);
-  border-radius: 14px;
-  padding: 16px;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
-}
-.comic-box:hover {
-  transform: scale(1.01);
-  border-color: var(--gold-bright);
-}
-.comic-tag {
-  position: absolute;
-  top: 0; left: 0;
-  background: var(--gold);
-  color: #000;
-  font-size: 0.7rem;
-  font-weight: 900;
-  padding: 2px 10px;
-  border-bottom-right-radius: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* BIG COMIC EMOJI ILLUSTRATION */
-.comic-art {
-  font-size: 3rem;
-  text-align: center;
-  margin: 12px 0;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-  animation: kidsFloat 4s ease-in-out infinite;
-}
-.comic-art.alt { animation-delay: 2s; }
-@keyframes kidsFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(3deg); }
-}
-
-/* PANEL HEADER */
-.panel-header{
-  display:flex;align-items:center;gap:12px;margin-bottom:20px;
-}
-.panel-num{
-  width:36px;height:36px;border-radius:50%;
-  background:linear-gradient(135deg, var(--gold), var(--gold-dim));
-  color:#000;font-weight:900;font-size:1rem;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;box-shadow:0 2px 8px rgba(212,160,23,0.4);
-}
-.panel-header h3{
-  font-size:1.1rem;font-weight:900;color:var(--gold-bright);
-}
-
-/* USTAZ BUBBLE */
-.ustaz-row{
-  display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;
-}
-.ustaz-avatar{
-  flex-shrink:0;text-align:center;
-}
-.ustaz-icon{
-  width:56px;height:56px;border-radius:50%;
-  background:linear-gradient(135deg,#1a2a1a,#2a3a2a);
-  border:2.5px solid var(--gold-dim);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.8rem;
-}
-.ustaz-label{
-  font-size:0.65rem;font-weight:800;color:var(--gold);
-  text-align:center;margin-top:4px;letter-spacing:1px;
-}
-.speech-bubble{
-  background:var(--bubble-bg);
-  border:2px solid var(--gold-dim);
-  border-radius: 0 16px 16px 16px;
-  padding:12px 16px;
-  font-size:0.92rem;font-weight:700;color:var(--text);
-  line-height:1.6;flex:1;position:relative;
-  box-shadow: 4px 4px 0px rgba(212,160,23,0.2);
-}
-.speech-bubble::before{
-  content:'';position:absolute;
-  left:-12px;top:10px;
-  border:6px solid transparent;
-  border-right-color:var(--gold-dim);
-}
-
-/* CONTENT BLOCKS */
-.info-box{
-  background:rgba(212,160,23,0.06);
-  border-left:4px solid var(--gold);
-  border-radius:0 12px 12px 0;
-  padding:12px 16px;margin:12px 0;
-  font-size:0.9rem;line-height:1.7;font-weight:600;
-}
-.fun-fact{
-  background:rgba(26,42,74,0.5);
-  border:1.5px solid rgba(100,150,255,0.3);
-  border-radius:12px;padding:14px 16px;
-  display:flex;gap:12px;align-items:flex-start;margin:12px 0;
-}
-.ff-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
-.fun-fact p{font-size:0.88rem;line-height:1.6;font-weight:600;color:#c8d8f0;}
-
-.nota-table{
-  width:100%;border-collapse:collapse;margin:12px 0;font-size:0.85rem;
-}
-.nota-table th{
-  background:rgba(212,160,23,0.2);
-  color:var(--gold-bright);font-weight:800;
-  padding:9px 12px;border:1px solid var(--gold-dim);text-align:left;
-}
-.nota-table td{
-  padding:8px 12px;border:1px solid rgba(212,160,23,0.15);
-  font-weight:600;color:var(--text);vertical-align:top;
-}
-.nota-table tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
-
-.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
-.chip{
-  padding:6px 14px;border-radius:30px;font-size:0.82rem;font-weight:700;
-  border:1.5px solid;
-}
-.chip-gold{background:rgba(212,160,23,0.15);border-color:var(--gold);color:var(--gold-bright);}
-.chip-white{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.2);color:var(--text);}
-.chip-purple{background:rgba(150,80,200,0.15);border-color:rgba(150,80,200,0.4);color:#d4aaff;}
-
-/* TIP BOX */
-.tip-box{
-  display:none;
-  background:rgba(42,90,42,0.2);
-  border:2px solid rgba(212,160,23,0.5);
-  border-radius:14px;padding:14px 16px;margin:14px 0;
-  animation:panelIn 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-.tip-box.show{display:block;}
-.tip-label{font-size:0.75rem;font-weight:800;color:var(--gold-bright);letter-spacing:1px;margin-bottom:6px;}
-.tip-box p{font-size:0.88rem;line-height:1.6;font-weight:600;color:var(--text);}
-
-/* NAV BUTTONS (FINTECH FOR KIDS STYLE) */
-.panel-nav{
-  display:flex;align-items:center;margin-top:22px;gap:10px;
-}
-.nav-back-btn{
-  background:transparent;border:1.5px solid var(--gold-dim);
-  color:var(--gold);border-radius:30px;padding:8px 16px;
-  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;
-  cursor:pointer;transition:all 0.2s;flex-shrink:0;
-}
-.nav-back-btn:hover{background:rgba(212,160,23,0.1);}
-.nav-back-btn.hidden{visibility:hidden;}
-.nav-center{display:flex;gap:12px;justify-content:center;flex:1;flex-wrap:wrap;}
-
-.btn-faham{
-  background:linear-gradient(135deg, #2ecc71, #27ae60);
-  color:#fff;border:none;border-radius:30px;padding:12px 24px;
-  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:900;
-  cursor:pointer;transition:all 0.2s;
-  box-shadow: 0 4px 15px rgba(46,204,113,0.4);
-}
-.btn-faham:hover{transform:translateY(-2px);box-sizing:border-box;box-shadow:0 6px 20px rgba(46,204,113,0.6);}
-
-.btn-tak{
-  background:linear-gradient(135deg, #34495e, #2c3e50);
-  border:1.5px solid var(--gold-dim);
-  color:var(--gold-bright);border-radius:30px;padding:12px 20px;
-  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-.btn-tak:hover{background:rgba(212,160,23,0.15); transform:translateY(-1px);}
-
-/* DONE PANEL */
-.done-panel{
-  display:none;text-align:center;
-  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
-  border-radius:var(--radius);padding:36px 24px;
-  box-shadow:var(--shadow);
-  animation:panelIn 0.4s ease;
-}
-.done-panel.active{display:block;}
-.done-emoji{font-size:3rem;display:block;margin-bottom:12px;}
-.done-panel h2{font-size:1.4rem;font-weight:900;color:var(--gold-bright);margin-bottom:8px;}
-.done-panel p{color:var(--text-dim);font-size:0.95rem;font-weight:600;margin-bottom:24px;}
-.done-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.btn-reset{
-  background:transparent;border:2px solid var(--gold-dim);
-  color:var(--gold-light);border-radius:30px;padding:12px 24px;
-  font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;
-}
-.btn-reset:hover{background:rgba(212,160,23,0.1);}
-
-/* QUIZ INTERACTIVE SECTION */
-.quiz-section{display:none;animation:panelIn 0.4s ease; margin-top:20px;}
-.quiz-section.active{display:block;}
-.quiz-header{
-  background:rgba(20,20,30,0.9);border:2px solid var(--gold-dim);
-  border-radius:14px;padding:16px 20px;margin-bottom:16px;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
-}
-.quiz-title{font-size:1rem;font-weight:800;color:var(--gold-bright);}
-.quiz-score-label{font-size:0.85rem;font-weight:700;color:var(--text-dim);}
-.quiz-q-label{font-size:0.85rem;font-weight:700;color:var(--gold);}
-.quiz-card{
-  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
-  border-radius:var(--radius);padding:24px 20px;
-  box-shadow:var(--shadow);
-}
-.quiz-q-text{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:18px;line-height:1.5;}
-.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
-.quiz-opt{
-  background:rgba(255,255,255,0.04);border:1.5px solid rgba(212,160,23,0.25);
-  border-radius:12px;padding:12px 16px;
-  font-family:'Nunito',sans-serif;font-size:0.92rem;font-weight:700;color:var(--text);
-  cursor:pointer;text-align:left;transition:all 0.2s;
-}
-.quiz-opt:hover:not(:disabled){background:rgba(212,160,23,0.1);border-color:var(--gold-light);}
-.quiz-opt.correct{background:rgba(46,204,113,0.3);border-color:#2ecc71;color:#fff;}
-.quiz-opt.wrong{background:rgba(231,76,60,0.3);border-color:#e74c3c;color:#fff;}
-.quiz-opt:disabled{cursor:default;}
-.quiz-dots{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
-.q-dot{
-  width:14px;height:14px;border-radius:50%;
-  background:rgba(212,160,23,0.15);border:1.5px solid var(--gold-dim);
-  transition:all 0.3s;
-}
-.q-dot.active{background:var(--gold);border-color:var(--gold-bright);transform:scale(1.2);}
-
-/* PREMIUM FINTECH POPUP MODAL */
-.popup-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(5,5,10,0.88);z-index:200;
-  align-items:center;justify-content:center;padding:20px;
-  backdrop-filter: blur(8px);
-}
-.popup-overlay.active{display:flex;}
-.popup-card{
-  background:linear-gradient(135deg,#161625,#0d0d14);
-  border:3px solid var(--gold);border-radius:24px;
-  padding:32px 24px;max-width:440px;width:100%;
-  text-align:center;position:relative;
-  box-shadow:0 20px 50px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,230,102,0.1);
-  animation:popIn 0.4s cubic-bezier(.175,.885,.32,1.275);
-}
-@keyframes popIn{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
-.popup-icon{font-size:3.5rem;display:block;margin-bottom:12px;}
-.popup-title{
-  font-size:1.4rem;font-weight:900;color:var(--gold-bright);margin-bottom:6px;
-}
-.popup-arabic{
-  font-size:1.1rem;color:var(--text-dim);font-weight:700;margin-bottom:12px;letter-spacing:0.5px;
-}
-.popup-msg{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:24px;line-height:1.6;}
-
-/* FINTECH ACTION BUTTONS CONTAINER inside POPUP */
-.popup-actions-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
-@media(min-width: 400px) {
-  .popup-actions-grid { flex-direction: row; justify-content: center; }
-}
-
-.btn-popup-main{
-  background:linear-gradient(135deg, #2ecc71, #27ae60);
-  color:#fff;border:none;border-radius:30px;padding:12px 24px;
-  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:900;
-  cursor:pointer;transition:all 0.2s;flex:1;
-  box-shadow: 0 4px 15px rgba(46,204,113,0.3);
-}
-.btn-popup-main:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,204,113,0.5);}
-
-.btn-popup-secondary{
-  background: rgba(255,255,255,0.05);
-  border:1.5px solid rgba(212,160,23,0.4);
-  color:var(--text);border-radius:30px;padding:12px 18px;
-  font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;
-  cursor:pointer;transition:all 0.2s;flex:1;
-}
-.btn-popup-secondary:hover{background:rgba(212,160,23,0.15);color:var(--gold-bright);}
-
-/* NOTA NAV */
-.nota-nav{
-  display:flex;justify-content:space-between;gap:12px;
-  margin-top:32px;flex-wrap:wrap;
-}
-.nota-nav a{
-  color:var(--gold-light);text-decoration:none;font-weight:700;
-  font-size:0.88rem;padding:10px 18px;
-  border:1.5px solid var(--gold-dim);border-radius:30px;
-  transition:all 0.2s;background:rgba(212,160,23,0.05);
-}
-.nota-nav a:hover{background:rgba(212,160,23,0.15);}
-
-footer{
-  text-align:center;padding:24px 16px;
-  font-size:0.82rem;color:var(--text-dim);font-weight:600;
-  border-top:1px solid rgba(212,160,23,0.1);margin-top:40px;
-}
-
-.strong{font-weight:800;color:var(--gold-light);}
-em{color:var(--gold);font-style:normal;font-weight:700;}
-
-@media(max-width:480px){
-  .hero h1{font-size:1.35rem;}
-  .panel{padding:18px 14px;}
-  .ustaz-icon{width:46px;height:46px;font-size:1.5rem;}
-  .nav-center{gap:6px;}
-  .btn-faham,.btn-tak{padding:10px 14px;font-size:0.82rem;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biodata Nabi Muhammad SAW 🌟 KAFA SKSG</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-color: #fef08a; /* Latar belakang kuning lembut (amber-100/yellow-200) */
+    }
+    /* Kelas Struktur Utama Gaya Neo-Brutalism (Komik Pop) */
+    .neo-box {
+      border: 4px solid #000000;
+      box-shadow: 8px 8px 0px 0px #000000;
+    }
+    .neo-btn {
+      border: 3px solid #000000;
+      box-shadow: 4px 4px 0px 0px #000000;
+      transition: all 0.1s ease;
+    }
+    .neo-btn:active:not(:disabled) {
+      transform: translate(4px, 4px);
+      box-shadow: 0px 0px 0px 0px #000000;
+    }
+    .panel {
+      display: none;
+    }
+    .panel.active {
+      display: block;
+    }
+    .quiz-section {
+      display: none;
+    }
+    .quiz-section.active {
+      display: block;
+    }
+    .done-panel {
+      display: none;
+    }
+    .done-panel.active {
+      display: block;
+    }
+    .popup-overlay {
+      display: none;
+    }
+    .popup-overlay.active {
+      display: flex;
+    }
+    .tip-box {
+      display: none;
+    }
+    .tip-box.show {
+      display: block;
+    }
+  </style>
 </head>
-<body>
-<div class="stars-bg"></div>
+<body class="p-4 md:p-8 min-h-screen pb-24">
 
-<header class="page-header">
-  <div class="page-header-inner">
-    <a href="../../subjek-sirah.html" class="back-btn">← Sirah</a>
-    <div class="page-title-area">
-      <h2>📖 Biodata Nabi Muhammad SAW</h2>
-      <span>Topik 1 · Subjek Sirah</span>
-    </div>
-  </div>
-</header>
+  <header class="max-w-3xl mx-auto neo-box bg-orange-400 p-4 md:p-6 mb-6 rounded-3xl text-center relative overflow-hidden">
+    <div class="absolute -top-6 -left-6 w-16 h-16 bg-white rounded-full border-4 border-black opacity-30"></div>
+    <span class="inline-block bg-white text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black mb-2 uppercase tracking-wider">
+      📖 Topik 1 · Subjek Sirah
+    </span>
+    <h1 class="text-2xl md:text-4xl font-bold text-black tracking-wide">
+      BIODATA NABI MUHAMMAD SAW
+    </h1>
+    <p class="text-xs md:text-sm font-medium text-black mt-1 bg-yellow-200 inline-block px-3 py-0.5 rounded-xl border border-black">
+      Kenali Nabi kita yang mulia ﷺ
+    </p>
+  </header>
 
-<div class="wrapper">
-  <div class="hero">
-    <span class="hero-emoji">🌟</span>
-    <h1>Biodata Nabi Muhammad SAW</h1>
-    <p>Kenali Nabi kita yang mulia ﷺ bersama KAFA SKSG</p>
-    <span class="hero-chip">📖 Topik 1 · Sirah</span>
-  </div>
-
-  <div class="progress-wrap" id="progressWrap">
-    <div class="progress-label">
-      <span>📊 Kemajuan Belajar</span>
-      <span id="progressLabel">Panel 1 / 5</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill" style="width:20%"></div>
-    </div>
-  </div>
-
-  <div class="panel active" id="panel-1">
-    <div class="panel-header">
-      <div class="panel-num">1</div>
-      <h3>👶 Kelahiran Nabi Muhammad SAW</h3>
-    </div>
-    <div class="ustaz-row">
-      <div class="ustaz-avatar">
-        <div class="ustaz-icon">👨‍🏫</div>
-        <div class="ustaz-label">USTAZ</div>
+  <div class="max-w-3xl mx-auto">
+    
+    <div class="neo-box bg-white p-4 rounded-2xl mb-6" id="progressWrap">
+      <div class="flex justify-between font-bold text-black text-sm mb-2">
+        <span>📊 Kemajuan Belajar</span>
+        <span id="progressLabel">Panel 1 / 5</span>
       </div>
-      <div class="speech-bubble">
-        Assalamualaikum adik-adik! Jom lihat komik kisah hari kelahiran Nabi Muhammad SAW yang sangat ajaib dan hebat ini! 🌙
+      <div class="h-6 w-full bg-gray-200 border-4 border-black rounded-full overflow-hidden p-0.5">
+        <div id="progressFill" class="h-full bg-emerald-400 border-r-4 border-black rounded-full transition-all duration-300" style="width: 20%;"></div>
       </div>
     </div>
 
-    <div class="comic-grid two-cols">
-      <div class="comic-box">
-        <span class="comic-tag">Masa & Tempat</span>
-        <div class="comic-art">📅</div>
-        <div class="info-box" style="margin:0; font-size:0.85rem;">
-          <span class="strong">Tarikh Lahir:</span> Isnin, 12 Rabiulawal<br/>
-          <span class="strong">Tahun:</span> 571 Masihi<br/>
-          <span class="strong">Tempat:</span> Kota Makkah Al-Mukarramah
+    <div class="panel active neo-box bg-white rounded-3xl p-6" id="panel-1">
+      <div class="flex items-center gap-3 mb-4 bg-purple-300 p-3 rounded-2xl border-4 border-black">
+        <div class="w-10 h-10 bg-black text-white font-black text-lg flex items-center justify-center rounded-full border-2 border-white">1</div>
+        <h3 class="text-lg md:text-xl font-bold text-black">👶 Kelahiran Nabi Muhammad SAW</h3>
+      </div>
+
+      <div class="flex items-start gap-4 mb-6">
+        <div class="flex-shrink-0 text-center">
+          <div class="w-14 h-14 bg-amber-300 rounded-full border-4 border-black flex items-center justify-center text-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]">👨‍🏫</div>
+          <div class="text-[10px] font-black bg-black text-white px-1.5 py-0.5 rounded border border-black mt-1">USTAZ</div>
+        </div>
+        <div class="neo-box bg-cyan-100 p-4 rounded-2xl relative flex-1 text-sm md:text-base font-semibold text-black">
+          Assalamualaikum adik-adik! Jom lihat komik kisah hari kelahiran Nabi Muhammad SAW ini! 🌙
         </div>
       </div>
-      <div class="comic-box">
-        <span class="comic-tag">Peristiwa Besar</span>
-        <div class="comic-art alt">🐘</div>
-        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">Tahun kelahiran baginda digelar <em>Tahun Gajah</em> kerana Abrahah membawa tentera bergajah yang besar untuk meruntuhkan Kaabah!</p>
-      </div>
-    </div>
 
-    <div class="fun-fact">
-      <div class="ff-icon">💡</div>
-      <p>Nabi SAW suka berpuasa pada hari <span class="strong">Isnin</span> kerana hari tersebut adalah hari ulang tahun kelahiran mulia baginda!</p>
-    </div>
-
-    <div class="tip-box" id="tip-1">
-      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>Hafal kod rahsia pintar ini: <strong>"Isnin, 12 Rabiulawal, Tahun Gajah (571M) di Makkah!"</strong> Semudah mengira bintang di langit! 🌟</p>
-    </div>
-
-    <div class="panel-nav">
-      <button class="nav-back-btn hidden">←</button>
-      <div class="nav-center">
-        <button class="btn-tak" onclick="showTip(1)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(1)">✅ Sedia untuk 3 Soalan</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel" id="panel-2">
-    <div class="panel-header">
-      <div class="panel-num">2</div>
-      <h3>📛 Nama & Gelaran Mulia Baginda</h3>
-    </div>
-    <div class="ustaz-row">
-      <div class="ustaz-avatar">
-        <div class="ustaz-icon">👨‍🏫</div>
-        <div class="ustaz-label">USTAZ</div>
-      </div>
-      <div class="speech-bubble">
-        Nama penuh baginda mengandungi nama bapa dan datuk kesayangan, berserta gelaran paling hebat di alam semesta! 😊
-      </div>
-    </div>
-
-    <div class="comic-grid">
-      <div class="comic-box" style="text-align: center;">
-        <span class="comic-tag">Nama Penuh</span>
-        <div class="comic-art">📜</div>
-        <div class="info-box" style="display:inline-block; padding:10px 20px;">
-          <span class="strong" style="font-size:1.1rem; color:var(--gold-bright);">Muhammad bin Abdullah bin Abdul Muttalib</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div class="neo-box bg-orange-100 p-4 rounded-2xl relative pt-8">
+          <span class="absolute top-0 left-0 bg-yellow-300 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Masa & Tempat</span>
+          <div class="text-4xl text-center my-2">📅</div>
+          <div class="bg-white p-3 rounded-xl border-2 border-black text-xs md:text-sm font-bold space-y-1">
+            <p>👉 <span class="text-purple-800">Tarikh Lahir:</span> Isnin, 12 Rabiulawal</p>
+            <p>👉 <span class="text-purple-800">Tahun:</span> 571 Masihi</p>
+            <p>👉 <span class="text-purple-800">Tempat:</span> Kota Makkah Al-Mukarramah</p>
+          </div>
         </div>
-        <div class="chips-row" style="justify-content: center;">
-          <span class="chip chip-gold">Muhammad = Yang Terpuji</span>
-          <span class="chip chip-white">Bangsa/Kabilah = Quraisy</span>
+        <div class="neo-box bg-pink-100 p-4 rounded-2xl relative pt-8 flex flex-col justify-center">
+          <span class="absolute top-0 left-0 bg-yellow-300 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Peristiwa Besar</span>
+          <div class="text-4xl text-center my-2">🐘</div>
+          <p class="text-xs md:text-sm font-bold text-center bg-white p-3 rounded-xl border-2 border-black">
+            Tahun kelahiran baginda digelar <em class="text-red-600 underline font-black">Tahun Gajah</em> kerana Abrahah membawa tentera bergajah yang besar untuk meruntuhkan Kaabah!
+          </p>
+        </div>
+      </div>
+
+      <div class="neo-box bg-blue-100 p-4 rounded-xl flex gap-3 items-center mb-4">
+        <div class="text-3xl">💡</div>
+        <p class="text-xs md:text-sm font-bold text-black">Nabi SAW suka berpuasa pada hari <span class="bg-yellow-300 px-1 border border-black rounded">Isnin</span> kerana hari tersebut adalah hari ulang tahun kelahiran mulia baginda!</p>
+      </div>
+
+      <div class="tip-box neo-box bg-emerald-200 p-4 rounded-xl mb-4" id="tip-1">
+        <div class="text-xs font-black text-emerald-900 tracking-wider mb-1">💚 NOTA RINGKAS MUDAH FAHAM</div>
+        <p class="text-xs md:text-sm font-bold text-black">Hafal kod rahsia pintar ini: <strong>"Isnin, 12 Rabiulawal, Tahun Gajah (571M) di Makkah!"</strong> Semudah mengira bintang di langit! 🌟</p>
+      </div>
+
+      <div class="flex items-center gap-3 mt-6">
+        <button class="neo-btn bg-gray-400 text-black font-black px-4 py-3 rounded-xl visibility-hidden opacity-0 cursor-default" disabled>→</button>
+        <div class="flex gap-3 flex-1">
+          <button onclick="showTip(1)" class="neo-btn bg-yellow-300 hover:bg-yellow-400 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            💡 Tips Mudah Faham
+          </button>
+          <button onclick="startPanelQuiz(1)" class="neo-btn bg-emerald-400 hover:bg-emerald-500 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            ✅ Sedia untuk 3 Soalan
+          </button>
         </div>
       </div>
     </div>
 
-    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:12px 0;">Masyarakat Kota Makkah memberikan gelaran eksklusif ini kerana kebaikan baginda:</p>
-    <div class="chips-row">
-      <span class="chip chip-gold">Al-Amin = Yang Amanah</span>
-      <span class="chip chip-white">As-Sadiq = Yang Benar</span>
-      <span class="chip chip-purple">Rahmatan lil Alamin = Rahmat Seluruh Alam</span>
-    </div>
-
-    <div class="tip-box" id="tip-2">
-      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>Ingat formula superhero **AL-AS**: <strong>Al-Amin</strong> (Sangat Amanah) + <strong>As-Sadiq</strong> (Sentiasa Bercakap Benar). Baginda juga berbangsa Arab dari kabilah **Quraisy** yang paling mulia!</p>
-    </div>
-
-    <div class="panel-nav">
-      <button class="nav-back-btn" onclick="prevPanel(2)">←</button>
-      <div class="nav-center">
-        <button class="btn-tak" onclick="showTip(2)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(2)">✅ Sedia untuk 3 Soalan</button>
+    <div class="panel neo-box bg-white rounded-3xl p-6" id="panel-2">
+      <div class="flex items-center gap-3 mb-4 bg-cyan-300 p-3 rounded-2xl border-4 border-black">
+        <div class="w-10 h-10 bg-black text-white font-black text-lg flex items-center justify-center rounded-full border-2 border-white">2</div>
+        <h3 class="text-lg md:text-xl font-bold text-black">📛 Nama & Gelaran Mulia Baginda</h3>
       </div>
-    </div>
-  </div>
 
-  <div class="panel" id="panel-3">
-    <div class="panel-header">
-      <div class="panel-num">3</div>
-      <h3>👨‍👩‍👦 Keluarga & Penjaga Baginda</h3>
-    </div>
-    <div class="ustaz-row">
-      <div class="ustaz-avatar">
-        <div class="ustaz-icon">👨‍🏫</div>
-        <div class="ustaz-label">USTAZ</div>
-      </div>
-      <div class="speech-bubble">
-        Walaupun Nabi dilahirkan yatim piatu, Allah mengutuskan insan-insan penyayang untuk menjaga baginda bagaikan permata! 💛
-      </div>
-    </div>
-
-    <div class="comic-grid two-cols">
-      <div class="comic-box">
-        <span class="comic-tag">Ibu & Bapa</span>
-        <div class="comic-art">💖</div>
-        <p style="font-size:0.85rem; font-weight:700;">Bapa baginda bernama <strong>Abdullah</strong> (wafat sebelum lahir) & ibunya pula bernama <strong>Aminah</strong> (wafat semasa berumur 6 tahun).</p>
-      </div>
-      <div class="comic-box">
-        <span class="comic-tag">Penjaga Hebat</span>
-        <div class="comic-art alt">🛡️</div>
-        <p style="font-size:0.85rem; font-weight:700;">Datuknya <strong>Abdul Muttalib</strong> menjaga selama <strong>2 tahun</strong>. Selepas datuknya wafat, bapa saudaranya <strong>Abu Talib</strong> menjaga nabi. Isteri pertama baginda ialah <strong>Siti Khadijah</strong>.</p>
-      </div>
-    </div>
-
-    <div class="tip-box" id="tip-3">
-      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>Turutan penjaga nabi: <strong>Ibu (hingga umur 6) ➔ Datuk (pelihara selama 2 tahun hingga umur 8) ➔ Bapa Saudara (Abu Talib)</strong>. Isteri kesayangan pertama ialah usahawan hebat, <strong>Siti Khadijah</strong>!</p>
-    </div>
-
-    <div class="panel-nav">
-      <button class="nav-back-btn" onclick="prevPanel(3)">←</button>
-      <div class="nav-center">
-        <button class="btn-tak" onclick="showTip(3)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(3)">✅ Sedia untuk 3 Soalan</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel" id="panel-4">
-    <div class="panel-header">
-      <div class="panel-num">4</div>
-      <h3>🕌 Kewafatan Nabi SAW</h3>
-    </div>
-    <div class="ustaz-row">
-      <div class="ustaz-avatar">
-        <div class="ustaz-icon">👨‍🏫</div>
-        <div class="ustaz-label">USTAZ</div>
-      </div>
-      <div class="speech-bubble">
-        Perjuangan menegakkan Islam selesai dengan jayanya. Baginda wafat dan meninggalkan legasi warisan yang agung untuk kita! 🕌
-      </div>
-    </div>
-
-    <div class="comic-grid two-cols">
-      <div class="comic-box">
-        <span class="comic-tag">Masa Kewafatan</span>
-        <div class="comic-art">🌙</div>
-        <div class="info-box" style="margin:0; font-size:0.85rem;">
-          <span class="strong">Tarikh Wafat:</span> 12 Rabiulawal, 11 Hijrah<br/>
-          <span class="strong">Tahun Masihi:</span> 632 Masihi<br/>
-          <span class="strong">Usia Wafat:</span> 63 Tahun
+      <div class="flex items-start gap-4 mb-6">
+        <div class="flex-shrink-0 text-center">
+          <div class="w-14 h-14 bg-amber-300 rounded-full border-4 border-black flex items-center justify-center text-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]">👨‍🏫</div>
+          <div class="text-[10px] font-black bg-black text-white px-1.5 py-0.5 rounded border border-black mt-1">USTAZ</div>
+        </div>
+        <div class="neo-box bg-cyan-100 p-4 rounded-2xl relative flex-1 text-sm md:text-base font-semibold text-black">
+          Nama penuh baginda mengandungi nama bapa dan datuk kesayangan, berserta gelaran paling hebat di alam semesta! 😊
         </div>
       </div>
-      <div class="comic-box">
-        <span class="comic-tag">Makam Suci</span>
-        <div class="comic-art alt">🕌</div>
-        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">Baginda dimakamkan di perkarangan bilik isteri baginda, Siti Aisyah, yang kini berada di dalam **Masjid Nabawi, Madinah**!</p>
+
+      <div class="neo-box bg-lime-100 p-4 rounded-2xl relative pt-8 mb-4 text-center">
+        <span class="absolute top-0 left-0 bg-yellow-300 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Nama Penuh</span>
+        <div class="text-4xl my-2">📜</div>
+        <div class="bg-white p-3 rounded-xl border-2 border-black inline-block mb-3 font-black text-base md:text-lg text-emerald-800">
+          Muhammad bin Abdullah bin Abdul Muttalib
+        </div>
+        <div class="flex flex-wrap gap-2 justify-center">
+          <span class="bg-yellow-300 border-2 border-black px-3 py-1 text-xs font-black rounded-lg">Muhammad = Yang Terpuji</span>
+          <span class="bg-white border-2 border-black px-3 py-1 text-xs font-black rounded-lg">Bangsa/Kabilah = Quraisy</span>
+        </div>
+      </div>
+
+      <p class="text-xs md:text-sm font-black text-black mb-2">Masyarakat Kota Makkah memberikan gelaran eksklusif ini kerana kebaikan baginda:</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="bg-orange-300 border-2 border-black px-3 py-1.5 text-xs font-black rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Al-Amin = Yang Amanah</span>
+        <span class="bg-blue-300 border-2 border-black px-3 py-1.5 text-xs font-black rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">As-Sadiq = Yang Benar</span>
+        <span class="bg-purple-300 border-2 border-black px-3 py-1.5 text-xs font-black rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Rahmatan lil Alamin = Rahmat Seluruh Alam</span>
+      </div>
+
+      <div class="tip-box neo-box bg-emerald-200 p-4 rounded-xl mb-4" id="tip-2">
+        <div class="text-xs font-black text-emerald-900 tracking-wider mb-1">💚 NOTA RINGKAS MUDAH FAHAM</div>
+        <p class="text-xs md:text-sm font-bold text-black">Ingat formula superhero **AL-AS**: <strong>Al-Amin</strong> (Sangat Amanah) + <strong>As-Sadiq</strong> (Sentiasa Bercakap Benar). Baginda juga berbangsa Arab dari kabilah **Quraisy** yang paling mulia!</p>
+      </div>
+
+      <div class="flex items-center gap-3 mt-6">
+        <button onclick="prevPanel(2)" class="neo-btn bg-orange-300 hover:bg-orange-400 text-black font-black px-4 py-3 rounded-xl text-sm">←</button>
+        <div class="flex gap-3 flex-1">
+          <button onclick="showTip(2)" class="neo-btn bg-yellow-300 hover:bg-yellow-400 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            💡 Tips Mudah Faham
+          </button>
+          <button onclick="startPanelQuiz(2)" class="neo-btn bg-emerald-400 hover:bg-emerald-500 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            ✅ Sedia untuk 3 Soalan
+          </button>
+        </div>
       </div>
     </div>
 
-    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:12px 0; text-align:center;">Sangat menakjubkan! Hari lahir dan hari wafat nabi adalah **SAMA** iaitu pada 12 Rabiulawal!</p>
+    <div class="panel neo-box bg-white rounded-3xl p-6" id="panel-3">
+      <div class="flex items-center gap-3 mb-4 bg-pink-300 p-3 rounded-2xl border-4 border-black">
+        <div class="w-10 h-10 bg-black text-white font-black text-lg flex items-center justify-center rounded-full border-2 border-white">3</div>
+        <h3 class="text-lg md:text-xl font-bold text-black">👨‍👩‍👦 Keluarga & Penjaga Baginda</h3>
+      </div>
 
-    <div class="tip-box" id="tip-4">
-      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>Ingat nombor matematik fintech ini: Umur hayat nabi ialah <strong>63 tahun</strong>, dan baginda wafat pada tahun <strong>632 Masihi</strong> di kota suci <strong>Madinah</strong>. Tarikhnya sama dengan hari lahir!</p>
-    </div>
+      <div class="flex items-start gap-4 mb-6">
+        <div class="flex-shrink-0 text-center">
+          <div class="w-14 h-14 bg-amber-300 rounded-full border-4 border-black flex items-center justify-center text-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]">👨‍🏫</div>
+          <div class="text-[10px] font-black bg-black text-white px-1.5 py-0.5 rounded border border-black mt-1">USTAZ</div>
+        </div>
+        <div class="neo-box bg-cyan-100 p-4 rounded-2xl relative flex-1 text-sm md:text-base font-semibold text-black">
+          Walaupun Nabi dilahirkan yatim piatu, Allah mengutuskan insan-insan penyayang untuk menjaga baginda bagaikan permata! 💛
+        </div>
+      </div>
 
-    <div class="panel-nav">
-      <button class="nav-back-btn" onclick="prevPanel(4)">←</button>
-      <div class="nav-center">
-        <button class="btn-tak" onclick="showTip(4)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(4)">✅ Sedia untuk 3 Soalan</button>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div class="neo-box bg-red-100 p-4 rounded-2xl relative pt-8">
+          <span class="absolute top-0 left-0 bg-yellow-300 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Ibu & Bapa</span>
+          <div class="text-4xl text-center my-2">💖</div>
+          <p class="text-xs md:text-sm font-bold text-black bg-white p-3 rounded-xl border-2 border-black">
+            Bapa baginda bernama <strong>Abdullah</strong> (wafat sebelum lahir) & ibunya pula bernama <strong>Aminah</strong> (wafat semasa berumur 6 tahun).
+          </p>
+        </div>
+        <div class="neo-box bg-blue-100 p-4 rounded-2xl relative pt-8">
+          <span class="absolute top-0 left-0 bg-yellow-300 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Penjaga Hebat</span>
+          <div class="text-4xl text-center my-2">🛡️</div>
+          <p class="text-xs md:text-sm font-bold text-black bg-white p-3 rounded-xl border-2 border-black">
+            Datuknya <strong>Abdul Muttalib</strong> menjaga selama <strong>2 tahun</strong>. Selepas datuknya wafat, bapa saudaranya <strong>Abu Talib</strong> menjaga nabi. Isteri pertama baginda ialah <strong>Siti Khadijah</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="tip-box neo-box bg-emerald-200 p-4 rounded-xl mb-4" id="tip-3">
+        <div class="text-xs font-black text-emerald-900 tracking-wider mb-1">💚 NOTA RINGKAS MUDAH FAHAM</div>
+        <p class="text-xs md:text-sm font-bold text-black">Turutan penjaga nabi: <strong>Ibu (hingga umur 6) ➔ Datuk (pelihara selama 2 tahun hingga umur 8) ➔ Bapa Saudara (Abu Talib)</strong>. Isteri kesayangan pertama ialah usahawan hebat, <strong>Siti Khadijah</strong>!</p>
+      </div>
+
+      <div class="flex items-center gap-3 mt-6">
+        <button onclick="prevPanel(3)" class="neo-btn bg-orange-300 hover:bg-orange-400 text-black font-black px-4 py-3 rounded-xl text-sm">←</button>
+        <div class="flex gap-3 flex-1">
+          <button onclick="showTip(3)" class="neo-btn bg-yellow-300 hover:bg-yellow-400 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            💡 Tips Mudah Faham
+          </button>
+          <button onclick="startPanelQuiz(3)" class="neo-btn bg-emerald-400 hover:bg-emerald-500 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            ✅ Sedia untuk 3 Soalan
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="panel" id="panel-5">
-    <div class="panel-header">
-      <div class="panel-num">5</div>
-      <h3>📋 Papan Juara Ringkasan Biodata</h3>
-    </div>
-    <div class="ustaz-row">
-      <div class="ustaz-avatar">
-        <div class="ustaz-icon">👨‍🏫</div>
-        <div class="ustaz-label">USTAZ</div>
+    <div class="panel neo-box bg-white rounded-3xl p-6" id="panel-4">
+      <div class="flex items-center gap-3 mb-4 bg-amber-300 p-3 rounded-2xl border-4 border-black">
+        <div class="w-10 h-10 bg-black text-white font-black text-lg flex items-center justify-center rounded-full border-2 border-white">4</div>
+        <h3 class="text-lg md:text-xl font-bold text-black">🕌 Kewafatan Nabi SAW</h3>
       </div>
-      <div class="speech-bubble">
-        Tahniah sarjan cilik! Kamu telah sampai ke destinasi terakhir pengembaraan. Jom lihat kad akaun ringkasan eksklusif kamu! 🎉
+
+      <div class="flex items-start gap-4 mb-6">
+        <div class="flex-shrink-0 text-center">
+          <div class="w-14 h-14 bg-amber-300 rounded-full border-4 border-black flex items-center justify-center text-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]">👨‍🏫</div>
+          <div class="text-[10px] font-black bg-black text-white px-1.5 py-0.5 rounded border border-black mt-1">USTAZ</div>
+        </div>
+        <div class="neo-box bg-cyan-100 p-4 rounded-2xl relative flex-1 text-sm md:text-base font-semibold text-black">
+          Perjuangan menegakkan Islam selesai dengan jayanya. Baginda wafat dan meninggalkan legasi warisan yang agung untuk kita! 🕌
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div class="neo-box bg-orange-100 p-4 rounded-2xl relative pt-8">
+          <span class="absolute top-0 left-0 bg-yellow-300 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Masa Kewafatan</span>
+          <div class="text-4xl text-center my-2">🌙</div>
+          <div class="bg-white p-3 rounded-xl border-2 border-black text-xs md:text-sm font-bold space-y-1">
+            <p>👉 <span class="text-orange-800">Tarikh Wafat:</span> 12 Rabiulawal, 11 Hijrah</p>
+            <p>👉 <span class="text-orange-800">Tahun Masihi:</span> 632 Masihi</p>
+            <p>👉 <span class="text-orange-800">Usia Wafat:</span> 63 Tahun</p>
+          </div>
+        </div>
+        <div class="neo-box bg-teal-100 p-4 rounded-2xl relative pt-8">
+          <span class="absolute top-0 left-0 bg-yellow-300 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Makam Suci</span>
+          <div class="text-4xl text-center my-2">🕌</div>
+          <p class="text-xs md:text-sm font-bold text-black bg-white p-3 rounded-xl border-2 border-black leading-relaxed">
+            Baginda dimakamkan di perkarangan bilik isteri baginda, Siti Aisyah, yang kini berada di dalam <strong class="text-teal-700">Masjid Nabawi, Madinah</strong>!
+          </p>
+        </div>
+      </div>
+
+      <div class="neo-box bg-yellow-200 p-3 rounded-xl text-center font-black text-xs md:text-sm border-2 border-black mb-4">
+        💥 Sangat menakjubkan! Hari lahir dan hari wafat nabi adalah SAMA iaitu pada 12 Rabiulawal!
+      </div>
+
+      <div class="tip-box neo-box bg-emerald-200 p-4 rounded-xl mb-4" id="tip-4">
+        <div class="text-xs font-black text-emerald-900 tracking-wider mb-1">💚 NOTA RINGKAS MUDAH FAHAM</div>
+        <p class="text-xs md:text-sm font-bold text-black">Ingat nombor matematik ini: Umur hayat nabi ialah <strong>63 tahun</strong>, dan baginda wafat pada tahun <strong>632 Masihi</strong> di kota suci <strong>Madinah</strong>. Tarikhnya sama dengan hari lahir!</p>
+      </div>
+
+      <div class="flex items-center gap-3 mt-6">
+        <button onclick="prevPanel(4)" class="neo-btn bg-orange-300 hover:bg-orange-400 text-black font-black px-4 py-3 rounded-xl text-sm">←</button>
+        <div class="flex gap-3 flex-1">
+          <button onclick="showTip(4)" class="neo-btn bg-yellow-300 hover:bg-yellow-400 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            💡 Tips Mudah Faham
+          </button>
+          <button onclick="startPanelQuiz(4)" class="neo-btn bg-emerald-400 hover:bg-emerald-500 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            ✅ Sedia untuk 3 Soalan
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="comic-box" style="border: 2px solid var(--gold); background: rgba(212,160,23,0.03);">
-      <span class="comic-tag" style="background:#2ecc71; color:#fff;">Status: Selesai Belajar</span>
-      <div class="info-box" style="font-size:0.88rem; line-height:1.8;">
-        👶 <span class="strong">Lahir:</span> 12 Rabiulawal 571M (Tahun Gajah) @ Makkah<br/>
-        📛 <span class="strong">Nama:</span> Muhammad (Yang Terpuji) · Kabilah Quraisy Arab<br/>
-        👨‍👩‍👦 <span class="strong">Keluarga:</span> Abdullah (Bapa), Aminah (Ibu), Abdul Muttalib (Datuk - Jaga 2 tahun), Abu Talib (Bapa Saudara), Khadijah (Isteri 1)<br/>
-        🕌 <span class="strong">Wafat:</span> 12 Rabiulawal 11H / 632M (Usia 63 Tahun) @ Madinah
+    <div class="panel neo-box bg-white rounded-3xl p-6" id="panel-5">
+      <div class="flex items-center gap-3 mb-4 bg-emerald-300 p-3 rounded-2xl border-4 border-black">
+        <div class="w-10 h-10 bg-black text-white font-black text-lg flex items-center justify-center rounded-full border-2 border-white">5</div>
+        <h3 class="text-lg md:text-xl font-bold text-black">📋 Papan Juara Ringkasan Biodata</h3>
+      </div>
+
+      <div class="flex items-start gap-4 mb-6">
+        <div class="flex-shrink-0 text-center">
+          <div class="w-14 h-14 bg-amber-300 rounded-full border-4 border-black flex items-center justify-center text-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]">👨‍🏫</div>
+          <div class="text-[10px] font-black bg-black text-white px-1.5 py-0.5 rounded border border-black mt-1">USTAZ</div>
+        </div>
+        <div class="neo-box bg-cyan-100 p-4 rounded-2xl relative flex-1 text-sm md:text-base font-semibold text-black">
+          Tahniah sarjan cilik! Kamu telah sampai ke destinasi terakhir pengembaraan. Jom lihat kad akaun ringkasan eksklusif kamu! 🎉
+        </div>
+      </div>
+
+      <div class="neo-box bg-amber-100 p-4 rounded-2xl relative pt-8 mb-4">
+        <span class="absolute top-0 left-0 bg-emerald-400 text-black border-r-4 border-b-4 border-black font-black text-xs px-3 py-1 uppercase">Status: Selesai Belajar</span>
+        <div class="bg-white p-4 rounded-xl border-2 border-black space-y-2 text-xs md:text-sm font-bold text-black leading-relaxed">
+          <p>👶 <strong>Lahir:</strong> 12 Rabiulawal 571M (Tahun Gajah) @ Makkah</p>
+          <p>📛 <strong>Nama:</strong> Muhammad (Yang Terpuji) · Kabilah Quraisy Arab</p>
+          <p>👨‍👩‍👦 <strong>Keluarga:</strong> Abdullah (Bapa), Aminah (Ibu), Abdul Muttalib (Datuk - Jaga 2 tahun), Abu Talib (Bapa Saudara), Khadijah (Isteri 1)</p>
+          <p>🕌 <strong>Wafat:</strong> 12 Rabiulawal 11H / 632M (Usia 63 Tahun) @ Madinah</p>
+        </div>
+      </div>
+
+      <div class="tip-box neo-box bg-emerald-200 p-4 rounded-xl mb-4" id="tip-5">
+        <div class="text-xs font-black text-emerald-900 tracking-wider mb-1">💚 NOTA RINGKAS MUDAH FAHAM</div>
+        <p class="text-xs md:text-sm font-bold text-black">Gunakan formula super **LNAGMW**: <strong>L</strong>ahir Rabiulawal, <strong>N</strong>ama Terpuji, <strong>A</strong>bdullah bapa baginda, <strong>G</strong>ajah nama tahunnya, <strong>M</strong>akkah tempat lahir, <strong>W</strong>afat di Madinah! 🏆</p>
+      </div>
+
+      <div class="flex items-center gap-3 mt-6">
+        <button onclick="prevPanel(5)" class="neo-btn bg-orange-300 hover:bg-orange-400 text-black font-black px-4 py-3 rounded-xl text-sm">←</button>
+        <div class="flex gap-3 flex-1">
+          <button onclick="showTip(5)" class="neo-btn bg-yellow-300 hover:bg-yellow-400 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            💡 Tips Mudah Faham
+          </button>
+          <button onclick="showDone()" class="neo-btn bg-purple-400 hover:bg-purple-500 text-black font-black py-3 px-3 rounded-xl text-xs md:text-sm flex-1">
+            🏆 Tamatkan Pembelajaran
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="tip-box" id="tip-5">
-      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>Gunakan formula super **LNAGMW**: <strong>L</strong>ahir Rabiulawal, <strong>N</strong>ama Terpuji, <strong>A</strong>bdullah bapa baginda, <strong>G</strong>ajah nama tahunnya, <strong>M</strong>akkah tempat lahir, <strong>W</strong>afat di Madinah! 🏆</p>
-    </div>
-
-    <div class="panel-nav">
-      <button class="nav-back-btn" onclick="prevPanel(5)">←</button>
-      <div class="nav-center">
-        <button class="btn-tak" onclick="showTip(5)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="showDone()">🏆 Tamatkan Pembelajaran</button>
+    <div class="done-panel neo-box bg-white rounded-3xl p-8 text-center" id="donePanel">
+      <span class="text-6xl block mb-3">🥇</span>
+      <h2 class="text-xl md:text-3xl font-black text-black mb-2">Tahniah! Ilmu Anda Semakin Bertambah!</h2>
+      <p class="text-sm md:text-base font-bold text-gray-700 mb-6">Kamu berjaya menguasai semua soalan komik sirah ini dengan cemerlang!</p>
+      <div class="flex justify-center">
+        <button onclick="resetAll()" class="neo-btn bg-orange-400 hover:bg-orange-500 text-black font-black py-3 px-6 rounded-2xl text-sm md:text-base">
+          🔄 Ulang Semak Nota
+        </button>
       </div>
     </div>
-  </div>
 
-  <div class="done-panel" id="donePanel">
-    <span class="done-emoji">🥇</span>
-    <h2>Tahniah! Akaun Ilmu Anda Telah Ditambah!</h2>
-    <p>Kamu berjaya menguasai semua 4 modul soalan komik sirah interaktif ini dengan cemerlang bersama KAFA SKSG!</p>
-    <div class="done-btns">
-      <button class="btn-reset" onclick="resetAll()">🔄 Ulang Semak Nota</button>
-    </div>
-  </div>
-
-  <div class="quiz-section" id="quizSection">
-    <div class="quiz-header">
-      <span class="quiz-title" id="quizPanelTitle">🎮 Misi Kuiz Digital — Panel</span>
-      <span class="quiz-score-label">Skor Dompet: <span id="scoreDisplay" style="color:var(--gold-bright);">0</span></span>
-      <span class="quiz-q-label">Soalan <span id="qNumDisplay">1</span>/3</span>
-    </div>
-    <div class="quiz-card" id="quizCard">
-      <div class="quiz-q-text" id="qText"></div>
-      <div class="quiz-options" id="qOptions"></div>
-      <div class="quiz-feedback" id="qFeedback"></div>
-    </div>
-    <div class="quiz-dots" id="quizDots"></div>
-  </div>
-
-  <div class="popup-overlay" id="popup">
-    <div class="popup-card">
-      <span class="popup-icon" id="popupIcon">🌟</span>
-      <div class="popup-title" id="popupTitle">Masha Allah!</div>
-      <div class="popup-arabic" id="popupArabic">ما شاء الله</div>
-      <div class="popup-msg" id="popupMsg">Jawapan kamu sangat tepat! Token ganjaran ilmu ditambah!</div>
+    <div class="quiz-section mt-6" id="quizSection">
+      <div class="neo-box bg-black text-white rounded-2xl p-4 mb-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <span class="text-sm font-black text-yellow-300" id="quizPanelTitle">🎮 Misi Kuiz Digital — Panel</span>
+        <div class="flex gap-4 text-xs font-bold">
+          <span>Skor Dompet: <span id="scoreDisplay" class="text-yellow-300 font-black">0</span></span>
+          <span class="text-cyan-300">Soalan <span id="qNumDisplay">1</span>/3</span>
+        </div>
+      </div>
       
-      <div class="popup-actions-grid">
-        <button class="btn-popup-secondary" onclick="actionUlangNota()">📖 Ulang Nota</button>
-        <button class="btn-popup-secondary" onclick="actionUlangSoalan()">🔄 Ulang Soalan</button>
-        <button class="btn-popup-main" id="btnPopupNext" onclick="actionSeterusnya()">✨ Seterusnya</button>
+      <div class="neo-box bg-white rounded-3xl p-6" id="quizCard">
+        <div class="text-base md:text-lg font-black text-black mb-4 leading-snug" id="qText">1. Sila pilih soalan anda?</div>
+        <div class="flex flex-col gap-3" id="qOptions">
+          </div>
+        <div class="mt-4 hidden" id="qFeedback"></div>
+      </div>
+      
+      <div class="flex gap-2 justify-center mt-4" id="quizDots">
+        <div class="w-4 h-4 rounded-full border-2 border-black bg-gray-300"></div>
+        <div class="w-4 h-4 rounded-full border-2 border-black bg-gray-300"></div>
+        <div class="w-4 h-4 rounded-full border-2 border-black bg-gray-300"></div>
       </div>
     </div>
+
+    <div class="popup-overlay fixed inset-0 bg-black/70 z-50 items-center justify-center p-4" id="popup">
+      <div class="neo-box bg-white max-w-sm w-full p-6 rounded-3xl text-center relative">
+        <span class="text-5xl block mb-2" id="popupIcon">🌟</span>
+        <div class="text-xl font-black text-black" id="popupTitle">Masha Allah!</div>
+        <div class="text-sm text-gray-500 font-bold mb-3 tracking-wide" id="popupArabic">ما شاء الله</div>
+        <p class="text-xs md:text-sm font-bold text-gray-800 mb-6 leading-relaxed" id="popupMsg">Jawapan kamu sangat tepat! Token ganjaran ilmu ditambah!</p>
+        
+        <div class="flex flex-col gap-2">
+          <button class="neo-btn bg-emerald-400 hover:bg-emerald-500 text-black font-black py-2.5 rounded-xl text-xs md:text-sm w-full" id="btnPopupNext" onclick="actionSeterusnya()">
+            ✨ Seterusnya
+          </button>
+          <div class="grid grid-cols-2 gap-2">
+            <button class="neo-btn bg-yellow-200 hover:bg-yellow-300 text-black font-bold py-2 rounded-xl text-xs" onclick="actionUlangNota()">
+              📖 Ulang Nota
+            </button>
+            <button class="neo-btn bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded-xl text-xs" onclick="actionUlangSoalan()">
+              🔄 Ulang Soalan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-center gap-4 mt-8 pt-4 border-t-4 border-black">
+      <a href="../../subjek-sirah.html" class="neo-btn bg-white hover:bg-gray-100 text-black text-xs font-black px-4 py-2 rounded-xl">
+        ← Kembali ke Peta Minda
+      </a>
+      <a href="anak-nabi.html" class="neo-btn bg-amber-400 hover:bg-amber-500 text-black text-xs font-black px-4 py-2 rounded-xl">
+        Topik 2: Anak-Anak Nabi →
+      </a>
+    </div>
+
   </div>
 
-  <div class="nota-nav">
-    <a href="../../subjek-sirah.html">← Kembali ke Peta Minda</a>
-    <a href="anak-nabi.html">Topik 2: Anak-Anak Nabi →</a>
-  </div>
-</div>
+  <footer class="text-center text-xs font-black text-black mt-12">
+    🌙 KAFA SKSG · Sirah Topik 1
+  </footer>
 
-<footer>🌙 KAFA SKSG · Sirah Topik 1</footer>
+  <script>
+    const TOTAL = 5;
+    let currentPanel = 1;
 
-<script>
-const TOTAL = 5;
-let currentPanel = 1;
+    // Database Bank Soalan berasaskan 3 soalan bagi setiap panel nota berkaitan
+    const panelQuestions = {
+      1: [
+        {q:"Pada tarikh berapakah Nabi Muhammad SAW dilahirkan?", opts:["10 Muharram","12 Rabiulawal","1 Syawal","27 Rejab"], ans:1, exp:"Nabi SAW dilahirkan pada hari Isnin yang penuh rahmat, bersamaan 12 Rabiulawal!"},
+        {q:"Apakah nama gelaran tahun sempena peristiwa gajah menyerang Kaabah?", opts:["Tahun Ababil","Tahun Masihi","Tahun Gajah","Tahun Hijrah"], ans:2, exp:"Tepat! Dipanggil Tahun Gajah kerana tentera raja Abrahah menunggang gajah besar!"},
+        {q:"Di manakah kota suci tempat kelahiran mulia Nabi kita?", opts:["Madinah Al-Munawwarah","Kota Makkah Al-Mukarramah","Kota Taif","Negeri Syam"], ans:1, exp:"Hebat! Baginda dilahirkan di dalam Kota Makkah Al-Mukarramah."}
+      ],
+      2: [
+        {q:"Apakah maksud sebenar bagi nama 'Muhammad'?", opts:["Yang Bijaksana","Yang Terpuji","Yang Jujur","Yang Gagah Perkasa"], ans:1, exp:"Masha Allah! Nama agung Muhammad bermaksud Yang Terpuji."},
+        {q:"Nabi Muhammad SAW dilahirkan daripada bangsa Arab keturunan kabilah apa?", opts:["Kabilah Aus","Kabilah Quraisy","Kabilah Khazraj","Kaum Tsamud"], ans:1, exp:"Betul! Baginda daripada keturunan kabilah Quraisy, iaitu suku kaum yang paling dihormati!"},
+        {q:"Apakah gelaran amanah yang diberikan oleh masyarakat Makkah kepada nabi?", opts:["As-Sadiq","Al-Amin","Khatamul Anbiya'","Rahmatan lil Alamin"], ans:1, exp:"Al-Amin bermaksud Yang Amanah. Baginda tidak pernah sekali pun mungkir janji!"}
+      ],
+      3: [
+        {q:"Siapakah nama penuh bapa saudara nabi yang memelihara nabi selepas datuknya wafat?", opts:["Abu Lahab","Abu Talib","Hamzah bin Abdul Muttalib","Abbas bin Abdul Muttalib"], ans:1, exp:"Betul! Bapa saudara baginda yang sangat pelindung ialah Abu Talib."},
+        {q:"Berapakah tahun lamanya nabi sempat dipelihara oleh datuknya (Abdul Muttalib)?", opts:["1 Tahun","2 Tahun","4 Tahun","5 Tahun"], ans:1, exp:"Tepat! Datuk baginda memelihara nabi selama 2 tahun sahaja (iaitu dari umur 6 hingga umur 8 tahun)."},
+        {q:"Siapakah nama wanita agung yang menjadi isteri pertama Nabi Muhammad SAW?", opts:["Siti Aisyah RA","Siti Khadijah binti Khuwailid","Siti Aminah","Siti Fatimah"], ans:1, exp:"Maju jaya! Isteri pertama yang sentiasa menyokong dakwah nabi ialah Siti Khadijah RA."}
+      ],
+      4: [
+        {q:"Berapakah umur baginda Nabi Muhammad SAW ketika wafat?", opts:["60 tahun","61 tahun","63 tahun","65 tahun"], ans:2, exp:"Hebat! Nabi SAW wafat ketika berusia genap 63 tahun dengan tugasan risalah yang sempurna."},
+        {q:"Di manakah lokasi makam kubur suci Nabi Muhammad SAW?", opts:["Masjidil Haram, Makkah","Masjid Nabawi, Madinah","Masjid Al-Aqsa, Palestin","Masjid Quba"], ans:1, exp:"Betul! Makam nabi yang mulia terletak di dalam kawasan Masjid Nabawi di kota Madinah!"},
+        {q:"Apakah persamaan unik antara tarikh lahir dan tarikh wafat Nabi SAW?", opts:["Berlaku pada bulan Ramadhan","Tarikhnya adalah sama (12 Rabiulawal)","Kedua-duanya jatuh pada hari Jumaat","Tiada persamaan tarikh"], ans:1, exp:"Subhanallah bijaknya! Nabi SAW lahir dan wafat pada hari dan tarikh yang sama: Isnin, 12 Rabiulawal!"}
+      ]
+    };
 
-// Database Bank Soalan mengikut ketetapan 3 soalan bagi setiap panel nota
-const panelQuestions = {
-  1: [
-    {q:"Pada tarikh berapakah Nabi Muhammad SAW dilahirkan?", opts:["10 Muharram","12 Rabiulawal","1 Syawal","27 Rejab"], ans:1, exp:"Nabi SAW dilahirkan pada hari Isnin yang penuh rahmat, bersamaan 12 Rabiulawal!"},
-    {q:"Apakah nama gelaran tahun sempena peristiwa gajah menyerang Kaabah?", opts:["Tahun Ababil","Tahun Masihi","Tahun Gajah","Tahun Hijrah"], ans:2, exp:"Tepat! Dipanggil Tahun Gajah kerana tentera raja Abrahah menunggang gajah besar!"},
-    {q:"Di manakah kota suci tempat kelahiran mulia Nabi kita?", opts:["Madinah Al-Munawwarah","Kota Makkah Al-Mukarramah","Kota Taif","Negeri Syam"], ans:1, exp:"Hebat! Baginda dilahirkan di dalam Kota Makkah Al-Mukarramah."}
-  ],
-  2: [
-    {q:"Apakah maksud sebenar bagi nama indah penuh barakah 'Muhammad'?", opts:["Yang Bijaksana","Yang Terpuji","Yang Jujur","Yang Gagah Perkasa"], ans:1, exp:"Masha Allah! Nama agung Muhammad bermaksud Yang Terpuji."},
-    {q:"Nabi Muhammad SAW dilahirkan daripada bangsa Arab keturunan kabilah apa?", opts:["Kabilah Aus","Kabilah Quraisy","Kabilah Khazraj","Kaum Tsamud"], ans:1, exp:"Betul! Baginda daripada keturunan kabilah Quraisy, iaitu suku kaum yang paling dihormati!"},
-    {q:"Apakah gelaran amanah yang diberikan oleh masyarakat Makkah kepada nabi?", opts:["As-Sadiq","Al-Amin","Khatamul Anbiya'","Rahmatan lil Alamin"], ans:1, exp:"Al-Amin bermaksud Yang Amanah. Baginda tidak pernah sekali pun mungkir janji!"}
-  ],
-  3: [
-    {q:"Siapakah nama penuh bapa saudara nabi yang memelihara nabi selepas datuknya wafat?", opts:["Abu Lahab","Abu Talib","Hamzah bin Abdul Muttalib","Abbas bin Abdul Muttalib"], ans:1, exp:"Betul! Bapa saudara baginda yang sangat pelindung ialah Abu Talib."},
-    {q:"Berapakah tahun lamanya nabi sempat dipelihara oleh datuknya (Abdul Muttalib)?", opts:["1 Tahun","2 Tahun","4 Tahun","5 Tahun"], ans:1, exp:"Tepat! Datuk baginda memelihara nabi selama 2 tahun sahaja (iaitu dari umur 6 hingga umur 8 tahun)."},
-    {q:"Siapakah nama wanita agung yang menjadi isteri pertama Nabi Muhammad SAW?", opts:["Siti Aisyah RA","Siti Khadijah binti Khuwailid","Siti Aminah","Siti Fatimah"], ans:1, exp:"Maju jaya! Isteri pertama yang sentiasa menyokong dakwah nabi ialah Siti Khadijah RA."}
-  ],
-  4: [
-    {q:"Berapakah umur baginda Nabi Muhammad SAW ketika wafat?", opts:["60 tahun","61 tahun","63 tahun","65 tahun"], ans:2, exp:"Hebat! Nabi SAW wafat ketika berusia genap 63 tahun dengan tugasan risalah yang sempurna."},
-    {q:"Di manakah lokasi makam kubur suci Nabi Muhammad SAW?", opts:["Masjidil Haram, Makkah","Masjid Nabawi, Madinah","Masjid Al-Aqsa, Palestin","Masjid Quba"], ans:1, exp:"Betul! Makam nabi yang mulia terletak di dalam kawasan Masjid Nabawi di kota Madinah!"},
-    {q:"Apakah persamaan unik antara tarikh lahir dan tarikh wafat Nabi SAW?", opts:["Berlaku pada bulan Ramadhan","Tarikhnya adalah sama (12 Rabiulawal)","Kedua-duanya jatuh pada hari Jumaat","Tiada persamaan tarikh"], ans:1, exp:"Subhanallah bijaknya! Nabi SAW lahir dan wafat pada hari dan tarikh yang sama: Isnin, 12 Rabiulawal!"}
-  ]
-};
+    const motivasiKoleksi = [
+      {icon:"🏆", title:"Masha Allah!", arabic:"ما شاء الله", msg:"Jawapan kamu super tepat! Simpanan mata akaun kebijaksanaan kamu semakin bertambah!"},
+      {icon:"💎", title:"Subhanallah!", arabic:"سبحان الله", msg:"Pelajar hebat! Kamu berjaya menembusi soalan kuiz komik ini dengan senang!"},
+      {icon:"🕌", title:"Alhamdulillah!", arabic:"الحمد لله", msg:"Syukur! Pengetahuan sirah kamu berada pada tahap yang sangat tinggi!"},
+      {icon:"⚡", title:"Barakallah!", arabic:"بارك الله فيك", msg:"Semoga Allah memberkati ilmu berharga kamu hari ini. Teruskan!"}
+    ];
 
-const motivasiKoleksi = [
-  {icon:"🏆", title:"Masha Allah!", arabic:"ما شاء الله", msg:"Jawapan kamu super tepat! Simpanan mata akaun kebijaksanaan kamu semakin bertambah!"},
-  {icon:"💎", title:"Subhanallah!", arabic:"سبحان الله", msg:"Pelajar elit gred premium! Kamu berjaya menembusi soalan fintech komik ini dengan senang!"},
-  {icon:"🕌", title:"Alhamdulillah!", arabic:"الحمد لله", msg:"Syukur! Pengetahuan sirah kamu berada pada tahap yang sangat tinggi dan profesional!"},
-  {icon:"⚡", title:"Barakallah!", arabic:"بارك الله فيك", msg:"Semoga Allah memberkati pelaburan ilmu berharga kamu hari ini. Teruskan!"}
-];
+    let activeQuizPanel = null;
+    let currentQIdx = 0;
+    let panelScore = 0;
 
-let activeQuizPanel = null;
-let currentQIdx = 0;
-let panelScore = 0;
-
-function showPanel(n) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('quizSection').classList.remove('active');
-  
-  const el = document.getElementById('panel-' + n);
-  if (el) { el.classList.add('active'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-  
-  const fill = Math.round((n / TOTAL) * 100);
-  document.getElementById('progressFill').style.width = fill + '%';
-  document.getElementById('progressLabel').textContent = 'Panel ' + n + ' / ' + TOTAL;
-}
-
-function nextPanel(n) {
-  if (n < TOTAL) { currentPanel = n + 1; showPanel(currentPanel); }
-}
-
-function prevPanel(n) {
-  if (n > 1) { currentPanel = n - 1; showPanel(currentPanel); }
-}
-
-function showTip(n) {
-  const t = document.getElementById('tip-' + n);
-  if (t) t.classList.toggle('show');
-}
-
-function showDone() {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('quizSection').classList.remove('active');
-  document.getElementById('progressWrap').style.display = 'none';
-  document.getElementById('donePanel').classList.add('active');
-  document.getElementById('donePanel').scrollIntoView({behavior:'smooth'});
-}
-
-function resetAll() {
-  currentPanel = 1;
-  document.getElementById('donePanel').classList.remove('active');
-  document.getElementById('quizSection').classList.remove('active');
-  document.getElementById('progressWrap').style.display = '';
-  document.querySelectorAll('.tip-box').forEach(t => t.classList.remove('show'));
-  showPanel(1);
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-// BARU: LOGIK SISTEM KUIZ 3 SOALAN SETIAP PANEL SEPERTI PERMINTAAN
-function startPanelQuiz(panelNum) {
-  activeQuizPanel = panelNum;
-  currentQIdx = 0;
-  panelScore = 0;
-  
-  document.getElementById('quizPanelTitle').textContent = `🎯 Misi Kuiz Komik — Panel ${panelNum}`;
-  document.getElementById('quizSection').classList.add('active');
-  
-  buildQuizDots();
-  renderQuestion();
-  
-  document.getElementById('quizSection').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function buildQuizDots() {
-  const container = document.getElementById('quizDots');
-  container.innerHTML = '';
-  for(let i=0; i<3; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'q-dot' + (i === 0 ? ' active' : '');
-    dot.id = 'pdot-' + i;
-    container.appendChild(dot);
-  }
-}
-
-function renderQuestion() {
-  const qData = panelQuestions[activeQuizPanel][currentQIdx];
-  document.getElementById('qText').textContent = `${currentQIdx + 1}. ${qData.q}`;
-  document.getElementById('qNumDisplay').textContent = `${currentQIdx + 1}`;
-  document.getElementById('scoreDisplay').textContent = panelScore;
-  
-  const fb = document.getElementById('qFeedback');
-  fb.style.display = 'none';
-  
-  const optsContainer = document.getElementById('qOptions');
-  optsContainer.innerHTML = '';
-  
-  qData.opts.forEach((optText, idx) => {
-    const btn = document.createElement('button');
-    btn.className = 'quiz-opt';
-    btn.textContent = optText;
-    btn.onclick = () => checkPanelAnswer(idx);
-    optsContainer.appendChild(btn);
-  });
-  
-  for(let i=0; i<3; i++) {
-    const dot = document.getElementById('pdot-' + i);
-    if(dot) {
-      dot.className = 'q-dot';
-      if(i === currentQIdx) dot.classList.add('active');
+    function showPanel(n) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('quizSection').classList.remove('active');
+      
+      const el = document.getElementById('panel-' + n);
+      if (el) { 
+        el.classList.add('active'); 
+        el.scrollIntoView({behavior:'smooth', block:'start'}); 
+      }
+      
+      const fill = Math.round((n / TOTAL) * 100);
+      document.getElementById('progressFill').style.width = fill + '%';
+      document.getElementById('progressLabel').textContent = 'Panel ' + n + ' / ' + TOTAL;
     }
-  }
-}
 
-function checkPanelAnswer(chosenIdx) {
-  const qData = panelQuestions[activeQuizPanel][currentQIdx];
-  const btns = document.querySelectorAll('.quiz-opt');
-  
-  btns.forEach(b => b.disabled = true);
-  btns[qData.ans].classList.add('correct');
-  
-  const isCorrect = (chosenIdx === qData.ans);
-  if (isCorrect) {
-    panelScore++;
-    btns[chosenIdx].classList.add('correct');
-  } else {
-    btns[chosenIdx].classList.add('wrong');
-  }
-  
-  document.getElementById('scoreDisplay').textContent = panelScore;
-  
-  // Ambil kad reka bentuk kata motivasi rawak
-  const mot = motivasiKoleksi[Math.floor(Math.random() * motivasiKoleksi.length)];
-  document.getElementById('popupIcon').textContent = isCorrect ? mot.icon : "💪";
-  document.getElementById('popupTitle').textContent = isCorrect ? mot.title : "Sikit Lagi!";
-  document.getElementById('popupArabic').textContent = isCorrect ? mot.arabic : "حاول مجددا";
-  document.getElementById('popupMsg').textContent = isCorrect ? mot.msg : `Jawapan kurang tepat. Jangan putus asa, jom kuasai semula!\n\n💡 Info Penting: ${qData.exp}`;
-  
-  const mainBtnPopup = document.getElementById('btnPopupNext');
-  if(currentQIdx < 2) {
-    mainBtnPopup.textContent = "✨ Seterusnya";
-  } else {
-    mainBtnPopup.textContent = "✨ Selesai Kuiz Modul";
-  }
-  
-  document.getElementById('popup').classList.add('active');
-}
-
-// Tindakan interaksi Butang pada Premium Fintech Popup
-function actionUlangNota() {
-  closePopup();
-  document.getElementById('quizSection').classList.remove('active');
-  showPanel(activeQuizPanel);
-}
-
-function actionUlangSoalan() {
-  closePopup();
-  renderQuestion();
-}
-
-function actionSeterusnya() {
-  closePopup();
-  if (currentQIdx < 2) {
-    currentQIdx++;
-    renderQuestion();
-  } else {
-    document.getElementById('quizSection').classList.remove('active');
-    if (activeQuizPanel < 4) {
-      nextPanel(activeQuizPanel);
-    } else {
-      showPanel(5); // Terus bawa ke bahagian rumusan skor eksekutif panel 5
+    function nextPanel(n) {
+      if (n < TOTAL) { currentPanel = n + 1; showPanel(currentPanel); }
     }
-  }
-}
 
-function closePopup() { 
-  document.getElementById('popup').classList.remove('active'); 
-}
-</script>
+    function prevPanel(n) {
+      if (n > 1) { currentPanel = n - 1; showPanel(currentPanel); }
+    }
+
+    function showTip(n) {
+      const t = document.getElementById('tip-' + n);
+      if (t) t.classList.toggle('show');
+    }
+
+    function showDone() {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('quizSection').classList.remove('active');
+      document.getElementById('progressWrap').style.display = 'none';
+      document.getElementById('donePanel').classList.add('active');
+      document.getElementById('donePanel').scrollIntoView({behavior:'smooth'});
+    }
+
+    function resetAll() {
+      currentPanel = 1;
+      document.getElementById('donePanel').classList.remove('active');
+      document.getElementById('quizSection').classList.remove('active');
+      document.getElementById('progressWrap').style.display = '';
+      document.querySelectorAll('.tip-box').forEach(t => t.classList.remove('show'));
+      showPanel(1);
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function startPanelQuiz(panelNum) {
+      activeQuizPanel = panelNum;
+      currentQIdx = 0;
+      panelScore = 0;
+      
+      document.getElementById('quizPanelTitle').textContent = `🎯 Misi Kuiz Komik — Panel ${panelNum}`;
+      document.getElementById('quizSection').classList.add('active');
+      
+      buildQuizDots();
+      renderQuestion();
+      
+      document.getElementById('quizSection').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function buildQuizDots() {
+      const container = document.getElementById('quizDots');
+      container.innerHTML = '';
+      for(let i=0; i<3; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'w-4 h-4 rounded-full border-2 border-black transition-all duration-300 ' + (i === 0 ? 'bg-black scale-125' : 'bg-gray-300');
+        dot.id = 'pdot-' + i;
+        container.appendChild(dot);
+      }
+    }
+
+    function renderQuestion() {
+      const qData = panelQuestions[activeQuizPanel][currentQIdx];
+      document.getElementById('qText').textContent = `${currentQIdx + 1}. ${qData.q}`;
+      document.getElementById('qNumDisplay').textContent = `${currentQIdx + 1}`;
+      document.getElementById('scoreDisplay').textContent = panelScore;
+      
+      const fb = document.getElementById('qFeedback');
+      fb.style.display = 'none';
+      
+      const optsContainer = document.getElementById('qOptions');
+      optsContainer.innerHTML = '';
+      
+      qData.opts.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'neo-btn bg-white hover:bg-yellow-100 text-black font-bold p-3 text-left text-xs md:text-sm rounded-xl w-full block border-2 border-black';
+        btn.textContent = optText;
+        btn.onclick = () => checkPanelAnswer(idx);
+        optsContainer.appendChild(btn);
+      });
+      
+      for(let i=0; i<3; i++) {
+        const dot = document.getElementById('pdot-' + i);
+        if(dot) {
+          dot.className = 'w-4 h-4 rounded-full border-2 border-black transition-all duration-300 bg-gray-300';
+          if(i === currentQIdx) dot.classList.add('bg-black', 'scale-125');
+        }
+      }
+    }
+
+    function checkPanelAnswer(chosenIdx) {
+      const qData = panelQuestions[activeQuizPanel][currentQIdx];
+      const btns = document.querySelectorAll('#qOptions button');
+      
+      btns.forEach(b => b.disabled = true);
+      
+      // Tambah kelas visual Neo-Brutalism jika betul/salah
+      btns[qData.ans].classList.remove('bg-white');
+      btns[qData.ans].classList.add('bg-emerald-400');
+      
+      const isCorrect = (chosenIdx === qData.ans);
+      if (isCorrect) {
+        panelScore++;
+      } else {
+        btns[chosenIdx].classList.remove('bg-white');
+        btns[chosenIdx].classList.add('bg-red-400');
+      }
+      
+      document.getElementById('scoreDisplay').textContent = panelScore;
+      
+      const mot = motivasiKoleksi[Math.floor(Math.random() * motivasiKoleksi.length)];
+      document.getElementById('popupIcon').textContent = isCorrect ? mot.icon : "💪";
+      document.getElementById('popupTitle').textContent = isCorrect ? mot.title : "Sikit Lagi!";
+      document.getElementById('popupArabic').textContent = isCorrect ? mot.arabic : "حاول مجددا";
+      document.getElementById('popupMsg').textContent = isCorrect ? mot.msg : `Jawapan kurang tepat. Jangan putus asa, jom kuasai semula!\n\n💡 Info Penting: ${qData.exp}`;
+      
+      const mainBtnPopup = document.getElementById('btnPopupNext');
+      if(currentQIdx < 2) {
+        mainBtnPopup.textContent = "✨ Seterusnya";
+      } else {
+        mainBtnPopup.textContent = "✨ Selesai Kuiz Modul";
+      }
+      
+      document.getElementById('popup').classList.add('active');
+    }
+
+    function actionUlangNota() {
+      closePopup();
+      document.getElementById('quizSection').classList.remove('active');
+      showPanel(activeQuizPanel);
+    }
+
+    function actionUlangSoalan() {
+      closePopup();
+      renderQuestion();
+    }
+
+    function actionSeterusnya() {
+      closePopup();
+      if (currentQIdx < 2) {
+        currentQIdx++;
+        renderQuestion();
+      } else {
+        document.getElementById('quizSection').classList.remove('active');
+        if (activeQuizPanel < 4) {
+          nextPanel(activeQuizPanel);
+        } else {
+          showPanel(5); // Selesai kuiz panel 4 membawa murid ke rumusan akhir di Panel 5
+        }
+      }
+    }
+
+    function closePopup() { 
+      document.getElementById('popup').classList.remove('active'); 
+    }
+  </script>
 </body>
 </html>

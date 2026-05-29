@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sokong KAFA Smart Digital</title>
-    <!-- Menggunakan Tailwind CSS untuk antaramuka moden -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes bounce-in {
@@ -19,26 +18,27 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-4 font-sans">
 
-    <!-- Fintech Support Card -->
     <div class="w-full max-w-md overflow-hidden bg-white shadow-2xl rounded-[2.5rem] animate-bounce-in border border-white">
         
-        <!-- Header Gradient Premium -->
         <div class="p-8 text-center text-white bg-gradient-to-br from-yellow-400 via-orange-400 to-pink-500">
             <h2 class="text-2xl font-extrabold tracking-tight leading-tight">
                 Suka Menggunakan <br>KAFA Smart Digital? 😊
             </h2>
         </div>
 
-        <!-- Pandangan Pertama: Mesej Sokongan -->
         <div id="initialView" class="p-8 text-center">
             <div class="space-y-4 text-gray-600">
                 <p class="font-medium">
                     Assalamualaikum! Saya harap web app ini membantu pembelajaran anak-anak. Saya bangunkan platform ini secara <span class="text-orange-500 font-bold">percuma</span>.
                 </p>
                 <p class="text-sm">
-                    Buat masa ini, saya sedang berusaha untuk menyambung pengajian ke peringkat lebih tinggi demi meningkatkan lagi ilmu pengetahuan. Oleh itu, ini adalah inisiatif untuk tabung belajar saya.
-Jika ibu/bapa rasa aplikasi ini bermanfaat, saya amat menghargai sebarang sumbangan ikhlas daripada ibu/bapa. 
-Terima kasih banyak atas sokongan dan doa ibu/bapa semua 🙏🏻
+                    Buat masa ini, saya sedang berusaha untuk menyambung pengajian ke peringkat lebih tinggi demi meningkatkan lagi ilmu pengetahuan.
+                </p>
+                <p class="text-sm">
+                    Oleh itu, ini adalah inisiatif untuk tabung belajar saya. Jika ibu/bapa rasa aplikasi ini bermanfaat, saya amat menghargai sebarang sumbangan ikhlas daripada ibu/bapa. 
+                </p>
+                <p class="text-sm font-semibold text-gray-800">
+                    Terima kasih banyak atas sokongan dan doa ibu/bapa semua 🙏🏻
                 </p>
             </div>
 
@@ -52,18 +52,15 @@ Terima kasih banyak atas sokongan dan doa ibu/bapa semua 🙏🏻
             </div>
         </div>
 
-        <!-- Pandangan Kedua: QR Code & Maklumat Bank -->
         <div id="donationView" class="hidden p-8 text-center">
             <div class="flex flex-col items-center p-5 mb-6 border-2 border-dashed border-pink-100 rounded-[2rem] bg-pink-50/30">
                 
-                <!-- Imej QR (Menggunakan pautan yang anda berikan) -->
                 <div class="bg-white p-3 rounded-2xl shadow-md mb-4">
                     <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgrhWmYm-iSuL-kxI9pCr0hB13WwwmHD63zOWYcPK16R121N1A9mhv_mqe3Szk3FL-za15jp9eNN-1219UIWLErClNqSeC57u34gwXRrTSJr1QWHMWe2pgWn5LPo4n5eiUQpvbwpRq8XBZTOSVqZsGY5pgI9Qv1ZHgpi6j-qZVJn6xybM07c5bhJnltFR9o=s16000" 
                          alt="Maybank QR" 
                          class="w-56 h-auto rounded-xl">
                 </div>
                 
-                <!-- Maklumat Bank Terperinci -->
                 <div class="w-full p-4 bg-white shadow-sm rounded-2xl border border-gray-100 text-center">
                     <p class="text-[10px] font-black tracking-[0.2em] text-gray-400 uppercase mb-1">Maybank</p>
                     <p id="accNumber" class="text-xl font-bold text-gray-800 tracking-wide">162740196672</p>
@@ -85,13 +82,11 @@ Terima kasih banyak atas sokongan dan doa ibu/bapa semua 🙏🏻
     </div>
 
     <script>
-        // Fungsi untuk tukar view
         function showDonationDetails() {
             document.getElementById('initialView').classList.add('hidden');
             document.getElementById('donationView').classList.remove('hidden');
         }
 
-        // Fungsi salin nombor akaun
         function copyAccNumber() {
             const accNo = "162740196672";
             navigator.clipboard.writeText(accNo).then(() => {

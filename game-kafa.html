@@ -404,6 +404,135 @@
     margin-top: 3px; letter-spacing: .02em;
   }
 
+  /* ── ULANGKAJI CARD ── */
+  .ulangkaji-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-lg);
+    padding: 20px 20px 18px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+
+  .ulangkaji-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--green) 0%, #45e89a 50%, var(--accent2) 100%);
+  }
+
+  .ulangkaji-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(30,201,122,.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .ulangkaji-card:hover {
+    border-color: rgba(30,201,122,.45);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(30,201,122,.12), 0 4px 18px rgba(0,0,0,.4);
+  }
+
+  .ulangkaji-inner {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; gap: 16px;
+  }
+
+  .ulangkaji-icon-wrap {
+    width: 52px; height: 52px; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(30,201,122,.18), rgba(30,201,122,.08));
+    border: 1px solid rgba(30,201,122,.28);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    position: relative;
+  }
+
+  .ulangkaji-icon-wrap::after {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: 15px;
+    border: 1px solid rgba(30,201,122,.12);
+    pointer-events: none;
+  }
+
+  .ulangkaji-text { flex: 1; min-width: 0; }
+
+  .ulangkaji-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 3px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .ulangkaji-label::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px rgba(30,201,122,.7);
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseDot {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: .5; transform: scale(.7); }
+  }
+
+  .ulangkaji-title {
+    font-size: 15px; font-weight: 800; color: var(--txt);
+    line-height: 1.3; margin-bottom: 4px;
+  }
+
+  .ulangkaji-desc {
+    font-size: 11.5px; color: var(--txt3); font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .ulangkaji-arrow {
+    width: 34px; height: 34px; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(30,201,122,.18), rgba(30,201,122,.08));
+    border: 1px solid rgba(30,201,122,.25);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, border-color .2s, transform .2s;
+  }
+
+  .ulangkaji-card:hover .ulangkaji-arrow {
+    background: linear-gradient(135deg, rgba(30,201,122,.30), rgba(30,201,122,.15));
+    border-color: rgba(30,201,122,.45);
+    transform: translateX(3px);
+  }
+
+  .ulangkaji-arrow svg {
+    width: 16px; height: 16px;
+    stroke: var(--green); stroke-width: 2.5;
+    stroke-linecap: round; stroke-linejoin: round;
+    fill: none;
+  }
+
+  .ulangkaji-pills {
+    position: relative; z-index: 1;
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px solid rgba(30,201,122,.10);
+  }
+
+  .ulangkaji-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px;
+    background: rgba(30,201,122,.08);
+    border: 1px solid rgba(30,201,122,.18);
+    border-radius: 20px;
+    font-size: 11px; font-weight: 700; color: rgba(30,201,122,.85);
+    letter-spacing: .02em;
+  }
+
   /* ── Tabs ── */
   .tab-nav {
     display: flex; gap: 4px;
@@ -513,7 +642,6 @@
 
   .topic-card.locked .topic-status { color: var(--txt3); background: transparent; }
 
-  /* percubaan badge */
   .topic-attempts {
     font-size: 10px; color: var(--yellow); font-weight: 700;
     margin-top: 2px; opacity: .8;
@@ -523,54 +651,6 @@
   .empty-state { text-align: center; padding: 52px 20px; color: var(--txt3); }
   .empty-icon  { font-size: 42px; margin-bottom: 14px; }
   .empty-state p { font-size: 14px; font-weight: 500; }
-
-  /* ── Ranking Table ── */
-  .ranking-table-wrap {
-    overflow-x: auto; border-radius: var(--radius);
-    border: 1px solid var(--border);
-  }
-
-  .ranking-table {
-    width: 100%; border-collapse: collapse;
-    background: var(--surface);
-    font-size: 13.5px;
-  }
-
-  .ranking-table thead tr {
-    background: var(--bg3);
-    border-bottom: 1px solid var(--border2);
-  }
-
-  .ranking-table th {
-    padding: 12px 14px;
-    font-size: 10.5px; font-weight: 700;
-    color: var(--txt3);
-    letter-spacing: .09em; text-transform: uppercase;
-    text-align: left; white-space: nowrap;
-  }
-
-  .ranking-table td {
-    padding: 13px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--txt2); vertical-align: middle;
-  }
-
-  .ranking-table tbody tr:last-child td { border-bottom: none; }
-  .ranking-table tbody tr:hover td     { background: rgba(255,255,255,.02); }
-  .ranking-table tbody tr.saya td      { background: rgba(61,127,255,.07); }
-  .ranking-table tbody tr.saya td:first-child { border-left: 2px solid var(--accent); }
-
-  .rank-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 24px; height: 24px; border-radius: 6px;
-    background: var(--bg3);
-    font-size: 11px; font-weight: 800; color: var(--txt3);
-    margin-right: 4px; vertical-align: middle;
-  }
-
-  .rank-1 { background: rgba(201,150,58,.25); color: var(--gold2); }
-  .rank-2 { background: rgba(180,180,200,.14); color: #c0c8da; }
-  .rank-3 { background: rgba(180,110,70,.22);  color: #d49070; }
 
   /* ── Toast ── */
   .toast {
@@ -616,6 +696,184 @@
     font-size: 13px; color: var(--txt2); font-weight: 600;
   }
 
+  /* ── POPUP KELUAR ── */
+  .popup-overlay {
+    position: fixed; inset: 0; z-index: 800;
+    background: rgba(3,9,20,.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s ease;
+  }
+
+  .popup-overlay.show {
+    opacity: 1; pointer-events: all;
+  }
+
+  .popup-card {
+    width: 100%; max-width: 360px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-xl);
+    padding: 32px 28px 26px;
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow), 0 0 0 1px rgba(255,255,255,.04);
+    transform: translateY(24px) scale(.95);
+    transition: transform .35s cubic-bezier(.34,1.38,.64,1), opacity .3s ease;
+    opacity: 0;
+  }
+
+  .popup-overlay.show .popup-card {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .popup-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg,
+      transparent, rgba(255,79,79,.7), rgba(255,130,100,.9), rgba(255,79,79,.7), transparent);
+  }
+
+  .popup-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 120px;
+    background: radial-gradient(ellipse at 50% -10%, rgba(255,79,79,.07), transparent 70%);
+    pointer-events: none;
+  }
+
+  .popup-icon-wrap {
+    width: 64px; height: 64px;
+    margin: 0 auto 18px;
+    background: linear-gradient(135deg, rgba(255,79,79,.15), rgba(255,79,79,.06));
+    border: 1px solid rgba(255,79,79,.25);
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    position: relative; z-index: 1;
+  }
+
+  .popup-icon-wrap::after {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: 19px;
+    border: 1px solid rgba(255,79,79,.10);
+  }
+
+  .popup-badge {
+    display: inline-block;
+    font-size: 9.5px; font-weight: 800; letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,100,100,.85);
+    background: rgba(255,79,79,.10);
+    border: 1px solid rgba(255,79,79,.20);
+    padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+
+  .popup-title {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 700;
+    color: var(--txt); letter-spacing: .04em;
+    margin-bottom: 8px;
+    position: relative; z-index: 1;
+  }
+
+  .popup-desc {
+    font-size: 13px; color: var(--txt3); font-weight: 500;
+    line-height: 1.65; margin-bottom: 26px;
+    position: relative; z-index: 1;
+  }
+
+  .popup-user-row {
+    display: flex; align-items: center; gap: 11px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 11px 14px;
+    margin-bottom: 22px;
+    position: relative; z-index: 1;
+  }
+
+  .popup-avatar {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--surface2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border2);
+    font-size: 18px;
+    overflow: hidden;
+  }
+
+  .popup-user-info { flex: 1; min-width: 0; }
+
+  .popup-user-name {
+    font-size: 13px; font-weight: 800; color: var(--txt);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .popup-user-kelas {
+    font-size: 11px; color: var(--gold2); font-weight: 600; margin-top: 1px;
+  }
+
+  .popup-user-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px rgba(30,201,122,.6);
+    flex-shrink: 0;
+  }
+
+  .popup-actions {
+    display: flex; gap: 10px;
+    position: relative; z-index: 1;
+  }
+
+  .popup-btn-batal {
+    flex: 1; padding: 13px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--txt2);
+    font-family: var(--font-body); font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+  }
+
+  .popup-btn-batal:hover {
+    background: var(--surface2); border-color: var(--border3); color: var(--txt);
+  }
+
+  .popup-btn-keluar {
+    flex: 1.2; padding: 13px;
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-family: var(--font-body); font-size: 14px; font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 22px rgba(255,79,79,.30);
+    transition: transform .2s, box-shadow .2s, filter .2s;
+    position: relative; overflow: hidden;
+  }
+
+  .popup-btn-keluar::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,.14), transparent);
+    pointer-events: none;
+  }
+
+  .popup-btn-keluar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255,79,79,.45);
+    filter: brightness(1.08);
+  }
+
+  .popup-btn-keluar:active { transform: translateY(0); }
+
   /* ── Animations ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
@@ -636,15 +894,20 @@
     .topic-card { padding: 15px 13px 13px; }
     .topic-icon { font-size: 26px; }
     .topic-name { font-size: 12.5px; }
-    .ranking-table th,
-    .ranking-table td { padding: 10px 10px; font-size: 12px; }
     .support-btn-wrapper { bottom: 14px; right: 12px; }
     .coffee-btn { width: 46px; height: 46px; }
     .coffee-btn svg { width: 22px; height: 22px; }
+    .ulangkaji-card { padding: 16px 14px 14px; }
+    .ulangkaji-icon-wrap { width: 44px; height: 44px; font-size: 22px; }
+    .ulangkaji-title { font-size: 13.5px; }
+    .popup-card { padding: 26px 20px 22px; border-radius: var(--radius-lg); }
+    .popup-title { font-size: 21px; }
+    .popup-icon-wrap { width: 56px; height: 56px; font-size: 26px; }
   }
 
   @media (max-width: 360px) {
     .topic-grid { grid-template-columns: 1fr; }
+    .ulangkaji-pills { gap: 4px; }
   }
   </style>
 </head>
@@ -654,6 +917,30 @@
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
   <div class="loading-msg" id="loadingMsg">Menyemak status permainan...</div>
+</div>
+
+<!-- POPUP KELUAR -->
+<div class="popup-overlay" id="popupKeluar">
+  <div class="popup-card">
+    <div style="text-align:center">
+      <div class="popup-icon-wrap">🚪</div>
+      <div class="popup-badge">Pengesahan Diperlukan</div>
+      <div class="popup-title">Ingin Keluar?</div>
+      <div class="popup-desc">Sesi pembelajaran anda akan ditamatkan. Semua progres permainan anda telah disimpan dengan selamat.</div>
+    </div>
+    <div class="popup-user-row" id="popupUserRow">
+      <div class="popup-avatar" id="popupAvatar">👤</div>
+      <div class="popup-user-info">
+        <div class="popup-user-name" id="popupUserName">—</div>
+        <div class="popup-user-kelas" id="popupUserKelas">—</div>
+      </div>
+      <div class="popup-user-dot"></div>
+    </div>
+    <div class="popup-actions">
+      <button class="popup-btn-batal" id="popupBtnBatal">Batal</button>
+      <button class="popup-btn-keluar" id="popupBtnKeluar">Ya, Keluar →</button>
+    </div>
+  </div>
 </div>
 
 <!-- HEADER -->
@@ -732,6 +1019,27 @@
       </div>
     </div>
 
+    <!-- KAD ULANGKAJI -->
+    <a class="ulangkaji-card" href="https://e-ulangkaji-kafa.pages.dev/" target="_blank" rel="noopener">
+      <div class="ulangkaji-inner">
+        <div class="ulangkaji-icon-wrap">📖</div>
+        <div class="ulangkaji-text">
+          <div class="ulangkaji-label">Bahan Bantu Belajar</div>
+          <div class="ulangkaji-title">Nak Ulangkaji Dulu?</div>
+          <div class="ulangkaji-desc">Semak nota, hafazan & bahan pelajaran sebelum bermain.</div>
+        </div>
+        <div class="ulangkaji-arrow">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+      <div class="ulangkaji-pills">
+        <span class="ulangkaji-pill">✦ Nota Digital</span>
+        <span class="ulangkaji-pill">✦ Hafazan</span>
+        <span class="ulangkaji-pill">✦ Latihan</span>
+        <span class="ulangkaji-pill">✦ Percuma</span>
+      </div>
+    </a>
+
     <div class="tab-nav">
       <button class="tab-btn active" data-tab="ujiminda">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
@@ -742,16 +1050,6 @@
         </svg>
         Uji Minda
       </button>
-      <button class="tab-btn" data-tab="ranking">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-          <path d="M6 9H4.5a2.5 2.5 0 0 0 0 5H6"/>
-          <path d="M18 9h1.5a2.5 2.5 0 0 1 0 5H18"/>
-          <path d="M4 22h16"/>
-          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
-        </svg>
-        Ranking
-      </button>
     </div>
 
     <div class="tab-content active" id="tabUjiminda">
@@ -759,17 +1057,6 @@
       <div class="topic-grid" id="tajukGrid">
         <div class="empty-state">
           <div class="empty-icon">⏳</div><p>Memuatkan...</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="tab-content" id="tabRanking">
-      <div class="selector-row" id="rankingSubjekRow"></div>
-      <div class="selector-row" id="rankingTajukRow" style="margin-top:-4px"></div>
-      <div id="rankingTableWrap">
-        <div class="empty-state">
-          <div class="empty-icon">🏆</div>
-          <p>Pilih subjek dan tajuk untuk lihat ranking.</p>
         </div>
       </div>
     </div>
@@ -791,8 +1078,8 @@ const GAS_URL = 'https://script.google.com/macros/s/AKfycbwDnalkeOQ_g9eYtKFlaIRs
 // ════════════════════════════════════════════
 //  STATE
 // ════════════════════════════════════════════
-var currentUser  = null;   // { nama, kelas, gender }
-var gasStatus    = {};     // cache: { topikId: { percubaan, dikunci } }
+var currentUser  = null;
+var gasStatus    = {};
 var statusLoaded = false;
 
 // ════════════════════════════════════════════
@@ -853,8 +1140,25 @@ function showCoffeeBtn() {
 }
 
 // ════════════════════════════════════════════
+//  POPUP KELUAR
+// ════════════════════════════════════════════
+function showPopupKeluar() {
+  if (currentUser) {
+    document.getElementById('popupUserName').textContent = fmtNama(currentUser.nama);
+    document.getElementById('popupUserKelas').textContent = currentUser.kelas;
+
+    var avatarEl = document.getElementById('popupAvatar');
+    avatarEl.textContent = currentUser.gender === 'perempuan' ? '👧' : '👦';
+  }
+  document.getElementById('popupKeluar').classList.add('show');
+}
+
+function hidePopupKeluar() {
+  document.getElementById('popupKeluar').classList.remove('show');
+}
+
+// ════════════════════════════════════════════
 //  AMBIL STATUS SEMUA TOPIK DARI GAS
-//  (dipanggil sekali selepas login)
 // ════════════════════════════════════════════
 async function fetchAllStatus() {
   if (!currentUser) return;
@@ -865,7 +1169,6 @@ async function fetchAllStatus() {
       + '&kelas=' + encodeURIComponent(currentUser.kelas);
     var res  = await fetch(url);
     var data = await res.json();
-    // data = { "topikId": { percubaan, dikunci }, ... }
     if (data && typeof data === 'object') {
       gasStatus = data;
     }
@@ -876,7 +1179,6 @@ async function fetchAllStatus() {
   statusLoaded = true;
 }
 
-// Ambil status satu topik (dari cache)
 function getTopikStatus(topikId) {
   if (gasStatus[topikId]) {
     return gasStatus[topikId];
@@ -890,6 +1192,29 @@ function isGameLocked(topikId) {
 
 function getAttempts(topikId) {
   return getTopikStatus(topikId).percubaan || 0;
+}
+
+// ════════════════════════════════════════════
+//  BERSIHKAN SELEPAS KELUAR
+// ════════════════════════════════════════════
+function doKeluar() {
+  currentUser   = null;
+  gasStatus     = {};
+  statusLoaded  = false;
+
+  var selKelas   = document.getElementById('selKelas');
+  var selPelajar = document.getElementById('selPelajar');
+  var btnKeluar  = document.getElementById('btnKeluar');
+
+  selKelas.value = '';
+  selPelajar.innerHTML = '<option value="">— Pilih Kelas Dahulu —</option>';
+  selPelajar.disabled  = true;
+
+  document.getElementById('loginScreen').style.display  = 'flex';
+  document.getElementById('welcomeSection').style.display = 'none';
+  btnKeluar.style.display = 'none';
+  showCoffeeBtn();
+  hidePopupKeluar();
 }
 
 // ════════════════════════════════════════════
@@ -956,7 +1281,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     currentUser = { nama: nama, kelas: kelas, gender: gender };
 
-    // Ambil status dari GAS sebelum tunjuk dashboard
     showLoading('Menyemak status permainan...');
     await fetchAllStatus();
     hideLoading();
@@ -968,22 +1292,26 @@ document.addEventListener('DOMContentLoaded', function() {
     renderWelcome();
     initTabs();
     initSubjek('ujiminda');
-    initSubjek('ranking');
   });
 
-  // Klik Keluar
+  // Klik Keluar — tunjuk popup premium
   btnKeluar.addEventListener('click', function() {
-    if (!confirm('Adakah anda ingin keluar?')) return;
-    currentUser   = null;
-    gasStatus     = {};
-    statusLoaded  = false;
-    selKelas.value = '';
-    selPelajar.innerHTML = '<option value="">— Pilih Kelas Dahulu —</option>';
-    selPelajar.disabled  = true;
-    document.getElementById('loginScreen').style.display  = 'flex';
-    document.getElementById('welcomeSection').style.display = 'none';
-    btnKeluar.style.display = 'none';
-    showCoffeeBtn();
+    showPopupKeluar();
+  });
+
+  // Popup — batal
+  document.getElementById('popupBtnBatal').addEventListener('click', function() {
+    hidePopupKeluar();
+  });
+
+  // Popup — keluar
+  document.getElementById('popupBtnKeluar').addEventListener('click', function() {
+    doKeluar();
+  });
+
+  // Klik luar popup untuk tutup
+  document.getElementById('popupKeluar').addEventListener('click', function(e) {
+    if (e.target === this) hidePopupKeluar();
   });
 
   // Handle redirect dari game (tab=ranking)
@@ -1005,14 +1333,8 @@ document.addEventListener('DOMContentLoaded', function() {
         renderWelcome();
         initTabs();
         initSubjek('ujiminda');
-        initSubjek('ranking');
-
-        setTimeout(function() {
-          var rankBtn = document.querySelector('.tab-btn[data-tab="ranking"]');
-          if (rankBtn) rankBtn.click();
-        }, 300);
       });
-      return; // jangan terus ke hideLoading di bawah
+      return;
     }
   }
 
@@ -1096,21 +1418,17 @@ function initSubjek(tab) {
         b.classList.remove('active');
       });
       btn.classList.add('active');
-
       if (tab === 'ujiminda') renderTajukGrid(subjek);
-      if (tab === 'ranking')  renderRankingTajuk(subjek);
     });
 
     container.appendChild(btn);
   });
 
   if (tab === 'ujiminda') renderTajukGrid(defaultSubjek);
-  if (tab === 'ranking')  renderRankingTajuk(defaultSubjek);
 }
 
 // ════════════════════════════════════════════
 //  UJI MINDA — GRID TAJUK
-//  Status dikunci/percubaan diambil dari gasStatus (GAS)
 // ════════════════════════════════════════════
 function renderTajukGrid(subjek) {
   var container = document.getElementById('tajukGrid');
@@ -1180,106 +1498,6 @@ function bukaGame(topik) {
 
   window.location.href = topik.file + '?' + params.toString();
 }
-
-// ════════════════════════════════════════════
-//  RANKING — TAJUK BUTTONS + TABLE
-//  Ambil data dari GAS sahaja (tiada localStorage fallback)
-// ════════════════════════════════════════════
-function renderRankingTajuk(subjek) {
-  var rowContainer = document.getElementById('rankingTajukRow');
-  var tableWrap    = document.getElementById('rankingTableWrap');
-  if (!rowContainer) return;
-
-  rowContainer.innerHTML = '';
-  var topikList = SUBJEK_TOPIK[subjek] || [];
-
-  if (topikList.length === 0) {
-    tableWrap.innerHTML = '<div class="empty-state"><div class="empty-icon">🏆</div>'
-      + '<p>Tiada topik lagi untuk subjek ini.</p></div>';
-    return;
-  }
-
-  topikList.forEach(function(t, i) {
-    var btn = document.createElement('button');
-    btn.className = 'selector-btn small' + (i === 0 ? ' active' : '');
-    btn.textContent = t.nama;
-
-    btn.addEventListener('click', function() {
-      rowContainer.querySelectorAll('.selector-btn').forEach(function(b) {
-        b.classList.remove('active');
-      });
-      btn.classList.add('active');
-      loadRankingTable(t.id, tableWrap);
-    });
-
-    rowContainer.appendChild(btn);
-  });
-
-  loadRankingTable(topikList[0].id, tableWrap);
-}
-
-async function loadRankingTable(topikId, container) {
-  container.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div>'
-    + '<p>Memuatkan ranking dari pelayan...</p></div>';
-
-  var data = [];
-
-  try {
-    var url = GAS_URL + '?action=getRanking&topik=' + encodeURIComponent(topikId);
-    var res  = await fetch(url);
-    data     = await res.json();
-    if (!Array.isArray(data)) data = [];
-  } catch (e) {
-    console.warn('Gagal ambil ranking dari GAS:', e);
-    data = [];
-  }
-
-  renderRankingTable(data, container);
-}
-
-function renderRankingTable(data, container) {
-  if (!data || data.length === 0) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🏆</div>'
-      + '<p>Belum ada markah lagi. Jadi yang pertama!</p></div>';
-    return;
-  }
-
-  data.sort(function(a, b) { return b.markah - a.markah; });
-
-  var rows = data.map(function(d, i) {
-    var rank      = i + 1;
-    var medal     = '';
-    var rankClass = '';
-    if (rank <= 5)       { medal = '🥇'; rankClass = 'rank-1'; }
-    else if (rank <= 10) { medal = '🥈'; rankClass = 'rank-2'; }
-    else if (rank <= 15) { medal = '🥉'; rankClass = 'rank-3'; }
-
-    var isSaya = currentUser &&
-                 d.nama  === currentUser.nama &&
-                 d.kelas === currentUser.kelas;
-
-    return '<tr' + (isSaya ? ' class="saya"' : '') + '>'
-      + '<td><span class="rank-num ' + rankClass + '">' + rank + '</span> ' + medal + '</td>'
-      + '<td style="color:var(--txt);font-weight:' + (isSaya ? '800' : '500') + '">'
-      + fmtNama(d.nama)
-      + (isSaya ? ' <span style="font-size:10px;color:var(--accent2)">(Anda)</span>' : '')
-      + '</td>'
-      + '<td>' + (d.kelas || '—') + '</td>'
-      + '<td style="color:var(--txt);font-weight:800">' + d.markah
-      + ' <span style="color:var(--txt3);font-size:11px;font-weight:500">/ 75</span></td>'
-      + '<td style="font-size:12px;color:var(--txt3)">' + (d.masa || '—') + '</td>'
-      + '</tr>';
-  }).join('');
-
-  container.innerHTML = '<div class="ranking-table-wrap">'
-    + '<table class="ranking-table">'
-    + '<thead><tr>'
-    + '<th>#</th><th>Nama</th><th>Kelas</th><th>Markah</th><th>Tarikh</th>'
-    + '</tr></thead>'
-    + '<tbody>' + rows + '</tbody>'
-    + '</table></div>';
-}
-
 </script>
 
 </body>

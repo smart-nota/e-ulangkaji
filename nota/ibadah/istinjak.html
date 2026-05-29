@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Ibadah KAFA: Istinjak 🧼</title>
+<title>Ibadah KAFA: Istinjak 🧼 KAFA SKSG</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 :root {
@@ -21,544 +21,500 @@
   --text-muted: #7a7060;
   --blue-soft: rgba(100,160,255,0.12);
   --blue-border: rgba(100,160,255,0.35);
-  --success: #2ecc71;
-  --danger: #e74c3c;
+  --green: #4caf6e;
+  --red: #e05555;
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 8px 40px rgba(0,0,0,0.6);
+  --shadow-gold: 0 4px 24px rgba(212,160,23,0.18);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-body {
-  font-family: 'Nunito', sans-serif;
-  background-color: var(--bg-deep);
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(212,160,23,0.15), transparent 50%),
-    radial-gradient(rgba(255,255,255,0.12) 1px, transparent 0);
-  background-size: 100% 100%, 24px 24px;
+html{scroll-behavior:smooth}
+
+body{
+  background: var(--bg-deep);
   color: var(--text);
-  line-height: 1.6;
+  font-family: 'Nunito', sans-serif;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  overflow-x: hidden;
 }
 
-/* 1. PAGE HEADER */
-.page-header {
+/* Stars background */
+.stars-bg{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.star{
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle var(--dur,3s) ease-in-out infinite;
+  opacity: var(--op,0.4);
+}
+@keyframes twinkle{0%,100%{opacity:var(--op,0.4);transform:scale(1)}50%{opacity:0.1;transform:scale(0.6)}}
+
+body::before{
+  content:'';
+  position:fixed;
+  top:0;left:0;right:0;height:300px;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,160,23,0.13) 0%, transparent 70%);
+  pointer-events:none;
+  z-index:1;
+}
+
+/* PAGE HEADER */
+.page-header{
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(18, 18, 26, 0.75);
+  background: rgba(10,10,15,0.82);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border-bottom: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold-dark);
+  box-shadow: 0 2px 24px rgba(212,160,23,0.12);
 }
-.page-header-inner {
-  max-width: 800px;
+.page-header-inner{
+  max-width: 780px;
   margin: 0 auto;
-  padding: 12px 16px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   gap: 16px;
 }
-.back-btn {
+.back-btn{
   color: var(--gold-light);
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.95rem;
-  transition: transform 0.2s;
-  flex-shrink: 0;
+  font-size: 0.9rem;
+  padding: 7px 14px;
+  border: 1.5px solid var(--gold-dark);
+  border-radius: 50px;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
-.back-btn:hover {
-  transform: translateX(-3px);
-  color: var(--gold-glow);
-}
-.page-title-area h2 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text);
-}
-.page-title-area span {
-  font-size: 0.8rem;
-  color: var(--gold-light);
-  font-weight: 600;
-}
+.back-btn:hover{background:var(--gold-dim);color:var(--gold-glow)}
+.page-title-area h2{font-size:1rem;font-weight:800;color:var(--text);line-height:1.2}
+.page-title-area span{font-size:0.78rem;color:var(--text-muted);font-weight:600}
 
-/* MAIN CONTAINER */
-.main-container {
-  flex: 1;
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px 16px;
+/* HERO DESIGN */
+.wrapper {
+  max-width: 780px;
+  margin: 20px auto 0;
+  padding: 0 16px;
 }
-
-/* 4. PROGRESS BAR */
-.progress-container {
-  margin-bottom: 20px;
-}
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--gold-light);
-  margin-bottom: 6px;
-}
-.progress-bar-bg {
-  background: #222230;
-  height: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  background: linear-gradient(90deg, var(--gold), var(--gold-glow));
-  height: 100%;
-  width: 0%;
-  transition: width 0.4s ease;
-}
-
-/* 2. ESTETIK & GAYA - PANEL */
-.panel {
+.hero {
   background: var(--bg-panel);
-  border: 3px solid var(--gold-dark);
-  border-radius: 18px;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.5);
-  padding: 24px;
-  display: none;
-  animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-.panel.active {
-  display: block;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* [A] Header Panel */
-.panel-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid rgba(214,160,23,0.2);
-  padding-bottom: 12px;
-}
-.panel-num {
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-  color: var(--bg-deep);
-  font-weight: 900;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  box-shadow: 0 0 8px var(--gold-dark);
-}
-.panel-title {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--gold-glow);
-}
-
-/* [B] Avatar Guru + Speech Bubble */
-.avatar-section {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-.avatar-block {
+  border: 2.5px solid var(--gold-dark);
+  border-radius: var(--radius);
+  padding: 30px 20px;
   text-align: center;
-  flex-shrink: 0;
-}
-.avatar-icon {
-  font-size: 3rem;
-  line-height: 1;
-}
-.avatar-label {
-  background: var(--gold-dark);
-  color: var(--bg-deep);
-  font-size: 0.7rem;
-  font-weight: 900;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-top: 4px;
-  display: inline-block;
-}
-.speech-bubble {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 14px 16px;
-  border-radius: 0 16px 16px 16px;
+  box-shadow: var(--shadow), var(--shadow-gold);
   position: relative;
-  font-size: 0.98rem;
-  font-weight: 600;
-  color: var(--text);
-  box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+  overflow: hidden;
+  margin-bottom: 20px;
 }
-.speech-bubble::before {
-  content: '';
-  position: absolute;
-  left: -10px;
-  top: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 10px 10px 0;
-  border-color: transparent var(--bg-card) transparent transparent;
-}
-
-/* [C] Kandungan Utama Formatters */
-.content-area {
-  margin-bottom: 24px;
-}
-.fakta-box {
-  background: rgba(255,255,255,0.03);
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  border-left: 3px solid var(--gold-light);
-}
-.fakta-title {
-  font-weight: 800;
-  color: var(--gold-light);
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-}
-.nota-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 16px 0;
-  font-size: 0.95rem;
-}
-.nota-table th, .nota-table td {
-  border: 1px solid var(--gold-dark);
-  padding: 10px 12px;
-  text-align: left;
-}
-.nota-table th {
-  background: var(--gold-dim);
-  color: var(--gold-glow);
-  font-weight: 800;
-}
-.nota-table td {
-  background: rgba(20,20,30,0.4);
-}
-.info-box {
-  background: rgba(212,160,23,0.06);
-  border-left: 5px solid var(--gold);
-  padding: 16px;
-  border-radius: 0 12px 12px 0;
-  margin: 16px 0;
-}
-.info-box h4 {
-  color: var(--gold-glow);
-  margin-bottom: 8px;
-  font-weight: 800;
-}
-.step-list {
-  list-style: none;
-  margin: 12px 0;
-}
-.step-list li {
-  position: relative;
-  padding-left: 28px;
+.hero-emoji {
+  font-size: 3.5rem;
+  display: block;
   margin-bottom: 10px;
 }
-.step-list li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 2px;
-  background: var(--gold-dim);
-  color: var(--gold-light);
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 900;
-}
-.chip-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px 0;
-}
-.highlight-chip {
-  background: var(--gold-dim);
-  border: 1px solid var(--gold-dark);
-  color: var(--gold-light);
-  padding: 6px 14px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-.fun-fact {
-  background: var(--blue-soft);
-  border: 1px solid var(--blue-border);
-  padding: 14px;
-  border-radius: 12px;
-  margin: 16px 0;
-  display: flex;
-  gap: 12px;
-  font-size: 0.95rem;
-}
-
-/* [D] Kotak "Tip Mudah Ingat" */
-.tip-box {
-  background: #1e1b15;
-  border: 2px dashed var(--gold-light);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-top: 16px;
-  display: none;
-  animation: fadeIn 0.3s ease forwards;
-}
-.tip-box.show {
-  display: block;
-}
-@keyframes fadeIn {
-  from { opacity: 0; } to { opacity: 1; }
-}
-
-/* [E] Navigasi Panel */
-.panel-nav {
-  display: flex;
-  align-items: center;
-  margin-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 16px;
-}
-.nav-left {
-  width: 20%;
-}
-.nav-center {
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-.btn {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-  padding: 10px 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.1s, box-shadow 0.2s;
-  font-size: 0.9rem;
-}
-.btn:active {
-  transform: scale(0.96);
-}
-.btn-back-panel {
-  background: transparent;
-  color: var(--text-soft);
-  font-size: 1.3rem;
-  border: none;
-  cursor: pointer;
-  padding: 4px 8px;
-}
-.btn-back-panel:hover {
-  color: var(--gold-glow);
-}
-.btn-understand {
-  background: linear-gradient(135deg, #27ae60, #2ecc71);
-  color: white;
-  box-shadow: 0 4px 12px rgba(46,204,113,0.3);
-}
-.btn-understand:hover {
-  box-shadow: 0 6px 16px rgba(46,204,113,0.5);
-}
-.btn-confused {
-  background: #2c2c35;
-  color: var(--text-soft);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.btn-confused:hover {
-  background: #363642;
-  color: var(--text);
-}
-
-/* 6. BAHAGIAN AKHIR - PANEL TAMAT */
-.end-panel {
-  text-align: center;
-  padding: 30px 16px;
-}
-.end-panel h3 {
+.hero h1 {
   font-size: 1.8rem;
-  color: var(--gold-glow);
-  margin-bottom: 12px;
   font-weight: 900;
+  color: var(--gold-glow);
+  margin-bottom: 6px;
 }
-.end-panel p {
+.hero p {
+  font-size: 1rem;
   color: var(--text-soft);
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 }
-.end-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.btn-retry {
-  background: #34495e;
-  color: white;
-}
-.btn-game {
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
-  color: var(--bg-deep);
-  box-shadow: 0 4px 15px var(--gold-dim);
+.hero-chip {
+  display: inline-block;
+  background: rgba(212,160,23,0.15);
+  border: 1.5px solid var(--gold);
+  color: var(--gold-light);
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
-/* 7. KUIZ MINI SEKSYEN */
-.quiz-section {
+/* MAIN LAYOUT */
+main{
+  position:relative;
+  z-index:2;
+  max-width:780px;
+  margin:0 auto;
+  padding:10px 16px 60px;
+}
+
+/* PROGRESS BAR */
+.progress-wrap{
+  margin-bottom:24px;
+}
+.progress-label{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+.progress-label span{font-size:0.82rem;font-weight:700;color:var(--gold-light)}
+.progress-track{
+  height:8px;
+  background:rgba(255,255,255,0.07);
+  border-radius:50px;
+  overflow:hidden;
+  border:1px solid rgba(212,160,23,0.2);
+}
+.progress-fill{
+  height:100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-glow));
+  border-radius:50px;
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 10px rgba(240,192,64,0.5);
+}
+
+/* PANEL KEYFRAMES & UTILS */
+.panel{
+  display:none;
+  animation: panelIn 0.45s cubic-bezier(.4,0,.2,1) both;
+}
+.panel.active{display:block}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.panel-card{
   background: var(--bg-panel);
-  border: 3px solid var(--gold);
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  display: none;
+  border: 2.5px solid var(--gold-dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.04), var(--shadow-gold);
+  overflow:hidden;
+  margin-bottom:16px;
 }
-.quiz-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid var(--gold-dim);
-  padding-bottom: 12px;
-  margin-bottom: 20px;
+
+.panel-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:18px 22px 16px;
+  border-bottom:1.5px solid rgba(212,160,23,0.15);
+  background: linear-gradient(135deg, rgba(212,160,23,0.06) 0%, transparent 60%);
 }
-.quiz-title {
+.panel-num{
+  width:38px;height:38px;
+  border-radius:50%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1rem;color:#0a0a0f;
+  flex-shrink:0;
+  box-shadow:0 2px 12px rgba(212,160,23,0.35);
+}
+.panel-title{font-size:1.05rem;font-weight:800;color:var(--text)}
+
+.panel-body{padding:20px 22px}
+
+/* Avatar + speech */
+.avatar-row{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  margin-bottom:20px;
+}
+.avatar-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0;
+}
+.avatar-emoji{
+  width:52px;height:52px;
+  background: linear-gradient(135deg, #1e1e2e, #2a2a3e);
+  border:2px solid var(--gold-dark);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  box-shadow:0 2px 12px rgba(0,0,0,0.4);
+}
+.avatar-label{
+  font-size:0.6rem;font-weight:800;
+  letter-spacing:0.08em;
+  color:var(--gold-light);
+  text-transform:uppercase;
+}
+.speech-bubble{
+  background: rgba(255,255,255,0.04);
+  border:1.5px solid rgba(212,160,23,0.25);
+  border-radius:0 14px 14px 14px;
+  padding:12px 16px;
+  font-size:0.88rem;
+  line-height:1.65;
+  color:var(--text-soft);
+  flex:1;
+  position:relative;
+}
+.speech-bubble::before{
+  content:'';
+  position:absolute;
+  top:0;left:-9px;
+  border:5px solid transparent;
+  border-top-color:rgba(212,160,23,0.25);
+  border-right-color:rgba(212,160,23,0.25);
+}
+
+/* Content blocks */
+.nota-table{
+  width:100%;border-collapse:collapse;
+  font-size:0.82rem;margin:12px 0;
+}
+.nota-table th{
+  background:rgba(212,160,23,0.18);
+  color:var(--gold-glow);
+  font-weight:800;
+  padding:9px 11px;
+  text-align:left;
+  border-bottom:2px solid var(--gold-dark);
+}
+.nota-table td{
+  padding:8px 11px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  color:var(--text-soft);
+  vertical-align:top;
+}
+.nota-table tr:last-child td{border-bottom:none}
+.nota-table tr:hover td{background:rgba(212,160,23,0.05)}
+
+.info-box{
+  background:rgba(212,160,23,0.07);
+  border-left:4px solid var(--gold);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:12px 16px;
+  font-size:0.86rem;
+  line-height:1.7;
+  color:var(--text-soft);
+  margin:12px 0;
+}
+.info-box strong{color:var(--gold-light)}
+
+.highlight-row{
+  display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;
+}
+.highlight-chip{
+  background:rgba(212,160,23,0.13);
+  border:1.5px solid var(--gold-dark);
+  border-radius:50px;
+  padding:5px 13px;
+  font-size:0.78rem;font-weight:700;
+  color:var(--gold-glow);
+}
+
+.fun-fact{
+  display:flex;gap:10px;
+  background:var(--blue-soft);
+  border:1.5px solid var(--blue-border);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  margin:12px 0;
+}
+.ff-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.fun-fact p{font-size:0.84rem;line-height:1.65;color:var(--text-soft)}
+
+.section-label{
+  font-size:0.75rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:0.07em;
+  color:var(--gold);margin:16px 0 8px;
+}
+
+/* Tip box */
+.tip-toggle-btn{
+  display:block;width:100%;
+  background:transparent;
+  border:1.5px dashed var(--gold-dark);
+  border-radius:var(--radius-sm);
+  color:var(--gold-light);
+  font-family:'Nunito',sans-serif;
+  font-weight:700;font-size:0.85rem;
+  padding:10px;cursor:pointer;
+  margin:14px 0 0;
+  transition:all 0.2s;
+}
+.tip-toggle-btn:hover{background:var(--gold-dim);border-style:solid}
+
+.tip-box{
+  display:none;
+  background:linear-gradient(135deg, rgba(212,160,23,0.1), rgba(212,160,23,0.04));
+  border:2px solid var(--gold-dark);
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  margin-top:10px;
+  animation:panelIn 0.3s ease both;
+}
+.tip-box.show{display:block}
+.tip-box-title{
+  font-size:0.75rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:0.07em;
+  color:var(--gold);margin-bottom:8px;
+}
+.tip-box p{font-size:0.85rem;line-height:1.7;color:var(--text-soft)}
+
+/* PANEL KUIZ (3 Soalan Bagi Setiap Panel) */
+.panel-quiz-container {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1.5px solid rgba(212,160,23,0.2);
+  border-radius: var(--radius-sm);
+}
+.panel-quiz-title {
+  font-size: 0.9rem;
   font-weight: 800;
-  color: var(--gold-glow);
-  font-size: 1.1rem;
-}
-.quiz-score {
-  background: var(--gold-dim);
   color: var(--gold-light);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 0.85rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.question-box {
-  margin-bottom: 20px;
-}
-.question-text {
-  font-size: 1.1rem;
-  font-weight: 800;
+.panel-q-item {
   margin-bottom: 16px;
-  color: var(--text);
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,0.05);
 }
-.options-grid {
+.panel-q-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.panel-q-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.panel-options {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
-.option-btn {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,0.08);
+.panel-opt-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
   color: var(--text-soft);
-  padding: 12px 16px;
-  border-radius: 10px;
-  text-align: left;
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  text-align: left;
   transition: all 0.2s;
 }
-.option-btn:hover:not(:disabled) {
-  background: #252535;
+.panel-opt-btn:hover:not(:disabled) {
+  background: rgba(212,160,23,0.1);
   border-color: var(--gold-dark);
-  color: var(--text);
 }
-.option-btn.correct {
-  background: var(--success) !important;
-  color: white !important;
-  border-color: var(--success) !important;
-  font-weight: 800;
+.panel-opt-btn.correct {
+  background: rgba(76,175,110,0.18) !important;
+  border-color: var(--green) !important;
+  color: #8fe0a8 !important;
 }
-.option-btn.wrong {
-  background: var(--danger) !important;
-  color: white !important;
-  border-color: var(--danger) !important;
+.panel-opt-btn.wrong {
+  background: rgba(224,85,85,0.18) !important;
+  border-color: var(--red) !important;
+  color: #f09090 !important;
 }
-.feedback-box {
-  margin-top: 16px;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-weight: 700;
-  display: none;
-  font-size: 0.95rem;
-}
-.feedback-box.correct {
-  background: rgba(46,204,113,0.15);
-  color: #2ecc71;
-  border: 1px solid #2ecc71;
-}
-.feedback-box.wrong {
-  background: rgba(231,76,60,0.15);
-  color: #e74c3c;
-  border: 1px solid #e74c3c;
-}
-.next-area {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-}
-.btn-next {
-  background: var(--gold);
-  color: var(--bg-deep);
+.panel-feedback {
+  font-size: 0.78rem;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border-radius: 4px;
   display: none;
 }
-.btn-next:hover {
-  background: var(--gold-light);
+.panel-feedback.correct {
+  background: rgba(76,175,110,0.1);
+  color: #a0e0b8;
+  display: block;
 }
-.dots-container {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 20px;
-}
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #252535;
-}
-.dot.active { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
-.dot.correct { background: var(--success); }
-.dot.wrong { background: var(--danger); }
-
-/* SKRIN KEPUTUSAN KUIZ */
-.result-card {
-  text-align: center;
-  padding: 20px 10px;
-}
-.score-big {
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: var(--gold-glow);
-  margin: 12px 0;
-  text-shadow: 0 0 15px var(--gold-dark);
+.panel-feedback.wrong {
+  background: rgba(224,85,85,0.1);
+  color: #f0a0a0;
+  display: block;
 }
 
-/* KAD MOTIVASI PREMIUM POPUP */
+/* Panel Navigasi Bawah Panel */
+.panel-nav{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 22px 18px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.nav-left{flex:0 0 40px}
+.nav-back{
+  width:36px;height:36px;
+  background:rgba(255,255,255,0.05);
+  border:1.5px solid rgba(255,255,255,0.1);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.1rem;
+  transition:all 0.2s;color:var(--text-soft);
+}
+.nav-back:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+.nav-back.hidden{visibility:hidden}
+.nav-center{display:flex;gap:10px;justify-content:center;flex:1}
+
+.btn{
+  font-family:'Nunito',sans-serif;
+  font-weight:800;font-size:0.85rem;
+  padding:10px 20px;border-radius:50px;
+  border:none;cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-understand{
+  background:linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  color:#0a0a0f;
+  box-shadow:0 3px 14px rgba(212,160,23,0.3);
+}
+.btn-understand:hover{transform:translateY(-1px);box-shadow:0 5px 20px rgba(212,160,23,0.45)}
+.btn-confused{
+  background:rgba(255,255,255,0.06);
+  color:var(--text-soft);
+  border:1.5px solid rgba(255,255,255,0.12);
+}
+.btn-confused:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+
+/* ENDING PANEL */
+.ending-card{
+  background:var(--bg-panel);
+  border:2.5px solid var(--gold-dark);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow),var(--shadow-gold);
+  padding:40px 28px;
+  text-align:center;
+}
+.ending-emoji{font-size:3.5rem;margin-bottom:12px}
+.ending-card h2{font-size:1.4rem;font-weight:900;color:var(--gold-glow);margin-bottom:8px}
+.ending-card p{font-size:0.95rem;color:var(--text-soft);margin-bottom:24px;line-height:1.6}
+.ending-btn-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+.btn-primary{
+  background:linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  color:#0a0a0f;font-weight:800;
+}
+.btn-secondary{
+  background:rgba(255,255,255,0.06);
+  color:var(--text-soft);
+  border:1.5px solid rgba(255,255,255,0.12);
+}
+.btn-secondary:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+
+/* PREMIUM MOTIVASI INTERAKTIF POPUP */
 .popup-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.82);
+  background: rgba(0,0,0,0.85);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -568,697 +524,441 @@ body {
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
-.popup-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
+.popup-overlay.show { opacity: 1; pointer-events: auto; }
 .premium-card {
   background: var(--bg-panel);
   border: 3px solid var(--gold);
   border-radius: 20px;
   max-width: 420px;
   width: 100%;
-  padding: 24px;
+  padding: 26px;
   text-align: center;
   box-shadow: 0 0 30px var(--gold-dark);
   transform: scale(0.7);
   transition: transform 0.4s cubic-bezier(.175,.885,.32,1.275);
-  background-image: linear-gradient(135deg, rgba(214,160,23,0.1) 0%, transparent 100%);
 }
-.popup-overlay.show .premium-card {
-  transform: scale(1);
-}
-.shimmer-gold {
-  background: linear-gradient(90deg, #16161f 0%, #2a2415 50%, #16161f 100%);
-  background-size: 200% 100%;
-  animation: shimmerMove 3s infinite linear;
-}
-@keyframes shimmerMove {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.popup-icon {
-  font-size: 3.5rem;
-  margin-bottom: 8px;
-}
-.popup-title {
-  color: var(--gold-light);
-  font-weight: 900;
-  font-size: 1.4rem;
-  margin-bottom: 6px;
-}
-.popup-arabic {
-  font-size: 1.6rem;
-  color: var(--text);
-  margin: 12px 0;
-  font-weight: 700;
-}
-.popup-msg {
-  color: var(--text-soft);
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-}
+.popup-overlay.show .premium-card { transform: scale(1); }
+.popup-icon { font-size: 3.5rem; margin-bottom: 8px; }
+.popup-title { color: var(--gold-light); font-weight: 900; font-size: 1.4rem; margin-bottom: 6px; }
+.popup-arabic { font-size: 1.6rem; color: var(--text); margin: 12px 0; font-weight: 700; }
+.popup-msg { color: var(--text-soft); font-size: 0.95rem; margin-bottom: 20px; }
 
-/* 8. NAVIGASI BAWAH HALAMAN */
-.nota-nav {
-  max-width: 700px;
-  width: 100%;
-  margin: 24px auto 12px auto;
-  padding: 0 16px;
-  display: flex;
-  justify-content: space-between;
-}
-.nota-nav a {
-  color: var(--gold-light);
-  text-decoration: none;
-  font-size: 0.88rem;
-  font-weight: 700;
-}
-.nota-nav a:hover {
-  color: var(--gold-glow);
-  text-decoration: underline;
-}
-
-/* 9. FOOTER */
+/* FOOTER */
 footer {
   text-align: center;
-  padding: 16px;
+  padding: 24px;
   color: var(--text-muted);
   font-size: 0.8rem;
   font-weight: 600;
-  margin-top: auto;
   border-top: 1px solid rgba(255,255,255,0.03);
-}
-
-@media(max-width: 480px) {
-  .panel { padding: 16px; }
-  .panel-title { font-size: 1.15rem; }
-  .avatar-icon { font-size: 2.5rem; }
-  .speech-bubble { font-size: 0.9rem; }
-  .btn { padding: 8px 14px; font-size: 0.85rem; }
+  margin-top: 40px;
 }
 </style>
 </head>
 <body>
 
+<div class="stars-bg" id="starsBg"></div>
+
 <header class="page-header">
   <div class="page-header-inner">
-    <a href="../../subjek-ibadah.html" class="back-btn">← IBADAH</a>
+    <a href="https://e-ulangkaji-kafa.pages.dev/subjek-ibadah" class="back-btn">← IBADAH</a>
     <div class="page-title-area">
       <h2>🧼 Istinjak</h2>
-      <span>Topik 5 · Subjek Ibadah</span>
+      <span>Topik 5 · KAFA SKSG</span>
     </div>
   </div>
 </header>
 
-<div class="main-container">
-  
-  <div class="progress-container" id="prog-container">
+<div class="wrapper">
+  <div class="hero">
+    <span class="hero-emoji">🧼</span>
+    <h1>Amalan Kebersihan: Istinjak</h1>
+    <p>Belajar konsep, alat, dan cara beristinjak dengan betul mengikut Syarak.</p>
+    <div class="hero-chip">Mod Pembelajaran Interaktif</div>
+  </div>
+</div>
+
+<main>
+  <div class="progress-wrap">
     <div class="progress-label">
-      <span id="prog-text">Panel 1/5</span>
-      <span>Nota Interaktif</span>
+      <span id="progressText">Kemajuan Pembelajaran: 1/3</span>
+      <span id="progressPct">33%</span>
     </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="prog-fill"></div>
-    </div>
-  </div>
-
-  <div class="panel active" id="p1">
-    <div class="panel-header">
-      <div class="panel-num">1</div>
-      <div class="panel-title">Apa itu Istinjak?</div>
-    </div>
-    <div class="avatar-section">
-      <div class="avatar-block">
-        <div class="avatar-icon">👨‍🏫</div>
-        <div class="avatar-label">USTAZ WAN</div>
-      </div>
-      <div class="speech-bubble">
-        Assalamualaikum anak-anak yang soleh dan solehah! Jom hari ini kita belajar tentang amalan kebersihan penting dalam Islam, iaitu <b>Istinjak</b>. Sila fokus okay!
-      </div>
-    </div>
-    <div class="content-area">
-      <div class="fakta-box">
-        <div class="fakta-title">Maksud Istinjak</div>
-        <p>Perbuatan membersihkan kubul (pintu depan) atau dubur (pintu belakang) selepas membuang air kecil (kencing) atau air besar (berak).</p>
-      </div>
-
-      <div class="fakta-box">
-        <div class="fakta-title">Hukum Istinjak</div>
-        <p style="font-size: 1.1rem; font-weight: 800; color: var(--gold-glow);">Hukumnya adalah WAJIB.</p>
-      </div>
-
-      <div class="info-box">
-        <h4>Sebab Wajib Istinjak:</h4>
-        <ul class="step-list">
-          <li>Supaya badan kita sentiasa bersih, segar, dan sihat terhindar daripada kuman.</li>
-          <li>Supaya ibadat solat kita sah dan diterima oleh Allah SWT.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="tip-box" id="tip1">
-      ✨ <b>Tip Mudah Ingat:</b> Istinjak itu bermaksud <b>"Cuti-Cuti Bersih"</b>! Setiap kali selepas selesai "melabur" di tandas, wajib bersihkan diri sebersih-bersihnya supaya syaitan tidak suka mendekati kita!
-    </div>
-    <div class="panel-nav">
-      <div class="nav-left"></div>
-      <div class="nav-center">
-        <button class="btn btn-understand" onclick="nextPanel(1)">✅ Saya Faham</button>
-        <button class="btn btn-confused" onclick="showTip(1)">❓ Saya Tak Faham</button>
-      </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressBar" style="width: 33%;"></div>
     </div>
   </div>
 
-  <div class="panel" id="p2">
-    <div class="panel-header">
-      <div class="panel-num">2</div>
-      <div class="panel-title">Alat-Alat untuk Beristinjak</div>
-    </div>
-    <div class="avatar-section">
-      <div class="avatar-block">
-        <div class="avatar-icon">👨‍🏫</div>
-        <div class="avatar-label">USTAZ WAN</div>
+  <div class="panel active" id="panel1">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">1</div>
+        <div class="panel-title">Apa itu Istinjak?</div>
       </div>
-      <div class="speech-bubble">
-        Kanak-kanak tahu tak kita boleh guna apa untuk beristinjak? Utama sekali mesti guna air, tapi kalau tiada air, ada benda ganti lain tau!
-      </div>
-    </div>
-    <div class="content-area">
-      <div class="fakta-box">
-        <div class="fakta-title">Alat Utama</div>
-        <p>💧 <b>Air Mutlak</b> (air paip yang bersih, suci, dan boleh menyucikan).</p>
-      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">USTAZ WAN</div>
+          </div>
+          <div class="speech-bubble">
+            Assalamualaikum murid-murid! Jom kita fahami maksud Istinjak. Dari segi bahasa bermaksud <strong>selamat daripada penyakit</strong>. Manakala dari segi syarak pula ialah perbuatan <strong>membersihkan kubul atau dubur selepas membuang air kecil atau besar</strong>.
+          </div>
+        </div>
 
-      <div class="fakta-title" style="margin-top:12px;">Alat Ganti (Benda Kesat) — Jika tiada air:</div>
-      <table class="nota-table">
-        <thead>
-          <tr>
-            <th>✅ Alat BOLEH Guna</th>
-            <th>❌ Alat TIDAK Boleh Guna</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              • Batu kering<br>
-              • Tisu bersih<br>
-              • Daun-daun kering<br>
-              • Kain / Kulit kayu
-            </td>
-            <td>
-              • Kertas ada tulisan jawi / ayat Al-Quran<br>
-              • Makanan (roti, tulang)<br>
-              • Benda licin (kaca / plastik)<br>
-              • Najis yang sudah kering
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="tip-box" id="tip2">
-      🎒 <b>Tip Mudah Ingat:</b> Ingat formula <b>A-B-T</b> (<b>A</b>ir, <b>B</b>atu, <b>T</b>isu). Ini adalah kawan baik kita untuk mencuci najis. Jangan sesekali guna makanan ya, nanti berdosa dan membazir!
-    </div>
-    <div class="panel-nav">
-      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(2)">←</button></div>
-      <div class="nav-center">
-        <button class="btn btn-understand" onclick="nextPanel(2)">✅ Saya Faham</button>
-        <button class="btn btn-confused" onclick="showTip(2)">❓ Saya Tak Faham</button>
-      </div>
-    </div>
-  </div>
+        <div class="section-label">Hukum Beristinjak</div>
+        <div class="info-box">
+          Hukum melakukan istinjak selepas membuang air kecil atau air besar adalah <strong>WAJIB</strong> bagi setiap umat Islam.
+        </div>
 
-  <div class="panel" id="p3">
-    <div class="panel-header">
-      <div class="panel-num">3</div>
-      <div class="panel-title">Cara-Cara Beristinjak yang Betul</div>
-    </div>
-    <div class="avatar-section">
-      <div class="avatar-block">
-        <div class="avatar-icon">👨‍🏫</div>
-        <div class="avatar-label">USTAZ WAN</div>
-      </div>
-      <div class="speech-bubble">
-        Ada tiga pilihan cara untuk melakukan istinjak dengan betul. Jom kita tengok cara mana yang paling terbaik!
-      </div>
-    </div>
-    <div class="content-area">
-      <div class="info-box">
-        <h4>🥇 Cara 1: Guna Air Sahaja (Paling Afdhal/Terbaik)</h4>
-        <p>Basuh tempat keluar najis dengan air mengalir menggunakan <b>tangan kiri</b> sehingga hilang bau, warna, dan rasa najis tersebut.</p>
-      </div>
+        <button class="tip-toggle-btn" onclick="toggleTip(1)">💡 Klik untuk Tips Mudah Ingat!</button>
+        <div class="tip-box" id="tip1">
+          <div class="tip-box-title">Tips Mudah Faham</div>
+          <p>Ingat formula mudah ini: <strong>Keluar najis = Wajib Istinjak</strong>. Islam sangat mementingkan kesucian sebelum kita mendirikan solat!</p>
+        </div>
 
-      <div class="info-box" style="border-left-color: var(--text-soft);">
-        <h4>🥈 Cara 2: Guna Benda Kesat Sahaja (Contoh: Tisu/Batu)</h4>
-        <p>Mesti sapu sekurang-kurangnya <b>3 kali sapuan</b> dengan tisu atau batu yang bersih. Setiap kali sapuan, pastikan guna bahagian yang baharu/bersih.</p>
-      </div>
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">✏️ Uji Kefahaman Kilat (Panel 1)</div>
+          
+          <div class="panel-q-item">
+            <p class="panel-q-text">1. Apakah maksud istinjak dari segi bahasa?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Jawapan yang betul ialah selamat daripada penyakit.')">Membersihkan kekotoran najis</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Betul! Syabas.')">Selamat daripada penyakit</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
 
-      <div class="info-box" style="border-left-color: var(--gold-light);">
-        <h4>🥉 Cara 3: Guna Benda Kesat KEMUDIAN Air</h4>
-        <p>Sapu dahulu menggunakan tisu untuk hilangkan fizikal najis, kemudian baru bilas dengan air. Ini cara yang sangat bersih!</p>
-      </div>
-    </div>
-    <div class="tip-box" id="tip3">
-      🤚 <b>Tip Mudah Ingat:</b> Gunakan <b>Tangan Kiri</b> sahaja untuk mencuci dan memegang tempat najis! Tangan kanan kita simpan khas untuk makan, menulis, dan bersalaman.
-    </div>
-    <div class="panel-nav">
-      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(3)">←</button></div>
-      <div class="nav-center">
-        <button class="btn btn-understand" onclick="nextPanel(3)">✅ Saya Faham</button>
-        <button class="btn btn-confused" onclick="showTip(3)">❓ Saya Tak Faham</button>
-      </div>
-    </div>
-  </div>
+          <div class="panel-q-item">
+            <p class="panel-q-text">2. Apakah hukum melakukan istinjak?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Betul! Hukumnya wajib.')">Wajib</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Hukum istinjak adalah wajib.')">Sunat</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
 
-  <div class="panel" id="p4">
-    <div class="panel-header">
-      <div class="panel-num">4</div>
-      <div class="panel-title">Adab Masuk dan Keluar Tandas</div>
-    </div>
-    <div class="avatar-section">
-      <div class="avatar-block">
-        <div class="avatar-icon">👨‍🏫</div>
-        <div class="avatar-label">USTAZ WAN</div>
-      </div>
-      <div class="speech-bubble">
-        Tandas tempat yang disukai syaitan. Jadi kita mesti ikut adab-adab ini supaya sentiasa dilindungi Allah SWT!
-      </div>
-    </div>
-    <div class="content-area">
-      <div class="fakta-box">
-        <div class="fakta-title">🚪 Sebelum Masuk Tandas:</div>
-        <p>• Pakai selipar dan tutup kepala (topi/tudung).<br>
-        • Melangkah masuk dengan <b>Kaki Kiri</b>.<br>
-        • Membaca doa masuk tandas.</p>
-      </div>
-
-      <div class="fun-fact">
-        <div>🤫</div>
-        <div><b>Semasa di Dalam Tandas:</b> Jangan bercakap, menyanyi, bermain-main, atau membawa masuk barang yang mengandungi ayat Al-Quran. Jangan menghadap/membelakangkan Kiblat (jika di tempat terbuka tanpa dinding).</div>
-      </div>
-
-      <div class="fakta-box">
-        <div class="fakta-title">✨ Selepas Keluar Tandas:</div>
-        <p>• Melangkah keluar dengan <b>Kaki Kanan</b>.<br>
-        • Membaca doa keluar tandas (sebagai tanda bersyukur kerana perut dah selesa dan lega!).</p>
-      </div>
-    </div>
-    <div class="tip-box" id="tip4">
-      👣 <b>Tip Mudah Ingat:</b><br>
-      • Langkah masuk pakai <b>Kaki Kiri</b> (Kiri = Mulakan tempat Kotor/Tandas).<br>
-      • Langkah keluar pakai <b>Kaki Kanan</b> (Kanan = Menuju tempat Kebajikan/Bilik/Rumah).
-    </div>
-    <div class="panel-nav">
-      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(4)">←</button></div>
-      <div class="nav-center">
-        <button class="btn btn-understand" onclick="nextPanel(4)">✅ Saya Faham</button>
-        <button class="btn btn-confused" onclick="showTip(4)">❓ Saya Tak Faham</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel" id="p5">
-    <div class="panel-header">
-      <div class="panel-num">5</div>
-      <div class="panel-title">Ringkasan &amp; Nota Poket</div>
-    </div>
-    <div class="avatar-section">
-      <div class="avatar-block">
-        <div class="avatar-icon">👨‍🏫</div>
-        <div class="avatar-label">USTAZ WAN</div>
-      </div>
-      <div class="speech-bubble">
-        Alhamdulillah! Kamu sudah belajar semua tentang istinjak. Mari imbas nota poket ini sekali lalu sebelum kita uji minda dengan kuiz mini!
-      </div>
-    </div>
-    <div class="content-area">
-      <div class="info-box">
-        <h4>📌 NOTA POKET ISTINJAK</h4>
-        <p>🧼 <b>Maksud:</b> Bersihkan diri selepas kencing atau berak.</p>
-        <p>⭐ <b>Hukum:</b> Wajib (Ibadat solat tidak sah kalau tidak beristinjak).</p>
-        <p>💧 <b>Alat Utama:</b> Air Mutlak. Alat ganti: Tisu / Batu kesat.</p>
-        <p>🤚 <b>Anggota Pencuci:</b> Wajib gunakan Tangan Kiri sahaja.</p>
+          <div class="panel-q-item">
+            <p class="panel-q-text">3. Anggota manakah yang dibersihkan semasa beristinjak?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Hanya kubul dan dubur.')">Muka dan kaki</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Tepat sekali! Kubul (depan) dan dubur (belakang).')">Kubul dan dubur</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
       </div>
       
-      <div class="chip-container">
-        <div class="highlight-chip">Istinjak = Wajib</div>
-        <div class="highlight-chip">Guna Tangan Kiri</div>
-        <div class="highlight-chip">Air Mutlak Utama</div>
-        <div class="highlight-chip">Tisu &amp; Batu Kesat</div>
-        <div class="highlight-chip">Masuk Kaki Kiri</div>
-      </div>
-    </div>
-    <div class="tip-box" id="tip5">
-      🧠 <b>Tip Mudah Ingat (Formula B.E.R.S.I.H):</b><br>
-      • <b>B</b>asuh guna tangan kiri.<br>
-      • <b>E</b>lak menghadap kiblat.<br>
-      • <b>R</b>asa, bau, dan warna najis mesti hilang.<br>
-      • <b>S</b>apu 3 kali kalau guna tisu.<br>
-      • <b>I</b>kut adab kaki kiri masuk, kaki kanan keluar.<br>
-      • <b>H</b>ati gembira, solat pun sah!
-    </div>
-    <div class="panel-nav">
-      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(5)">←</button></div>
-      <div class="nav-center">
-        <button class="btn btn-understand" onclick="nextPanel(5)">✅ Saya Sedia Untuk Kuiz!</button>
-        <button class="btn btn-confused" onclick="showTip(5)">❓ Formula B.E.R.S.I.H</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="panel end-panel" id="panel-end">
-    <div class="avatar-icon" style="font-size:4rem; margin-bottom:10px;">🏆</div>
-    <h3>Masha Allah, Tahniah!</h3>
-    <p>Kamu telah berjaya menyelesaikan keseluruhan nota pembelajaran 'Istinjak'. Kamu memang hebat dan rajin!</p>
-    <div class="end-buttons">
-      <button class="btn btn-retry" onclick="resetNotes()">🔄 Ulang Nota</button>
-      <button class="btn btn-game" onclick="startQuiz()">🎮 Game Nota — Kuiz Mini</button>
-    </div>
-  </div>
-
-  <div class="quiz-section" id="quiz-area">
-    <div class="quiz-header">
-      <div class="quiz-title" id="quiz-qnum">Soalan 1/6</div>
-      <div class="quiz-score" id="quiz-score-display">Skor: 0</div>
-    </div>
-    <div class="question-box">
-      <div class="question-text" id="q-text">Sila jawab soalan di bawah:</div>
-      <div class="options-grid" id="options-block">
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back hidden">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-confused" onclick="showPopup('confused')">Kurang Faham ❓</button>
+          <button class="btn btn-understand" onclick="nextPanel(2)">Saya Faham! 👍</button>
         </div>
-    </div>
-    <div class="feedback-box" id="feedback-block"></div>
-    <div class="next-area">
-      <button class="btn btn-next" id="btn-next-q" onclick="nextQuestion()">Soalan Seterusnya →</button>
-    </div>
-    <div class="dots-container" id="dots-block">
       </div>
+    </div>
   </div>
 
-</div>
+  <div class="panel" id="panel2">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">2</div>
+        <div class="panel-title">Alat-Alat Beristinjak</div>
+      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">USTAZ WAN</div>
+          </div>
+          <div class="speech-bubble">
+            Seterusnya, mari kita kenali alat untuk beristinjak. Alat utama ialah <strong>air mutlak</strong>. Sekiranya tiada air, kita boleh menggunakan <strong>benda-benda kesat</strong>.
+          </div>
+        </div>
 
-<div class="popup-overlay" id="motivPopup">
-  <div class="premium-card shimmer-gold">
-    <div class="popup-icon" id="popup-icon">✨</div>
-    <div class="popup-title" id="popup-title">Alhamdulillah!</div>
-    <div class="popup-arabic" id="popup-arabic">بَارَكَ اللهُ فِيْك</div>
-    <div class="popup-msg" id="popup-msg">Kamu memang pelajar yang hebat dan pintar!</div>
-    <button class="btn btn-understand" style="width:100%" onclick="closePopup()">✨ Teruskan!</button>
+        <div class="section-label">Senarai Alat Istinjak</div>
+        <table class="nota-table">
+          <thead>
+            <tr>
+              <th>Alat Utama</th>
+              <th>Benda Kesat (Pengganti Air)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>💧 Air Mutlak (Air paip, air hujan, air telaga)</td>
+              <td>🧻 Tisu, 🪵 Kayu kering, 🪨 Batu, 🍃 Daun kering</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="section-label">Syarat Benda Kesat</div>
+        <div class="highlight-row">
+          <div class="highlight-chip">Mesti bersih & suci</div>
+          <div class="highlight-chip">Boleh menghilangkan najis</div>
+          <div class="highlight-chip">Bukan benda yang dimuliakan (makanan)</div>
+        </div>
+
+        <button class="tip-toggle-btn" onclick="toggleTip(2)">💡 Klik untuk Tips Mudah Ingat!</button>
+        <div class="tip-box" id="tip2">
+          <div class="tip-box-title">Tips Mudah Faham</div>
+          <p>Benda licin seperti <strong>plastik atau kaca tidak boleh</strong> digunakan kerana ia hanya akan meluaskan lagi najis tersebut!</p>
+        </div>
+
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">✏️ Uji Kefahaman Kilat (Panel 2)</div>
+          
+          <div class="panel-q-item">
+            <p class="panel-q-text">1. Apakah alat utama yang digunakan untuk beristinjak?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Betul! Air mutlak ialah alat utama.')">Air mutlak</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Tisu hanya pengganti jika tiada air.')">Tisu kesat</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item">
+            <p class="panel-q-text">2. Manakah antara berikut BOLEH digunakan untuk beristinjak jika tiada air?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Plastik licin dan tidak boleh menyerap najis.')">Plastik licin</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Tepat sekali! Batu yang bersih dan kesat boleh digunakan.')">Batu licin/kesat yang bersih</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item">
+            <p class="panel-q-text">3. Adakah dibenarkan beristinjak menggunakan roti?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Roti adalah makanan dan dihormati.')">Boleh</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Betul! Tidak boleh kerana makanan adalah benda yang dimuliakan.')">Tidak boleh</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back" onclick="nextPanel(1)">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-confused" onclick="showPopup('confused')">Kurang Faham ❓</button>
+          <button class="btn btn-understand" onclick="nextPanel(3)">Saya Faham! 👍</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel3">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">3</div>
+        <div class="panel-title">Cara Beristinjak & Kepentingan</div>
+      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">USTAZ WAN</div>
+          </div>
+          <div class="speech-bubble">
+            Bagaimanakah cara yang terbaik? Paling afdal ialah <strong>menggunakan batu/benda kesat terlebih dahulu diikuti dengan air mutlak</strong>. Boleh juga guna air sahaja, atau 3 biji batu sahaja.
+          </div>
+        </div>
+
+        <div class="section-label">Kepentingan Beristinjak</div>
+        <div class="fun-fact">
+          <div class="ff-icon">✨</div>
+          <p><strong>Ibadah Diterima:</strong> Solat menjadi sah kerana badan bebas daripada najis. Beristinjak juga menjaga kesihatan badan daripada kuman.</p>
+        </div>
+
+        <button class="tip-toggle-btn" onclick="toggleTip(3)">💡 Klik untuk Tips Mudah Ingat!</button>
+        <div class="tip-box" id="tip3">
+          <div class="tip-box-title">Tips Mudah Faham</div>
+          <p>Cara paling afdal: <strong>Guna benda kesat dulu untuk hilangkan zat najis, kemudian basuh dengan air sehingga bersih!</strong></p>
+        </div>
+
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">✏️ Uji Kefahaman Kilat (Panel 3)</div>
+          
+          <div class="panel-q-item">
+            <p class="panel-q-text">1. Apakah cara beristinjak yang paling afdal (terbaik)?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Betul! Guna benda kesat dahulu kemudian bilas dengan air.')">Benda kesat diikuti air</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Cara paling afdal ialah gabungan benda kesat dan air.')">Guna batu sahaja</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item">
+            <p class="panel-q-text">2. Berapakah bilangan batu minimum yang diperlukan jika hanya menggunakan batu sahaja?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Sekurang-kurangnya 3 biji batu atau 3 permukaan.')">1 biji batu sahaja</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Betul! Perlu 3 biji batu atau satu batu yang mempunyai 3 permukaan.')">3 biji batu atau 3 permukaan</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item">
+            <p class="panel-q-text">3. Apakah kesan utama sekiranya kita tidak beristinjak dengan bersih?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, true, 'Tepat sekali! Solat tidak sah jika badan menanggung najis.')">Solat menjadi tidak sah</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, false, 'Salah. Kesan paling utama melibatkan sah solat.')">Mendapat pahala tambahan</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back" onclick="nextPanel(2)">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-confused" onclick="showPopup('confused')">Kurang Faham ❓</button>
+          <button class="btn btn-understand" onclick="nextPanel('end')">Selesai Nota! 🎉</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panelEnd">
+    <div class="ending-card">
+      <div class="ending-emoji">🏆</div>
+      <h2>Tahniah, Pembelajaran Selesai!</h2>
+      <p>Anda telah berjaya menamatkan nota interaktif topik Istinjak bersama KAFA SKSG. Anda kini sudah bersedia untuk mempraktikkan kebersihan yang sempurna!</p>
+      <div class="ending-btn-group">
+        <button class="btn btn-secondary" onclick="restartLesson()">Ulang Semula Nota 🔄</button>
+        <button class="btn btn-primary" onclick="showPopup('excellent')">Lihat Sijil Ganjaran 🎖️</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup()">
+  <div class="premium-card" onclick="event.stopPropagation()">
+    <div class="popup-icon" id="popupIcon">⭐</div>
+    <div class="popup-title" id="popupTitle">Mesej Motivasi</div>
+    <div class="popup-arabic" id="popupArabic">😊</div>
+    <div class="popup-msg" id="popupMsg">Kekal bersemangat dalam menuntut ilmu!</div>
+    <button class="btn btn-understand" style="width:100%" onclick="closePopup()">Tutup</button>
   </div>
 </div>
 
-<div class="nota-nav" id="bottom-nav">
-  <a href="hadas.html">← Topik sebelum: Hadas</a>
-  <a href="../../subjek-ibadah.html">Kembali ke Peta Minda →</a>
-</div>
-
-<footer id="page-footer">🌙 KAFA Learn · Ibadah Topik 5</footer>
+<footer>
+  <p>© 2026 KAFA SKSG - Pembelajaran Ibadah Multimedia Kreatif</p>
+</footer>
 
 <script>
-let currentPanel = 1;
-const totalPanels = 5;
+// Menjana latar belakang bintang hiasan secara automatik
+const starsBg = document.getElementById('starsBg');
+for(let i=0; i<30; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.width = star.style.height = (Math.random() * 3 + 1) + 'px';
+  star.style.top = Math.random() * 100 + 'vh';
+  star.style.left = Math.random() * 100 + 'vw';
+  star.style.setProperty('--dur', (Math.random() * 3 + 2) + 's');
+  star.style.setProperty('--op', Math.random() * 0.5 + 0.2);
+  starsBg.appendChild(star);
+}
 
-// Data Soalan Kuiz Mini (6 Soalan)
-const quizData = [
-  {
-    q: "Apakah maksud Istinjak?",
-    o: [
-      "Membasuh kaki sebelum tidur malam",
-      "Membersihkan kubul atau dubur selepas membuang air",
-      "Mandi menggunakan air sabun wangi",
-      "Memotong kuku tangan yang panjang"
-    ],
-    a: 1,
-    p: "Istinjak ialah perbuatan membersihkan pintu hadapan (kubul) atau belakang (dubur) daripada najis air kencing atau berak."
-  },
-  {
-    q: "Apakah hukum melakukan Istinjak selepas membuang air kecil atau besar?",
-    o: [
-      "Sunat",
-      "Harus",
-      "Wajib",
-      "Makruh"
-    ],
-    a: 2,
-    p: "Hukum beristinjak adalah Wajib bagi setiap umat Islam supaya badan kita bersih dan solat kita sah."
-  },
-  {
-    q: "Apakah alat utama yang paling baik digunakan untuk beristinjak?",
-    o: [
-      "Air Mutlak",
-      "Tisu basah wangi",
-      "Daun kelapa licin",
-      "Batu sungai yang basah"
-    ],
-    a: 0,
-    p: "Air Mutlak (air paip bersih) ialah alat utama yang terbaik dan paling afdhal untuk membersihkan najis."
-  },
-  {
-    q: "Benda kesat manakah yang TIDAK BOLEH digunakan untuk menggantikan air semasa beristinjak?",
-    o: [
-      "Tisu yang bersih dan kering",
-      "Batu-batu kecil yang kering",
-      "Roti atau tulang (makanan)",
-      "Daun-daun pokok yang kering"
-    ],
-    a: 2,
-    p: "Kita dilarang keras beristinjak menggunakan makanan seperti roti atau tulang kerana ia dikira membazir dan berdosa."
-  },
-  {
-    q: "Tangan manakah yang WAJIB digunakan untuk mencuci najis ketika beristinjak?",
-    o: [
-      "Tangan Kanan sahaja",
-      "Tangan Kiri sahaja",
-      "Kedua-dua belah tangan serentak",
-      "Mana-mana tangan pun boleh"
-    ],
-    a: 1,
-    p: "Adab yang betul ialah wajib menggunakan Tangan Kiri untuk menyuci najis, manakala tangan kanan dijaga untuk perkara kebaikan."
-  },
-  {
-    q: "Apabila hendak melangkah masuk ke dalam tandas, kita mestilah mendahulukan...",
-    o: [
-      "Kaki Kanan",
-      "Kaki Kiri",
-      "Kedua-dua belah kaki bersama",
-      "Melompat ke dalam tandas"
-    ],
-    a: 1,
-    p: "Adab masuk tandas adalah mendahulukan Kaki Kiri manakala keluar tandas barulah mendahulukan Kaki Kanan."
+// Navigasi Antara Panel Nota & Kemas Kini Bar Kemajuan
+function nextPanel(target) {
+  // Sembunyikan semua panel sedia ada
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  
+  if(target === 'end') {
+    document.getElementById('panelEnd').classList.add('active');
+    document.getElementById('progressText').textContent = `Status: Selesai!`;
+    document.getElementById('progressPct').textContent = `100%`;
+    document.getElementById('progressBar').style.width = `100%`;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    return;
   }
-];
+  
+  // Aktifkan panel sasaran
+  const currentPanel = document.getElementById(`panel${target}`);
+  currentPanel.classList.add('active');
+  
+  // Kemaskini bar kemajuan (Berdasarkan jumlah 3 panel nota utama)
+  const pct = Math.round((target / 3) * 100);
+  document.getElementById('progressText').textContent = `Kemajuan Pembelajaran: ${target}/3`;
+  document.getElementById('progressPct').textContent = `${pct}%`;
+  document.getElementById('progressBar').style.width = `${pct}%`;
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-const motivData = [
-  { icon: "🏆", title: "Masha Allah!", arabic: "مَاشَاءَ الله", msg: "Hebat sekali! Jawapan kamu tepat dan bijak!" },
-  { icon: "🌟", title: "Subhanallah!", arabic: "سُبْحَانَ الله", msg: "Luar biasa! Teruskan fokus yang mantap ini!" },
-  { icon: "💖", title: "Alhamdulillah!", arabic: "الْحَمْدُ لله", msg: "Syukur! Otak kamu sangat cerdas hari ini!" },
-  { icon: "✨", title: "Barakallah!", arabic: "بَارَكَ اللهُ فِيْك", msg: "Semoga Allah memberkati ilmu agama yang kamu pelajari!" }
-];
+// Fungsi Butang Papar/Sembunyi "Tips Mudah Faham"
+function toggleTip(id) {
+  const tBox = document.getElementById(`tip${id}`);
+  tBox.classList.toggle('show');
+}
 
-let currentQuestionIdx = 0;
-let score = 0;
-let answeredStatus = [];
-
-function updateProgress() {
-  if(currentPanel <= totalPanels) {
-    document.getElementById('prog-container').style.display = 'block';
-    const pct = ((currentPanel - 1) / (totalPanels - 1)) * 100;
-    document.getElementById('prog-fill').style.width = pct + '%';
-    document.getElementById('prog-text').textContent = `Panel ${currentPanel}/${totalPanels}`;
+// Fungsi Semakan Jawapan Kuiz Mini Komponen Tempatan (Maklum Balas Terus)
+function checkPanelAns(btn, isCorrect, feedbackText) {
+  const parentGrid = btn.parentElement;
+  const allBtns = parentGrid.querySelectorAll('.panel-opt-btn');
+  const feedbackDiv = parentGrid.nextElementSibling;
+  
+  // Matikan semua pilihan butang setelah satu pilihan dibuat
+  allBtns.forEach(b => b.disabled = true);
+  
+  if(isCorrect) {
+    btn.classList.add('correct');
+    feedbackDiv.className = "panel-feedback correct";
+    feedbackDiv.textContent = "🎉 " + feedbackText;
   } else {
-    document.getElementById('prog-container').style.display = 'none';
+    btn.classList.add('wrong');
+    feedbackDiv.className = "panel-feedback wrong";
+    feedbackDiv.textContent = "❌ " + feedbackText;
+    
+    // Warnakan hijau butang jawapan yang betul sebagai rujukan murid
+    allBtns.forEach(b => {
+      if(b.getAttribute('onclick').includes('true')) {
+        b.classList.add('correct');
+      }
+    });
   }
 }
 
-function nextPanel(num) {
-  document.getElementById(`tip${num}`).classList.remove('show');
-  document.getElementById(`p${num}`).classList.remove('active');
-  
-  if(num < totalPanels) {
-    currentPanel = num + 1;
-    document.getElementById(`p${currentPanel}`).classList.add('active');
-    updateProgress();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    currentPanel = totalPanels + 1;
-    updateProgress();
-    document.getElementById('panel-end').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-
-function prevPanel(num) {
-  document.getElementById(`tip${num}`).classList.remove('show');
-  document.getElementById(`p${num}`).classList.remove('active');
-  currentPanel = num - 1;
-  document.getElementById(`p${currentPanel}`).classList.add('active');
-  updateProgress();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showTip(num) {
-  document.getElementById(`tip${num}`).classList.add('show');
-}
-
-function resetNotes() {
-  document.getElementById('panel-end').classList.remove('active');
-  for(let i=1; i<=totalPanels; i++) {
-    document.getElementById(`tip${i}`).classList.remove('show');
-  }
-  currentPanel = 1;
-  document.getElementById('p1').classList.add('active');
-  updateProgress();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* KUIZ ENGINE */
-function startQuiz() {
-  document.getElementById('panel-end').classList.remove('active');
-  document.getElementById('bottom-nav').style.display = 'none';
-  document.getElementById('quiz-area').style.display = 'block';
-  
-  currentQuestionIdx = 0;
-  score = 0;
-  answeredStatus = [];
-  
-  initDots();
-  showQuestion();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function initDots() {
-  const container = document.getElementById('dots-block');
-  container.innerHTML = '';
-  for(let i=0; i<quizData.length; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot';
-    if(i === 0) dot.classList.add('active');
-    container.appendChild(dot);
-  }
-}
-
-function updateDots() {
-  const dots = document.querySelectorAll('#dots-block .dot');
-  dots.forEach((dot, idx) => {
-    dot.classList.remove('active', 'correct', 'wrong');
-    if(idx === currentQuestionIdx) {
-      dot.classList.add('active');
-    }
-    if(answeredStatus[idx] === 'correct') {
-      dot.classList.add('correct');
-    } else if(answeredStatus[idx] === 'wrong') {
-      dot.classList.add('wrong');
-    }
+// Tetapkan semula keseluruhan modul pembelajaran
+function restartLesson() {
+  document.querySelectorAll('.panel-opt-btn').forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove('correct', 'wrong');
   });
-}
-
-function showQuestion() {
-  const currentQ = quizData[currentQuestionIdx];
-  document.getElementById('quiz-qnum').textContent = `Soalan ${currentQuestionIdx + 1}/${quizData.length}`;
-  document.getElementById('quiz-score-display').textContent = `Skor: ${score}`;
-  document.getElementById('q-text').textContent = `${currentQuestionIdx + 1}. ${currentQ.q}`;
-  
-  const optionsBlock = document.getElementById('options-block');
-  optionsBlock.innerHTML = '';
-  
-  currentQ.o.forEach((opt, idx) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.textContent = opt;
-    btn.onclick = () => checkAnswer(idx);
-    optionsBlock.appendChild(btn);
+  document.querySelectorAll('.panel-feedback').forEach(fb => {
+    fb.style.display = 'none';
+    fb.textContent = '';
   });
-  
-  document.getElementById('feedback-block').style.display = 'none';
-  document.getElementById('btn-next-q').style.display = 'none';
-  updateDots();
+  document.querySelectorAll('.tip-box').forEach(tb => tb.classList.remove('show'));
+  nextPanel(1);
 }
 
-let lastMotivIdx = -1;
-function triggerPremiumPopup() {
-  let idx;
-  do {
-    idx = Math.floor(Math.random() * motivData.length);
-  } while(idx === lastMotivIdx && motivData.length > 1);
-  lastMotivIdx = idx;
+// Paparan Pop-up Interaktif Kreatif
+function showPopup(type) {
+  const overlay = document.getElementById('popupOverlay');
+  const icon = document.getElementById('popupIcon');
+  const title = document.getElementById('popupTitle');
+  const arabic = document.getElementById('popupArabic');
+  const msg = document.getElementById('popupMsg');
   
-  const m = motivData[idx];
-  document.getElementById('popup-icon').textContent = m.icon;
-  document.getElementById('popup-title').textContent = m.title;
-  document.getElementById('popup-arabic').textContent = m.arabic;
-  document.getElementById('popup-msg').innerHTML = m.msg;
-  document.getElementById('motivPopup').classList.add('show');
+  if(type === 'confused') {
+    icon.textContent = "📖";
+    title.textContent = "Jangan Risau!";
+    arabic.textContent = "ﻻَ تَقْنَطُوا";
+    msg.textContent = "Sila baca perbualan Ustaz Wan semula perlahan-lahan atau klik butang 'Tips Mudah Ingat' untuk membantu ingatan kamu!";
+  } else if(type === 'excellent') {
+    icon.textContent = "🏆";
+    title.textContent = "Sijil Bintang Mumtaz";
+    arabic.textContent = "مُمْتَاز 🎉";
+    msg.textContent = "Kamu adalah pelajar cemerlang KAFA SKSG! Teruskan mengamalkan kebersihan diri yang sempurna dalam kehidupan harian.";
+  }
+  
+  overlay.classList.add('show');
 }
 
 function closePopup() {
-  document.getElementById('motivPopup').classList.remove('show');
-}
-
-function checkAnswer(selectedIdx) {
-  const currentQ = quizData[currentQuestionIdx];
-  const buttons = document.querySelectorAll('#options-block .option-btn');
-  
-  buttons.forEach(btn => btn.disabled = true);
-  
-  const feedbackBlock = document.getElementById('feedback-block');
-  feedbackBlock.style.display = 'block';
-  
-  if(selectedIdx === currentQ.a) {
-    buttons[selectedIdx].classList.add('correct');
-    feedbackBlock.className = 'feedback-box correct';
-    feedbackBlock.innerHTML = `🎉 Betul! <br><span style="font-weight:400">${currentQ.p}</span>`;
-    score++;
-    answeredStatus.push('correct');
-    document.getElementById('quiz-score-display').textContent = `Skor: ${score}`;
-    
-    setTimeout(triggerPremiumPopup, 350);
-  } else {
-    buttons[selectedIdx].classList.add('wrong');
-    buttons[currentQ.a].classList.add('correct');
-    feedbackBlock.className = 'feedback-box wrong';
-    feedbackBlock.innerHTML = `😢 Kurang Tepat! <br><span style="font-weight:400">${currentQ.p}</span>`;
-    answeredStatus.push('wrong');
-  }
-  
-  updateDots();
-  document.getElementById('btn-next-q').style.display = 'block';
-}
-
-function nextQuestion() {
-  if(currentQuestionIdx < quizData.length - 1) {
-    currentQuestionIdx++;
-    showQuestion();
-  } else {
-    showQuizResults();
-  }
-}
-
-function showQuizResults() {
-  const pct = Math.round((score / quizData.length) * 100);
-  let msg;
-  
-  if(pct === 100) {
-    msg = 'Sempurna! Kamu pelajar cemerlang! 🏆🥇';
-  } else if(pct >= 75) {
-    msg = 'Sangat bagus! Hampir sempurna! ⭐😊';
-  } else if(pct >= 50) {
-    msg = 'Elok! Cuba semak nota dan cuba lagi. 📖💪';
-  } else {
-    msg = 'Jangan putus asa! Ulang nota dan cuba semula. 🌟📚';
-  }
-  
-  const quizArea = document.getElementById('quiz-area');
-  quizArea.innerHTML = `
-    <div class="result-card">
-      <div style="font-size:3.5rem; margin-bottom:8px">🎉</div>
-      <h3 style="font-size:1.6rem; color:var(--gold-glow); font-weight:900;">Keputusan Penilaian</h3>
-      <div class="score-big">${score}/${quizData.length}</div>
-      <p style="margin-bottom:24px; font-weight:700; color:var(--text-soft);">${msg}</p>
-      <div class="end-buttons">
-        <button class="btn btn-game" onclick="location.reload()">🔄 Cuba Lagi</button>
-        <button class="btn btn-retry" onclick="location.reload()">📖 Ulang Nota</button>
-      </div>
-    </div>
-  `;
+  document.getElementById('popupOverlay').classList.remove('show');
 }
 </script>
-
 </body>
 </html>

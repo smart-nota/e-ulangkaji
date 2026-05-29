@@ -21,6 +21,9 @@
   --red: #5a1a1a;
   --radius: 18px;
   --shadow: 0 8px 32px rgba(0,0,0,0.6);
+  /* Comic Book Theme Colors */
+  --comic-border: #ffd700;
+  --bubble-bg: #1e1e2f;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -133,10 +136,10 @@ body{
   transition:width 0.5s cubic-bezier(.4,0,.2,1);
 }
 
-/* PANEL */
+/* PANEL & COMIC STRIP LAYOUT */
 .panel{
   background:var(--bg-panel);
-  border:2.5px solid var(--gold-dim);
+  border:3px solid var(--gold-dim);
   border-radius:var(--radius);
   box-shadow:var(--shadow), inset 0 1px 0 rgba(255,230,102,0.06);
   padding:24px 20px;
@@ -147,6 +150,58 @@ body{
 @keyframes panelIn{
   from{opacity:0;transform:translateY(24px)}
   to{opacity:1;transform:translateY(0)}
+}
+
+.comic-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 15px;
+}
+@media(min-width: 600px) {
+  .comic-grid.two-cols { grid-template-columns: 1fr 1fr; }
+}
+
+/* PREMIUM COMIC PANEL CARD */
+.comic-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(212,160,23,0.4);
+  border-radius: 14px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+.comic-box:hover {
+  transform: scale(1.01);
+  border-color: var(--gold-bright);
+}
+.comic-tag {
+  position: absolute;
+  top: 0; left: 0;
+  background: var(--gold);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 2px 10px;
+  border-bottom-right-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* BIG COMIC EMOJI ILLUSTRATION */
+.comic-art {
+  font-size: 3rem;
+  text-align: center;
+  margin: 12px 0;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  animation: kidsFloat 4s ease-in-out infinite;
+}
+.comic-art.alt { animation-delay: 2s; }
+@keyframes kidsFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(3deg); }
 }
 
 /* PANEL HEADER */
@@ -183,18 +238,19 @@ body{
   text-align:center;margin-top:4px;letter-spacing:1px;
 }
 .speech-bubble{
-  background:rgba(212,160,23,0.08);
-  border:1.5px solid rgba(212,160,23,0.25);
-  border-radius:0 14px 14px 14px;
+  background:var(--bubble-bg);
+  border:2px solid var(--gold-dim);
+  border-radius: 0 16px 16px 16px;
   padding:12px 16px;
-  font-size:0.92rem;font-weight:600;color:var(--text);
+  font-size:0.92rem;font-weight:700;color:var(--text);
   line-height:1.6;flex:1;position:relative;
+  box-shadow: 4px 4px 0px rgba(212,160,23,0.2);
 }
 .speech-bubble::before{
   content:'';position:absolute;
-  left:-10px;top:10px;
-  border:5px solid transparent;
-  border-right-color:rgba(212,160,23,0.25);
+  left:-12px;top:10px;
+  border:6px solid transparent;
+  border-right-color:var(--gold-dim);
 }
 
 /* CONTENT BLOCKS */
@@ -240,16 +296,17 @@ body{
 /* TIP BOX */
 .tip-box{
   display:none;
-  background:rgba(42,90,42,0.3);
-  border:2px solid rgba(80,180,80,0.4);
+  background:rgba(42,90,42,0.2);
+  border:2px solid rgba(212,160,23,0.5);
   border-radius:14px;padding:14px 16px;margin:14px 0;
   animation:panelIn 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 .tip-box.show{display:block;}
-.tip-label{font-size:0.75rem;font-weight:800;color:#80e080;letter-spacing:1px;margin-bottom:6px;}
-.tip-box p{font-size:0.88rem;line-height:1.6;font-weight:600;color:#c8f0c8;}
+.tip-label{font-size:0.75rem;font-weight:800;color:var(--gold-bright);letter-spacing:1px;margin-bottom:6px;}
+.tip-box p{font-size:0.88rem;line-height:1.6;font-weight:600;color:var(--text);}
 
-/* NAV BUTTONS */
+/* NAV BUTTONS (FINTECH FOR KIDS STYLE) */
 .panel-nav{
   display:flex;align-items:center;margin-top:22px;gap:10px;
 }
@@ -261,21 +318,26 @@ body{
 }
 .nav-back-btn:hover{background:rgba(212,160,23,0.1);}
 .nav-back-btn.hidden{visibility:hidden;}
-.nav-center{display:flex;gap:10px;justify-content:center;flex:1;flex-wrap:wrap;}
+.nav-center{display:flex;gap:12px;justify-content:center;flex:1;flex-wrap:wrap;}
+
 .btn-faham{
-  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
-  color:#000;border:none;border-radius:30px;padding:10px 22px;
+  background:linear-gradient(135deg, #2ecc71, #27ae60);
+  color:#fff;border:none;border-radius:30px;padding:12px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:900;
+  cursor:pointer;transition:all 0.2s;
+  box-shadow: 0 4px 15px rgba(46,204,113,0.4);
+}
+.btn-faham:hover{transform:translateY(-2px);box-sizing:border-box;box-shadow:0 6px 20px rgba(46,204,113,0.6);}
+
+.btn-tak{
+  background:linear-gradient(135deg, #34495e, #2c3e50);
+  border:1.5px solid var(--gold-dim);
+  color:var(--gold-bright);border-radius:30px;padding:12px 20px;
   font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;
   cursor:pointer;transition:all 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
-.btn-faham:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,160,23,0.4);}
-.btn-tak{
-  background:transparent;border:1.5px solid rgba(212,160,23,0.4);
-  color:var(--gold-light);border-radius:30px;padding:10px 18px;
-  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;
-  cursor:pointer;transition:all 0.2s;
-}
-.btn-tak:hover{background:rgba(212,160,23,0.08);}
+.btn-tak:hover{background:rgba(212,160,23,0.15); transform:translateY(-1px);}
 
 /* DONE PANEL */
 .done-panel{
@@ -297,19 +359,12 @@ body{
   cursor:pointer;transition:all 0.2s;
 }
 .btn-reset:hover{background:rgba(212,160,23,0.1);}
-.btn-quiz-start{
-  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
-  color:#000;border:none;border-radius:30px;padding:12px 24px;
-  font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
-  cursor:pointer;transition:all 0.2s;
-}
-.btn-quiz-start:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,160,23,0.4);}
 
-/* QUIZ */
-.quiz-section{display:none;animation:panelIn 0.4s ease;}
+/* QUIZ INTERACTIVE SECTION */
+.quiz-section{display:none;animation:panelIn 0.4s ease; margin-top:20px;}
 .quiz-section.active{display:block;}
 .quiz-header{
-  background:var(--bg-panel);border:2px solid var(--gold-dim);
+  background:rgba(20,20,30,0.9);border:2px solid var(--gold-dim);
   border-radius:14px;padding:16px 20px;margin-bottom:16px;
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
 }
@@ -321,100 +376,80 @@ body{
   border-radius:var(--radius);padding:24px 20px;
   box-shadow:var(--shadow);
 }
-.quiz-q-text{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:18px;line-height:1.5;}
+.quiz-q-text{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:18px;line-height:1.5;}
 .quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
 .quiz-opt{
   background:rgba(255,255,255,0.04);border:1.5px solid rgba(212,160,23,0.25);
-  border-radius:12px;padding:11px 16px;
-  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;color:var(--text);
+  border-radius:12px;padding:12px 16px;
+  font-family:'Nunito',sans-serif;font-size:0.92rem;font-weight:700;color:var(--text);
   cursor:pointer;text-align:left;transition:all 0.2s;
 }
-.quiz-opt:hover:not(:disabled){background:rgba(212,160,23,0.1);border-color:var(--gold);}
-.quiz-opt.correct{background:rgba(42,90,42,0.5);border-color:#4ade80;color:#86efac;}
-.quiz-opt.wrong{background:rgba(90,26,26,0.5);border-color:#f87171;color:#fca5a5;}
+.quiz-opt:hover:not(:disabled){background:rgba(212,160,23,0.1);border-color:var(--gold-light);}
+.quiz-opt.correct{background:rgba(46,204,113,0.3);border-color:#2ecc71;color:#fff;}
+.quiz-opt.wrong{background:rgba(231,76,60,0.3);border-color:#e74c3c;color:#fff;}
 .quiz-opt:disabled{cursor:default;}
-.quiz-feedback{
-  font-size:0.88rem;font-weight:700;padding:10px 14px;
-  border-radius:10px;margin-bottom:14px;display:none;line-height:1.5;
-}
-.quiz-feedback.correct{background:rgba(42,90,42,0.4);color:#86efac;border:1px solid rgba(74,222,128,0.3);}
-.quiz-feedback.wrong{background:rgba(90,26,26,0.4);color:#fca5a5;border:1px solid rgba(248,113,113,0.3);}
-.btn-next-q{
-  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
-  color:#000;border:none;border-radius:30px;padding:10px 24px;
-  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;
-  cursor:pointer;display:none;transition:all 0.2s;
-}
-.btn-next-q:hover{transform:translateY(-2px);}
 .quiz-dots{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
 .q-dot{
-  width:12px;height:12px;border-radius:50%;
+  width:14px;height:14px;border-radius:50%;
   background:rgba(212,160,23,0.15);border:1.5px solid var(--gold-dim);
   transition:all 0.3s;
 }
-.q-dot.active{background:var(--gold);border-color:var(--gold-bright);}
-.q-dot.done-correct{background:#4ade80;border-color:#86efac;}
-.q-dot.done-wrong{background:#f87171;border-color:#fca5a5;}
+.q-dot.active{background:var(--gold);border-color:var(--gold-bright);transform:scale(1.2);}
 
-/* RESULT */
-.quiz-result{
-  display:none;text-align:center;
-  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
-  border-radius:var(--radius);padding:36px 24px;
-  animation:panelIn 0.4s ease;
-}
-.quiz-result.active{display:block;}
-.result-score{
-  font-size:3rem;font-weight:900;
-  background:linear-gradient(135deg,var(--gold-bright),var(--gold));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin:16px 0;
-}
-.result-msg{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:24px;}
-.result-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-
-/* POPUP */
+/* PREMIUM FINTECH POPUP MODAL */
 .popup-overlay{
   display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0.85);z-index:200;
+  background:rgba(5,5,10,0.88);z-index:200;
   align-items:center;justify-content:center;padding:20px;
+  backdrop-filter: blur(8px);
 }
 .popup-overlay.active{display:flex;}
 .popup-card{
-  background:linear-gradient(135deg,#12121a,#16161f);
-  border:3px solid var(--gold);border-radius:22px;
-  padding:32px 28px;max-width:420px;width:100%;
-  text-align:center;position:relative;overflow:hidden;
-  animation:popIn 0.5s cubic-bezier(.175,.885,.32,1.275);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  background:linear-gradient(135deg,#161625,#0d0d14);
+  border:3px solid var(--gold);border-radius:24px;
+  padding:32px 24px;max-width:440px;width:100%;
+  text-align:center;position:relative;
+  box-shadow:0 20px 50px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,230,102,0.1);
+  animation:popIn 0.4s cubic-bezier(.175,.885,.32,1.275);
 }
-@keyframes popIn{from{transform:scale(0.7);opacity:0}to{transform:scale(1);opacity:1}}
-.popup-card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(212,160,23,0.08),transparent);
-  background-size:200% 100%;
-  animation:shimmer 2s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.popup-icon{font-size:3rem;display:block;margin-bottom:12px;}
+@keyframes popIn{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+.popup-icon{font-size:3.5rem;display:block;margin-bottom:12px;}
 .popup-title{
-  font-size:1.3rem;font-weight:900;color:var(--gold-bright);margin-bottom:8px;
+  font-size:1.4rem;font-weight:900;color:var(--gold-bright);margin-bottom:6px;
 }
 .popup-arabic{
-  font-size:1rem;color:var(--text-dim);font-weight:600;margin-bottom:10px;font-style:italic;
+  font-size:1.1rem;color:var(--text-dim);font-weight:700;margin-bottom:12px;letter-spacing:0.5px;
 }
-.popup-msg{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:20px;line-height:1.6;}
+.popup-msg{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:24px;line-height:1.6;}
 
-.popup-btns-container{
-  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 15px;
+/* FINTECH ACTION BUTTONS CONTAINER inside POPUP */
+.popup-actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
 }
-.btn-popup-sub{
-  background: transparent; border: 1.5px solid var(--gold-dim); color: var(--gold-light);
-  border-radius: 30px; padding: 8px 16px; font-family: 'Nunito', sans-serif;
-  font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+@media(min-width: 400px) {
+  .popup-actions-grid { flex-direction: row; justify-content: center; }
 }
-.btn-popup-sub:hover{ background: rgba(212,160,23,0.1); }
+
+.btn-popup-main{
+  background:linear-gradient(135deg, #2ecc71, #27ae60);
+  color:#fff;border:none;border-radius:30px;padding:12px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:900;
+  cursor:pointer;transition:all 0.2s;flex:1;
+  box-shadow: 0 4px 15px rgba(46,204,113,0.3);
+}
+.btn-popup-main:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,204,113,0.5);}
+
+.btn-popup-secondary{
+  background: rgba(255,255,255,0.05);
+  border:1.5px solid rgba(212,160,23,0.4);
+  color:var(--text);border-radius:30px;padding:12px 18px;
+  font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;flex:1;
+}
+.btn-popup-secondary:hover{background:rgba(212,160,23,0.15);color:var(--gold-bright);}
 
 /* NOTA NAV */
 .nota-nav{
@@ -443,7 +478,7 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
   .panel{padding:18px 14px;}
   .ustaz-icon{width:46px;height:46px;font-size:1.5rem;}
   .nav-center{gap:6px;}
-  .btn-faham,.btn-tak{padding:9px 14px;font-size:0.82rem;}
+  .btn-faham,.btn-tak{padding:10px 14px;font-size:0.82rem;}
 }
 </style>
 </head>
@@ -464,7 +499,7 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
   <div class="hero">
     <span class="hero-emoji">🌟</span>
     <h1>Biodata Nabi Muhammad SAW</h1>
-    <p>Kenali Nabi kita yang mulia ﷺ</p>
+    <p>Kenali Nabi kita yang mulia ﷺ bersama KAFA SKSG</p>
     <span class="hero-chip">📖 Topik 1 · Sirah</span>
   </div>
 
@@ -489,26 +524,42 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
         <div class="ustaz-label">USTAZ</div>
       </div>
       <div class="speech-bubble">
-        Assalamualaikum! Jom kita mulakan pengembaraan sirah dengan melihat sejarah kelahiran agung baginda yang penuh keberkatan! 🌙
+        Assalamualaikum adik-adik! Jom lihat komik kisah hari kelahiran Nabi Muhammad SAW yang sangat ajaib dan hebat ini! 🌙
       </div>
     </div>
-    <div class="info-box">
-      📅 <span class="strong">Tarikh Lahir:</span> Hari Isnin, 12 Rabiulawal<br/>
-      🗓️ <span class="strong">Tahun:</span> 570 Masihi (Dikenali juga sebagai <em>Tahun Gajah</em>)<br/>
-      📍 <span class="strong">Tempat Lahir:</span> Kota Makkah Al-Mukarramah, Arab Saudi
+
+    <div class="comic-grid two-cols">
+      <div class="comic-box">
+        <span class="comic-tag">Masa & Tempat</span>
+        <div class="comic-art">📅</div>
+        <div class="info-box" style="margin:0; font-size:0.85rem;">
+          <span class="strong">Tarikh Lahir:</span> Isnin, 12 Rabiulawal<br/>
+          <span class="strong">Tahun:</span> 571 Masihi<br/>
+          <span class="strong">Tempat:</span> Kota Makkah Al-Mukarramah
+        </div>
+      </div>
+      <div class="comic-box">
+        <span class="comic-tag">Peristiwa Besar</span>
+        <div class="comic-art alt">🐘</div>
+        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">Tahun kelahiran baginda digelar <em>Tahun Gajah</em> kerana Abrahah membawa tentera bergajah yang besar untuk meruntuhkan Kaabah!</p>
+      </div>
     </div>
-    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:10px 0;">Kelahiran baginda membawa sinar kepada seluruh dunia. Tentera bergajah Abrahah yang cuba meruntuhkan Kaabah pada tahun tersebut telah dihancurkan oleh burung Ababil.</p>
-    
+
+    <div class="fun-fact">
+      <div class="ff-icon">💡</div>
+      <p>Nabi SAW suka berpuasa pada hari <span class="strong">Isnin</span> kerana hari tersebut adalah hari ulang tahun kelahiran mulia baginda!</p>
+    </div>
+
     <div class="tip-box" id="tip-1">
       <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>💡 <strong>Formula Kelahiran:</strong> Ingat hari <strong>Isnin + 12 Rabiulawal + 570 Masihi</strong>. Digelar <em>Tahun Gajah</em> kerana peristiwa serangan tentera bergajah ke atas Kaabah!</p>
+      <p>Hafal kod rahsia pintar ini: <strong>"Isnin, 12 Rabiulawal, Tahun Gajah (571M) di Makkah!"</strong> Semudah mengira bintang di langit! 🌟</p>
     </div>
-    
+
     <div class="panel-nav">
       <button class="nav-back-btn hidden">←</button>
       <div class="nav-center">
         <button class="btn-tak" onclick="showTip(1)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(1)">🎯 3 Soalan Kuiz</button>
+        <button class="btn-faham" onclick="startPanelQuiz(1)">✅ Sedia untuk 3 Soalan</button>
       </div>
     </div>
   </div>
@@ -516,7 +567,7 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
   <div class="panel" id="panel-2">
     <div class="panel-header">
       <div class="panel-num">2</div>
-      <h3>📛 Nama & Bangsa Mulia Baginda</h3>
+      <h3>📛 Nama & Gelaran Mulia Baginda</h3>
     </div>
     <div class="ustaz-row">
       <div class="ustaz-avatar">
@@ -524,31 +575,41 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
         <div class="ustaz-label">USTAZ</div>
       </div>
       <div class="speech-bubble">
-        Nama Nabi kita sangat indah, begitu juga dengan asal-usul keturunan kabilah baginda yang paling dihormati di Makkah! 😊
+        Nama penuh baginda mengandungi nama bapa dan datuk kesayangan, berserta gelaran paling hebat di alam semesta! 😊
       </div>
     </div>
-    <div class="info-box" style="text-align:center;padding:16px;">
-      <span class="strong" style="font-size:1.05rem;color:var(--gold-bright);">Muhammad bin Abdullah bin Abdul Muttalib</span>
+
+    <div class="comic-grid">
+      <div class="comic-box" style="text-align: center;">
+        <span class="comic-tag">Nama Penuh</span>
+        <div class="comic-art">📜</div>
+        <div class="info-box" style="display:inline-block; padding:10px 20px;">
+          <span class="strong" style="font-size:1.1rem; color:var(--gold-bright);">Muhammad bin Abdullah bin Abdul Muttalib</span>
+        </div>
+        <div class="chips-row" style="justify-content: center;">
+          <span class="chip chip-gold">Muhammad = Yang Terpuji</span>
+          <span class="chip chip-white">Bangsa/Kabilah = Quraisy</span>
+        </div>
+      </div>
     </div>
-    <div class="info-box">
-      ✨ <span class="strong">Maksud Nama Muhammad:</span> Yang Terpuji<br/>
-      🦅 <span class="strong">Bangsa / Kabilah:</span> Arab / Kabilah Quraisy (Keturunan paling mulia)
-    </div>
+
+    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:12px 0;">Masyarakat Kota Makkah memberikan gelaran eksklusif ini kerana kebaikan baginda:</p>
     <div class="chips-row">
       <span class="chip chip-gold">Al-Amin = Yang Amanah</span>
       <span class="chip chip-white">As-Sadiq = Yang Benar</span>
+      <span class="chip chip-purple">Rahmatan lil Alamin = Rahmat Seluruh Alam</span>
     </div>
-    
+
     <div class="tip-box" id="tip-2">
       <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>💡 <strong>Kunci Utama:</strong> Nama nabi bermaksud <em>Yang Terpuji</em>. Baginda berbangsa Arab daripada kabilah <strong>Quraisy</strong>, iaitu kabilah utama yang menjaga Kaabah.</p>
+      <p>Ingat formula superhero **AL-AS**: <strong>Al-Amin</strong> (Sangat Amanah) + <strong>As-Sadiq</strong> (Sentiasa Bercakap Benar). Baginda juga berbangsa Arab dari kabilah **Quraisy** yang paling mulia!</p>
     </div>
-    
+
     <div class="panel-nav">
       <button class="nav-back-btn" onclick="prevPanel(2)">←</button>
       <div class="nav-center">
         <button class="btn-tak" onclick="showTip(2)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(2)">🎯 3 Soalan Kuiz</button>
+        <button class="btn-faham" onclick="startPanelQuiz(2)">✅ Sedia untuk 3 Soalan</button>
       </div>
     </div>
   </div>
@@ -564,28 +625,33 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
         <div class="ustaz-label">USTAZ</div>
       </div>
       <div class="speech-bubble">
-        Walaupun Nabi dilahirkan sebagai anak yatim piatu, salasilah keluarga dan para penjaga baginda dipenuhi dengan tokoh hebat! 💛
+        Walaupun Nabi dilahirkan yatim piatu, Allah mengutuskan insan-insan penyayang untuk menjaga baginda bagaikan permata! 💛
       </div>
     </div>
-    <table class="nota-table">
-      <tr><th>Ahli Keluarga</th><th>Nama Tokoh</th></tr>
-      <tr><td>🧔 Bapa</td><td>Abdullah bin Abdul Muttalib</td></tr>
-      <tr><td>👩 Ibu</td><td>Aminah binti Wahab</td></tr>
-      <tr><td>👴 Datuk</td><td>Abdul Muttalib (Jaga Nabi selama <strong>2 tahun</strong> selepas ibu wafat)</td></tr>
-      <tr><td>👨‍💼 Bapa Saudara</td><td>Abu Talib (Jaga Nabi selepas datuk wafat)</td></tr>
-      <tr><td>🧕 Isteri Pertama</td><td>Siti Khadijah binti Khuwailid</td></tr>
-    </table>
-    
+
+    <div class="comic-grid two-cols">
+      <div class="comic-box">
+        <span class="comic-tag">Ibu & Bapa</span>
+        <div class="comic-art">💖</div>
+        <p style="font-size:0.85rem; font-weight:700;">Bapa baginda bernama <strong>Abdullah</strong> (wafat sebelum lahir) & ibunya pula bernama <strong>Aminah</strong> (wafat semasa berumur 6 tahun).</p>
+      </div>
+      <div class="comic-box">
+        <span class="comic-tag">Penjaga Hebat</span>
+        <div class="comic-art alt">🛡️</div>
+        <p style="font-size:0.85rem; font-weight:700;">Datuknya <strong>Abdul Muttalib</strong> menjaga selama <strong>2 tahun</strong>. Selepas datuknya wafat, bapa saudaranya <strong>Abu Talib</strong> menjaga nabi. Isteri pertama baginda ialah <strong>Siti Khadijah</strong>.</p>
+      </div>
+    </div>
+
     <div class="tip-box" id="tip-3">
       <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>💡 <strong>Kronologi Penjagaan:</strong> Bapa wafat sebelum lahir → Ibu wafat umur 6 tahun → Datuk (Abdul Muttalib) jaga selama <strong>2 tahun</strong> (sehingga umur 8 tahun) → Bapa Saudara (Abu Talib) ambil alih.</p>
+      <p>Turutan penjaga nabi: <strong>Ibu (hingga umur 6) ➔ Datuk (pelihara selama 2 tahun hingga umur 8) ➔ Bapa Saudara (Abu Talib)</strong>. Isteri kesayangan pertama ialah usahawan hebat, <strong>Siti Khadijah</strong>!</p>
     </div>
-    
+
     <div class="panel-nav">
       <button class="nav-back-btn" onclick="prevPanel(3)">←</button>
       <div class="nav-center">
         <button class="btn-tak" onclick="showTip(3)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(3)">🎯 3 Soalan Kuiz</button>
+        <button class="btn-faham" onclick="startPanelQuiz(3)">✅ Sedia untuk 3 Soalan</button>
       </div>
     </div>
   </div>
@@ -601,26 +667,39 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
         <div class="ustaz-label">USTAZ</div>
       </div>
       <div class="speech-bubble">
-        Baginda wafat selepas menyempurnakan seluruh amanah dakwah Islamiah. Tarikh kewafatannya sangat unik! 🕌
+        Perjuangan menegakkan Islam selesai dengan jayanya. Baginda wafat dan meninggalkan legasi warisan yang agung untuk kita! 🕌
       </div>
     </div>
-    <div class="info-box">
-      📅 <span class="strong">Tarikh Wafat:</span> Isnin, 12 Rabiulawal, Tahun 11 Hijrah<br/>
-      🗓️ <span class="strong">Bersamaan:</span> 632 Masihi<br/>
-      🎂 <span class="strong">Usia Wafat:</span> 63 tahun<br/>
-      🕌 <span class="strong">Makam Mulia:</span> Masjid Nabawi, Madinah Al-Munawwarah
+
+    <div class="comic-grid two-cols">
+      <div class="comic-box">
+        <span class="comic-tag">Masa Kewafatan</span>
+        <div class="comic-art">🌙</div>
+        <div class="info-box" style="margin:0; font-size:0.85rem;">
+          <span class="strong">Tarikh Wafat:</span> 12 Rabiulawal, 11 Hijrah<br/>
+          <span class="strong">Tahun Masihi:</span> 632 Masihi<br/>
+          <span class="strong">Usia Wafat:</span> 63 Tahun
+        </div>
+      </div>
+      <div class="comic-box">
+        <span class="comic-tag">Makam Suci</span>
+        <div class="comic-art alt">🕌</div>
+        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">Baginda dimakamkan di perkarangan bilik isteri baginda, Siti Aisyah, yang kini berada di dalam **Masjid Nabawi, Madinah**!</p>
+      </div>
     </div>
-    
+
+    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:12px 0; text-align:center;">Sangat menakjubkan! Hari lahir dan hari wafat nabi adalah **SAMA** iaitu pada 12 Rabiulawal!</p>
+
     <div class="tip-box" id="tip-4">
       <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>💡 <strong>Fakta Istimewa:</strong> Tarikh lahir dan tarikh wafat Nabi SAW adalah <strong>SAMA</strong> iaitu 12 Rabiulawal hari Isnin! Baginda hidup selama 63 tahun.</p>
+      <p>Ingat nombor matematik fintech ini: Umur hayat nabi ialah <strong>63 tahun</strong>, dan baginda wafat pada tahun <strong>632 Masihi</strong> di kota suci <strong>Madinah</strong>. Tarikhnya sama dengan hari lahir!</p>
     </div>
-    
+
     <div class="panel-nav">
       <button class="nav-back-btn" onclick="prevPanel(4)">←</button>
       <div class="nav-center">
         <button class="btn-tak" onclick="showTip(4)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="startPanelQuiz(4)">🎯 3 Soalan Kuiz</button>
+        <button class="btn-faham" onclick="startPanelQuiz(4)">✅ Sedia untuk 3 Soalan</button>
       </div>
     </div>
   </div>
@@ -628,7 +707,7 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
   <div class="panel" id="panel-5">
     <div class="panel-header">
       <div class="panel-num">5</div>
-      <h3>📋 Ringkasan Eksekutif Biodata</h3>
+      <h3>📋 Papan Juara Ringkasan Biodata</h3>
     </div>
     <div class="ustaz-row">
       <div class="ustaz-avatar">
@@ -636,43 +715,47 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
         <div class="ustaz-label">USTAZ</div>
       </div>
       <div class="speech-bubble">
-        Hebat! Jom lihat ringkasan penuh biodata premium Nabi kita sebelum menamatkan sesi pembelajaran ini! 🎉
+        Tahniah sarjan cilik! Kamu telah sampai ke destinasi terakhir pengembaraan. Jom lihat kad akaun ringkasan eksklusif kamu! 🎉
       </div>
     </div>
-    <div class="info-box">
-      👶 <span class="strong">Lahir:</span> 12 Rabiulawal 570M (Tahun Gajah), Makkah.<br/>
-      📛 <span class="strong">Nama & Maksud:</span> Muhammad (Yang Terpuji) · Kabilah Quraisy.<br/>
-      👨‍👩‍👦 <span class="strong">Keluarga:</span> Abdullah (Bapa), Aminah (Ibu), Abdul Muttalib (Datuk - jaga 2 tahun), Abu Talib (Bapa Saudara), Khadijah (Isteri Pertama).<br/>
-      🕌 <span class="strong">Wafat:</span> 12 Rabiulawal 11H (63 tahun), Madinah.
+
+    <div class="comic-box" style="border: 2px solid var(--gold); background: rgba(212,160,23,0.03);">
+      <span class="comic-tag" style="background:#2ecc71; color:#fff;">Status: Selesai Belajar</span>
+      <div class="info-box" style="font-size:0.88rem; line-height:1.8;">
+        👶 <span class="strong">Lahir:</span> 12 Rabiulawal 571M (Tahun Gajah) @ Makkah<br/>
+        📛 <span class="strong">Nama:</span> Muhammad (Yang Terpuji) · Kabilah Quraisy Arab<br/>
+        👨‍👩‍👦 <span class="strong">Keluarga:</span> Abdullah (Bapa), Aminah (Ibu), Abdul Muttalib (Datuk - Jaga 2 tahun), Abu Talib (Bapa Saudara), Khadijah (Isteri 1)<br/>
+        🕌 <span class="strong">Wafat:</span> 12 Rabiulawal 11H / 632M (Usia 63 Tahun) @ Madinah
+      </div>
     </div>
-    
+
     <div class="tip-box" id="tip-5">
       <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
-      <p>💡 <strong>Rumusan Pantas:</strong> Gunakan formula **LNAGMW** (Lahir, Nama, Ahli keluarga, Gelaran, Makam, Wafat) untuk ingat keseluruhan topik 1 ini dengan cemerlang!</p>
+      <p>Gunakan formula super **LNAGMW**: <strong>L</strong>ahir Rabiulawal, <strong>N</strong>ama Terpuji, <strong>A</strong>bdullah bapa baginda, <strong>G</strong>ajah nama tahunnya, <strong>M</strong>akkah tempat lahir, <strong>W</strong>afat di Madinah! 🏆</p>
     </div>
-    
+
     <div class="panel-nav">
       <button class="nav-back-btn" onclick="prevPanel(5)">←</button>
       <div class="nav-center">
         <button class="btn-tak" onclick="showTip(5)">💡 Nota Ringkas Mudah Faham</button>
-        <button class="btn-faham" onclick="showDone()">✅ Selesai!</button>
+        <button class="btn-faham" onclick="showDone()">🏆 Tamatkan Pembelajaran</button>
       </div>
     </div>
   </div>
 
   <div class="done-panel" id="donePanel">
-    <span class="done-emoji">🎉</span>
-    <h2>Tahniah! Kamu Berjaya!</h2>
-    <p>Kamu telah selesai mempelajari keseluruhan Biodata Nabi SAW bersama KAFA SKSG. Bagus sekali!</p>
+    <span class="done-emoji">🥇</span>
+    <h2>Tahniah! Akaun Ilmu Anda Telah Ditambah!</h2>
+    <p>Kamu berjaya menguasai semua 4 modul soalan komik sirah interaktif ini dengan cemerlang bersama KAFA SKSG!</p>
     <div class="done-btns">
-      <button class="btn-reset" onclick="resetAll()">🔄 Ulang Nota</button>
+      <button class="btn-reset" onclick="resetAll()">🔄 Ulang Semak Nota</button>
     </div>
   </div>
 
   <div class="quiz-section" id="quizSection">
     <div class="quiz-header">
-      <span class="quiz-title" id="quizPanelTitle">🎮 Kuiz Mini — Panel</span>
-      <span class="quiz-score-label">Betul: <span id="scoreDisplay">0</span>/3</span>
+      <span class="quiz-title" id="quizPanelTitle">🎮 Misi Kuiz Digital — Panel</span>
+      <span class="quiz-score-label">Skor Dompet: <span id="scoreDisplay" style="color:var(--gold-bright);">0</span></span>
       <span class="quiz-q-label">Soalan <span id="qNumDisplay">1</span>/3</span>
     </div>
     <div class="quiz-card" id="quizCard">
@@ -688,12 +771,12 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
       <span class="popup-icon" id="popupIcon">🌟</span>
       <div class="popup-title" id="popupTitle">Masha Allah!</div>
       <div class="popup-arabic" id="popupArabic">ما شاء الله</div>
-      <div class="popup-msg" id="popupMsg">Jawapan kamu betul!</div>
+      <div class="popup-msg" id="popupMsg">Jawapan kamu sangat tepat! Token ganjaran ilmu ditambah!</div>
       
-      <div class="popup-btns-container">
-        <button class="btn-popup-sub" onclick="actionUlangNota()">📖 Ulang Nota</button>
-        <button class="btn-popup-sub" onclick="actionUlangSoalan()">🔄 Ulang Soalan</button>
-        <button class="btn-popup" id="btnPopupNext" onclick="actionSeterusnya()">✨ Seterusnya</button>
+      <div class="popup-actions-grid">
+        <button class="btn-popup-secondary" onclick="actionUlangNota()">📖 Ulang Nota</button>
+        <button class="btn-popup-secondary" onclick="actionUlangSoalan()">🔄 Ulang Soalan</button>
+        <button class="btn-popup-main" id="btnPopupNext" onclick="actionSeterusnya()">✨ Seterusnya</button>
       </div>
     </div>
   </div>
@@ -710,41 +793,40 @@ em{color:var(--gold);font-style:normal;font-weight:700;}
 const TOTAL = 5;
 let currentPanel = 1;
 
-// Database Bank Soalan mengikut pecahan keperluan pengguna bagi setiap Panel (3 Soalan setiap satu)
+// Database Bank Soalan mengikut ketetapan 3 soalan bagi setiap panel nota
 const panelQuestions = {
   1: [
-    {q:"Pada tarikh berapakah Nabi Muhammad SAW dilahirkan?", opts:["10 Muharram","12 Rabiulawal","1 Syawal","27 Rejab"], ans:1, exp:"Betul! Nabi SAW dilahirkan pada hari Isnin, 12 Rabiulawal."},
-    {q:"Apakah nama tahun sempena kelahiran Nabi SAW?", opts:["Tahun Hijrah","Tahun Gajah","Tahun Burung Ababil","Tahun Masihi"], ans:1, exp:"Tepat! Dinatikan Tahun Gajah sempena serangan Abrahah."},
-    {q:"Di manakah kota tempat kelahiran Nabi Muhammad SAW?", opts:["Madinah","Makkah Al-Mukarramah","Taif","Syams"], ans:1, exp:"Hebat! Baginda dilahirkan di Kota Makkah Al-Mukarramah."}
+    {q:"Pada tarikh berapakah Nabi Muhammad SAW dilahirkan?", opts:["10 Muharram","12 Rabiulawal","1 Syawal","27 Rejab"], ans:1, exp:"Nabi SAW dilahirkan pada hari Isnin yang penuh rahmat, bersamaan 12 Rabiulawal!"},
+    {q:"Apakah nama gelaran tahun sempena peristiwa gajah menyerang Kaabah?", opts:["Tahun Ababil","Tahun Masihi","Tahun Gajah","Tahun Hijrah"], ans:2, exp:"Tepat! Dipanggil Tahun Gajah kerana tentera raja Abrahah menunggang gajah besar!"},
+    {q:"Di manakah kota suci tempat kelahiran mulia Nabi kita?", opts:["Madinah Al-Munawwarah","Kota Makkah Al-Mukarramah","Kota Taif","Negeri Syam"], ans:1, exp:"Hebat! Baginda dilahirkan di dalam Kota Makkah Al-Mukarramah."}
   ],
   2: [
-    {q:"Apakah maksud nama penuh baginda 'Muhammad'?", opts:["Yang Jujur","Yang Bijaksana","Yang Terpuji","Yang Pemurah"], ans:2, exp:"Betul sekali! Nama Muhammad membawa maksud Yang Terpuji."},
-    {q:"Nabi Muhammad SAW dilahirkan daripada kabilah / bangsa apa?", opts:["Kabilah Quraisy","Kabilah Aus","Kabilah Khazraj","Kaum Tsamud"], ans:0, exp:"Hebat! Baginda berasal daripada kabilah Quraisy, bangsa Arab."},
-    {q:"Apakah gelaran nabi yang bermaksud 'Yang Amanah'?", opts:["As-Sadiq","Al-Amin","Khatamul Anbiya'","Rahmatan lil Alamin"], ans:1, exp:"Al-Amin bermaksud Yang Amanah, gelaran penduduk Makkah kepada baginda."}
+    {q:"Apakah maksud sebenar bagi nama indah penuh barakah 'Muhammad'?", opts:["Yang Bijaksana","Yang Terpuji","Yang Jujur","Yang Gagah Perkasa"], ans:1, exp:"Masha Allah! Nama agung Muhammad bermaksud Yang Terpuji."},
+    {q:"Nabi Muhammad SAW dilahirkan daripada bangsa Arab keturunan kabilah apa?", opts:["Kabilah Aus","Kabilah Quraisy","Kabilah Khazraj","Kaum Tsamud"], ans:1, exp:"Betul! Baginda daripada keturunan kabilah Quraisy, iaitu suku kaum yang paling dihormati!"},
+    {q:"Apakah gelaran amanah yang diberikan oleh masyarakat Makkah kepada nabi?", opts:["As-Sadiq","Al-Amin","Khatamul Anbiya'","Rahmatan lil Alamin"], ans:1, exp:"Al-Amin bermaksud Yang Amanah. Baginda tidak pernah sekali pun mungkir janji!"}
   ],
   3: [
-    {q:"Siapakah nama isteri pertama Nabi Muhammad SAW?", opts:["Siti Aisyah RA","Siti Khadijah RA","Siti Aminah","Siti Fatimah"], ans:1, exp:"Betul! Isteri pertama baginda ialah Siti Khadijah binti Khuwailid."},
-    {q:"Berapakah tahun Nabi SAW dipelihara oleh datuknya (Abdul Muttalib) selepas ibunya wafat?", opts:["1 Tahun","2 Tahun","5 Tahun","6 Tahun"], ans:1, exp:"Tepat sekali! Datuk baginda memelihara nabi selama 2 tahun sebelum wafat."},
-    {q:"Siapakah bapa saudara yang menjaga Nabi selepas datuk baginda wafat?", opts:["Abu Lahab","Abu Talib","Hamzah","Abbas"], ans:1, exp:"Masha Allah betul! Abu Talib menjaga nabi dengan penuh kasih sayang."}
+    {q:"Siapakah nama penuh bapa saudara nabi yang memelihara nabi selepas datuknya wafat?", opts:["Abu Lahab","Abu Talib","Hamzah bin Abdul Muttalib","Abbas bin Abdul Muttalib"], ans:1, exp:"Betul! Bapa saudara baginda yang sangat pelindung ialah Abu Talib."},
+    {q:"Berapakah tahun lamanya nabi sempat dipelihara oleh datuknya (Abdul Muttalib)?", opts:["1 Tahun","2 Tahun","4 Tahun","5 Tahun"], ans:1, exp:"Tepat! Datuk baginda memelihara nabi selama 2 tahun sahaja (iaitu dari umur 6 hingga umur 8 tahun)."},
+    {q:"Siapakah nama wanita agung yang menjadi isteri pertama Nabi Muhammad SAW?", opts:["Siti Aisyah RA","Siti Khadijah binti Khuwailid","Siti Aminah","Siti Fatimah"], ans:1, exp:"Maju jaya! Isteri pertama yang sentiasa menyokong dakwah nabi ialah Siti Khadijah RA."}
   ],
   4: [
-    {q:"Berapakah umur baginda Nabi Muhammad SAW ketika wafat?", opts:["60 tahun","62 tahun","63 tahun","65 tahun"], ans:2, exp:"Betul! Nabi SAW wafat ketika mencapai usia 63 tahun."},
-    {q:"Di manakah terletaknya makam/tempat dikebumikan Nabi SAW?", opts:["Masjidil Haram, Makkah","Masjid Nabawi, Madinah","Masjid Al-Aqsa","Masjid Quba"], ans:1, exp:"Tepat! Makam nabi kini berada di dalam perkarangan Masjid Nabawi, Madinah."},
-    {q:"Apakah keunikan tarikh kewafatan Nabi SAW jika dibandingkan dengan tarikh lahir baginda?", opts:["Tarikh yang berbeza jauh","Tarikh yang sama (12 Rabiulawal)","Wafat pada bulan Ramadhan","Wafat pada hari Jumaat"], ans:1, exp:"Masha Allah pintar! Nabi lahir dan wafat pada tarikh yang sama iaitu 12 Rabiulawal."}
+    {q:"Berapakah umur baginda Nabi Muhammad SAW ketika wafat?", opts:["60 tahun","61 tahun","63 tahun","65 tahun"], ans:2, exp:"Hebat! Nabi SAW wafat ketika berusia genap 63 tahun dengan tugasan risalah yang sempurna."},
+    {q:"Di manakah lokasi makam kubur suci Nabi Muhammad SAW?", opts:["Masjidil Haram, Makkah","Masjid Nabawi, Madinah","Masjid Al-Aqsa, Palestin","Masjid Quba"], ans:1, exp:"Betul! Makam nabi yang mulia terletak di dalam kawasan Masjid Nabawi di kota Madinah!"},
+    {q:"Apakah persamaan unik antara tarikh lahir dan tarikh wafat Nabi SAW?", opts:["Berlaku pada bulan Ramadhan","Tarikhnya adalah sama (12 Rabiulawal)","Kedua-duanya jatuh pada hari Jumaat","Tiada persamaan tarikh"], ans:1, exp:"Subhanallah bijaknya! Nabi SAW lahir dan wafat pada hari dan tarikh yang sama: Isnin, 12 Rabiulawal!"}
   ]
 };
 
 const motivasiKoleksi = [
-  {icon:"🌟", title:"Masha Allah!", arabic:"ما شاء الله", msg:"Luar biasa! Pilihan jawapan kamu sangat mantap. Teruskan kecemerlangan!"},
-  {icon:"⭐", title:"Subhanallah!", arabic:"سبحان الله", msg:"Pintar sekali! Kamu memahami sirah nabawiyah dengan sangat baik."},
-  {icon:"🕌", title:"Alhamdulillah!", arabic:"الحمد لله", msg:"Syukur! Ilmu fintech sirah kamu semakin meningkat tajam!"},
-  {icon:"💫", title:"Barakallah!", arabic:"بارك الله فيك", msg:"Berkat usaha gigih kamu, jawapan yang dipilih tepat sekali!"}
+  {icon:"🏆", title:"Masha Allah!", arabic:"ما شاء الله", msg:"Jawapan kamu super tepat! Simpanan mata akaun kebijaksanaan kamu semakin bertambah!"},
+  {icon:"💎", title:"Subhanallah!", arabic:"سبحان الله", msg:"Pelajar elit gred premium! Kamu berjaya menembusi soalan fintech komik ini dengan senang!"},
+  {icon:"🕌", title:"Alhamdulillah!", arabic:"الحمد لله", msg:"Syukur! Pengetahuan sirah kamu berada pada tahap yang sangat tinggi dan profesional!"},
+  {icon:"⚡", title:"Barakallah!", arabic:"بارك الله فيك", msg:"Semoga Allah memberkati pelaburan ilmu berharga kamu hari ini. Teruskan!"}
 ];
 
 let activeQuizPanel = null;
 let currentQIdx = 0;
 let panelScore = 0;
-let lastSelectedAns = null;
 
 function showPanel(n) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -789,13 +871,13 @@ function resetAll() {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// SISTEM KUIZ BARU YANG BERKAITAN TERUS PADA SETIAP PANEL
+// BARU: LOGIK SISTEM KUIZ 3 SOALAN SETIAP PANEL SEPERTI PERMINTAAN
 function startPanelQuiz(panelNum) {
   activeQuizPanel = panelNum;
   currentQIdx = 0;
   panelScore = 0;
   
-  document.getElementById('quizPanelTitle').textContent = `🎮 Kuiz Mini — Panel ${panelNum}`;
+  document.getElementById('quizPanelTitle').textContent = `🎯 Misi Kuiz Komik — Panel ${panelNum}`;
   document.getElementById('quizSection').classList.add('active');
   
   buildQuizDots();
@@ -835,7 +917,6 @@ function renderQuestion() {
     optsContainer.appendChild(btn);
   });
   
-  // Update dots state
   for(let i=0; i<3; i++) {
     const dot = document.getElementById('pdot-' + i);
     if(dot) {
@@ -862,26 +943,24 @@ function checkPanelAnswer(chosenIdx) {
   
   document.getElementById('scoreDisplay').textContent = panelScore;
   
-  // Set Popup content berasaskan motivasi rawak
+  // Ambil kad reka bentuk kata motivasi rawak
   const mot = motivasiKoleksi[Math.floor(Math.random() * motivasiKoleksi.length)];
   document.getElementById('popupIcon').textContent = isCorrect ? mot.icon : "💪";
-  document.getElementById('popupTitle').textContent = isCorrect ? mot.title : "Jangan Putus Asa!";
-  document.getElementById('popupArabic').textContent = isCorrect ? mot.arabic : "حاول lagi";
-  document.getElementById('popupMsg').textContent = isCorrect ? mot.msg : `Jawapan kurang tepat. Jangan risau, jom cuba lagi! \n\nℹ️ Info: ${qData.exp}`;
+  document.getElementById('popupTitle').textContent = isCorrect ? mot.title : "Sikit Lagi!";
+  document.getElementById('popupArabic').textContent = isCorrect ? mot.arabic : "حاول مجددا";
+  document.getElementById('popupMsg').textContent = isCorrect ? mot.msg : `Jawapan kurang tepat. Jangan putus asa, jom kuasai semula!\n\n💡 Info Penting: ${qData.exp}`;
   
-  // Ubah suai teks butang utama mengikut bilangan soalan
-  const nextBtnPopup = document.getElementById('btnPopupNext');
+  const mainBtnPopup = document.getElementById('btnPopupNext');
   if(currentQIdx < 2) {
-    nextBtnPopup.textContent = "✨ Soalan Seterusnya";
+    mainBtnPopup.textContent = "✨ Seterusnya";
   } else {
-    nextBtnPopup.textContent = "✨ Selesai Sesi Kuiz";
+    mainBtnPopup.textContent = "✨ Selesai Kuiz Modul";
   }
   
-  // Paparkan Popup Kad Motivasi Premium
   document.getElementById('popup').classList.add('active');
 }
 
-// Tindakan Butang Popup Kad
+// Tindakan interaksi Butang pada Premium Fintech Popup
 function actionUlangNota() {
   closePopup();
   document.getElementById('quizSection').classList.remove('active');
@@ -899,12 +978,11 @@ function actionSeterusnya() {
     currentQIdx++;
     renderQuestion();
   } else {
-    // Selesai 3 soalan bagi panel tersebut, bawa ke panel seterusnya secara automatik
     document.getElementById('quizSection').classList.remove('active');
     if (activeQuizPanel < 4) {
       nextPanel(activeQuizPanel);
     } else {
-      showPanel(5); // Terus pergi ke panel ringkasan penutup
+      showPanel(5); // Terus bawa ke bahagian rumusan skor eksekutif panel 5
     }
   }
 }

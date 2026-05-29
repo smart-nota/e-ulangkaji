@@ -215,37 +215,6 @@ body{
    ══════════════════════════════════ */
 .final-wrap{animation:fadeUp 0.5s ease;}
 
-/* NAME INPUT MODAL */
-.name-modal-overlay{
-  position:fixed;inset:0;background:rgba(10,20,40,0.7);
-  display:flex;align-items:center;justify-content:center;
-  z-index:10000;padding:20px;backdrop-filter:blur(6px);
-  animation:fadeUp 0.3s ease;
-}
-.name-modal{
-  background:#fff;border-radius:20px;padding:28px 24px;
-  width:100%;max-width:380px;box-shadow:0 24px 64px rgba(10,20,40,0.4);
-  text-align:center;
-}
-.name-modal-icon{font-size:2.8rem;margin-bottom:10px;}
-.name-modal h3{font-family:'Baloo 2',sans-serif;font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
-.name-modal p{font-size:0.82rem;color:#64748b;margin-bottom:18px;line-height:1.4;}
-.name-input{
-  width:100%;padding:13px 16px;border:2px solid #e2e8f0;
-  border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;
-  color:var(--navy);outline:none;transition:border 0.2s;margin-bottom:14px;
-  text-align:center;letter-spacing:0.3px;
-}
-.name-input:focus{border-color:var(--navy3);box-shadow:0 0 0 3px rgba(37,99,168,0.12);}
-.name-modal-btn{
-  width:100%;padding:13px;background:linear-gradient(135deg,var(--navy2),var(--navy3));
-  color:#fff;border:none;border-radius:12px;font-family:'Baloo 2',sans-serif;
-  font-size:1rem;font-weight:800;cursor:pointer;transition:all 0.2s;
-  box-shadow:0 4px 16px rgba(37,99,168,0.3);
-}
-.name-modal-btn:hover{transform:translateY(-2px);}
-.name-modal-btn:disabled{background:#94a3b8;box-shadow:none;transform:none;cursor:not-allowed;}
-
 /* PREMIUM FINTECH CARD */
 .fintech-card{
   position:relative;overflow:hidden;
@@ -366,41 +335,6 @@ body{
 .attempt-dot.used{background:var(--navy2);border-color:var(--navy2);color:#fff;}
 .attempt-dot.current{background:var(--gold);border-color:var(--gold);color:var(--navy);}
 
-/* Submit section */
-.submit-section{margin-bottom:14px;}
-.submit-name-row{
-  display:flex;align-items:center;gap:8px;
-  background:var(--white);border:2px solid #e2e8f0;
-  border-radius:14px;padding:10px 14px;margin-bottom:10px;
-}
-.submit-name-icon{font-size:1.1rem;}
-.submit-name-input{
-  flex:1;border:none;outline:none;
-  font-family:'Nunito',sans-serif;font-size:0.92rem;font-weight:700;
-  color:var(--navy);background:transparent;
-}
-.submit-name-input::placeholder{color:#94a3b8;font-weight:600;}
-
-.hantar-btn{
-  width:100%;padding:15px;border:none;border-radius:14px;
-  font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;
-  cursor:pointer;transition:all 0.25s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  background:linear-gradient(135deg,#f59e0b,#fbbf24);
-  color:var(--navy);
-  box-shadow:0 6px 24px rgba(245,158,11,0.4),0 2px 8px rgba(245,158,11,0.2);
-  letter-spacing:0.3px;position:relative;overflow:hidden;
-}
-.hantar-btn::before{
-  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
-  animation:btnShine 2.5s ease-in-out infinite;
-}
-@keyframes btnShine{0%,100%{left:-100%}50%{left:120%}}
-.hantar-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,11,0.5);}
-.hantar-btn:disabled{background:#94a3b8;box-shadow:none;transform:none;cursor:not-allowed;}
-.hantar-btn:disabled::before{display:none;}
-
 /* LOCKED STATE */
 .locked-overlay{
   background:linear-gradient(135deg,#d1fae5,#ecfdf5);
@@ -472,13 +406,188 @@ body{
 /* Sending state */
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(15,39,70,0.2);border-top-color:var(--navy);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;}
+
+/* ══════════════════════════════════
+   🔔 READY POPUP — Premium Notification Card
+   ══════════════════════════════════ */
+.popup-overlay{
+  position:fixed;inset:0;
+  background:rgba(10,20,40,0.82);
+  display:flex;align-items:center;justify-content:center;
+  z-index:99999;padding:20px;
+  backdrop-filter:blur(8px);
+  animation:fadeUp 0.35s ease;
+}
+.popup-card{
+  background:#fff;border-radius:24px;
+  width:100%;max-width:400px;
+  box-shadow:0 32px 80px rgba(10,20,40,0.45),0 0 0 1px rgba(245,158,11,0.15);
+  overflow:hidden;
+  animation:popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popIn{from{opacity:0;transform:scale(0.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.popup-header{
+  background:linear-gradient(135deg,#0a1628,#0f2746,#1a3c5e);
+  padding:24px 24px 20px;text-align:center;position:relative;overflow:hidden;
+}
+.popup-header::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,0.01) 3px,rgba(255,255,255,0.01) 6px);
+}
+.popup-gold-line{
+  height:3px;
+  background:linear-gradient(90deg,#f59e0b,#fbbf24,#fde68a,#fbbf24,#f59e0b);
+  background-size:200% 100%;
+  animation:goldShimmer 2.5s ease-in-out infinite;
+  margin-bottom:0;
+}
+.popup-icon{font-size:2.8rem;margin-bottom:10px;position:relative;z-index:1;display:block;}
+.popup-title{
+  font-family:'Baloo 2',sans-serif;font-size:1.15rem;font-weight:800;
+  color:#fff;margin-bottom:4px;position:relative;z-index:1;
+}
+.popup-subtitle{
+  font-size:0.72rem;color:rgba(255,255,255,0.5);position:relative;z-index:1;
+  font-weight:600;letter-spacing:0.8px;text-transform:uppercase;
+}
+.popup-body{padding:22px 24px 24px;}
+.popup-rules{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.popup-rule{
+  display:flex;align-items:flex-start;gap:12px;
+  background:#f8faff;border:1.5px solid #e2e8f0;border-radius:12px;
+  padding:12px 14px;
+}
+.popup-rule-icon{
+  width:32px;height:32px;min-width:32px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+}
+.popup-rule-icon.blue{background:#dbeafe;}
+.popup-rule-icon.gold{background:#fef3c7;}
+.popup-rule-icon.red{background:#fee2e2;}
+.popup-rule-icon.green{background:#d1fae5;}
+.popup-rule-text{flex:1;}
+.popup-rule-title{font-size:0.82rem;font-weight:800;color:var(--navy);line-height:1.2;}
+.popup-rule-sub{font-size:0.72rem;color:#64748b;margin-top:2px;line-height:1.3;}
+
+/* Class + Name Selector in popup */
+.popup-select-group{margin-bottom:20px;}
+.popup-select-label{font-size:0.75rem;font-weight:800;color:var(--navy2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;}
+.popup-select{
+  width:100%;padding:12px 14px;
+  border:2px solid #e2e8f0;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:0.92rem;font-weight:700;
+  color:var(--navy);background:#fff;outline:none;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%230f2746' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;
+  padding-right:40px;cursor:pointer;transition:border 0.2s;
+}
+.popup-select:focus{border-color:var(--navy3);box-shadow:0 0 0 3px rgba(37,99,168,0.1);}
+.popup-select.error{border-color:var(--red);}
+
+.popup-btn-row{display:flex;gap:10px;}
+.popup-btn-ready{
+  flex:2;padding:14px;border:none;border-radius:14px;
+  font-family:'Baloo 2',sans-serif;font-size:1rem;font-weight:800;
+  cursor:pointer;transition:all 0.25s;
+  background:linear-gradient(135deg,#f59e0b,#fbbf24);
+  color:var(--navy);
+  box-shadow:0 6px 24px rgba(245,158,11,0.4);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.popup-btn-ready::before{
+  content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+  animation:btnShine 2s ease-in-out infinite;
+}
+@keyframes btnShine{0%,100%{left:-100%}50%{left:120%}}
+.popup-btn-ready:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,158,11,0.5);}
+
+.popup-btn-cancel{
+  flex:1;padding:14px;border:2px solid #e2e8f0;border-radius:14px;
+  font-family:'Baloo 2',sans-serif;font-size:0.9rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;background:#fff;color:#64748b;
+}
+.popup-btn-cancel:hover{background:#f0f4ff;border-color:var(--navy3);color:var(--navy);}
+
+/* Name Select dropdown shimmer effect */
+.popup-select-wrap{position:relative;}
+.popup-select-wrap::after{
+  content:'👤';position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  font-size:0.9rem;pointer-events:none;
+}
+.popup-select.has-icon{padding-left:36px;}
 </style>
 </head>
 <body>
 
+<!-- ═══════════════════════════════════
+     READY POPUP
+═══════════════════════════════════ -->
+<div class="popup-overlay" id="readyPopup">
+  <div class="popup-card">
+    <div class="popup-gold-line"></div>
+    <div class="popup-header">
+      <span class="popup-icon">📋</span>
+      <div class="popup-title">Sebelum Mula Bermain</div>
+      <div class="popup-subtitle">Sila baca maklumat penting</div>
+    </div>
+    <div class="popup-body">
+      <div class="popup-rules">
+        <div class="popup-rule">
+          <div class="popup-rule-icon blue">📊</div>
+          <div class="popup-rule-text">
+            <div class="popup-rule-title">Markah Akan Dicatat</div>
+            <div class="popup-rule-sub">Keputusan anda akan dihantar ke rekod guru secara automatik.</div>
+          </div>
+        </div>
+        <div class="popup-rule">
+          <div class="popup-rule-icon gold">🔄</div>
+          <div class="popup-rule-text">
+            <div class="popup-rule-title">3 Kali Percubaan Sahaja</div>
+            <div class="popup-rule-sub">Anda diberi maksimum 3 peluang untuk menjawab permainan ini.</div>
+          </div>
+        </div>
+        <div class="popup-rule">
+          <div class="popup-rule-icon red">🔒</div>
+          <div class="popup-rule-text">
+            <div class="popup-rule-title">Topik Akan Dikunci</div>
+            <div class="popup-rule-sub">Selepas klik <strong>Hantar</strong> di akhir permainan, topik ini akan dikunci automatik.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kelas selector -->
+      <div class="popup-select-group">
+        <div class="popup-select-label">Pilih Kelas</div>
+        <select class="popup-select" id="kelasSelect" onchange="loadNamaOptions()">
+          <option value="">— Pilih kelas anda —</option>
+        </select>
+      </div>
+
+      <!-- Nama selector -->
+      <div class="popup-select-group">
+        <div class="popup-select-label">Pilih Nama Anda</div>
+        <div class="popup-select-wrap">
+          <select class="popup-select has-icon" id="namaSelect" disabled>
+            <option value="">— Pilih kelas dahulu —</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="popup-btn-row">
+        <button class="popup-btn-cancel" onclick="batalPermainan()">❌ Tidak Bersedia</button>
+        <button class="popup-btn-ready" onclick="mulaBermain()">✅ Saya Bersedia!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Top Bar -->
 <div class="topbar" id="topbar">
-  <a href="https://e-ulangkaji-kafa.pages.dev/game-kafa" class="back-btn">← Kembali</a>
+  <a href="javascript:void(0)" onclick="goSubjekTopik()" class="back-btn">← Kembali</a>
   <div class="game-info">
     <h2>Biodata Nabi Muhammad ﷺ</h2>
     <p>Sirah • 3 Tahap • 15 Soalan</p>
@@ -541,8 +650,73 @@ body{
 // ═══════════════════════════════════════════════════
 // CONFIG
 // ═══════════════════════════════════════════════════
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwDnalkeOQ_g9eYtKFlaIRsCbx6WG7LK1X1pA6BidjHckNVcIk5CCT7kytIKxQDFXebfQ/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwldBkrKrti5bk72GEqnPm4-GUc2T1hv32HjBEBHjimMtZDVh1Qv3oKACQ4W-PIHFbffA/exec';
 const MAX_ATTEMPTS = 3;
+const HOME_URL = '../../index.html'; // Ruang subjek & topik permainan
+
+// ═══════════════════════════════════════════════════
+// DATA PELAJAR (dari data.js — disalin terus)
+// ═══════════════════════════════════════════════════
+const KELAS_DATA = {
+  "2 Saidina Abu Bakar": [
+    "ADAM HARIZ BIN RIDZUAN","ADRIANA DELISHA BINTI MOHD YUSOFF","AHMAD ADAM HAIKAL BIN AHMAD HAMIDI",
+    "AHMAD YUSUFF DAYYAN BIN MOHD NAZARIMIE","AQEEF ANAQI BIN ABDUL 'AZIM","AQEEF BIN MOHAMAD HISYAMUDDIN",
+    "AMIR BASYAR BIN MUHAMAD RAMZAN AI","AUFA NAURA BINTI MOHAMAD FAIZ","AYYUB AFFAN BIN AHMAD NAJIE",
+    "FARISHA IRSA BINTI MOHD IKHWAN HADI","FAYYADH IFFAT BIN ISMANDUDDIN","MOHAMMAD HARRAZ ZIKRI BIN MOHAMMAD HASRUL",
+    "MUHAMMAD ADRIELL BIN MOHD ARIFFUDDIN","MUHAMMAD AKIF FIKRI BIN MOHD FARID","MUHAMMAD AL FATEH BIN MOHD QUSYAIRI",
+    "MUHAMMAD ALY RIZQIN BIN MOHD SHARUL HUSNI","MUHAMMAD DANISH HAIKAL BIN ABDULLAH","MUHAMMAD FIRAS BIN MOHD AFIZU",
+    "MUHAMMAD HAKIM BIN MOHD HARIZAM","MUHAMMAD HAKIM BIN MOHD HASBULLAH","MUHAMMAD HAZIM BIN AZMAN",
+    "MUHAMMAD NAUFAL ZAIM BIN MOHAMAD SUZUWAN","MUHAMMAD UMAR AFFAN BIN ABDUL MUIZ","NUR AAMINA BINTI MUHAMMAD ISMAIL",
+    "NUR AISYAH MEDINA BINTI MOHD AFENDI","NUR AIRIS MEDINA BINTI MOHD ZARIQ IZUAN","NUR AUFA NABIHAH BINTI MOHAMAD NAZIRUL",
+    "NUR FAQEEHA SUFIYA BINTI MOHD FADZLY","NUR HUSNIA ZAHRA BINTI MOHD HANAFIAH","NUR IZZARA ALEESYA BINTI MOHD RAZIMAN",
+    "NUR MAISARAH BINTI MOHD SHAFIQ","NUR MYA QALESYA BINTI NORAZLIZAM","NUR RAISHA HUMAIRA BINTI AHMAD KAMARUL FITRI",
+    "SYED FARIS AYDEN BIN SAYED MOHD FAIZAL","TUAN AHMAD BAIHAQI BIN TAHMAD SALEHUDDIN","WAN NUR NAURA BINTI WAN AHMAD AZFAR"
+  ],
+  "2 Saidina Umar": [
+    "AAMYERA MEKAYLA BINTI MARZARIZAL","AHMAD IZZ AZRAFF BIN AHMAD ZIYAD","AINUR IZARA ELLYSA BINTI SHARUL IDZWAN",
+    "AJAD NAUFAL BIN MOHD JUNED","ANNUR FAZZLIHA BINTI BIDAYATUL HIDAYAT","AYRA AISYAH BINTI MOHD YUSRI",
+    "HAWA' BINTI MOHD KHAIRUL ANAM","IFFAT AMSYAR BIN BADRUL","LUTH UWAIS BIN ABDUL ALIM",
+    "MOHAMAD ADYAN ASHRAF BIN MOHAMAD IKMAN HAKIM","MOHAMAD AMMAR NAUFAL BIN MOHAMAD AMRAN","MOHAMAD RAYQAL DARWISY BIN MOHAMAD SAFUAN",
+    "MUHAMAD HABIB YUSOF BIN MOHD AZAM","MUHAMMAD AAKIF AMSYAR BIN MOHD RIDZUAN","MUHAMMAD ADAM SYAHIR BIN MOHAMAD NAZRAFLY",
+    "MUHAMMAD ARIQ RIZQI BIN SOBERI","MUHAMMAD AURELL RIZQI BIN MOHD ASRAFF ROSTAM","MUHAMMAD HAIKAL BIN AMIRUDDIN",
+    "MUHAMMAD HUDZAIFAH AL MUQRI BIN MOHD HAZMEER","MUHAMMAD NIYAZ ADAM BIN ABD MOHAMAD @ MOHD NASIR","MUHAMMAD QAYYUM BIN ROSLAN",
+    "MUHAMMAD RAFFI MIKHAEL BIN MOHD SAHRULRIZAL","MUNA FATHIA NAJMIE BINTI MOHD AZMI","NAURA BINTI ANUAR",
+    "NOR DHIA DELISHA ADREENA BINTI MUHAMAD NORMAZUIMAN","NUR ALISYA AZZAHRA BINTI MOHAMMAD ALIF","NUR AYESHA DAMIA BINTI MOHD FITRI",
+    "NURYN IZZATUNNISA BINTI IZAMZAM ZUREH","PUTRA ADEEL WAEZ BIN MOHD FIRDAUS","PUTRA RAYYAN ABEEL BIN HAIREE NIZAM",
+    "RAJA EIDLAN SHAFEEQ ARFAN BIN RAJA EDDY SHARUL EZWAN","RAMADHINA AYRA BINTI ZAMREE","UMAIR KHALISH BIN MOHD KHAIRUL NIZAM",
+    "WAN NADHIF UZAIR BIN WAN TAJUL JAMAL"
+  ],
+  "2 Saidina Uthman": [
+    "ADAM FARIQ BIN ROSDI","AHMAD ANNAS BIN MOHD AZAM","AINUL MARDIYAH BINTI AHMAD ZULHISHAM",
+    "AMINAH KHAWLAH BINTI MOHAMED HILMI","AQIL FARIS BIN AMIRUL AIZAT","DEAN DHAFWATUL AISY BINTI ASMAWI",
+    "MALAIQA SYAHIRAH BINTI MOHD ROSLAN","MUHAMMAD AQMAR BIN AZHAR","MUHAMMAD FAIROZ KAZIM BIN FAIRO KAZMI",
+    "MUHAMMAD HAFEEZ HUSAINI BIN MOHAMAD ASRULKHAMAL","MUHAMMAD HAIL YUSUF BIN MOHAMAD AMIRUL ALIFF","MUHAMMAD SAIZUWAN AL SHAKIL BIN MOHD SAIFUL",
+    "MUHAMMAD SYAZWAN BIN ABDUL BASIT","NAUFA ADREENA BINTI MOHAMAD AIDEEL","NUR AAFIYAH BINTI MUHAMAD ZAMRI",
+    "NUR ANNAILA ZAFIRA BINTI MOHD AFFANDI","NUR ASHSYIFA HUMAIRA BINTI MUHAMMAD ALIF","NUR HAISHA HANANIA BINTI ABDUL HALIM",
+    "NUR IMAN RHAUDHAH BINTI MOHD ZUFITRI","NUR IMELDA AZ ZAHRA BINTI AHMAD AZFAR","NUR MILAYNA SOFEA BINTI ABDUL NUUR",
+    "NUR SHAFIQAH FATIHAH BINTI MOHD NASRAN","NUR SYIFFA IMANI BINTI ABDULLAH","NUR UFAIRAH NAJLAA BINTI EZUAM",
+    "NUR ZARA DELISHA BINTI HARMAN","PUTERA ADAM NAUFAL BIN MOHD KHUZI","PUTERI FATIMAH AZ ZAHRA BINTI MOHD.ZULKIFLI",
+    "PUTRI AUFA HANA BINTI HAIRODALISMA","PUTRI RUWAIDAH BINTI MOHD SABRI","YUSUF DARWISYH BIN AHMAD SYAKRIM","ZAIM AMZAR BIN ZULHILMI"
+  ],
+  "2 Saidina Ali": [
+    "ADAM ZIQRI BIN ZAKARIA","AULIYA MIA ADREENA BINTI MOHD AMIRUL NA'IM","DAIYAN INARA BINTI MOHD RAFIQ RIDHWAN",
+    "HARRAZ NAUFAL BIN CHE MOHD AZRANI","ILHAN BIN ALIF","MUHAMAD THAQIF ANAQI BIN MOHD NOR HAFIZ",
+    "MUHAMMAD AFFAN BIN MOHD AKMAL AZRI","MUHAMMAD AHNAF SUFI BIN ABDUL NURHALIM","MUHAMMAD ELYAS BIN MOHD HAFIZUDDIN",
+    "MUHAMMAD FAWWAZ FATHULLAH BIN SUHAIMI","MUHAMMAD MIQAEL RIZQIEN BIN MOHD BASRI","MUHAMMAD QABEEL DANIEL BIN MOHD TARMIZI",
+    "MUHAMMAD QAYYUM ISLAM BIN MOHD KAMISAN","MUHAMMAD SYAHRIZKY SHUKRI BIN ABDUL HAQQ","MUHAMMAD UMAR NAUFAL BIN ABDULLAH",
+    "MUHAMMAD UWAIS ANAQI BIN MOHD RIDZUAN","MUHAMMAD UWAIS AYDAN BIN MOHD ADNAN","MUHAMMAD ZUL AZHAD BIN AZUHA",
+    "NIA AURORA BINTI MUHAMMAD AZIM","NUR AQMAL ARIANNA BINTI RUSDI","NUR FATIHAH HUSNA BIN AHMAD FAKHRUDDIN",
+    "NUR IDZAARA RANIA BINTI MOHD IZUWADI","NUR IZZATI AIRISYA BINTI ILYAS BUKHARI","NUR QABEELA UMAIRRA BINTI MOHD TARMIZI",
+    "NUR WAFIYAH SAFIYA BINTI MOHD YUSDI","RABIATUL ADAWIYAH BINTI ABDUL QUDDUS","SHARIFAH NUR DHIA ERINA BINTI SYED MOHAMAD HANAFFI",
+    "SRI LATEEFA ZUHAIRA BINTI MUHAMMAD ZULHILMI","UWAIS RIDHWAN BIN AHMAD FAKHRU RADZI","WAN MUHAMMAD AIDAN SAQEEF BIN WAN AMIRUDIN",
+    "WAN MUHAMMAD FAYYADH ANAQI BIN WAN SAUFI AMRI","ZIKRY AMMAR IZZAFIQ BIN ZABIDI"
+  ]
+};
+
+// Format nama: capitalize tiap perkataan
+function formatNama(nama){
+  return nama.split(' ').map(w=>w.charAt(0)+w.slice(1).toLowerCase()).join(' ');
+}
 
 // ═══════════════════════════════════════════════════
 // DATA SOALAN
@@ -583,16 +757,77 @@ const STATE = {
   answers:[],
   dragAnswer:null,
   matchSelected:null, matchDone:[],
-  // Attempt & submit tracking
   attemptNum:1,
   submitted:false,
   submittedName:'',
+  submittedKelas:'',
 };
 
 const LETTERS = ['A','B','C','D'];
 const STAGE_TIME = {1:20, 2:30, 3:30};
 
 function getSoalanForStage(s){ return SOALAN.filter(q=>q.t===s); }
+
+// ═══════════════════════════════════════════════════
+// POPUP — INIT & CONTROLS
+// ═══════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', ()=>{
+  // Populate kelas dropdown
+  const kelasSelect = document.getElementById('kelasSelect');
+  Object.keys(KELAS_DATA).forEach(kelas=>{
+    const opt = document.createElement('option');
+    opt.value = kelas;
+    opt.textContent = kelas;
+    kelasSelect.appendChild(opt);
+  });
+});
+
+function loadNamaOptions(){
+  const kelas = document.getElementById('kelasSelect').value;
+  const namaSelect = document.getElementById('namaSelect');
+  namaSelect.innerHTML = '<option value="">— Pilih nama anda —</option>';
+  if(!kelas){ namaSelect.disabled=true; return; }
+  const pelajar = KELAS_DATA[kelas] || [];
+  pelajar.forEach(nama=>{
+    const opt = document.createElement('option');
+    opt.value = nama;
+    opt.textContent = formatNama(nama);
+    namaSelect.appendChild(opt);
+  });
+  namaSelect.disabled = false;
+  document.getElementById('kelasSelect').classList.remove('error');
+}
+
+function mulaBermain(){
+  const kelas = document.getElementById('kelasSelect').value;
+  const nama = document.getElementById('namaSelect').value;
+  if(!kelas){
+    document.getElementById('kelasSelect').classList.add('error');
+    document.getElementById('kelasSelect').focus();
+    return;
+  }
+  if(!nama){
+    document.getElementById('namaSelect').classList.add('error');
+    document.getElementById('namaSelect').focus();
+    setTimeout(()=>document.getElementById('namaSelect').classList.remove('error'),2000);
+    return;
+  }
+  // Save selection
+  STATE.submittedName = nama;
+  STATE.submittedKelas = kelas;
+  // Hide popup & start game
+  document.getElementById('readyPopup').style.display='none';
+  renderQuestion();
+}
+
+function batalPermainan(){
+  // Ke ruang subjek dan topik (bukan akses/login)
+  goSubjekTopik();
+}
+
+function goSubjekTopik(){
+  window.location.href = HOME_URL;
+}
 
 // ═══════════════════════════════════════════════════
 // TIMER
@@ -1080,7 +1315,8 @@ function showFinalResult(){
     </div>`;
   }).join('');
 
-  // Submit/locked section
+  // Submit / locked state — nama sudah ada dari popup
+  const namaDisplay = formatNama(STATE.submittedName);
   let submitSection = '';
   if(STATE.submitted){
     submitSection = `
@@ -1088,22 +1324,23 @@ function showFinalResult(){
       <div class="locked-icon">🔒</div>
       <div class="locked-title">Markah Telah Dihantar!</div>
       <div class="locked-sub">Rekod anda telah berjaya disimpan. Permainan ini kini dikunci.</div>
-      <div class="locked-name-badge">👤 ${STATE.submittedName}</div>
+      <div class="locked-name-badge">👤 ${namaDisplay}</div>
     </div>`;
   } else {
     submitSection = `
-    <div class="submit-section">
-      <div style="font-size:0.75rem;font-weight:800;color:#1a3c5e;margin-bottom:8px;display:flex;align-items:center;gap:5px">
-        <span>📤</span> Hantar Markah ke Rekod Guru
-      </div>
-      <div class="submit-name-row">
-        <span class="submit-name-icon">👤</span>
-        <input class="submit-name-input" id="submitterName" type="text" placeholder="Masukkan nama anda..." maxlength="60" autocomplete="off"/>
+    <div class="submit-section" style="margin-bottom:14px">
+      <div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px">
+        <div style="font-size:1.5rem">👤</div>
+        <div>
+          <div style="font-size:0.65rem;font-weight:800;color:#94a3b8;text-transform:uppercase;letter-spacing:0.5px">Pelajar</div>
+          <div style="font-size:0.95rem;font-weight:800;color:var(--navy)">${namaDisplay}</div>
+          <div style="font-size:0.7rem;color:#64748b">${STATE.submittedKelas}</div>
+        </div>
       </div>
       <button class="hantar-btn" id="hantarBtn" onclick="hantarMarkah()">
-        <span>📤</span> Hantar Markah Sekarang
+        <span>📤</span> Hantar & Kunci Permainan
       </button>
-      <div style="font-size:0.68rem;color:#94a3b8;text-align:center;margin-top:6px">Markah akan disimpan dalam rekod guru secara automatik</div>
+      <div style="font-size:0.68rem;color:#94a3b8;text-align:center;margin-top:6px">Selepas hantar, topik ini akan dikunci secara automatik</div>
     </div>`;
   }
 
@@ -1193,7 +1430,7 @@ function showFinalResult(){
         <div class="fc-owner">
           <div class="fc-owner-left">
             <div class="fc-owner-label">Pelajar</div>
-            <div class="fc-owner-name" id="fcOwnerName">${STATE.submittedName||'—'}</div>
+            <div class="fc-owner-name" id="fcOwnerName">${namaDisplay.toUpperCase()}</div>
             <div class="fc-owner-info">${dateStr} • ${timeStr}</div>
           </div>
           <div style="text-align:right">
@@ -1220,31 +1457,17 @@ function showFinalResult(){
     <!-- ACTIONS -->
     <div class="action-row">
       ${retryBtn}
-      <button class="action-btn secondary" onclick="shareResult()">📤 Kongsi</button>
     </div>
-    <button class="action-btn secondary" style="width:100%;margin-top:8px" onclick="window.location.href='../../index.html'">🏠 Halaman Utama</button>
+    <button class="action-btn secondary" style="width:100%;margin-top:0;margin-bottom:14px;padding:13px 10px;border:none;border-radius:12px;font-family:'Baloo 2',sans-serif;font-size:0.85rem;font-weight:800;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--white);border:2px solid #e2e8f0;color:var(--navy);" onclick="goSubjekTopik()">🏠 Halaman Utama</button>
   </div>`;
 
   if(pct>=70) launchConfetti();
 }
 
 // ═══════════════════════════════════════════════════
-// HANTAR MARKAH — dengan nama peserta
+// HANTAR MARKAH — nama dari popup (sudah ada)
 // ═══════════════════════════════════════════════════
 function hantarMarkah(){
-  const nameInput = document.getElementById('submitterName');
-  const nama = nameInput ? nameInput.value.trim() : '';
-  if(!nama){
-    nameInput.style.border='2px solid #ef4444';
-    nameInput.placeholder='⚠ Sila masukkan nama dahulu!';
-    nameInput.focus();
-    setTimeout(()=>{
-      nameInput.style.border='2px solid #e2e8f0';
-      nameInput.placeholder='Masukkan nama anda...';
-    },2000);
-    return;
-  }
-
   const btn = document.getElementById('hantarBtn');
   if(btn){
     btn.disabled=true;
@@ -1255,7 +1478,8 @@ function hantarMarkah(){
   const grade = pct>=90?'A+':pct>=80?'A':pct>=70?'B+':pct>=60?'B':pct>=50?'C':'D';
 
   const payload = {
-    nama: nama,
+    nama: STATE.submittedName,
+    kelas: STATE.submittedKelas,
     topikId: 'sirah-biodata-nabi',
     topikNama: 'Biodata Nabi Muhammad SAW',
     subjek: 'Sirah',
@@ -1269,24 +1493,19 @@ function hantarMarkah(){
     timestamp: Date.now(),
   };
 
-  // Update card name display immediately
-  const fcName = document.getElementById('fcOwnerName');
-  if(fcName) fcName.textContent = nama.toUpperCase();
-
   // Send via all 3 methods for reliability
   submitToGAS(payload);
 
   // Wait 1.5s then lock
   setTimeout(()=>{
     STATE.submitted = true;
-    STATE.submittedName = nama;
     showFinalResult(); // re-render with locked state
     launchConfetti();
   }, 1500);
 }
 
 // ═══════════════════════════════════════════════════
-// GAS SUBMISSION — 3 methods, includes nama
+// GAS SUBMISSION — 3 methods
 // ═══════════════════════════════════════════════════
 function submitToGAS(data){
   // Method 1: JSON POST
@@ -1330,28 +1549,6 @@ function retryGame(){
 // ═══════════════════════════════════════════════════
 // UTILITIES
 // ═══════════════════════════════════════════════════
-function restartGame(){
-  // Full reset including attempts (for dev/testing use)
-  STATE.attemptNum=1; STATE.submitted=false; STATE.submittedName='';
-  STATE.stage=1; STATE.qIdx=0; STATE.score=0;
-  STATE.correct=0; STATE.wrong=0;
-  STATE.stageScores=[0,0,0]; STATE.stageCorrect=[0,0,0];
-  STATE.answers=[];
-  document.getElementById('coffeeWrap').style.display='none';
-  renderQuestion();
-}
-
-function shareResult(){
-  const pct=Math.round((STATE.score/150)*100);
-  const nama=STATE.submittedName?` — ${STATE.submittedName}`:'';
-  const txt=`🌙 Saya baru habis bermain 'Biodata Nabi Muhammad SAW' di KAFA!${nama}\n\nMarkah: ${STATE.score}/150\nBetul: ${STATE.correct}/15\nSkor: ${pct}%\n\nCuba kamu!`;
-  if(navigator.share){
-    navigator.share({title:'KAFA Game',text:txt}).catch(()=>{});
-  } else {
-    navigator.clipboard.writeText(txt).then(()=>alert('Teks disalin! Tampalkan untuk dikongsi.')).catch(()=>alert(txt));
-  }
-}
-
 function launchConfetti(){
   const colors=['#f59e0b','#2563a8','#10b981','#ef4444','#8b5cf6','#fbbf24'];
   for(let i=0;i<40;i++){
@@ -1362,13 +1559,6 @@ function launchConfetti(){
     setTimeout(()=>el.remove(),3500);
   }
 }
-
-// ═══════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════
-window.addEventListener('DOMContentLoaded',()=>{
-  setTimeout(renderQuestion, 400);
-});
 </script>
 </body>
 </html>

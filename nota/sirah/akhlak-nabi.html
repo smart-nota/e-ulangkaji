@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Akhlak Nabi Muhammad SAW 🌟 KAFA SKSG</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-panel: #16161f;
+  --gold: #e67e22; /* Bertukar ke jingga hangat untuk tema Akhlak/Syam */
+  --gold-light: #f39c12;
+  --gold-bright: #f1c40f;
+  --gold-dim: #d35400;
+  --text: #f0e6c8;
+  --text-dim: #a89870;
+  --blue-soft: #1a2a4a;
+  --green: #2a5a2a;
+  --red: #5a1a1a;
+  --radius: 18px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.6);
+  --comic-border: #f1c40f;
+  --bubble-bg: #1e1e2f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg-deep);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Stars BG */
+.stars-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(243,156,18,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(243,156,18,0.05) 0%, transparent 50%);
+}
+.stars-bg::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(241,196,15,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 35%, rgba(241,196,15,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 8%, rgba(241,196,15,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 25%, rgba(241,196,15,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 12%, rgba(241,196,15,0.5) 0%, transparent 100%);
+}
+
+/* HEADER */
+.page-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,15,0.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:2px solid var(--gold);
+  padding:0 20px;
+}
+.page-header-inner{
+  max-width:760px;margin:0 auto;
+  display:flex;align-items:center;gap:14px;
+  height:60px;
+}
+.back-btn{
+  font-family:'Nunito',sans-serif;
+  color:var(--gold-light);font-weight:800;font-size:0.9rem;
+  text-decoration:none;padding:6px 14px;
+  border:1.5px solid var(--gold-dim);border-radius:30px;
+  white-space:nowrap;transition:all 0.2s;
+}
+.back-btn:hover{background:rgba(230,126,34,0.15);border-color:var(--gold-light);}
+.page-title-area h2{
+  font-family:'Nunito',sans-serif;
+  font-size:1rem;font-weight:800;color:var(--gold-bright);line-height:1.2;
+}
+.page-title-area span{
+  font-size:0.75rem;color:var(--text-dim);font-weight:600;
+}
+
+/* WRAPPER */
+.wrapper{
+  position:relative;z-index:1;
+  max-width:720px;margin:0 auto;
+  padding:24px 16px 60px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;padding:36px 20px 28px;
+  border-bottom:1px solid rgba(230,126,34,0.2);
+  margin-bottom:28px;
+}
+.hero-emoji{font-size:3.5rem;display:block;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{
+  font-size:1.7rem;font-weight:900;
+  background:linear-gradient(135deg, var(--gold-bright), var(--gold), var(--gold-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:6px;
+}
+.hero p{color:var(--text-dim);font-size:0.95rem;font-weight:600;}
+.hero-chip{
+  display:inline-block;margin-top:12px;
+  background:rgba(230,126,34,0.15);border:1.5px solid var(--gold-dim);
+  color:var(--gold-light);border-radius:30px;padding:4px 16px;font-size:0.8rem;font-weight:700;
+}
+
+/* PROGRESS */
+.progress-wrap{margin-bottom:20px;}
+.progress-label{
+  display:flex;justify-content:space-between;
+  font-size:0.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px;
+}
+.progress-track{
+  height:8px;border-radius:4px;
+  background:rgba(230,126,34,0.12);
+  border:1px solid rgba(230,126,34,0.2);overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:4px;
+  background:linear-gradient(90deg, var(--gold), var(--gold-bright));
+  transition:width 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* PANEL & COMIC STRIP LAYOUT */
+.panel{
+  background:var(--bg-panel);
+  border:3px solid var(--gold-dim);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,230,102,0.06);
+  padding:24px 20px;
+  display:none;
+  animation:panelIn 0.4s cubic-bezier(.4,0,.2,1);
+}
+.panel.active{display:block;}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.comic-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 15px;
+}
+@media(min-width: 600px) {
+  .comic-grid.two-cols { grid-template-columns: 1fr 1fr; }
+}
+
+.comic-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(230,126,34,0.4);
+  border-radius: 14px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+}
+.comic-box:hover {
+  transform: scale(1.01);
+  border-color: var(--gold-bright);
+}
+.comic-tag {
+  position: absolute;
+  top: 0; left: 0;
+  background: var(--gold);
+  color: #000;
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 2px 10px;
+  border-bottom-right-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.comic-art {
+  font-size: 3rem;
+  text-align: center;
+  margin: 12px 0;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  animation: kidsFloat 4s ease-in-out infinite;
+}
+.comic-art.alt { animation-delay: 2s; }
+@keyframes kidsFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(3deg); }
+}
+
+/* PANEL HEADER */
+.panel-header{
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;
+}
+.panel-num{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color:#000;font-weight:900;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;box-shadow:0 2px 8px rgba(230,126,34,0.4);
+}
+.panel-header h3{
+  font-size:1.1rem;font-weight:900;color:var(--gold-bright);
+}
+
+/* USTAZ BUBBLE */
+.ustaz-row{
+  display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;
+}
+.ustaz-avatar{
+  flex-shrink:0;text-align:center;
+}
+.ustaz-icon{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#2a1a0a,#3a2a1a);
+  border:2.5px solid var(--gold-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+}
+.ustaz-label{
+  font-size:0.65rem;font-weight:800;color:var(--gold);
+  text-align:center;margin-top:4px;letter-spacing:1px;
+}
+.speech-bubble{
+  background:var(--bubble-bg);
+  border:2px solid var(--gold-dim);
+  border-radius: 0 16px 16px 16px;
+  padding:12px 16px;
+  font-size:0.92rem;font-weight:700;color:var(--text);
+  line-height:1.6;flex:1;position:relative;
+  box-shadow: 4px 4px 0px rgba(230,126,34,0.2);
+}
+.speech-bubble::before{
+  content:'';position:absolute;
+  left:-12px;top:10px;
+  border:6px solid transparent;
+  border-right-color:var(--gold-dim);
+}
+
+/* CONTENT BLOCKS */
+.info-box{
+  background:rgba(230,126,34,0.06);
+  border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;
+  padding:12px 16px;margin:12px 0;
+  font-size:0.9rem;line-height:1.7;font-weight:600;
+}
+.fun-fact{
+  background:rgba(26,42,74,0.5);
+  border:1.5px solid rgba(100,150,255,0.3);
+  border-radius:12px;padding:14px 16px;
+  display:flex;gap:12px;align-items:flex-start;margin:12px 0;
+}
+.ff-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+.fun-fact p{font-size:0.88rem;line-height:1.6;font-weight:600;color:#c8d8f0;}
+
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.chip{
+  padding:6px 14px;border-radius:30px;font-size:0.82rem;font-weight:700;
+  border:1.5px solid;
+}
+.chip-gold{background:rgba(230,126,34,0.15);border-color:var(--gold);color:var(--gold-bright);}
+.chip-white{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.2);color:var(--text);}
+.chip-red{background:rgba(231,76,60,0.15);border-color:rgba(231,76,60,0.4);color:#ffaaaa;}
+
+/* TIP BOX */
+.tip-box{
+  display:none;
+  background:rgba(42,90,42,0.2);
+  border:2px solid rgba(230,126,34,0.5);
+  border-radius:14px;padding:14px 16px;margin:14px 0;
+  animation:panelIn 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.tip-box.show{display:block;}
+.tip-label{font-size:0.75rem;font-weight:800;color:var(--gold-bright);letter-spacing:1px;margin-bottom:6px;}
+.tip-box p{font-size:0.88rem;line-height:1.6;font-weight:600;color:var(--text);}
+
+/* NAV BUTTONS */
+.panel-nav{
+  display:flex;align-items:center;margin-top:22px;gap:10px;
+}
+.nav-back-btn{
+  background:transparent;border:1.5px solid var(--gold-dim);
+  color:var(--gold);border-radius:30px;padding:8px 16px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;flex-shrink:0;
+}
+.nav-back-btn:hover{background:rgba(230,126,34,0.1);}
+.nav-back-btn.hidden{visibility:hidden;}
+.nav-center{display:flex;gap:12px;justify-content:center;flex:1;flex-wrap:wrap;}
+
+.btn-faham{
+  background:linear-gradient(135deg, #2ecc71, #27ae60);
+  color:#fff;border:none;border-radius:30px;padding:12px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:900;
+  cursor:pointer;transition:all 0.2s;
+  box-shadow: 0 4px 15px rgba(46,204,113,0.4);
+}
+.btn-faham:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,204,113,0.6);}
+
+.btn-tak{
+  background:linear-gradient(135deg, #34495e, #2c3e50);
+  border:1.5px solid var(--gold-dim);
+  color:var(--gold-bright);border-radius:30px;padding:12px 20px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.btn-tak:hover{background:rgba(230,126,34,0.15); transform:translateY(-1px);}
+
+/* DONE PANEL */
+.done-panel{
+  display:none;text-align:center;
+  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
+  border-radius:var(--radius);padding:36px 24px;
+  box-shadow:var(--shadow);
+  animation:panelIn 0.4s ease;
+}
+.done-panel.active{display:block;}
+.done-emoji{font-size:3rem;display:block;margin-bottom:12px;}
+.done-panel h2{font-size:1.4rem;font-weight:900;color:var(--gold-bright);margin-bottom:8px;}
+.done-panel p{color:var(--text-dim);font-size:0.95rem;font-weight:600;margin-bottom:24px;}
+.done-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-reset{
+  background:transparent;border:2px solid var(--gold-dim);
+  color:var(--gold-light);border-radius:30px;padding:12px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-reset:hover{background:rgba(230,126,34,0.1);}
+
+/* QUIZ SECTION */
+.quiz-section{display:none;animation:panelIn 0.4s ease; margin-top:20px;}
+.quiz-section.active{display:block;}
+.quiz-header{
+  background:rgba(20,20,30,0.9);border:2px solid var(--gold-dim);
+  border-radius:14px;padding:16px 20px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.quiz-title{font-size:1rem;font-weight:800;color:var(--gold-bright);}
+.quiz-score-label{font-size:0.85rem;font-weight:700;color:var(--text-dim);}
+.quiz-q-label{font-size:0.85rem;font-weight:700;color:var(--gold);}
+.quiz-card{
+  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
+  border-radius:var(--radius);padding:24px 20px;
+  box-shadow:var(--shadow);
+}
+.quiz-q-text{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:18px;line-height:1.5;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.quiz-opt{
+  background:rgba(255,255,255,0.04);border:1.5px solid rgba(230,126,34,0.25);
+  border-radius:12px;padding:12px 16px;
+  font-family:'Nunito',sans-serif;font-size:0.92rem;font-weight:700;color:var(--text);
+  cursor:pointer;text-align:left;transition:all 0.2s;
+}
+.quiz-opt:hover:not(:disabled){background:rgba(230,126,34,0.1);border-color:var(--gold-light);}
+.quiz-opt.correct{background:rgba(46,204,113,0.3);border-color:#2ecc71;color:#fff;}
+.quiz-opt.wrong{background:rgba(231,76,60,0.3);border-color:#e74c3c;color:#fff;}
+.quiz-opt:disabled{cursor:default;}
+.quiz-dots{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
+.q-dot{
+  width:14px;height:14px;border-radius:50%;
+  background:rgba(230,126,34,0.15);border:1.5px solid var(--gold-dim);
+  transition:all 0.3s;
+}
+.q-dot.active{background:var(--gold);border-color:var(--gold-bright);transform:scale(1.2);}
+
+/* POPUP MODAL */
+.popup-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(5,5,10,0.88);z-index:200;
+  align-items:center;justify-content:center;padding:20px;
+  backdrop-filter: blur(8px);
+}
+.popup-overlay.active{display:flex;}
+.popup-card{
+  background:linear-gradient(135deg,#251616,#140d0d);
+  border:3px solid var(--gold);border-radius:24px;
+  padding:32px 24px;max-width:440px;width:100%;
+  text-align:center;position:relative;
+  box-shadow:0 20px 50px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,230,102,0.1);
+  animation:popIn 0.4s cubic-bezier(.175,.885,.32,1.275);
+}
+@keyframes popIn{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+.popup-icon{font-size:3.5rem;display:block;margin-bottom:12px;}
+.popup-title{
+  font-size:1.4rem;font-weight:900;color:var(--gold-bright);margin-bottom:6px;
+}
+.popup-arabic{
+  font-size:1.1rem;color:var(--text-dim);font-weight:700;margin-bottom:12px;letter-spacing:0.5px;
+}
+.popup-msg{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:24px;line-height:1.6;}
+
+.popup-actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+@media(min-width: 400px) {
+  .popup-actions-grid { flex-direction: row; justify-content: center; }
+}
+
+.btn-popup-main{
+  background:linear-gradient(135deg, #2ecc71, #27ae60);
+  color:#fff;border:none;border-radius:30px;padding:12px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:900;
+  cursor:pointer;transition:all 0.2s;flex:1;
+  box-shadow: 0 4px 15px rgba(46,204,113,0.3);
+}
+.btn-popup-main:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,204,113,0.5);}
+
+.btn-popup-secondary{
+  background: rgba(255,255,255,0.05);
+  border:1.5px solid rgba(230,126,34,0.4);
+  color:var(--text);border-radius:30px;padding:12px 18px;
+  font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;flex:1;
+}
+.btn-popup-secondary:hover{background:rgba(230,126,34,0.15);color:var(--gold-bright);}
+
+.nota-nav{
+  display:flex;justify-content:space-between;gap:12px;
+  margin-top:32px;flex-wrap:wrap;
+}
+.nota-nav a{
+  color:var(--gold-light);text-decoration:none;font-weight:700;
+  font-size:0.88rem;padding:10px 18px;
+  border:1.5px solid var(--gold-dim);border-radius:30px;
+  transition:all 0.2s;background:rgba(230,126,34,0.05);
+}
+.nota-nav a:hover{background:rgba(230,126,34,0.15);}
+
+footer{
+  text-align:center;padding:24px 16px;
+  font-size:0.82rem;color:var(--text-dim);font-weight:600;
+  border-top:1px solid rgba(230,126,34,0.1);margin-top:40px;
+}
+
+.strong{font-weight:800;color:var(--gold-light);}
+em{color:var(--gold);font-style:normal;font-weight:700;}
+
+@media(max-width:480px){
+  .hero h1{font-size:1.35rem;}
+  .panel{padding:18px 14px;}
+  .ustaz-icon{width:46px;height:46px;font-size:1.5rem;}
+  .nav-center{gap:6px;}
+  .btn-faham,.btn-tak{padding:10px 14px;font-size:0.82rem;}
+}
+</style>
+</head>
+<body>
+<div class="stars-bg"></div>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <a href="../../subjek-sirah.html" class="back-btn">← Sirah</a>
+    <div class="page-title-area">
+      <h2>📖 Akhlak Nabi Muhammad SAW</h2>
+      <span>Topik 2 · Subjek Sirah</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+  <div class="hero">
+    <span class="hero-emoji">✨</span>
+    <h1>Akhlak Nabi Muhammad SAW</h1>
+    <p>Mari pelajari kemuliaan dan keindahan peribadi Rasulullah ﷺ</p>
+    <span class="hero-chip">📖 Topik 5 · Sirah</span>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span>📊 Kemajuan Belajar</span>
+      <span id="progressLabel">Panel 1 / 5</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:20%"></div>
+    </div>
+  </div>
+
+  <div class="panel active" id="panel-1">
+    <div class="panel-header">
+      <div class="panel-num">1</div>
+      <h3>🗣️ Sifat Percakapan & Gelaran Al-Amin</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Assalamualaikum murid-murid! Nabi Muhammad SAW dikenali dengan sifat tutur kata yang sangat mulia sejak kecil lagi. Jom baca kisah ini! 📜
+      </div>
+    </div>
+
+    <div class="comic-grid two-cols">
+      <div class="comic-box">
+        <span class="comic-tag">Cara Bercakap</span>
+        <div class="comic-art">💬</div>
+        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">
+          Nabi Muhammad SAW <span class="strong">tidak pernah bercakap kasar</span> dengan sesiapa pun. Baginda sentiasa bercakap dengan lemah lembut dan penuh kesopanan.
+        </p>
+      </div>
+      <div class="comic-box">
+        <span class="comic-tag">Gelaran Murni</span>
+        <div class="comic-art alt">🏅</div>
+        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">
+          Masyarakat Arab memberikan gelaran <span class="strong">Al-Amin</span> kepada Nabi Muhammad SAW kerana sifat baginda yang sangat amanah dan tidak pernah berbohong.
+        </p>
+      </div>
+    </div>
+
+    <div class="fun-fact">
+      <div class="ff-icon">💡</div>
+      <p>Nabi SAW sentiasa bersifat jujur (<span class="strong">Kejujuran</span>) dan memelihara diri daripada melakukan dosa (<span class="strong">Ma'sum</span>).</p>
+    </div>
+
+    <div class="tip-box" id="tip-1">
+      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
+      <p>Ingat formula mudah ini: <strong>Nabi = Bercakap Sopan + Digelar Al-Amin + Memiliki Kejujuran Tinggi!</strong> ✨</p>
+    </div>
+
+    <div class="panel-nav">
+      <button class="nav-back-btn hidden">←</button>
+      <div class="nav-center">
+        <button class="btn-tak" onclick="showTip(1)">💡 Nota Ringkas Mudah Faham</button>
+        <button class="btn-faham" onclick="startPanelQuiz(1)">✅ Sedia untuk 3 Soalan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-2">
+    <div class="panel-header">
+      <div class="panel-num">2</div>
+      <h3>🌊 Peristiwa Kota Makkah Dilanda Banjir</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Tahukah kamu, satu peristiwa besar berlaku di Kaabah melibatkan kebijaksanaan Nabi Muhammad SAW semasa kota Makkah dilanda banjir besar? 🕋
+      </div>
+    </div>
+
+    <div class="comic-grid">
+      <div class="comic-box" style="text-align: center;">
+        <span class="comic-tag">Usia Baginda</span>
+        <div class="comic-art">🌧️</div>
+        <p style="font-size:0.9rem; font-weight:700; line-height:1.6; margin-bottom:10px;">
+          Ketika Kota Makkah dilanda banjir besar sehingga merosakkan dinding Kaabah, Nabi Muhammad SAW <span class="strong">berumur 35 tahun</span>.
+        </p>
+        <div class="chips-row" style="justify-content: center;">
+          <span class="chip chip-gold">Peristiwa: Peletakan Hajar Aswad</span>
+          <span class="chip chip-white">Umur Baginda: 35 Tahun</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fun-fact">
+      <div class="ff-icon">🧠</div>
+      <p>Nabi SAW sangat <span class="strong">Cerdas (Aqlan)</span> dalam menyelesaikan pertikaian para pembesar Arab yang berebut untuk meletakkan batu Hajar Aswad semula.</p>
+    </div>
+
+    <div class="tip-box" id="tip-2">
+      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
+      <p>Ingat nombor penting ini: <strong>Banjir Makkah = Nabi berumur 35 tahun!</strong> Pada waktu inilah kebijaksanaan dan kecerdasan baginda menyatukan semua kabilah Arab. 🤝</p>
+    </div>
+
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(2)">←</button>
+      <div class="nav-center">
+        <button class="btn-tak" onclick="showTip(2)">💡 Nota Ringkas Mudah Faham</button>
+        <button class="btn-faham" onclick="startPanelQuiz(2)">✅ Sedia untuk 3 Soalan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-3">
+    <div class="panel-header">
+      <div class="panel-num">3</div>
+      <h3>🐪 Pengalaman Berniaga ke Negeri Syam</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Sejak usia remaja, Rasulullah SAW telah mempelajari seluk-belok perniagaan. Mari kita lihat perjalanan perniagaan baginda! 🗺️
+      </div>
+    </div>
+
+    <div class="comic-grid two-cols">
+      <div class="comic-box">
+        <span class="comic-tag">Tempat Berniaga</span>
+        <div class="comic-art">🏜️</div>
+        <p style="font-size:0.85rem; font-weight:700;">
+          Rasulullah SAW mengikut bapa saudaranya, Abu Talib, pergi berniaga jauh ke <span class="strong">Negeri Syam</span>. Baginda membesar menjadi usahawan yang sangat jujur.
+        </p>
+      </div>
+      <div class="comic-box">
+        <span class="comic-tag">Pemilik Modal</span>
+        <div class="comic-art alt">💼</div>
+        <p style="font-size:0.85rem; font-weight:700;">
+          Siti <span class="strong">Khadijah</span> ialah seorang wanita bangsawan dan usahawan kaya yang telah memilih Rasulullah SAW untuk menjalankan perniagaannya di Syam.
+        </p>
+      </div>
+    </div>
+
+    <div class="chips-row">
+      <span class="chip chip-gold">Destinasi: Syam</span>
+      <span class="chip chip-white">Penjaga: Abu Talib</span>
+      <span class="chip chip-red">Pemilik Dagangan: Khadijah</span>
+    </div>
+
+    <div class="tip-box" id="tip-3">
+      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
+      <p>Ingat dua nama penting ini: <strong>Pergi berniaga ke Syam bersama Abu Talib, dan membawa barang dagangan milik Siti Khadijah!</strong> 🏆</p>
+    </div>
+
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(3)">←</button>
+      <div class="nav-center">
+        <button class="btn-tak" onclick="showTip(3)">💡 Nota Ringkas Mudah Faham</button>
+        <button class="btn-faham" onclick="startPanelQuiz(3)">✅ Sedia untuk 3 Soalan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-4">
+    <div class="panel-header">
+      <div class="panel-num">4</div>
+      <h3>🛡️ Sifat Ma'sum & Perbandingan Zaman Jahiliyah</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Walaupun hidup di zaman masyarakat Arab Jahiliyah yang rosak akhlaknya, Allah SWT sentiasa melindungi peribadi suci baginda. 🌟
+      </div>
+    </div>
+
+    <div class="comic-grid two-cols">
+      <div class="comic-box">
+        <span class="comic-tag">Kebiasaan Jahiliyah</span>
+        <div class="comic-art">🎲</div>
+        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">
+          Masyarakat Arab Jahiliyah sangat suka <span class="strong">berjudi</span> dan <span class="strong">minum arak</span>. Mereka juga suka menyembah berhala.
+        </p>
+      </div>
+      <div class="comic-box">
+        <span class="comic-tag">Perlindungan Allah</span>
+        <div class="comic-art alt">🛡️</div>
+        <p style="font-size:0.85rem; font-weight:700; line-height:1.4;">
+          Nabi Muhammad SAW <span class="strong">tidak pernah</span> terikut-ikut amalan buruk mereka. Baginda bersifat <span class="strong">Ma'sum</span> (terpelihara daripada dosa dan maksiat).
+        </p>
+      </div>
+    </div>
+
+    <div class="fun-fact">
+      <div class="ff-icon">🌟</div>
+      <p>Nabi Muhammad SAW <span class="strong">tidak pernah berbohong</span> sepanjang hayat baginda, berbeza sekali dengan amalan masyarakat Jahiliyah!</p>
+    </div>
+
+    <div class="tip-box" id="tip-4">
+      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
+      <p>Ingat beza ini: <strong>Masyarakat Jahiliyah = Suka berjudi & minum arak. Nabi Muhammad SAW = Ma'sum (terpelihara daripada semua keburukan itu)!</strong> 🛡️</p>
+    </div>
+
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(4)">←</button>
+      <div class="nav-center">
+        <button class="btn-tak" onclick="showTip(4)">💡 Nota Ringkas Mudah Faham</button>
+        <button class="btn-faham" onclick="startPanelQuiz(4)">✅ Sedia untuk 3 Soalan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-5">
+    <div class="panel-header">
+      <div class="panel-num">5</div>
+      <h3>📋 Ringkasan Papan Minda Akhlak Nabi</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Alhamdulillah! Kamu sudah sampai ke penghujung nota. Mari kita buat semakan ringkas tentang kehebatan akhlak baginda sebelum menamatkan pembelajaran! 🎉
+      </div>
+    </div>
+
+    <div class="comic-box" style="border: 2px solid var(--gold); background: rgba(230,126,34,0.03);">
+      <span class="comic-tag" style="background:#2ecc71; color:#fff;">Status: Selesai Belajar</span>
+      <div class="info-box" style="font-size:0.88rem; line-height:1.8;">
+        🗣️ <span class="strong">Tutur Kata:</span> Sentiasa sopan, lembut, tidak pernah kasar.<br/>
+        🏅 <span class="strong">Gelaran:</span> Al-Amin (kerana amanah, jujur dan tidak pernah berbohong).<br/>
+        🌊 <span class="strong">Banjir Makkah:</span> Berlaku ketika nabi berumur 35 tahun, nabi menyelesaikannya dengan cerdas (Aqlan).<br/>
+        🐪 <span class="strong">Perniagaan:</span> Pergi ke Syam bersama Abu Talib membawa barang dagangan Siti Khadijah.<br/>
+        🛡️ <span class="strong">Peribadi:</span> Ma'sum (Terpelihara daripada amalan jahiliyah seperti berjudi dan minum arak).
+      </div>
+    </div>
+
+    <div class="tip-box" id="tip-5">
+      <div class="tip-label">💚 NOTA RINGKAS MUDAH FAHAM</div>
+      <p>Amalkan akhlak Nabi Muhammad SAW dalam kehidupan seharian kita: sentiasa jujur, bercakap sopan, dan rajin berusaha! 🌟</p>
+    </div>
+
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(5)">←</button>
+      <div class="nav-center">
+        <button class="btn-tak" onclick="showTip(5)">💡 Nota Ringkas Mudah Faham</button>
+        <button class="btn-faham" onclick="showDone()">🏆 Tamatkan Pembelajaran</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="done-panel" id="donePanel">
+    <span class="done-emoji">🥇</span>
+    <h2>Tahniah! Ilmu Akhlak Nabi Telah Dikuasai!</h2>
+    <p>Kamu berjaya menyelesaikan semua modul nota interaktif dan menjawab kuiz akhlak mulia Nabi Muhammad SAW dengan cemerlang!</p>
+    <div class="done-btns">
+      <button class="btn-reset" onclick="resetAll()">🔄 Ulang Semak Nota</button>
+    </div>
+  </div>
+
+  <div class="quiz-section" id="quizSection">
+    <div class="quiz-header">
+      <span class="quiz-title" id="quizPanelTitle">🎮 Misi Kuiz Digital — Panel</span>
+      <span class="quiz-score-label">Skor Ganjaran: <span id="scoreDisplay" style="color:var(--gold-bright);">0</span></span>
+      <span class="quiz-q-label">Soalan <span id="qNumDisplay">1</span>/3</span>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-q-text" id="qText"></div>
+      <div class="quiz-options" id="qOptions"></div>
+      <div class="quiz-feedback" id="qFeedback"></div>
+    </div>
+    <div class="quiz-dots" id="quizDots"></div>
+  </div>
+
+  <div class="popup-overlay" id="popup">
+    <div class="popup-card">
+      <span class="popup-icon" id="popupIcon">🌟</span>
+      <div class="popup-title" id="popupTitle">Masha Allah!</div>
+      <div class="popup-arabic" id="popupArabic">ما شاء الله</div>
+      <div class="popup-msg" id="popupMsg">Jawapan kamu sangat tepat! Token ganjaran ilmu ditambah!</div>
+      
+      <div class="popup-actions-grid">
+        <button class="btn-popup-secondary" onclick="actionUlangNota()">📖 Ulang Nota</button>
+        <button class="btn-popup-secondary" onclick="actionUlangSoalan()">🔄 Ulang Soalan</button>
+        <button class="btn-popup-main" id="btnPopupNext" onclick="actionSeterusnya()">✨ Seterusnya</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="nota-nav">
+    <a href="ibu-susuan-2">← Topik 4: Ibu Susuan Nabi Kedua</a>
+    <a href="https://e-ulangkaji-kafa.pages.dev/subjek-sirah.html">Kembali Ke Peta Minda →</a>
+  </div>
+</div>
+
+<footer>🌙 KAFA SKSG · Sirah Topik Akhlak</footer>
+
+<script>
+const TOTAL = 5;
+let currentPanel = 1;
+
+// Database Bank Soalan mengikut ketetapan 3 soalan bagi setiap panel nota berkaitan Akhlak Nabi
+const panelQuestions = {
+  1: [
+    {q:"Bagaimanakah sifat tutur kata atau percakapan Nabi Muhammad SAW?", opts:["Kasar dan kuat","Sopan dan lemah lembut","Suka marah-marah","Bercakap jika perlu sahaja"], ans:1, exp:"Nabi Muhammad SAW tidak pernah bercakap kasar, malahan tutur kata baginda sentiasa sopan dan lemah lembut!"},
+    {q:"Apakah gelaran yang diberikan oleh masyarakat Makkah kepada Nabi kerana sifat amanah baginda?", opts:["Al-Amin","As-Sadiq","Al-Fathanah","Al-Tabligh"], ans:0, exp:"Nabi SAW diberi gelaran Al-Amin yang bermaksud seorang yang sangat dipercayai dan amanah!"},
+    {q:"Nabi Muhammad SAW mempunyai sifat mulia iaitu tidak pernah ___________.", opts:["Membantu orang","Berbohong / Berpusing-pusing","Bekerja","Bercakap"], ans:1, exp:"Nabi Muhammad SAW mempunyai sifat jujur (Kejujuran) dan tidak pernah berbohong sama sekali!"}
+  ],
+  2: [
+    {q:"Berapakah umur Nabi Muhammad SAW ketika peristiwa kota Makkah dilanda banjir besar?", opts:["25 Tahun","30 Tahun","35 Tahun","40 Tahun"], ans:2, exp:"Betul! Ketika banjir melanda kota Makkah dan merosakkan dinding Kaabah, nabi berusia 35 tahun."},
+    {q:"Apakah sifat peribadi nabi yang terserlah semasa menyelesaikan masalah peletakan batu Hajar Aswad?", opts:["Sangat Cerdas (Aqlan)","Sangat Kuat","Suka bersendirian","Kaya raya"], ans:0, exp:"Nabi SAW sangat cerdas (Aqlan) sehinggakan berjaya merangka pelan perdamaian bagi semua ketua kabilah Arab!"},
+    {q:"Peristiwa banjir besar di Kota Makkah tersebut telah menjejaskan struktur bangunan apa?", opts:["Rumah Abu Talib","Pasar Syam","Kota Taif","Kaabah"], ans:3, exp:"Banjir besar tersebut melanda kota Makkah dan menyebabkan kerosakan pada dinding Kaabah."}
+  ],
+  3: [
+    {q:"Ke manakah tujuan perjalanan perniagaan Rasulullah SAW bersama bapa saudaranya Abu Talib?", opts:["Negeri Yaman","Kota Yathrib","Negeri Syam","Negeri Mesir"], ans:2, exp:"Nabi Muhammad SAW mengikuti bapa saudaranya mengembara untuk berniaga di Negeri Syam!"},
+    {q:"Siapakah nama wanita usahawan kaya yang memilih Nabi untuk menguruskan barang dagangannya ke Syam?", opts:["Siti Aminah","Siti Khadijah","Siti AisyahRA","Siti Fatimah"], ans:1, exp:"Siti Khadijah memilih Nabi Muhammad SAW kerana terpikat dengan berita kejujuran dan kemuliaan akhlak baginda!"},
+    {q:"Siapakah nama bapa saudara yang membawa nabi pergi berniaga sejak usia muda?", opts:["Abu Lahab","Hamzah","Abu Talib","Abbas"], ans:2, exp:"Bapa saudara kesayangan baginda yang melindunginya dan mengajarnya berniaga ialah Abu Talib."}
+  ],
+  4: [
+    {q:"Apakah dua amalan buruk masyarakat Arab Jahiliyah yang dinyatakan di dalam teks soalan?", opts:["Mencuri dan merompak","Berjudi dan minum arak","Menipu dan menindas","Malas bekerja"], ans:1, exp:"Masyarakat Arab Jahiliyah sangat gemar melakukan perbuatan buruk seperti berjudi dan minum arak!"},
+    {q:"Apakah maksud sifat 'Ma'sum' yang ada pada diri Nabi Muhammad SAW?", opts:["Sentiasa kaya raya","Terpelihara daripada melakukan dosa dan maksiat","Mempunyai ramai pengikut","Pandai berniaga"], ans:1, exp:"Ma'sum bermaksud terpelihara daripada sebarang dosa, salah dan maksiat. Allah menjaga nabi daripada terikut amalan jahiliyah!"},
+    {q:"Adakah Nabi Muhammad SAW pernah terikut amalan buruk masyarakat Jahiliyah di sekeliling baginda?", opts:["Tidak pernah sama sekali","Pernah semasa kecil","Pernah sekadar mencuba","Ikut sekali-sekala"], ans:0, exp:"Nabi Muhammad SAW tidak pernah terikut dengan adat buruk jahiliyah kerana baginda sentiasa dalam perlindungan Allah!"}
+  ]
+};
+
+const motivasiKoleksi = [
+  {icon:"🏆", title:"Masha Allah!", arabic:"ما شاء الله", msg:"Jawapan kamu tepat! Kefahaman kamu tentang akhlak mulia Nabi sangat baik!"},
+  {icon:"💎", title:"Subhanallah!", arabic:"سبحان الله", msg:"Bijak sekali! Kamu berjaya menjawab soalan sirah akhlak ini dengan mudah!"},
+  {icon:"🕌", title:"Alhamdulillah!", arabic:"الحمد لله", msg:"Syukur! Teruskan fokus untuk mencontohi keperibadian indah Rasulullah ﷺ!"},
+  {icon:"⚡", title:"Barakallah!", arabic:"بارك الله فيك", msg:"Semoga berkat ilmu sirah yang kamu pelajari hari ini. Hebat!"}
+];
+
+let activeQuizPanel = null;
+let currentQIdx = 0;
+let panelScore = 0;
+
+function showPanel(n) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('quizSection').classList.remove('active');
+  
+  const el = document.getElementById('panel-' + n);
+  if (el) { el.classList.add('active'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  
+  const fill = Math.round((n / TOTAL) * 100);
+  document.getElementById('progressFill').style.width = fill + '%';
+  document.getElementById('progressLabel').textContent = 'Panel ' + n + ' / ' + TOTAL;
+}
+
+function nextPanel(n) {
+  if (n < TOTAL) { currentPanel = n + 1; showPanel(currentPanel); }
+}
+
+function prevPanel(n) {
+  if (n > 1) { currentPanel = n - 1; showPanel(currentPanel); }
+}
+
+function showTip(n) {
+  const t = document.getElementById('tip-' + n);
+  if (t) t.classList.toggle('show');
+}
+
+function showDone() {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('quizSection').classList.remove('active');
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('donePanel').classList.add('active');
+  document.getElementById('donePanel').scrollIntoView({behavior:'smooth'});
+}
+
+function resetAll() {
+  currentPanel = 1;
+  document.getElementById('donePanel').classList.remove('active');
+  document.getElementById('quizSection').classList.remove('active');
+  document.getElementById('progressWrap').style.display = '';
+  document.querySelectorAll('.tip-box').forEach(t => t.classList.remove('show'));
+  showPanel(1);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function startPanelQuiz(panelNum) {
+  activeQuizPanel = panelNum;
+  currentQIdx = 0;
+  panelScore = 0;
+  
+  document.getElementById('quizPanelTitle').textContent = `🎯 Misi Kuiz Akhlak — Panel ${panelNum}`;
+  document.getElementById('quizSection').classList.add('active');
+  
+  buildQuizDots();
+  renderQuestion();
+  
+  document.getElementById('quizSection').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function buildQuizDots() {
+  const container = document.getElementById('quizDots');
+  container.innerHTML = '';
+  for(let i=0; i<3; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'q-dot' + (i === 0 ? ' active' : '');
+    dot.id = 'pdot-' + i;
+    container.appendChild(dot);
+  }
+}
+
+function renderQuestion() {
+  const qData = panelQuestions[activeQuizPanel][currentQIdx];
+  document.getElementById('qText').textContent = `${currentQIdx + 1}. ${qData.q}`;
+  document.getElementById('qNumDisplay').textContent = `${currentQIdx + 1}`;
+  document.getElementById('scoreDisplay').textContent = panelScore;
+  
+  const fb = document.getElementById('qFeedback');
+  fb.style.display = 'none';
+  
+  const optsContainer = document.getElementById('qOptions');
+  optsContainer.innerHTML = '';
+  
+  qData.opts.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = optText;
+    btn.onclick = () => checkPanelAnswer(idx);
+    optsContainer.appendChild(btn);
+  });
+  
+  for(let i=0; i<3; i++) {
+    const dot = document.getElementById('pdot-' + i);
+    if(dot) {
+      dot.className = 'q-dot';
+      if(i === currentQIdx) dot.classList.add('active');
+    }
+  }
+}
+
+function checkPanelAnswer(chosenIdx) {
+  const qData = panelQuestions[activeQuizPanel][currentQIdx];
+  const btns = document.querySelectorAll('.quiz-opt');
+  
+  btns.forEach(b => b.disabled = true);
+  btns[qData.ans].classList.add('correct');
+  
+  const isCorrect = (chosenIdx === qData.ans);
+  if (isCorrect) {
+    panelScore++;
+    btns[chosenIdx].classList.add('correct');
+  } else {
+    btns[chosenIdx].classList.add('wrong');
+  }
+  
+  document.getElementById('scoreDisplay').textContent = panelScore;
+  
+  const mot = motivasiKoleksi[Math.floor(Math.random() * motivasiKoleksi.length)];
+  document.getElementById('popupIcon').textContent = isCorrect ? mot.icon : "💪";
+  document.getElementById('popupTitle').textContent = isCorrect ? mot.title : "Cuba Lagi!";
+  document.getElementById('popupArabic').textContent = isCorrect ? mot.arabic : "حاول مجددا";
+  document.getElementById('popupMsg').textContent = isCorrect ? mot.msg : `Jawapan kurang tepat. Mari belajar daripada nota semula!\n\n💡 Info Penting: ${qData.exp}`;
+  
+  const mainBtnPopup = document.getElementById('btnPopupNext');
+  if(currentQIdx < 2) {
+    mainBtnPopup.textContent = "✨ Seterusnya";
+  } else {
+    mainBtnPopup.textContent = "✨ Selesai Kuiz Modul";
+  }
+  
+  document.getElementById('popup').classList.add('active');
+}
+
+function actionUlangNota() {
+  closePopup();
+  document.getElementById('quizSection').classList.remove('active');
+  showPanel(activeQuizPanel);
+}
+
+function actionUlangSoalan() {
+  closePopup();
+  renderQuestion();
+}
+
+function actionSeterusnya() {
+  closePopup();
+  if (currentQIdx < 2) {
+    currentQIdx++;
+    renderQuestion();
+  } else {
+    document.getElementById('quizSection').classList.remove('active');
+    if (activeQuizPanel < 4) {
+      nextPanel(activeQuizPanel);
+    } else {
+      showPanel(5);
+    }
+  }
+}
+
+function closePopup() { 
+  document.getElementById('popup').classList.remove('active'); 
+}
+</script>
+</body>
+</html>

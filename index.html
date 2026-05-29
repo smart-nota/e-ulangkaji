@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KAFA SKSG 🌙 Pusat Ilmu Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+/* ===================================================
+   KAFA SKSG - Premium Fintech for Kids
+   Style: Playful Premium + Islamic Gold + Dark Sky
+   =================================================== */
+
+:root {
+  --gold:      #F5C842;
+  --gold-light:#FFE57A;
+  --gold-dark: #C9962A;
+  --sky-dark:  #0A0F2E;
+  --sky-mid:   #121A45;
+  --sky-card:  #1A2460;
+  --sky-card2: #1E1A5A;
+  --green:     #2ECC8A;
+  --green-dark:#1A9966;
+  --purple:    #7C5FD4;
+  --pink:      #FF6BAE;
+  --orange:    #FF8A3D;
+  --text-main: #FFFFFF;
+  --text-soft: #B8C4E8;
+  --text-muted:#6B7FBB;
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --shadow-gold: 0 0 30px rgba(245,200,66,0.35);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--sky-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---- Stars Background ---- */
+.stars-bg {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+.star-dot {
+  position: absolute; border-radius: 50%;
+  background: white; animation: twinkle 3s infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity:0.2; transform: scale(1); }
+  to   { opacity:1;   transform: scale(1.4); }
+}
+
+/* ---- Header ---- */
+.main-header {
+  position: sticky; top:0; z-index:100;
+  background: rgba(10,15,46,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 2px solid rgba(245,200,66,0.25);
+  padding: 12px 20px;
+}
+.header-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo-area { display:flex; align-items:center; gap:12px; }
+.logo-icon { font-size:2rem; filter: drop-shadow(0 0 8px var(--gold)); }
+.logo-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.6rem; font-weight:800; color: white;
+  line-height:1;
+}
+.logo-accent { color: var(--gold); }
+.logo-sub { font-size:0.7rem; color: var(--text-soft); display:block; }
+.star-badge {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--sky-dark); font-weight:800; font-size:0.8rem;
+  padding: 6px 14px; border-radius:30px;
+  box-shadow: var(--shadow-gold);
+  animation: pulse-badge 2s infinite;
+}
+@keyframes pulse-badge {
+  0%,100% { box-shadow: 0 0 12px rgba(245,200,66,0.4); }
+  50%      { box-shadow: 0 0 24px rgba(245,200,66,0.7); }
+}
+
+/* ── COFFEE / SUPPORT SECTION (KEKAL 100% - Header sahaja) ── */
+.support-btn-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.coffee-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  animation: coffee-float 3s ease-in-out infinite;
+}
+.coffee-btn:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+.coffee-btn svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+.steam {
+  stroke: #FF9D6C;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 10;
+  stroke-dashoffset: 20;
+  animation: steam-move 2s linear infinite;
+  opacity: 0;
+}
+.steam-2 { animation-delay: 0.7s; }
+@keyframes steam-move {
+  0% { stroke-dashoffset: 20; opacity: 0; }
+  50% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes coffee-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.coffee-bubble {
+  position: absolute;
+  right: 60px;
+  background: white;
+  color: #333;
+  padding: 8px 15px;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  font-family: 'Nunito', sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.5s ease;
+  z-index: 100;
+}
+.coffee-bubble.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.coffee-bubble::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid white;
+}
+
+/* ---- Hero Section ---- */
+.hero-section {
+  position: relative; z-index:1;
+  max-width:900px; margin:0 auto;
+  padding: 32px 20px 16px;
+  display: flex; flex-direction:column; align-items:center; text-align:center; gap:16px;
+}
+.hero-mascot {
+  position: relative; display:inline-flex; flex-direction:column; align-items:center;
+}
+.mascot-char {
+  font-size:5rem; animation: bounce 2s infinite;
+  filter: drop-shadow(0 6px 16px rgba(245,200,66,0.4));
+}
+.mascot-bubble {
+  background: white; color: var(--sky-dark);
+  font-weight:700; font-size:0.85rem;
+  padding:8px 16px; border-radius:20px 20px 20px 4px;
+  margin-bottom:8px; box-shadow:0 4px 16px rgba(0,0,0,0.3);
+  max-width:240px;
+  animation: fadein 0.8s ease;
+}
+@keyframes bounce {
+  0%,100%{ transform:translateY(0); }
+  50%    { transform:translateY(-10px); }
+}
+@keyframes fadein { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+.hero-text h1 {
+  font-family:'Baloo 2',cursive; font-size:2rem; font-weight:800;
+  color:white; line-height:1.2;
+}
+.wave { display:inline-block; animation:wave-hand 1.5s infinite; }
+@keyframes wave-hand {
+  0%,100%{transform:rotate(0)} 25%{transform:rotate(20deg)} 75%{transform:rotate(-10deg)}
+}
+.hero-text p { color:var(--text-soft); font-size:1rem; margin-top:6px; }
+
+.xp-bar-wrap {
+  width:100%; max-width:380px;
+  background:rgba(255,255,255,0.07); border-radius:30px;
+  padding:10px 16px; border:1px solid rgba(245,200,66,0.2);
+}
+.xp-label { font-size:0.8rem; color:var(--text-soft); margin-bottom:6px; }
+.xp-label strong { color:var(--gold); }
+.xp-track {
+  background:rgba(255,255,255,0.1); border-radius:20px; height:10px; overflow:hidden;
+}
+.xp-fill {
+  height:100%; border-radius:20px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  box-shadow:0 0 12px rgba(245,200,66,0.5);
+  animation: grow-bar 1.2s ease-out forwards;
+}
+@keyframes grow-bar { from{width:0} }
+
+/* ---- COUNTDOWN KAD PEPERIKSAAN ---- */
+.exam-countdown-wrap {
+  position: relative; z-index: 1;
+  max-width: 900px;
+  margin: 0 auto 8px;
+  padding: 0 16px;
+}
+.exam-countdown-card {
+  background: linear-gradient(135deg, #0E1B44 0%, #1A0E3A 50%, #0E2040 100%);
+  border: 2px solid rgba(245, 200, 66, 0.35);
+  border-radius: 24px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.exam-countdown-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,200,66,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.exam-cd-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 180px;
+}
+.exam-cd-icon {
+  width: 48px; height: 48px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 16px rgba(245,200,66,0.4);
+  flex-shrink: 0;
+  animation: pulse-badge 2s infinite;
+}
+.exam-cd-info {}
+.exam-cd-label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 2px;
+}
+.exam-cd-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+}
+.exam-cd-date {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: 2px;
+}
+.exam-cd-blocks {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.cd-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(245,200,66,0.2);
+  border-radius: 14px;
+  padding: 8px 12px;
+  min-width: 52px;
+}
+.cd-num {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  text-shadow: 0 0 16px rgba(245,200,66,0.5);
+}
+.cd-unit {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+.cd-sep {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: rgba(245,200,66,0.4);
+  margin-bottom: 12px;
+}
+.exam-cd-done {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--green);
+  text-shadow: 0 0 12px rgba(46,204,138,0.5);
+}
+
+/* ---- Subject Cards Grid ---- */
+.subjects-grid {
+  position:relative; z-index:1;
+  max-width:900px; margin:24px auto;
+  padding:0 16px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:20px;
+}
+.subject-card {
+  position:relative; overflow:hidden;
+  border-radius: var(--radius-xl);
+  text-decoration:none; color:white;
+  padding:28px 24px;
+  display:flex; flex-direction:column; gap:12px;
+  border:2px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor:pointer;
+  animation: card-in 0.5s ease backwards;
+}
+.subject-card:nth-child(1){animation-delay:0.1s}
+.subject-card:nth-child(2){animation-delay:0.2s}
+.subject-card:nth-child(3){animation-delay:0.3s}
+@keyframes card-in {
+  from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)}
+}
+.subject-card:hover {
+  transform:translateY(-6px) scale(1.02);
+  border-color:rgba(255,255,255,0.25);
+}
+.card-sirah {
+  background: linear-gradient(145deg, #1A3A5C, #0D2040);
+  box-shadow: 0 8px 32px rgba(0,80,180,0.3);
+}
+.card-sirah:hover { box-shadow: 0 16px 48px rgba(0,120,255,0.4), var(--shadow-gold); }
+.card-ibadah {
+  background: linear-gradient(145deg, #1A4A2E, #0D2A18);
+  box-shadow: 0 8px 32px rgba(0,120,60,0.3);
+}
+.card-ibadah:hover { box-shadow: 0 16px 48px rgba(46,204,138,0.35); }
+.card-jawi {
+  background: linear-gradient(145deg, #3A1A5C, #1E0D3A);
+  box-shadow: 0 8px 32px rgba(100,0,180,0.3);
+}
+.card-jawi:hover { box-shadow: 0 16px 48px rgba(124,95,212,0.4); }
+.card-glow {
+  position:absolute; top:-30px; right:-30px;
+  width:120px; height:120px; border-radius:50%;
+  background:rgba(255,255,255,0.04);
+  transition:transform 0.4s; pointer-events:none;
+}
+.subject-card:hover .card-glow { transform:scale(2.2); }
+.card-emoji {
+  font-size:3rem; line-height:1;
+  filter:drop-shadow(0 4px 12px rgba(255,255,255,0.2));
+  animation:float-emoji 3s infinite ease-in-out;
+}
+.subject-card:nth-child(2) .card-emoji{animation-delay:0.5s}
+.subject-card:nth-child(3) .card-emoji{animation-delay:1s}
+@keyframes float-emoji{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.card-tag {
+  font-size:0.65rem; font-weight:700; letter-spacing:0.1em;
+  text-transform:uppercase; color:rgba(255,255,255,0.5);
+}
+.card-title {
+  font-family:'Baloo 2',cursive; font-size:1.8rem; font-weight:800; line-height:1;
+}
+.card-desc { font-size:0.85rem; color:rgba(255,255,255,0.75); line-height:1.5; }
+.card-lessons { display:flex; flex-wrap:wrap; gap:8px; }
+.lesson-chip {
+  font-size:0.72rem; font-weight:700;
+  padding:4px 12px; border-radius:20px;
+  background:rgba(255,255,255,0.12); color:white;
+}
+.lesson-chip.unlocked { background:rgba(46,204,138,0.25); color:#7FFFCA; }
+.lesson-chip.coming   { background:rgba(245,200,66,0.2);  color:var(--gold); }
+.card-arrow {
+  position:absolute; bottom:20px; right:20px;
+  font-size:1.5rem; opacity:0.4;
+  transition:transform 0.3s, opacity 0.3s;
+}
+.subject-card:hover .card-arrow { transform:translateX(6px); opacity:1; }
+
+/* ---- Progress Section ---- */
+.progress-section {
+  position:relative; z-index:1;
+  max-width:900px; margin:0 auto 32px;
+  padding:0 16px;
+}
+.section-title {
+  font-family:'Baloo 2',cursive; font-size:1.3rem; font-weight:800;
+  margin-bottom:16px; color:var(--gold);
+}
+.badges-row {
+  display:flex; flex-wrap:wrap; gap:12px;
+}
+.badge-item {
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.06);
+  border:2px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding:14px 20px; min-width:90px;
+  transition:transform 0.2s;
+}
+.badge-item span { font-size:2rem; }
+.badge-item small { font-size:0.65rem; color:var(--text-soft); text-align:center; font-weight:700; }
+.badge-item.earned {
+  border-color:rgba(245,200,66,0.4);
+  background:rgba(245,200,66,0.08);
+  box-shadow:0 0 16px rgba(245,200,66,0.15);
+}
+.badge-item.earned:hover { transform:scale(1.08); }
+.badge-item.locked { opacity:0.45; filter:grayscale(1); }
+
+/* ---- Footer ---- */
+.main-footer {
+  position:relative; z-index:1;
+  text-align:center; padding:20px;
+  color:var(--text-muted); font-size:0.8rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+
+/* ============================================
+   SUBJECT PAGE (Sirah / Ibadah / Jawi)
+   ============================================ */
+.page-header {
+  position:sticky; top:0; z-index:100;
+  background: rgba(10,15,46,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:2px solid rgba(245,200,66,0.2);
+  padding:14px 20px;
+}
+.page-header-inner {
+  max-width:960px; margin:0 auto;
+  display:flex; align-items:center; gap:14px;
+}
+.back-btn {
+  background:rgba(255,255,255,0.08); border:none; color:white;
+  border-radius:12px; padding:8px 14px; cursor:pointer;
+  font-size:1rem; font-family:'Nunito',sans-serif; font-weight:700;
+  transition:background 0.2s;
+  text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+}
+.back-btn:hover { background:rgba(255,255,255,0.15); }
+.page-title-area h2 {
+  font-family:'Baloo 2',cursive; font-size:1.5rem; font-weight:800;
+}
+.page-title-area span { font-size:0.75rem; color:var(--text-soft); }
+
+/* Mind Map Container */
+.mindmap-section {
+  max-width:960px; margin:0 auto; padding:24px 16px;
+  position:relative; z-index:1;
+}
+.mindmap-intro {
+  text-align:center; margin-bottom:28px;
+}
+.mindmap-intro h3 {
+  font-family:'Baloo 2',cursive; font-size:1.6rem; color:var(--gold);
+}
+.mindmap-intro p { color:var(--text-soft); font-size:0.9rem; margin-top:6px; }
+
+/* Central Node */
+.mindmap-wrap {
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+}
+.central-node {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--sky-dark); border-radius:24px;
+  padding:18px 32px; text-align:center;
+  box-shadow: var(--shadow-gold);
+  position:relative; z-index:2;
+  animation: pulse-node 3s infinite;
+}
+@keyframes pulse-node {
+  0%,100%{box-shadow:0 0 20px rgba(245,200,66,0.4)}
+  50%    {box-shadow:0 0 40px rgba(245,200,66,0.7)}
+}
+.central-node .node-emoji { font-size:2.5rem; }
+.central-node .node-title {
+  font-family:'Baloo 2',cursive; font-size:1.2rem; font-weight:900; margin-top:6px;
+}
+.central-node .node-sub { font-size:0.72rem; font-weight:700; opacity:0.75; }
+
+/* Connector line */
+.connector-line {
+  width:3px; height:30px;
+  background:linear-gradient(to bottom, var(--gold), rgba(245,200,66,0.2));
+  border-radius:2px;
+}
+
+/* Topic Grid */
+.topics-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:16px; width:100%;
+}
+
+/* Topic Card */
+.topic-card {
+  background: var(--sky-card);
+  border:2px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-xl);
+  overflow:hidden;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  animation: card-in 0.5s ease backwards;
+  cursor:pointer;
+}
+.topic-card:hover {
+  transform:translateY(-5px);
+  border-color: rgba(245,200,66,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(245,200,66,0.2);
+}
+.topic-card-header {
+  padding:20px 20px 14px;
+  display:flex; align-items:flex-start; gap:14px;
+}
+.topic-num {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--sky-dark); font-weight:900; font-size:1rem;
+  width:36px; height:36px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; box-shadow:0 4px 12px rgba(245,200,66,0.3);
+}
+.topic-card-title {
+  font-family:'Baloo 2',cursive; font-size:1.05rem; font-weight:800; line-height:1.3;
+  color:white; flex:1;
+}
+.topic-card-body {
+  padding:0 20px 20px; color:var(--text-soft); font-size:0.85rem; line-height:1.6;
+}
+
+/* Read Button */
+.btn-read {
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--sky-dark); font-weight:800; font-size:0.85rem;
+  padding:10px 20px; border-radius:30px; margin:12px 0 0;
+  text-decoration:none; border:none; cursor:pointer;
+  font-family:'Nunito',sans-serif;
+  box-shadow:0 4px 16px rgba(245,200,66,0.35);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.btn-read:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(245,200,66,0.5);
+}
+
+/* Coming Soon card */
+.topic-card.coming-soon {
+  opacity:0.5; filter:grayscale(0.5); pointer-events:none;
+}
+.coming-badge {
+  display:inline-block; background:rgba(245,200,66,0.2);
+  color:var(--gold); font-size:0.72rem; font-weight:800;
+  padding:3px 10px; border-radius:20px; margin-top:8px;
+}
+
+/* ============================================
+   NOTA PAGE (Blog-style)
+   ============================================ */
+.nota-page {
+  max-width:760px; margin:0 auto; padding:28px 16px 60px;
+  position:relative; z-index:1;
+}
+.nota-hero {
+  background: linear-gradient(135deg, #1A3A5C, #0D2040);
+  border:2px solid rgba(245,200,66,0.25);
+  border-radius: var(--radius-xl);
+  padding:32px 28px; margin-bottom:28px; text-align:center;
+}
+.nota-hero .nota-emoji { font-size:4rem; animation:bounce 2s infinite; }
+.nota-hero h1 {
+  font-family:'Baloo 2',cursive; font-size:1.8rem; font-weight:900;
+  margin:12px 0 6px;
+}
+.nota-hero p { color:var(--text-soft); font-size:0.9rem; }
+.nota-hero .nota-chip {
+  display:inline-block; background:rgba(245,200,66,0.2);
+  color:var(--gold); font-size:0.75rem; font-weight:800;
+  padding:4px 14px; border-radius:20px; margin-top:10px;
+}
+
+/* Nota Content Blocks */
+.nota-content { display:flex; flex-direction:column; gap:20px; }
+.nota-block {
+  background:var(--sky-card);
+  border:2px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-xl);
+  padding:24px 24px;
+  animation: card-in 0.4s ease backwards;
+}
+.nota-block h2 {
+  font-family:'Baloo 2',cursive; font-size:1.3rem; color:var(--gold);
+  margin-bottom:12px; display:flex; align-items:center; gap:8px;
+}
+.nota-block h3 {
+  font-family:'Baloo 2',cursive; font-size:1.05rem; color:var(--gold-light);
+  margin:14px 0 8px;
+}
+.nota-block p {
+  color:var(--text-soft); font-size:0.9rem; line-height:1.8; margin-bottom:10px;
+}
+.nota-block ul, .nota-block ol {
+  padding-left:20px; color:var(--text-soft); font-size:0.9rem; line-height:2;
+}
+.nota-block li::marker { color:var(--gold); }
+
+/* Info Box */
+.info-box {
+  background:rgba(245,200,66,0.08);
+  border:1.5px solid rgba(245,200,66,0.25);
+  border-radius: var(--radius-md);
+  padding:14px 18px; margin:12px 0;
+  font-size:0.88rem; color:var(--text-soft); line-height:1.7;
+}
+.info-box strong { color:var(--gold); }
+
+/* Highlight row */
+.highlight-row {
+  display:flex; flex-wrap:wrap; gap:10px; margin:12px 0;
+}
+.highlight-chip {
+  background:rgba(46,204,138,0.12); border:1.5px solid rgba(46,204,138,0.25);
+  color:#7FFFCA; border-radius:12px; padding:6px 14px;
+  font-size:0.82rem; font-weight:700;
+}
+.highlight-chip.purple {
+  background:rgba(124,95,212,0.15); border-color:rgba(124,95,212,0.3); color:#C5ACFF;
+}
+.highlight-chip.gold {
+  background:rgba(245,200,66,0.12); border-color:rgba(245,200,66,0.3); color:var(--gold);
+}
+
+/* Table */
+.nota-table {
+  width:100%; border-collapse:collapse; margin:12px 0; font-size:0.88rem;
+}
+.nota-table th {
+  background:rgba(245,200,66,0.15); color:var(--gold);
+  padding:10px 14px; text-align:left; border-bottom:2px solid rgba(245,200,66,0.2);
+  font-family:'Baloo 2',cursive; font-size:0.92rem;
+}
+.nota-table td {
+  padding:10px 14px; color:var(--text-soft);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nota-table tr:hover td { background:rgba(255,255,255,0.03); }
+
+/* Fun Fact box */
+.fun-fact {
+  background:linear-gradient(135deg, rgba(124,95,212,0.15), rgba(10,15,46,0.5));
+  border:2px dashed rgba(124,95,212,0.4);
+  border-radius: var(--radius-lg); padding:16px 20px; margin:14px 0;
+  display:flex; gap:12px; align-items:flex-start;
+}
+.fun-fact .ff-icon { font-size:2rem; flex-shrink:0; }
+.fun-fact p { color:var(--text-soft); font-size:0.88rem; line-height:1.7; margin:0; }
+.fun-fact strong { color:#C5ACFF; }
+
+/* Nav between notes */
+.nota-nav {
+  display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;
+}
+.nota-nav a {
+  flex:1; min-width:140px; text-align:center;
+  background:rgba(255,255,255,0.06); border:2px solid rgba(255,255,255,0.1);
+  color:white; text-decoration:none; padding:12px 16px; border-radius: var(--radius-md);
+  font-weight:700; font-size:0.85rem; transition:all 0.2s;
+}
+.nota-nav a:hover {
+  background:rgba(245,200,66,0.1); border-color:rgba(245,200,66,0.4); color:var(--gold);
+}
+.nota-nav a.prev::before { content:"← "; }
+.nota-nav a.next::after  { content:" →"; }
+
+/* Gaya Butang Akses Pantas */
+.quick-access-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  backdrop-filter: blur(5px);
+}
+.quick-access-btn:hover {
+  background: #F5C842;
+  color: #0A0F2E;
+  border-color: #F5C842;
+  transform: translateY(-2px);
+}
+.quick-access-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width:600px) {
+  .hero-text h1 { font-size:1.5rem; }
+  .subjects-grid { grid-template-columns:1fr; }
+  .topics-grid   { grid-template-columns:1fr; }
+  .nota-hero h1  { font-size:1.4rem; }
+  .nota-block    { padding:18px 16px; }
+  .central-node  { padding:14px 22px; }
+  .exam-countdown-card { flex-direction: column; align-items: flex-start; }
+  .exam-cd-blocks { width: 100%; justify-content: center; }
+  .cd-block { min-width: 48px; padding: 7px 10px; }
+  .cd-num { font-size: 1.3rem; }
+  .coffee-bubble { font-size: 0.68rem; padding: 6px 11px; right: 56px; }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Floating Stars Background -->
+  <div class="stars-bg" id="starsBg"></div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-icon">🕌</div>
+        <div class="logo-text">
+          <span class="logo-title">KAFA<span class="logo-accent">SKSG</span></span>
+          <span class="logo-sub">Nota Digital</span>
+        </div>
+      </div>
+
+      <!-- COFFEE SUPPORT (KEKAL DI HEADER) -->
+      <div class="support-btn-wrapper">
+        <div class="coffee-bubble" id="coffeeBubble">Suka web ini? ❤️</div>
+        <a href="https://e-ulangkaji-kafa.pages.dev/sokong-saya" class="coffee-btn" title="Sokong Kami">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="steam steam-1" d="M9 4C9 4 7.5 5.5 9 7C10.5 8.5 9 10 9 10" fill="none" />
+            <path class="steam steam-2" d="M13 3C13 3 11.5 4.5 13 6C14.5 7.5 13 9 13 9" fill="none" />
+            <path d="M18 10H4C2.89543 10 2 10.8954 2 12V15C2 18.3137 4.68629 21 8 21H14C17.3137 21 20 18.3137 20 15V12C20 10.8954 19.1046 10 18 10Z" fill="#FFFFFF" />
+            <path d="M20 12C20 12 22 12 22 14.5C22 17 20 17 20 17" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Welcome -->
+  <section class="hero-section">
+    <div class="hero-mascot">
+      <div class="mascot-bubble">Assalamualaikum! Selamat belajar hari ini! 📚</div>
+      <div class="mascot-char">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgx5PLtj3UiyscaqouAC1dRerEKicHqgZe0Hq__tSaviV0Vo-XXHW4ULOJklqE-2RePJyZPJEFT1E9ke5kZHXudB5D2RySD1f-ZDd-qfOTL4e49BXt54nuT2bJqja-EYALWseb-kDwrJb-qcBByq67_EO6Pl5bQEEVSkIT8g0e2fZCi_-Yq5tqCa9fXuKli=s16000" alt="Avatar Maskot" style="width:80px;height:80px;object-fit:contain;display:block;" />
+      </div>
+    </div>
+    <div class="hero-text">
+      <h1>Hai, Pelajar Hebat! <span class="wave">👋</span></h1>
+      <p>Pilih subjek yang ingin kamu ulang kaji hari ini</p>
+      <a href="https://e-ulangkaji-kafa.pages.dev/akses-pantas" class="quick-access-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Pasang untuk Akses Pantas
+      </a>
+    </div>
+  </section>
+
+  <!-- KAD COUNTDOWN PEPERIKSAAN -->
+  <div class="exam-countdown-wrap">
+    <div class="exam-countdown-card">
+      <div class="exam-cd-left">
+        <div class="exam-cd-icon">📝</div>
+        <div class="exam-cd-info">
+          <div class="exam-cd-label">Kiraan Detik</div>
+          <div class="exam-cd-title">Peperiksaan Pertengahan Tahun</div>
+          <div class="exam-cd-date">📅 8 Jun 2026</div>
+        </div>
+      </div>
+      <div class="exam-cd-blocks" id="cdBlocks">
+        <!-- Diisi oleh JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Subject Cards -->
+  <main class="subjects-grid">
+    <a href="subjek-sirah.html" class="subject-card card-sirah">
+      <div class="card-glow"></div>
+      <div class="card-emoji">🌟</div>
+      <div class="card-body">
+        <div class="card-tag">Subjek</div>
+        <h2 class="card-title">Sirah</h2>
+        <p class="card-desc">Kisah Nabi Muhammad SAW</p>
+        <div class="card-lessons">
+          <span class="lesson-chip">📖 5 Topik</span>
+          <span class="lesson-chip unlocked">✅ Aktif</span>
+        </div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="subjek-ibadah.html" class="subject-card card-ibadah">
+      <div class="card-glow"></div>
+      <div class="card-emoji">🤲</div>
+      <div class="card-body">
+        <div class="card-tag">Subjek</div>
+        <h2 class="card-title">Ibadah</h2>
+        <p class="card-desc">Memahami Cara Beribadah</p>
+        <div class="card-lessons">
+          <span class="lesson-chip">📖 5 Topik</span>
+          <span class="lesson-chip unlocked">✅ Aktif</span>
+        </div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <a href="subjek-jawi.html" class="subject-card card-jawi">
+      <div class="card-glow"></div>
+      <div class="card-emoji">✍️</div>
+      <div class="card-body">
+        <div class="card-tag">Subjek</div>
+        <h2 class="card-title">Jawi</h2>
+        <p class="card-desc">Tulisan Jawi yang cantik & cara membaca Al-Quran</p>
+        <div class="card-lessons">
+          <span class="lesson-chip">📖 Akan Datang</span>
+          <span class="lesson-chip coming">🔔 Soon</span>
+        </div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <p>🌙 KAFA SKSG · Dibina oleh Wan Hasbullah dengan ❤️ untuk pelajar KAFA SK Seri Geliga</p>
+    <div style="margin-top: 15px;">
+       <a href="https://e-ulangkaji-kafa.pages.dev/akses-pantas" class="quick-access-btn" style="font-size: 0.65rem;">
+         📲 Pasang App Sekarang
+       </a>
+    </div>
+  </footer>
+
+  <script>
+    // ==============================
+    // KAFA SKSG - Main JS (100% ASAL)
+    // ==============================
+
+    // Generate stars background
+    function createStars() {
+      const bg = document.getElementById('starsBg');
+      if (!bg) return;
+      for (let i = 0; i < 80; i++) {
+        const star = document.createElement('div');
+        star.className = 'star-dot';
+        const size = Math.random() * 3 + 1;
+        star.style.cssText = `
+          width:${size}px; height:${size}px;
+          top:${Math.random()*100}%; left:${Math.random()*100}%;
+          animation-delay:${Math.random()*4}s;
+          animation-duration:${2+Math.random()*3}s;
+        `;
+        bg.appendChild(star);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createStars();
+    });
+
+    // ── BUBBLE ANIMASI (mesej diubah) ──
+    const messages = [
+      "Suka web ini? ❤️",
+      "Bantu saya kekal PERCUMA 😊",
+      "Sokong Tabung Belajar Saya 🎓"
+    ];
+
+    let currentIndex = 0;
+    const bubble = document.getElementById('coffeeBubble');
+
+    function updateBubble() {
+      bubble.classList.remove('show');
+      setTimeout(() => {
+        bubble.innerText = messages[currentIndex];
+        bubble.classList.add('show');
+        currentIndex = (currentIndex + 1) % messages.length;
+      }, 500);
+    }
+
+    setInterval(updateBubble, 5000);
+    setTimeout(updateBubble, 2000);
+
+    // ── COUNTDOWN PEPERIKSAAN ──
+    function updateCountdown() {
+      const examDate = new Date('2026-06-08T00:00:00');
+      const now = new Date();
+      const diff = examDate - now;
+      const cdBlocks = document.getElementById('cdBlocks');
+
+      if (diff <= 0) {
+        cdBlocks.innerHTML = '<span class="exam-cd-done">🎉 Hari Peperiksaan!</span>';
+        return;
+      }
+
+      const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      cdBlocks.innerHTML = `
+        <div class="cd-block">
+          <span class="cd-num">${String(days).padStart(2,'0')}</span>
+          <span class="cd-unit">Hari</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block">
+          <span class="cd-num">${String(hours).padStart(2,'0')}</span>
+          <span class="cd-unit">Jam</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block">
+          <span class="cd-num">${String(minutes).padStart(2,'0')}</span>
+          <span class="cd-unit">Minit</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-block">
+          <span class="cd-num">${String(seconds).padStart(2,'0')}</span>
+          <span class="cd-unit">Saat</span>
+        </div>
+      `;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

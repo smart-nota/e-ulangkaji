@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Biodata Nabi Muhammad SAW 🌟 KAFA Learn</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-panel: #16161f;
+  --gold: #d4a017;
+  --gold-light: #f0c040;
+  --gold-bright: #ffe066;
+  --gold-dim: #8a6510;
+  --text: #f0e6c8;
+  --text-dim: #a89870;
+  --blue-soft: #1a2a4a;
+  --green: #2a5a2a;
+  --red: #5a1a1a;
+  --radius: 18px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:var(--bg-deep);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Stars BG */
+.stars-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(212,160,23,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(212,160,23,0.05) 0%, transparent 50%);
+}
+.stars-bg::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,230,102,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 35%, rgba(255,230,102,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 8%, rgba(255,230,102,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 25%, rgba(255,230,102,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 12%, rgba(255,230,102,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 30%, rgba(255,230,102,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 55%, rgba(255,230,102,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,230,102,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 60%, rgba(255,230,102,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 75%, rgba(255,230,102,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 55%, rgba(255,230,102,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 85%, rgba(255,230,102,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 90%, rgba(255,230,102,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 90%, rgba(255,230,102,0.2) 0%, transparent 100%);
+}
+
+/* HEADER */
+.page-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,15,0.82);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:2px solid var(--gold);
+  padding:0 20px;
+}
+.page-header-inner{
+  max-width:760px;margin:0 auto;
+  display:flex;align-items:center;gap:14px;
+  height:60px;
+}
+.back-btn{
+  font-family:'Nunito',sans-serif;
+  color:var(--gold-light);font-weight:800;font-size:0.9rem;
+  text-decoration:none;padding:6px 14px;
+  border:1.5px solid var(--gold-dim);border-radius:30px;
+  white-space:nowrap;transition:all 0.2s;
+}
+.back-btn:hover{background:rgba(212,160,23,0.15);border-color:var(--gold-light);}
+.page-title-area h2{
+  font-family:'Nunito',sans-serif;
+  font-size:1rem;font-weight:800;color:var(--gold-bright);line-height:1.2;
+}
+.page-title-area span{
+  font-size:0.75rem;color:var(--text-dim);font-weight:600;
+}
+
+/* WRAPPER */
+.wrapper{
+  position:relative;z-index:1;
+  max-width:720px;margin:0 auto;
+  padding:24px 16px 60px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;padding:36px 20px 28px;
+  border-bottom:1px solid rgba(212,160,23,0.2);
+  margin-bottom:28px;
+}
+.hero-emoji{font-size:3.5rem;display:block;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{
+  font-size:1.7rem;font-weight:900;
+  background:linear-gradient(135deg, var(--gold-bright), var(--gold), var(--gold-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:6px;
+}
+.hero p{color:var(--text-dim);font-size:0.95rem;font-weight:600;}
+.hero-chip{
+  display:inline-block;margin-top:12px;
+  background:rgba(212,160,23,0.15);border:1.5px solid var(--gold-dim);
+  color:var(--gold-light);border-radius:30px;padding:4px 16px;font-size:0.8rem;font-weight:700;
+}
+
+/* PROGRESS */
+.progress-wrap{margin-bottom:20px;}
+.progress-label{
+  display:flex;justify-content:space-between;
+  font-size:0.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px;
+}
+.progress-track{
+  height:8px;border-radius:4px;
+  background:rgba(212,160,23,0.12);
+  border:1px solid rgba(212,160,23,0.2);overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:4px;
+  background:linear-gradient(90deg, var(--gold), var(--gold-bright));
+  transition:width 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* PANEL */
+.panel{
+  background:var(--bg-panel);
+  border:2.5px solid var(--gold-dim);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,230,102,0.06);
+  padding:24px 20px;
+  display:none;
+  animation:panelIn 0.4s cubic-bezier(.4,0,.2,1);
+}
+.panel.active{display:block;}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* PANEL HEADER */
+.panel-header{
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;
+}
+.panel-num{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg, var(--gold), var(--gold-dim));
+  color:#000;font-weight:900;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;box-shadow:0 2px 8px rgba(212,160,23,0.4);
+}
+.panel-header h3{
+  font-size:1.1rem;font-weight:900;color:var(--gold-bright);
+}
+
+/* USTAZ BUBBLE */
+.ustaz-row{
+  display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;
+}
+.ustaz-avatar{
+  flex-shrink:0;text-align:center;
+}
+.ustaz-icon{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,#1a2a1a,#2a3a2a);
+  border:2.5px solid var(--gold-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+}
+.ustaz-label{
+  font-size:0.65rem;font-weight:800;color:var(--gold);
+  text-align:center;margin-top:4px;letter-spacing:1px;
+}
+.speech-bubble{
+  background:rgba(212,160,23,0.08);
+  border:1.5px solid rgba(212,160,23,0.25);
+  border-radius:0 14px 14px 14px;
+  padding:12px 16px;
+  font-size:0.92rem;font-weight:600;color:var(--text);
+  line-height:1.6;flex:1;position:relative;
+}
+.speech-bubble::before{
+  content:'';position:absolute;
+  left:-10px;top:10px;
+  border:5px solid transparent;
+  border-right-color:rgba(212,160,23,0.25);
+}
+
+/* CONTENT BLOCKS */
+.info-box{
+  background:rgba(212,160,23,0.06);
+  border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;
+  padding:12px 16px;margin:12px 0;
+  font-size:0.9rem;line-height:1.7;font-weight:600;
+}
+.fun-fact{
+  background:rgba(26,42,74,0.5);
+  border:1.5px solid rgba(100,150,255,0.3);
+  border-radius:12px;padding:14px 16px;
+  display:flex;gap:12px;align-items:flex-start;margin:12px 0;
+}
+.ff-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+.fun-fact p{font-size:0.88rem;line-height:1.6;font-weight:600;color:#c8d8f0;}
+
+.nota-table{
+  width:100%;border-collapse:collapse;margin:12px 0;font-size:0.85rem;
+}
+.nota-table th{
+  background:rgba(212,160,23,0.2);
+  color:var(--gold-bright);font-weight:800;
+  padding:9px 12px;border:1px solid var(--gold-dim);text-align:left;
+}
+.nota-table td{
+  padding:8px 12px;border:1px solid rgba(212,160,23,0.15);
+  font-weight:600;color:var(--text);vertical-align:top;
+}
+.nota-table tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.chip{
+  padding:6px 14px;border-radius:30px;font-size:0.82rem;font-weight:700;
+  border:1.5px solid;
+}
+.chip-gold{background:rgba(212,160,23,0.15);border-color:var(--gold);color:var(--gold-bright);}
+.chip-white{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.2);color:var(--text);}
+.chip-purple{background:rgba(150,80,200,0.15);border-color:rgba(150,80,200,0.4);color:#d4aaff;}
+
+/* TIP BOX */
+.tip-box{
+  display:none;
+  background:rgba(42,90,42,0.3);
+  border:2px solid rgba(80,180,80,0.4);
+  border-radius:14px;padding:14px 16px;margin:14px 0;
+  animation:panelIn 0.3s ease;
+}
+.tip-box.show{display:block;}
+.tip-label{font-size:0.75rem;font-weight:800;color:#80e080;letter-spacing:1px;margin-bottom:6px;}
+.tip-box p{font-size:0.88rem;line-height:1.6;font-weight:600;color:#c8f0c8;}
+
+/* NAV BUTTONS */
+.panel-nav{
+  display:flex;align-items:center;margin-top:22px;gap:10px;
+}
+.nav-back-btn{
+  background:transparent;border:1.5px solid var(--gold-dim);
+  color:var(--gold);border-radius:30px;padding:8px 16px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;flex-shrink:0;
+}
+.nav-back-btn:hover{background:rgba(212,160,23,0.1);}
+.nav-back-btn.hidden{visibility:hidden;}
+.nav-center{display:flex;gap:10px;justify-content:center;flex:1;}
+.btn-faham{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  color:#000;border:none;border-radius:30px;padding:10px 22px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-faham:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,160,23,0.4);}
+.btn-tak{
+  background:transparent;border:1.5px solid rgba(212,160,23,0.4);
+  color:var(--gold-light);border-radius:30px;padding:10px 18px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-tak:hover{background:rgba(212,160,23,0.08);}
+
+/* DONE PANEL */
+.done-panel{
+  display:none;text-align:center;
+  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
+  border-radius:var(--radius);padding:36px 24px;
+  box-shadow:var(--shadow);
+  animation:panelIn 0.4s ease;
+}
+.done-panel.active{display:block;}
+.done-emoji{font-size:3rem;display:block;margin-bottom:12px;}
+.done-panel h2{font-size:1.4rem;font-weight:900;color:var(--gold-bright);margin-bottom:8px;}
+.done-panel p{color:var(--text-dim);font-size:0.95rem;font-weight:600;margin-bottom:24px;}
+.done-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-reset{
+  background:transparent;border:2px solid var(--gold-dim);
+  color:var(--gold-light);border-radius:30px;padding:12px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-reset:hover{background:rgba(212,160,23,0.1);}
+.btn-quiz-start{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  color:#000;border:none;border-radius:30px;padding:12px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;
+}
+.btn-quiz-start:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,160,23,0.4);}
+
+/* QUIZ */
+.quiz-section{display:none;animation:panelIn 0.4s ease;}
+.quiz-section.active{display:block;}
+.quiz-header{
+  background:var(--bg-panel);border:2px solid var(--gold-dim);
+  border-radius:14px;padding:16px 20px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.quiz-title{font-size:1rem;font-weight:800;color:var(--gold-bright);}
+.quiz-score-label{font-size:0.85rem;font-weight:700;color:var(--text-dim);}
+.quiz-q-label{font-size:0.85rem;font-weight:700;color:var(--gold);}
+.quiz-card{
+  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
+  border-radius:var(--radius);padding:24px 20px;
+  box-shadow:var(--shadow);
+}
+.quiz-q-text{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:18px;line-height:1.5;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.quiz-opt{
+  background:rgba(255,255,255,0.04);border:1.5px solid rgba(212,160,23,0.25);
+  border-radius:12px;padding:11px 16px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;color:var(--text);
+  cursor:pointer;text-align:left;transition:all 0.2s;
+}
+.quiz-opt:hover:not(:disabled){background:rgba(212,160,23,0.1);border-color:var(--gold);}
+.quiz-opt.correct{background:rgba(42,90,42,0.5);border-color:#4ade80;color:#86efac;}
+.quiz-opt.wrong{background:rgba(90,26,26,0.5);border-color:#f87171;color:#fca5a5;}
+.quiz-opt:disabled{cursor:default;}
+.quiz-feedback{
+  font-size:0.88rem;font-weight:700;padding:10px 14px;
+  border-radius:10px;margin-bottom:14px;display:none;line-height:1.5;
+}
+.quiz-feedback.correct{background:rgba(42,90,42,0.4);color:#86efac;border:1px solid rgba(74,222,128,0.3);}
+.quiz-feedback.wrong{background:rgba(90,26,26,0.4);color:#fca5a5;border:1px solid rgba(248,113,113,0.3);}
+.btn-next-q{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  color:#000;border:none;border-radius:30px;padding:10px 24px;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;
+  cursor:pointer;display:none;transition:all 0.2s;
+}
+.btn-next-q:hover{transform:translateY(-2px);}
+.quiz-dots{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
+.q-dot{
+  width:12px;height:12px;border-radius:50%;
+  background:rgba(212,160,23,0.15);border:1.5px solid var(--gold-dim);
+  transition:all 0.3s;
+}
+.q-dot.active{background:var(--gold);border-color:var(--gold-bright);}
+.q-dot.done-correct{background:#4ade80;border-color:#86efac;}
+.q-dot.done-wrong{background:#f87171;border-color:#fca5a5;}
+
+/* RESULT */
+.quiz-result{
+  display:none;text-align:center;
+  background:var(--bg-panel);border:2.5px solid var(--gold-dim);
+  border-radius:var(--radius);padding:36px 24px;
+  animation:panelIn 0.4s ease;
+}
+.quiz-result.active{display:block;}
+.result-score{
+  font-size:3rem;font-weight:900;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin:16px 0;
+}
+.result-msg{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:24px;}
+.result-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* POPUP */
+.popup-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.78);z-index:200;
+  align-items:center;justify-content:center;padding:20px;
+}
+.popup-overlay.active{display:flex;}
+.popup-card{
+  background:linear-gradient(135deg,#1a1a0a,#12120a);
+  border:3px solid var(--gold);border-radius:22px;
+  padding:32px 28px;max-width:380px;width:100%;
+  text-align:center;position:relative;overflow:hidden;
+  animation:popIn 0.5s cubic-bezier(.175,.885,.32,1.275);
+}
+@keyframes popIn{from{transform:scale(0.7);opacity:0}to{transform:scale(1);opacity:1}}
+.popup-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(212,160,23,0.08),transparent);
+  background-size:200% 100%;
+  animation:shimmer 2s ease-in-out infinite;
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.popup-icon{font-size:3rem;display:block;margin-bottom:12px;}
+.popup-title{
+  font-size:1.3rem;font-weight:900;color:var(--gold-bright);margin-bottom:8px;
+}
+.popup-arabic{
+  font-size:1rem;color:var(--text-dim);font-weight:600;margin-bottom:10px;font-style:italic;
+}
+.popup-msg{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:20px;line-height:1.6;}
+.btn-popup{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+  color:#000;border:none;border-radius:30px;padding:11px 28px;
+  font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;position:relative;z-index:1;
+}
+.btn-popup:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,160,23,0.5);}
+
+/* NOTA NAV */
+.nota-nav{
+  display:flex;justify-content:space-between;gap:12px;
+  margin-top:32px;flex-wrap:wrap;
+}
+.nota-nav a{
+  color:var(--gold-light);text-decoration:none;font-weight:700;
+  font-size:0.88rem;padding:10px 18px;
+  border:1.5px solid var(--gold-dim);border-radius:30px;
+  transition:all 0.2s;background:rgba(212,160,23,0.05);
+}
+.nota-nav a:hover{background:rgba(212,160,23,0.15);}
+
+footer{
+  text-align:center;padding:24px 16px;
+  font-size:0.82rem;color:var(--text-dim);font-weight:600;
+  border-top:1px solid rgba(212,160,23,0.1);margin-top:40px;
+}
+
+.strong{font-weight:800;color:var(--gold-light);}
+em{color:var(--gold);font-style:normal;font-weight:700;}
+
+@media(max-width:480px){
+  .hero h1{font-size:1.35rem;}
+  .panel{padding:18px 14px;}
+  .ustaz-icon{width:46px;height:46px;font-size:1.5rem;}
+  .nav-center{gap:6px;}
+  .btn-faham,.btn-tak{padding:9px 14px;font-size:0.82rem;}
+}
+</style>
+</head>
+<body>
+<div class="stars-bg"></div>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <a href="../../subjek-sirah.html" class="back-btn">← Sirah</a>
+    <div class="page-title-area">
+      <h2>📖 Biodata Nabi Muhammad SAW</h2>
+      <span>Topik 1 · Subjek Sirah</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+  <div class="hero">
+    <span class="hero-emoji">🌟</span>
+    <h1>Biodata Nabi Muhammad SAW</h1>
+    <p>Kenali Nabi kita yang mulia ﷺ</p>
+    <span class="hero-chip">📖 Topik 1 · Sirah</span>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-label">
+      <span>📊 Kemajuan Belajar</span>
+      <span id="progressLabel">Panel 1 / 5</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:20%"></div>
+    </div>
+  </div>
+
+  <!-- PANEL 1 -->
+  <div class="panel active" id="panel-1">
+    <div class="panel-header">
+      <div class="panel-num">1</div>
+      <h3>👶 Kelahiran Nabi Muhammad SAW</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Assalamualaikum! Hari ini kita akan belajar tentang biodata Nabi kita yang mulia. Kita mulakan dengan tarikh kelahiran baginda yang sangat istimewa! 🌙
+      </div>
+    </div>
+    <div class="info-box">
+      📅 <span class="strong">Tarikh Lahir:</span> Hari Isnin, 12 Rabiulawal<br/>
+      🗓️ <span class="strong">Tahun:</span> 570 Masihi<br/>
+      📍 <span class="strong">Tempat Lahir:</span> Kota Makkah Al-Mukarramah, Arab Saudi
+    </div>
+    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:10px 0;">Tahun kelahiran baginda juga dikenali sebagai <em>Tahun Gajah</em> kerana pada tahun itu berlaku peristiwa tentera bergajah yang cuba meruntuhkan Kaabah yang mulia.</p>
+    <div class="fun-fact">
+      <div class="ff-icon">💡</div>
+      <p>Kenapa hari <span class="strong">Isnin</span> istimewa? Nabi SAW sendiri berpuasa setiap hari Isnin kerana hari itu adalah hari baginda dilahirkan ke dunia!</p>
+    </div>
+    <div class="tip-box" id="tip-1">
+      <div class="tip-label">💚 TIP MUDAH INGAT</div>
+      <p>Ingat nombor <strong>"12 — 5 — 7 — 0"</strong> → 12 Rabiulawal, bulan ke-5 kalender Islam, tahun 570 Masihi. Atau hafal: <em>"Dua-belas, Lima-ratus-tujuh-puluh — Tahun Gajah Yang Mulia!"</em> 🐘</p>
+    </div>
+    <div class="panel-nav">
+      <button class="nav-back-btn hidden">←</button>
+      <div class="nav-center">
+        <button class="btn-faham" onclick="nextPanel(1)">✅ Saya Faham</button>
+        <button class="btn-tak" onclick="showTip(1)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 2 -->
+  <div class="panel" id="panel-2">
+    <div class="panel-header">
+      <div class="panel-num">2</div>
+      <h3>📛 Nama & Gelaran Mulia Baginda</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Nama penuh Nabi SAW sangat panjang dan bermakna! Setiap bahagian nama baginda ada cerita tersendiri. Jom kita tengok satu-satu! 😊
+      </div>
+    </div>
+    <div class="info-box" style="text-align:center;padding:16px;">
+      <span class="strong" style="font-size:1.05rem;color:var(--gold-bright);">Muhammad bin Abdullah bin Abdul Muttalib</span>
+    </div>
+    <div class="chips-row">
+      <span class="chip chip-gold">Muhammad = Yang Terpuji</span>
+      <span class="chip chip-white">Abdullah = Bapa Baginda</span>
+      <span class="chip chip-purple">Abdul Muttalib = Datuk Baginda</span>
+    </div>
+    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:12px 0;">Selain itu, baginda diberi gelaran mulia oleh masyarakat Makkah sebelum menjadi Nabi:</p>
+    <div class="chips-row">
+      <span class="chip chip-gold">Al-Amin = Yang Amanah</span>
+      <span class="chip chip-white">As-Sadiq = Yang Benar</span>
+      <span class="chip chip-purple">Rahmatan lil Alamin</span>
+      <span class="chip chip-gold">Khatamul Anbiya'</span>
+    </div>
+    <div class="info-box" style="margin-top:12px;">
+      🌍 <span class="strong">"Rahmatan lil Alamin"</span> bermaksud <em>Rahmat bagi seluruh alam</em> — Baginda diutus untuk semua manusia!
+    </div>
+    <div class="tip-box" id="tip-2">
+      <div class="tip-label">💚 TIP MUDAH INGAT</div>
+      <p>Hafal gelaran <strong>AL-AS</strong> → <em>AL</em>-Amin (Amanah) + <em>AS</em>-Sadiq (Benar). Dua gelaran yang diberikan orang Makkah kepada baginda sebelum jadi Nabi! 🌟</p>
+    </div>
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(2)">←</button>
+      <div class="nav-center">
+        <button class="btn-faham" onclick="nextPanel(2)">✅ Saya Faham</button>
+        <button class="btn-tak" onclick="showTip(2)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3 -->
+  <div class="panel" id="panel-3">
+    <div class="panel-header">
+      <div class="panel-num">3</div>
+      <h3>👨‍👩‍👦 Keluarga Nabi SAW</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Nabi SAW lahir sebagai anak yatim piatu — bapanya wafat sebelum baginda lahir, ibunya pula wafat ketika baginda baru 6 tahun. Tapi Allah sentiasa jaga baginda! 💛
+      </div>
+    </div>
+    <table class="nota-table">
+      <tr><th>Ahli Keluarga</th><th>Nama</th><th>Maklumat</th></tr>
+      <tr><td>🧔 Bapa</td><td>Abdullah bin Abdul Muttalib</td><td>Wafat sebelum Nabi lahir</td></tr>
+      <tr><td>👩 Ibu</td><td>Aminah binti Wahab</td><td>Wafat ketika Nabi berumur 6 tahun</td></tr>
+      <tr><td>👴 Datuk</td><td>Abdul Muttalib</td><td>Jaga Nabi selepas ibu wafat</td></tr>
+      <tr><td>👨‍💼 Bapa Saudara</td><td>Abu Talib</td><td>Jaga Nabi selepas datuk wafat</td></tr>
+    </table>
+    <div class="fun-fact">
+      <div class="ff-icon">💡</div>
+      <p>Walaupun Nabi SAW seorang anak yatim piatu, Allah SWT sentiasa melindungi baginda. Ini mengajar kita bahawa <span class="strong">kesukaran tidak menghalang kejayaan</span>!</p>
+    </div>
+    <div class="tip-box" id="tip-3">
+      <div class="tip-label">💚 TIP MUDAH INGAT</div>
+      <p>Ingat urutan penjaga: <strong>Ibu → Datuk → Pak Long (Abu Talib)</strong>. Bila ibu wafat (umur 6), datuk ambil alih. Bila datuk wafat, baru Abu Talib jaga. Bayangkan estafet tongkat penjagaan! 🏃</p>
+    </div>
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(3)">←</button>
+      <div class="nav-center">
+        <button class="btn-faham" onclick="nextPanel(3)">✅ Saya Faham</button>
+        <button class="btn-tak" onclick="showTip(3)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 4 -->
+  <div class="panel" id="panel-4">
+    <div class="panel-header">
+      <div class="panel-num">4</div>
+      <h3>🕌 Kewafatan Nabi SAW</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Nabi SAW wafat pada usia 63 tahun — hidup yang penuh dengan pengorbanan dan perjuangan demi Islam. Baginda dikebumikan di tempat yang sangat istimewa! 🕌
+      </div>
+    </div>
+    <div class="info-box">
+      📅 <span class="strong">Tarikh Wafat:</span> 12 Rabiulawal, Tahun 11 Hijrah<br/>
+      🗓️ <span class="strong">Bersamaan:</span> 632 Masihi<br/>
+      🎂 <span class="strong">Usia ketika wafat:</span> 63 tahun<br/>
+      🕌 <span class="strong">Tempat dikebumikan:</span> Masjid Nabawi, Madinah Al-Munawwarah, Arab Saudi
+    </div>
+    <p style="font-size:0.9rem;line-height:1.7;font-weight:600;margin:12px 0;">Sesuatu yang menakjubkan — Nabi SAW <em>lahir dan wafat pada tarikh yang sama</em>: 12 Rabiulawal! Baginda dikebumikan di dalam bilik isterinya, Siti Aisyah RA.</p>
+    <div class="fun-fact">
+      <div class="ff-icon">💡</div>
+      <p>Kini makam Nabi SAW berada di dalam <span class="strong">Masjid Nabawi</span> di Madinah — salah satu masjid paling suci dalam Islam. Jutaan umat Islam melawat setiap tahun!</p>
+    </div>
+    <div class="tip-box" id="tip-4">
+      <div class="tip-label">💚 TIP MUDAH INGAT</div>
+      <p>Mudah ingat: Nabi SAW hidup selama <strong>63 tahun</strong>, wafat tahun <strong>632 Masihi</strong>. Perasan tak? <em>63 dalam 632!</em> Dan baginda wafat pada tarikh lahir yang sama — 12 Rabiulawal 🌙</p>
+    </div>
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(4)">←</button>
+      <div class="nav-center">
+        <button class="btn-faham" onclick="nextPanel(4)">✅ Saya Faham</button>
+        <button class="btn-tak" onclick="showTip(4)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 5 RINGKASAN -->
+  <div class="panel" id="panel-5">
+    <div class="panel-header">
+      <div class="panel-num">5</div>
+      <h3>📋 Ringkasan Biodata Nabi SAW</h3>
+    </div>
+    <div class="ustaz-row">
+      <div class="ustaz-avatar">
+        <div class="ustaz-icon">👨‍🏫</div>
+        <div class="ustaz-label">USTAZ</div>
+      </div>
+      <div class="speech-bubble">
+        Tahniah! Kita dah habis semua panel. Jom kita tengok ringkasan semua yang kita dah belajar hari ini! 🎉
+      </div>
+    </div>
+    <div class="info-box">
+      📅 <span class="strong">Lahir:</span> 12 Rabiulawal 570M (Tahun Gajah), Makkah<br/>
+      📛 <span class="strong">Nama:</span> Muhammad bin Abdullah bin Abdul Muttalib<br/>
+      👨 <span class="strong">Bapa:</span> Abdullah (wafat sebelum lahir) | <span class="strong">Ibu:</span> Aminah (wafat umur 6)<br/>
+      🎓 <span class="strong">Gelaran:</span> Al-Amin, As-Sadiq, Rahmatan lil Alamin<br/>
+      🕌 <span class="strong">Wafat:</span> 12 Rabiulawal 11H / 632M, umur 63 tahun, Madinah
+    </div>
+    <div class="chips-row">
+      <span class="chip chip-gold">Tahun Gajah = 570M</span>
+      <span class="chip chip-white">Al-Amin = Amanah</span>
+      <span class="chip chip-purple">63 Tahun Hayat</span>
+      <span class="chip chip-gold">Masjid Nabawi</span>
+    </div>
+    <div class="tip-box" id="tip-5">
+      <div class="tip-label">💚 TIP MUDAH INGAT — KESELURUHAN</div>
+      <p>Formula <strong>LNAGMW</strong>: <em>L</em>ahir Rabiulawal, <em>N</em>ama Muhammad bin Abdullah, <em>A</em>l-Amin & As-Sadiq, <em>G</em>ajah tahun lahir, <em>M</em>akkah tempat lahir, <em>W</em>afat 63 tahun di Madinah! 🌟</p>
+    </div>
+    <div class="panel-nav">
+      <button class="nav-back-btn" onclick="prevPanel(5)">←</button>
+      <div class="nav-center">
+        <button class="btn-faham" onclick="showDone()">✅ Selesai!</button>
+        <button class="btn-tak" onclick="showTip(5)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DONE -->
+  <div class="done-panel" id="donePanel">
+    <span class="done-emoji">🎉</span>
+    <h2>Tahniah! Kamu Berjaya!</h2>
+    <p>Kamu telah habis membaca semua nota Biodata Nabi SAW. Sekarang, uji pengetahuan kamu dengan Kuiz Mini!</p>
+    <div class="done-btns">
+      <button class="btn-reset" onclick="resetAll()">🔄 Ulang Nota</button>
+      <button class="btn-quiz-start" onclick="startQuiz()">🎮 Game Nota — Kuiz Mini</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="quiz-section" id="quizSection">
+    <div class="quiz-header">
+      <span class="quiz-title">🎮 Kuiz Mini — Biodata Nabi SAW</span>
+      <span class="quiz-score-label">Skor: <span id="scoreDisplay">0</span></span>
+      <span class="quiz-q-label">Soalan <span id="qNumDisplay">1</span>/8</span>
+    </div>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-q-text" id="qText"></div>
+      <div class="quiz-options" id="qOptions"></div>
+      <div class="quiz-feedback" id="qFeedback"></div>
+      <button class="btn-next-q" id="btnNext" onclick="nextQuestion()">Soalan Seterusnya →</button>
+    </div>
+    <div class="quiz-dots" id="quizDots"></div>
+    <div class="quiz-result" id="quizResult">
+      <span style="font-size:2.5rem;">🏆</span>
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-msg" id="resultMsg"></div>
+      <div class="result-btns">
+        <button class="btn-reset" onclick="restartQuiz()">🔄 Cuba Lagi</button>
+        <button class="btn-reset" onclick="resetAll()">📖 Ulang Nota</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-card">
+      <span class="popup-icon" id="popupIcon"></span>
+      <div class="popup-title" id="popupTitle"></div>
+      <div class="popup-arabic" id="popupArabic"></div>
+      <div class="popup-msg" id="popupMsg"></div>
+      <button class="btn-popup" onclick="closePopup()">✨ Teruskan!</button>
+    </div>
+  </div>
+
+  <!-- NOTA NAV -->
+  <div class="nota-nav">
+    <a href="../../subjek-sirah.html">← Kembali ke Peta Minda</a>
+    <a href="anak-nabi.html">Topik 2: Anak-Anak Nabi →</a>
+  </div>
+</div>
+
+<footer>🌙 KAFA Learn · Sirah Topik 1</footer>
+
+<script>
+const TOTAL = 5;
+let currentPanel = 1;
+
+function showPanel(n) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('panel-' + n);
+  if (el) { el.classList.add('active'); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  const fill = Math.round((n / TOTAL) * 100);
+  document.getElementById('progressFill').style.width = fill + '%';
+  document.getElementById('progressLabel').textContent = 'Panel ' + n + ' / ' + TOTAL;
+}
+
+function nextPanel(n) {
+  if (n < TOTAL) { currentPanel = n + 1; showPanel(currentPanel); }
+}
+function prevPanel(n) {
+  if (n > 1) { currentPanel = n - 1; showPanel(currentPanel); }
+}
+function showTip(n) {
+  const t = document.getElementById('tip-' + n);
+  if (t) t.classList.toggle('show');
+}
+function showDone() {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('donePanel').classList.add('active');
+  document.getElementById('donePanel').scrollIntoView({behavior:'smooth'});
+}
+function resetAll() {
+  currentPanel = 1;
+  document.getElementById('donePanel').classList.remove('active');
+  document.getElementById('quizSection').classList.remove('active');
+  document.getElementById('progressWrap').style.display = '';
+  document.querySelectorAll('.tip-box').forEach(t => t.classList.remove('show'));
+  showPanel(1);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// QUIZ
+const questions = [
+  {q:"Pada tarikh berapakah Nabi Muhammad SAW dilahirkan?", opts:["10 Muharram","12 Rabiulawal","1 Syawal","27 Rejab"], ans:1, exp:"Nabi SAW dilahirkan pada 12 Rabiulawal Tahun Gajah (570M)."},
+  {q:"Apakah nama bapa Nabi Muhammad SAW?", opts:["Abu Talib","Abdul Muttalib","Abdullah bin Abdul Muttalib","Hamzah"], ans:2, exp:"Bapa Nabi SAW ialah Abdullah bin Abdul Muttalib."},
+  {q:"Mengapa tahun kelahiran Nabi SAW dikenali sebagai 'Tahun Gajah'?", opts:["Ramai gajah di Makkah","Tentera bergajah cuba runtuhkan Kaabah","Nabi suka gajah","Gajah adalah simbol Makkah"], ans:1, exp:"Pada tahun itu tentera bergajah Abrahah cuba meruntuhkan Kaabah."},
+  {q:"Siapakah yang menjaga Nabi SAW selepas ibunya wafat?", opts:["Abu Bakar","Abu Talib","Abdul Muttalib (datuk)","Siti Khadijah"], ans:2, exp:"Selepas Aminah wafat, datuk baginda Abdul Muttalib yang menjaga Nabi SAW."},
+  {q:"Apakah maksud gelaran 'Al-Amin' yang diberikan kepada Nabi SAW?", opts:["Yang Benar","Yang Mulia","Yang Amanah","Yang Bijak"], ans:2, exp:"Al-Amin bermaksud Yang Amanah — gelaran yang diberikan oleh penduduk Makkah."},
+  {q:"Berapa umur Nabi SAW ketika baginda wafat?", opts:["55 tahun","60 tahun","63 tahun","70 tahun"], ans:2, exp:"Nabi SAW wafat pada usia 63 tahun pada tahun 11 Hijrah / 632 Masihi."},
+  {q:"Di manakah Nabi Muhammad SAW dikebumikan?", opts:["Masjidil Haram, Makkah","Masjid Nabawi, Madinah","Masjid Al-Aqsa, Jerusalem","Masjid Quba, Madinah"], ans:1, exp:"Nabi SAW dikebumikan di Masjid Nabawi, Madinah Al-Munawwarah."},
+  {q:"Apakah maksud 'Rahmatan lil Alamin'?", opts:["Rahmat bagi orang Arab","Rahmat bagi kaum Quraisy","Rahmat bagi seluruh alam","Rahmat bagi orang Islam sahaja"], ans:2, exp:"Rahmatan lil Alamin bermaksud Rahmat bagi seluruh alam — Nabi diutus untuk semua manusia."}
+];
+
+const motivasi = [
+  {icon:"🌟", title:"Masha Allah!", arabic:"ما شاء الله", msg:"Luar biasa! Jawapan kamu tepat sekali. Teruskan semangat belajar!"},
+  {icon:"⭐", title:"Subhanallah!", arabic:"سبحان الله", msg:"Hebat! Kamu memang pelajar yang rajin dan bersungguh-sungguh!"},
+  {icon:"🕌", title:"Alhamdulillah!", arabic:"الحمد لله", msg:"Syukur! Kamu berjaya menjawab dengan betul. Allah pasti suka!"},
+  {icon:"💫", title:"Barakallah!", arabic:"بارك الله فيك", msg:"Allah berikan keberkatan pada ilmu yang kamu pelajari hari ini!"}
+];
+
+let qIdx = 0, score = 0, dotStates = [];
+
+function startQuiz() {
+  document.getElementById('donePanel').classList.remove('active');
+  document.getElementById('quizSection').classList.add('active');
+  qIdx = 0; score = 0; dotStates = new Array(questions.length).fill('');
+  buildDots();
+  showQuestion();
+  document.getElementById('quizSection').scrollIntoView({behavior:'smooth'});
+}
+
+function buildDots() {
+  const c = document.getElementById('quizDots');
+  c.innerHTML = '';
+  questions.forEach((_,i) => {
+    const d = document.createElement('div');
+    d.className = 'q-dot' + (i===0?' active':'');
+    d.id = 'dot-'+i;
+    c.appendChild(d);
+  });
+}
+
+function showQuestion() {
+  const q = questions[qIdx];
+  document.getElementById('qText').textContent = (qIdx+1) + '. ' + q.q;
+  document.getElementById('qNumDisplay').textContent = (qIdx+1) + '/' + questions.length;
+  document.getElementById('scoreDisplay').textContent = score;
+  const fb = document.getElementById('qFeedback');
+  fb.style.display = 'none'; fb.className = 'quiz-feedback';
+  document.getElementById('btnNext').style.display = 'none';
+  const opts = document.getElementById('qOptions');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'quiz-opt'; b.textContent = o;
+    b.onclick = () => answerQ(i);
+    opts.appendChild(b);
+  });
+  updateDots();
+}
+
+function answerQ(chosen) {
+  const q = questions[qIdx];
+  const btns = document.querySelectorAll('.quiz-opt');
+  btns.forEach(b => b.disabled = true);
+  btns[q.ans].classList.add('correct');
+  const fb = document.getElementById('qFeedback');
+  if (chosen === q.ans) {
+    score++;
+    btns[chosen].classList.add('correct');
+    fb.className = 'quiz-feedback correct';
+    fb.textContent = '✅ Betul! ' + q.exp;
+    dotStates[qIdx] = 'correct';
+    updateDots();
+    showPopup();
+  } else {
+    btns[chosen].classList.add('wrong');
+    fb.className = 'quiz-feedback wrong';
+    fb.textContent = '❌ Salah. ' + q.exp;
+    dotStates[qIdx] = 'wrong';
+    updateDots();
+  }
+  fb.style.display = 'block';
+  document.getElementById('scoreDisplay').textContent = score;
+  document.getElementById('btnNext').style.display = 'inline-block';
+  if (qIdx === questions.length - 1) document.getElementById('btnNext').textContent = 'Lihat Keputusan 🏆';
+}
+
+function updateDots() {
+  questions.forEach((_,i) => {
+    const d = document.getElementById('dot-'+i);
+    if (!d) return;
+    d.className = 'q-dot';
+    if (i === qIdx) d.classList.add('active');
+    if (dotStates[i] === 'correct') d.classList.add('done-correct');
+    if (dotStates[i] === 'wrong') d.classList.add('done-wrong');
+  });
+}
+
+function nextQuestion() {
+  qIdx++;
+  if (qIdx >= questions.length) { showResult(); return; }
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById('quizCard').style.display = 'none';
+  document.getElementById('quizDots').style.display = 'none';
+  const r = document.getElementById('quizResult');
+  r.classList.add('active');
+  const pct = (score / questions.length) * 100;
+  document.getElementById('resultScore').textContent = score + '/' + questions.length;
+  let msg = '';
+  if (pct === 100) msg = '🌟 Sempurna! Kamu pelajar cemerlang!';
+  else if (pct >= 75) msg = '😊 Sangat bagus! Hampir sempurna!';
+  else if (pct >= 50) msg = '👍 Elok! Cuba semak nota dan cuba lagi.';
+  else msg = '💪 Jangan putus asa! Ulang nota dan cuba semula.';
+  document.getElementById('resultMsg').textContent = msg;
+}
+
+function restartQuiz() {
+  document.getElementById('quizCard').style.display = '';
+  document.getElementById('quizDots').style.display = '';
+  document.getElementById('quizResult').classList.remove('active');
+  qIdx = 0; score = 0; dotStates = new Array(questions.length).fill('');
+  buildDots(); showQuestion();
+}
+
+function showPopup() {
+  const m = motivasi[Math.floor(Math.random()*motivasi.length)];
+  document.getElementById('popupIcon').textContent = m.icon;
+  document.getElementById('popupTitle').textContent = m.title;
+  document.getElementById('popupArabic').textContent = m.arabic;
+  document.getElementById('popupMsg').textContent = m.msg;
+  document.getElementById('popup').classList.add('active');
+}
+function closePopup() { document.getElementById('popup').classList.remove('active'); }
+</script>
+</body>
+</html>

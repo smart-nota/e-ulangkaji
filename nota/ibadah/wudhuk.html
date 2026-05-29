@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Wudhuk 🌊 KAFA Learn</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-mid: #12121a;
+  --bg-panel: #16161f;
+  --bg-card: #1c1c28;
+  --gold: #d4a017;
+  --gold-light: #f0c040;
+  --gold-glow: #ffe066;
+  --gold-dark: #a07810;
+  --gold-dim: rgba(212,160,23,0.18);
+  --text: #f5f0e8;
+  --text-soft: #c8c0a8;
+  --text-muted: #7a7060;
+  --blue-soft: rgba(100,160,255,0.12);
+  --blue-border: rgba(100,160,255,0.35);
+  --green: #4caf6e;
+  --red: #e05555;
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow: 0 8px 40px rgba(0,0,0,0.6);
+  --shadow-gold: 0 4px 24px rgba(212,160,23,0.18);
+  --teal-soft: rgba(56,189,179,0.12);
+  --teal-border: rgba(56,189,179,0.35);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg-deep);
+  color:var(--text);
+  font-family:'Nunito',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── Stars Background ── */
+.stars-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--dur,3s) ease-in-out infinite;opacity:var(--op,0.4)}
+@keyframes twinkle{0%,100%{opacity:var(--op,0.4);transform:scale(1)}50%{opacity:0.08;transform:scale(0.5)}}
+
+/* Water droplet deco */
+.drop{position:absolute;border-radius:50% 50% 50% 0;background:rgba(56,189,220,0.06);animation:dropFloat var(--dd,6s) ease-in-out infinite;transform:rotate(-45deg)}
+@keyframes dropFloat{0%,100%{transform:rotate(-45deg) translateY(0) scale(1)}50%{transform:rotate(-45deg) translateY(-14px) scale(1.06)}}
+
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;right:0;height:320px;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%, rgba(212,160,23,0.12) 0%, transparent 70%);
+  pointer-events:none;z-index:1;
+}
+body::after{
+  content:'';
+  position:fixed;bottom:0;left:0;right:0;height:200px;
+  background:radial-gradient(ellipse 60% 40% at 30% 120%, rgba(56,189,220,0.07) 0%, transparent 70%);
+  pointer-events:none;z-index:1;
+}
+
+/* ── PAGE HEADER ── */
+.page-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,15,0.84);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-bottom:2px solid var(--gold-dark);
+  box-shadow:0 2px 28px rgba(212,160,23,0.13);
+}
+.page-header-inner{
+  max-width:780px;margin:0 auto;
+  padding:14px 20px;
+  display:flex;align-items:center;gap:16px;
+}
+.back-btn{
+  color:var(--gold-light);text-decoration:none;
+  font-weight:700;font-size:0.88rem;
+  padding:7px 14px;
+  border:1.5px solid var(--gold-dark);
+  border-radius:50px;
+  transition:all 0.2s;white-space:nowrap;
+}
+.back-btn:hover{background:var(--gold-dim);color:var(--gold-glow)}
+.page-title-area h2{font-size:1rem;font-weight:800;color:var(--text);line-height:1.2}
+.page-title-area span{font-size:0.78rem;color:var(--text-muted);font-weight:600}
+
+/* ── MAIN ── */
+main{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:28px 16px 60px}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{margin-bottom:24px}
+.progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-label span{font-size:0.82rem;font-weight:700;color:var(--gold-light)}
+.progress-track{height:8px;background:rgba(255,255,255,0.07);border-radius:50px;overflow:hidden;border:1px solid rgba(212,160,23,0.2)}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light),var(--gold-glow));border-radius:50px;transition:width 0.5s cubic-bezier(.4,0,.2,1);box-shadow:0 0 10px rgba(240,192,64,0.5)}
+
+/* ── PANEL ── */
+.panel{display:none;animation:panelIn 0.45s cubic-bezier(.4,0,.2,1) both}
+.panel.active{display:block}
+@keyframes panelIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.panel-card{
+  background:var(--bg-panel);
+  border:2.5px solid var(--gold-dark);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,0.04),var(--shadow-gold);
+  overflow:hidden;margin-bottom:16px;
+}
+
+/* Panel header */
+.panel-header{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 22px 16px;
+  border-bottom:1.5px solid rgba(212,160,23,0.15);
+  background:linear-gradient(135deg,rgba(212,160,23,0.07) 0%,transparent 60%);
+}
+.panel-num{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1rem;color:#0a0a0f;
+  flex-shrink:0;box-shadow:0 2px 12px rgba(212,160,23,0.35);
+}
+.panel-title{font-size:1.05rem;font-weight:800;color:var(--text)}
+
+/* Panel body */
+.panel-body{padding:20px 22px}
+
+/* Avatar + speech */
+.avatar-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+.avatar-emoji{
+  width:52px;height:52px;
+  background:linear-gradient(135deg,#1e1e2e,#2a2a3e);
+  border:2px solid var(--gold-dark);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;box-shadow:0 2px 12px rgba(0,0,0,0.4);
+}
+.avatar-label{font-size:0.6rem;font-weight:800;letter-spacing:0.08em;color:var(--gold-light);text-transform:uppercase}
+.speech-bubble{
+  background:rgba(255,255,255,0.04);
+  border:1.5px solid rgba(212,160,23,0.25);
+  border-radius:0 14px 14px 14px;
+  padding:12px 16px;
+  font-size:0.88rem;line-height:1.65;color:var(--text-soft);
+  flex:1;position:relative;
+}
+.speech-bubble::before{
+  content:'';position:absolute;top:0;left:-9px;
+  border:5px solid transparent;
+  border-top-color:rgba(212,160,23,0.25);
+  border-right-color:rgba(212,160,23,0.25);
+}
+
+/* Content blocks */
+.nota-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin:12px 0}
+.nota-table th{background:rgba(212,160,23,0.18);color:var(--gold-glow);font-weight:800;padding:9px 11px;text-align:left;border-bottom:2px solid var(--gold-dark)}
+.nota-table td{padding:8px 11px;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--text-soft);vertical-align:top}
+.nota-table tr:last-child td{border-bottom:none}
+.nota-table tr:hover td{background:rgba(212,160,23,0.05)}
+
+.info-box{
+  background:rgba(212,160,23,0.07);
+  border-left:4px solid var(--gold);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:12px 16px;font-size:0.86rem;line-height:1.7;
+  color:var(--text-soft);margin:12px 0;
+}
+.info-box strong{color:var(--gold-light)}
+
+.info-box-teal{
+  background:var(--teal-soft);
+  border-left:4px solid rgba(56,189,179,0.7);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:12px 16px;font-size:0.86rem;line-height:1.7;
+  color:var(--text-soft);margin:12px 0;
+}
+.info-box-teal strong{color:#7ee8e0}
+
+.highlight-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.highlight-chip{
+  background:rgba(212,160,23,0.13);
+  border:1.5px solid var(--gold-dark);
+  border-radius:50px;padding:5px 13px;
+  font-size:0.78rem;font-weight:700;color:var(--gold-glow);
+}
+.highlight-chip.teal{background:rgba(56,189,179,0.13);border-color:rgba(56,189,179,0.4);color:#7ee8e0}
+.highlight-chip.red{background:rgba(220,80,80,0.13);border-color:rgba(220,80,80,0.4);color:#f5a0a0}
+
+.fun-fact{
+  display:flex;gap:10px;
+  background:var(--blue-soft);border:1.5px solid var(--blue-border);
+  border-radius:var(--radius-sm);padding:12px 14px;margin:12px 0;
+}
+.ff-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+.fun-fact p{font-size:0.84rem;line-height:1.65;color:var(--text-soft)}
+.fun-fact p strong{color:var(--text)}
+
+.fun-fact-teal{
+  display:flex;gap:10px;
+  background:var(--teal-soft);border:1.5px solid var(--teal-border);
+  border-radius:var(--radius-sm);padding:12px 14px;margin:12px 0;
+}
+.fun-fact-teal p{font-size:0.84rem;line-height:1.65;color:var(--text-soft)}
+.fun-fact-teal p strong{color:#7ee8e0}
+
+.section-label{
+  font-size:0.75rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:0.07em;color:var(--gold);margin:16px 0 8px;
+}
+
+/* Numbered steps */
+.steps-list{list-style:none;margin:12px 0;display:flex;flex-direction:column;gap:8px}
+.steps-list li{
+  display:flex;align-items:flex-start;gap:10px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(212,160,23,0.12);
+  border-radius:var(--radius-sm);
+  padding:10px 12px;
+  font-size:0.85rem;color:var(--text-soft);line-height:1.55;
+}
+.step-num{
+  min-width:24px;height:24px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));
+  color:#0a0a0f;font-weight:900;font-size:0.72rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+}
+.steps-list li strong{color:var(--gold-light)}
+
+/* Tip box */
+.tip-toggle-btn{
+  display:block;width:100%;
+  background:transparent;border:1.5px dashed var(--gold-dark);
+  border-radius:var(--radius-sm);color:var(--gold-light);
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:0.85rem;
+  padding:10px;cursor:pointer;margin:14px 0 0;transition:all 0.2s;
+}
+.tip-toggle-btn:hover{background:var(--gold-dim);border-style:solid}
+.tip-box{
+  display:none;
+  background:linear-gradient(135deg,rgba(212,160,23,0.1),rgba(212,160,23,0.04));
+  border:2px solid var(--gold-dark);border-radius:var(--radius-sm);
+  padding:14px 16px;margin-top:10px;animation:panelIn 0.3s ease both;
+}
+.tip-box.show{display:block}
+.tip-box-title{font-size:0.75rem;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:var(--gold);margin-bottom:8px}
+.tip-box p{font-size:0.85rem;line-height:1.7;color:var(--text-soft)}
+.tip-box strong{color:var(--gold-glow)}
+
+/* Panel nav */
+.panel-nav{display:flex;align-items:center;gap:12px;padding:14px 22px 18px;border-top:1px solid rgba(255,255,255,0.05)}
+.nav-left{flex:0 0 40px}
+.nav-back{
+  width:36px;height:36px;
+  background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.1);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.1rem;transition:all 0.2s;color:var(--text-soft);
+  font-family:'Nunito',sans-serif;
+}
+.nav-back:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+.nav-back.hidden{visibility:hidden}
+.nav-center{display:flex;gap:10px;justify-content:center;flex:1}
+
+.btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.85rem;padding:10px 20px;border-radius:50px;border:none;cursor:pointer;transition:all 0.2s}
+.btn-understand{background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));color:#0a0a0f;box-shadow:0 3px 14px rgba(212,160,23,0.3)}
+.btn-understand:hover{transform:translateY(-1px);box-shadow:0 5px 20px rgba(212,160,23,0.45)}
+.btn-confused{background:rgba(255,255,255,0.06);color:var(--text-soft);border:1.5px solid rgba(255,255,255,0.12)}
+.btn-confused:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+
+/* ── ENDING ── */
+.ending-card{background:var(--bg-panel);border:2.5px solid var(--gold-dark);border-radius:var(--radius);box-shadow:var(--shadow),var(--shadow-gold);padding:40px 28px;text-align:center}
+.ending-emoji{font-size:3.5rem;margin-bottom:12px}
+.ending-card h2{font-size:1.4rem;font-weight:900;color:var(--gold-glow);margin-bottom:8px}
+.ending-card p{font-size:0.9rem;color:var(--text-soft);line-height:1.7;margin-bottom:24px}
+.ending-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-restart{background:rgba(255,255,255,0.06);color:var(--text-soft);border:1.5px solid rgba(255,255,255,0.15);padding:12px 24px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.9rem;cursor:pointer;transition:all 0.2s}
+.btn-restart:hover{background:rgba(255,255,255,0.1);color:var(--text)}
+.btn-quiz{background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));color:#0a0a0f;padding:12px 24px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:900;font-size:0.9rem;cursor:pointer;transition:all 0.2s;border:none;box-shadow:0 3px 16px rgba(212,160,23,0.35)}
+.btn-quiz:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,23,0.5)}
+
+/* ── QUIZ ── */
+#quiz-section{display:none}
+.quiz-header{background:var(--bg-panel);border:2px solid var(--gold-dark);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.quiz-header h3{font-size:1rem;font-weight:800;color:var(--gold-glow)}
+.quiz-score{font-size:0.85rem;font-weight:700;color:var(--text-soft)}
+.quiz-score span{color:var(--gold-light);font-weight:900}
+.quiz-progress-dots{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.qdot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);transition:background 0.3s}
+.qdot.current{background:var(--gold-light);box-shadow:0 0 6px rgba(240,192,64,0.6)}
+.qdot.correct{background:var(--green)}
+.qdot.wrong{background:var(--red)}
+
+.quiz-card{background:var(--bg-panel);border:2.5px solid var(--gold-dark);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;animation:panelIn 0.4s ease both}
+.quiz-q-num{font-size:0.75rem;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px}
+.quiz-q-text{font-size:1rem;font-weight:800;color:var(--text);line-height:1.6;margin-bottom:20px}
+.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.quiz-opt{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:12px 16px;font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;color:var(--text-soft);cursor:pointer;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){background:rgba(212,160,23,0.1);border-color:var(--gold-dark);color:var(--text)}
+.quiz-opt.correct{background:rgba(76,175,110,0.18);border-color:var(--green);color:#8fe0a8}
+.quiz-opt.wrong{background:rgba(224,85,85,0.18);border-color:var(--red);color:#f09090}
+.quiz-opt:disabled{cursor:default}
+
+.quiz-feedback{font-size:0.84rem;line-height:1.65;padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:14px;display:none}
+.quiz-feedback.correct{background:rgba(76,175,110,0.12);border-left:3px solid var(--green);color:#a0e0b8;display:block}
+.quiz-feedback.wrong{background:rgba(224,85,85,0.12);border-left:3px solid var(--red);color:#f0a0a0;display:block}
+
+.btn-next-q{background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));color:#0a0a0f;padding:11px 24px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:900;font-size:0.88rem;cursor:pointer;border:none;box-shadow:0 3px 14px rgba(212,160,23,0.3);display:none;transition:all 0.2s}
+.btn-next-q:hover{transform:translateY(-1px);box-shadow:0 5px 20px rgba(212,160,23,0.45)}
+
+/* Result */
+.result-card{background:var(--bg-panel);border:2.5px solid var(--gold-dark);border-radius:var(--radius);box-shadow:var(--shadow),var(--shadow-gold);padding:40px 28px;text-align:center;animation:panelIn 0.4s ease both}
+.result-score{font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--gold-dark),var(--gold-glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:8px 0}
+.result-msg{font-size:1rem;font-weight:700;color:var(--text-soft);margin-bottom:24px;line-height:1.6}
+.result-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ── POPUP ── */
+.popup-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.78);
+  z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity 0.3s;
+}
+.popup-overlay.show{opacity:1;pointer-events:all}
+.popup-card{
+  background:var(--bg-card);
+  border:3px solid var(--gold);
+  border-radius:22px;max-width:360px;width:100%;
+  padding:32px 28px;text-align:center;
+  position:relative;overflow:hidden;
+  transform:scale(0.7);
+  transition:transform 0.45s cubic-bezier(.175,.885,.32,1.275);
+  box-shadow:0 12px 60px rgba(0,0,0,0.7),0 0 40px rgba(212,160,23,0.15);
+}
+.popup-overlay.show .popup-card{transform:scale(1)}
+.popup-shimmer{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 35%,rgba(212,160,23,0.13) 50%,transparent 65%);
+  background-size:200% 100%;
+  animation:shimmerMove 2.5s linear infinite;
+  pointer-events:none;
+}
+@keyframes shimmerMove{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.popup-icon{font-size:3.2rem;margin-bottom:8px;display:block;animation:iconPop 0.5s cubic-bezier(.175,.885,.32,1.275) 0.15s both}
+@keyframes iconPop{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0deg)}}
+.popup-title{font-size:1.35rem;font-weight:900;color:var(--gold-glow);margin-bottom:6px}
+.popup-arabic{font-size:1.15rem;color:var(--gold-light);margin-bottom:12px;letter-spacing:0.04em;direction:rtl;font-weight:700}
+.popup-msg{font-size:0.88rem;color:var(--text-soft);line-height:1.7;margin-bottom:20px}
+.popup-msg strong{color:var(--gold-light)}
+.btn-popup-close{background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));color:#0a0a0f;padding:11px 28px;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:900;font-size:0.9rem;cursor:pointer;border:none;box-shadow:0 3px 16px rgba(212,160,23,0.35);transition:all 0.2s}
+.btn-popup-close:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(212,160,23,0.5)}
+
+/* ── NOTA NAV ── */
+.nota-nav{display:flex;justify-content:space-between;gap:12px;margin-top:32px;flex-wrap:wrap}
+.nota-nav a{background:var(--bg-panel);border:1.5px solid rgba(212,160,23,0.25);border-radius:var(--radius-sm);padding:10px 18px;font-size:0.82rem;font-weight:700;color:var(--text-soft);text-decoration:none;transition:all 0.2s}
+.nota-nav a:hover{border-color:var(--gold-dark);color:var(--gold-light);background:rgba(212,160,23,0.07)}
+.nota-nav a.next{margin-left:auto}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:24px;font-size:0.8rem;color:var(--text-muted);font-weight:600;letter-spacing:0.04em;position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.04)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:480px){
+  .panel-body{padding:16px}
+  .panel-header{padding:14px 16px 12px}
+  .panel-nav{padding:12px 16px 14px;flex-wrap:wrap}
+  .nav-center{flex-wrap:wrap;gap:8px}
+  .btn{font-size:0.8rem;padding:9px 14px}
+  .nota-table{font-size:0.75rem}
+  .nota-table th,.nota-table td{padding:7px 8px}
+  .quiz-card{padding:18px 16px}
+  .speech-bubble{font-size:0.82rem}
+  .ending-btns{flex-direction:column;align-items:center}
+  .result-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<div class="stars-bg" id="starsBg"></div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <a href="../../subjek-ibadah.html" class="back-btn">← Ibadah</a>
+    <div class="page-title-area">
+      <h2>🌊 Wudhuk</h2>
+      <span>Topik 1 · Subjek Ibadah</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>📖 Panel <span id="prog-cur">1</span>/<span id="prog-tot">5</span></span>
+      <span id="prog-pct" style="color:var(--text-muted);font-size:0.78rem;font-weight:700">20%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:20%"></div></div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       PANEL 1 — Pengenalan Wudhuk
+  ════════════════════════════════ -->
+  <div class="panel active" id="panel-1">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">1</div>
+        <div class="panel-title">💧 Pengenalan Wudhuk</div>
+      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">Ustaz Wan</div>
+          </div>
+          <div class="speech-bubble">
+            Assalamualaikum! Hari ini kita belajar tentang <strong>wudhuk</strong> — perkara yang sangat penting sebelum kita bersolat. Tanpa wudhuk yang sah, solat kita tidak diterima! Jadi jom faham betul-betul ye!
+          </div>
+        </div>
+
+        <div class="info-box">
+          💬 Dari segi bahasa, <strong>wudhuk</strong> (الوضوء) bermaksud <strong>bersih dan terang</strong>.<br/>
+          Dari segi syarak, wudhuk ialah <strong>perbuatan menggunakan air yang suci dan mensucikan pada anggota tertentu dengan cara yang telah ditetapkan oleh syarak</strong>, disertai dengan niat.
+        </div>
+
+        <div class="section-label">Mengapa Wudhuk Penting?</div>
+        <ul class="steps-list">
+          <li><div class="step-num">1</div><div>Wudhuk adalah <strong>syarat sah solat</strong> — solat tanpa wudhuk adalah batal.</div></li>
+          <li><div class="step-num">2</div><div>Berwudhuk membersihkan <strong>hadas kecil</strong> daripada badan kita.</div></li>
+          <li><div class="step-num">3</div><div>Orang yang sentiasa berwudhuk akan mendapat <strong>nur (cahaya)</strong> di muka pada Hari Kiamat.</div></li>
+        </ul>
+
+        <div class="fun-fact">
+          <div class="ff-icon">💡</div>
+          <p>Rasulullah SAW bersabda: <strong>"Kunci solat ialah bersuci."</strong> (Hadis Riwayat Tirmizi). Ini bermakna wudhuk adalah "kunci" yang membuka pintu kepada solat yang sah!</p>
+        </div>
+
+        <div class="section-label">Hukum Wudhuk</div>
+        <div class="highlight-row">
+          <div class="highlight-chip">✅ Wajib: Sebelum solat</div>
+          <div class="highlight-chip">✅ Wajib: Tawaf Kaabah</div>
+          <div class="highlight-chip teal">🌟 Sunat: Sebelum tidur</div>
+          <div class="highlight-chip teal">🌟 Sunat: Membaca Al-Quran</div>
+        </div>
+
+        <button class="tip-toggle-btn" onclick="toggleTip(this)">❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat</button>
+        <div class="tip-box">
+          <div class="tip-box-title">💡 Tip Mudah Ingat</div>
+          <p>Bayangkan wudhuk seperti <strong>"kunci kereta"</strong>:<br/>
+          🔑 Tanpa kunci → kereta tak boleh jalan<br/>
+          💧 Tanpa wudhuk → solat tak sah<br/><br/>
+          Ingat: <strong>"W-B-S"</strong> = <strong>W</strong>udhuk <strong>B</strong>ersihkan <strong>S</strong>olat kita! 🌊</p>
+        </div>
+      </div>
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back hidden" onclick="prevPanel()">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-understand" onclick="nextPanel()">✅ Saya Faham</button>
+          <button class="btn btn-confused" onclick="toggleTipBtn(this)">❓ Saya Tak Faham</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       PANEL 2 — Syarat Sah Wudhuk
+  ════════════════════════════════ -->
+  <div class="panel" id="panel-2">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">2</div>
+        <div class="panel-title">📋 Syarat Sah Wudhuk</div>
+      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">Ustaz Wan</div>
+          </div>
+          <div class="speech-bubble">
+            Sebelum berwudhuk, kita kena pastikan <strong>syarat-syarat</strong> ni dipenuhi dulu. Kalau tak cukup syarat, wudhuk kita tak sah tau! Macam resepi kek — kena ada semua bahan baru jadi!
+          </div>
+        </div>
+
+        <table class="nota-table">
+          <tr><th>#</th><th>Syarat Sah Wudhuk</th><th>Penjelasan Ringkas</th></tr>
+          <tr><td>1</td><td><strong>Islam</strong></td><td>Orang yang berwudhuk mestilah beragama Islam</td></tr>
+          <tr><td>2</td><td><strong>Mumayyiz</strong></td><td>Sudah boleh membezakan baik dan buruk (±7 tahun)</td></tr>
+          <tr><td>3</td><td><strong>Air mutlak (air suci)</strong></td><td>Air yang suci dan boleh mensucikan (air semulajadi)</td></tr>
+          <tr><td>4</td><td><strong>Tiada hadas besar</strong></td><td>Bukan dalam keadaan junub, haid, atau nifas</td></tr>
+          <tr><td>5</td><td><strong>Tiada najis di anggota</strong></td><td>Badan hendaklah bersih dari najis yang menghalang air</td></tr>
+          <tr><td>6</td><td><strong>Tiada penghalang</strong></td><td>Tiada cat, minyak tebal atau apa-apa yang halang air sampai ke kulit</td></tr>
+        </table>
+
+        <div class="section-label">Jenis-Jenis Air Untuk Wudhuk</div>
+        <div class="info-box-teal">
+          ✅ <strong>Boleh digunakan:</strong> Air hujan, air sungai, air laut, air telaga, air mata air, air salji/embun<br/>
+          ❌ <strong>Tidak boleh:</strong> Air yang bernajis, air yang telah berubah warna/bau/rasa kerana bercampur sesuatu
+        </div>
+
+        <div class="fun-fact">
+          <div class="ff-icon">💡</div>
+          <p>Mumayyiz bermaksud kanak-kanak yang sudah boleh <strong>membezakan makanan dari najis, boleh makan sendiri, boleh berpakaian sendiri</strong> dan boleh membersihkan diri selepas buang air. Lazimnya sekitar umur <strong>7 tahun</strong>.</p>
+        </div>
+
+        <button class="tip-toggle-btn" onclick="toggleTip(this)">❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat</button>
+        <div class="tip-box">
+          <div class="tip-box-title">💡 Tip Mudah Ingat</div>
+          <p>Akronim <strong>"I-M-A-H-N-T"</strong> untuk 6 syarat wudhuk:<br/>
+          → <strong>I</strong>slam<br/>
+          → <strong>M</strong>umayyiz<br/>
+          → <strong>A</strong>ir mutlak (air suci)<br/>
+          → <strong>H</strong>adas besar tiada<br/>
+          → <strong>N</strong>ajis tiada di anggota<br/>
+          → <strong>T</strong>iada penghalang<br/><br/>
+          Ayat: <em>"Iman Membawa Air Hebat Namun Tenang"</em> 🌊</p>
+        </div>
+      </div>
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-understand" onclick="nextPanel()">✅ Saya Faham</button>
+          <button class="btn btn-confused" onclick="toggleTipBtn(this)">❓ Saya Tak Faham</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       PANEL 3 — Amalan Yang Syaratkan Wudhuk
+  ═════════════════════════════════════ -->
+  <div class="panel" id="panel-3">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">3</div>
+        <div class="panel-title">🕌 Amalan Yang Memerlukan Wudhuk</div>
+      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">Ustaz Wan</div>
+          </div>
+          <div class="speech-bubble">
+            Ada beberapa amalan yang <em>wajib</em> ada wudhuk, dan ada yang <em>sunat</em> sahaja. Kena tahu bezanya! Kalau buat amalan wajib tanpa wudhuk — ia tak dikira sah.
+          </div>
+        </div>
+
+        <div class="section-label">⚠️ Wajib Berwudhuk (Haram Tanpanya)</div>
+        <ul class="steps-list">
+          <li><div class="step-num">1</div><div><strong>Solat</strong> — fardu mahupun sunat, termasuk solat jenazah</div></li>
+          <li><div class="step-num">2</div><div><strong>Tawaf</strong> — mengelilingi Kaabah semasa menunaikan haji atau umrah</div></li>
+          <li><div class="step-num">3</div><div><strong>Menyentuh mashaf Al-Quran</strong> — memegang atau membawa mushaf Al-Quran</div></li>
+          <li><div class="step-num">4</div><div><strong>Sujud tilawah</strong> — sujud yang dilakukan apabila membaca atau mendengar ayat sajdah</div></li>
+        </ul>
+
+        <div class="section-label">🌟 Sunat Berwudhuk</div>
+        <div class="highlight-row">
+          <div class="highlight-chip teal">📖 Membaca Al-Quran tanpa menyentuh</div>
+          <div class="highlight-chip teal">😴 Sebelum tidur</div>
+          <div class="highlight-chip teal">🤲 Sebelum berzikir/berdoa</div>
+          <div class="highlight-chip teal">🕯️ Sebelum azan</div>
+          <div class="highlight-chip teal">🌙 Setiap masa (sentiasa berwudhuk)</div>
+        </div>
+
+        <div class="fun-fact-teal">
+          <div class="ff-icon">🌊</div>
+          <p>Membaca Al-Quran <strong>tanpa menyentuh mushaf</strong> (seperti hafazan atau bacaan dari ingatan) adalah <strong>harus</strong> tanpa wudhuk, tetapi adalah lebih <strong>afdal</strong> (utama) jika berwudhuk terlebih dahulu sebagai tanda penghormatan kepada kalam Allah.</p>
+        </div>
+
+        <div class="info-box">
+          ⚠️ <strong>Penting:</strong> Wudhuk batal apabila berlaku perkara-perkara seperti: keluar sesuatu dari qubul/dubur, tidur nyenyak, hilang akal (pengsan, gila), menyentuh kemaluan tanpa lapisan, atau bersentuhan kulit lelaki dan perempuan bukan mahram.
+        </div>
+
+        <button class="tip-toggle-btn" onclick="toggleTip(this)">❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat</button>
+        <div class="tip-box">
+          <div class="tip-box-title">💡 Tip Mudah Ingat</div>
+          <p>4 perkara <strong>WAJIB</strong> ada wudhuk:<br/>
+          Akronim <strong>"S-T-M-S"</strong>:<br/>
+          → <strong>S</strong>olat<br/>
+          → <strong>T</strong>awaf<br/>
+          → <strong>M</strong>enyentuh Mashaf Al-Quran<br/>
+          → <strong>S</strong>ujud Tilawah<br/><br/>
+          Bayat: <em>"Solat Tawaf Mesti Suci"</em> 🕌</p>
+        </div>
+      </div>
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-understand" onclick="nextPanel()">✅ Saya Faham</button>
+          <button class="btn btn-confused" onclick="toggleTipBtn(this)">❓ Saya Tak Faham</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════
+       PANEL 4 — Anggota Wajib Wudhuk
+  ══════════════════════════════════════ -->
+  <div class="panel" id="panel-4">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">4</div>
+        <div class="panel-title">🤲 Anggota Wajib Wudhuk (Fardhu)</div>
+      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">Ustaz Wan</div>
+          </div>
+          <div class="speech-bubble">
+            Ada <strong>6 fardhu (rukun)</strong> wudhuk yang WAJIB dilakukan. Kalau tertinggal satu pun, wudhuk tak sah! Ini macam pillar — semua perlu ada untuk bangunan berdiri teguh.
+          </div>
+        </div>
+
+        <table class="nota-table">
+          <tr><th>#</th><th>Fardhu Wudhuk</th><th>Had / Cara</th></tr>
+          <tr>
+            <td>1</td>
+            <td><strong>Niat</strong></td>
+            <td>Di dalam hati ketika membasuh muka. Niat: <em>"Sahaja aku berwudhuk untuk mengangkat hadas kecil..."</em></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Membasuh muka</strong></td>
+            <td>Dari atas dahi (tempat tumbuh rambut) hingga bawah dagu, dan dari telinga kanan ke telinga kiri</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>Membasuh kedua tangan</strong></td>
+            <td>Dari hujung jari hingga siku (termasuk siku). Kanan dahulu, kemudian kiri</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>Menyapu sebahagian kepala</strong></td>
+            <td>Sapu dengan air yang basah — walaupun hanya satu helai rambut sudah cukup</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>Membasuh kedua kaki</strong></td>
+            <td>Dari hujung jari kaki hingga buku lali (mata kaki). Kanan dahulu, kemudian kiri</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>Tertib (berurutan)</strong></td>
+            <td>Mengikut susunan yang telah ditetapkan — tidak boleh ditukar-tukar urutan</td>
+          </tr>
+        </table>
+
+        <div class="fun-fact">
+          <div class="ff-icon">💡</div>
+          <p>Dalil 4 anggota wudhuk (selain niat dan tertib) terdapat dalam <strong>Surah Al-Ma'idah ayat 6</strong>: <em>"...maka basuhlah muka kamu, dan tangan kamu hingga siku, dan sapulah kepala kamu, dan basuhlah kaki kamu hingga dua buku lali..."</em></p>
+        </div>
+
+        <div class="section-label">Sunat-Sunat Wudhuk</div>
+        <div class="highlight-row">
+          <div class="highlight-chip">Membaca Bismillah</div>
+          <div class="highlight-chip">Membasuh tangan (3x)</div>
+          <div class="highlight-chip">Berkumur-kumur (3x)</div>
+          <div class="highlight-chip">Memasukkan air ke hidung (3x)</div>
+          <div class="highlight-chip teal">Menyapu seluruh kepala</div>
+          <div class="highlight-chip teal">Menyapu kedua telinga</div>
+          <div class="highlight-chip teal">Basuh 3x setiap anggota</div>
+          <div class="highlight-chip teal">Mulai dari kanan</div>
+        </div>
+
+        <button class="tip-toggle-btn" onclick="toggleTip(this)">❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat</button>
+        <div class="tip-box">
+          <div class="tip-box-title">💡 Tip Mudah Ingat</div>
+          <p>6 Fardhu Wudhuk dengan akronim <strong>"N-M-T-K-K-T"</strong>:<br/>
+          → <strong>N</strong>iat<br/>
+          → <strong>M</strong>uka (basuh muka)<br/>
+          → <strong>T</strong>angan (basuh kedua tangan hingga siku)<br/>
+          → <strong>K</strong>epala (sapu sebahagian)<br/>
+          → <strong>K</strong>aki (basuh hingga buku lali)<br/>
+          → <strong>T</strong>ertib (ikut urutan)<br/><br/>
+          Ayat ingatan: <em>"Niat, Muka Tangan Kepala Kaki — Tertib!"</em> 💧</p>
+        </div>
+      </div>
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-understand" onclick="nextPanel()">✅ Saya Faham</button>
+          <button class="btn btn-confused" onclick="toggleTipBtn(this)">❓ Saya Tak Faham</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════
+       PANEL 5 — Ringkasan
+  ════════════════════════════════ -->
+  <div class="panel" id="panel-5">
+    <div class="panel-card">
+      <div class="panel-header">
+        <div class="panel-num">5</div>
+        <div class="panel-title">📝 Ringkasan — Wudhuk</div>
+      </div>
+      <div class="panel-body">
+        <div class="avatar-row">
+          <div class="avatar-wrap">
+            <div class="avatar-emoji">👨‍🏫</div>
+            <div class="avatar-label">Ustaz Wan</div>
+          </div>
+          <div class="speech-bubble">
+            Hebat! Kamu dah belajar semua tentang wudhuk. Jom kita kemas semua maklumat penting sebelum hadapi kuiz. Baca pelan-pelan dan pastikan kamu ingat semuanya!
+          </div>
+        </div>
+
+        <div class="section-label">💧 Apa Itu Wudhuk?</div>
+        <div class="info-box">
+          Perbuatan menggunakan <strong>air suci mensucikan</strong> pada anggota tertentu dengan <strong>niat</strong> untuk mengangkat hadas kecil — syarat wajib sebelum solat.
+        </div>
+
+        <div class="section-label">📋 6 Syarat Sah Wudhuk</div>
+        <div class="highlight-row">
+          <div class="highlight-chip">1. Islam</div>
+          <div class="highlight-chip">2. Mumayyiz</div>
+          <div class="highlight-chip">3. Air mutlak</div>
+          <div class="highlight-chip">4. Tiada hadas besar</div>
+          <div class="highlight-chip">5. Tiada najis di anggota</div>
+          <div class="highlight-chip">6. Tiada penghalang</div>
+        </div>
+
+        <div class="section-label">🕌 4 Amalan Wajib Ada Wudhuk</div>
+        <div class="highlight-row">
+          <div class="highlight-chip teal">1. Solat</div>
+          <div class="highlight-chip teal">2. Tawaf</div>
+          <div class="highlight-chip teal">3. Menyentuh Mashaf Al-Quran</div>
+          <div class="highlight-chip teal">4. Sujud Tilawah</div>
+        </div>
+
+        <div class="section-label">🤲 6 Fardhu (Rukun) Wudhuk</div>
+        <div class="info-box">
+          <strong>1. Niat</strong> → 2. Basuh <strong>Muka</strong> → 3. Basuh <strong>Tangan</strong> (hingga siku) → 4. Sapu <strong>Kepala</strong> (sebahagian) → 5. Basuh <strong>Kaki</strong> (hingga buku lali) → 6. <strong>Tertib</strong> (berurutan)
+        </div>
+
+        <div class="fun-fact">
+          <div class="ff-icon">🌟</div>
+          <p>Formula keseluruhan:<br/>
+          <strong>Syarat (6):</strong> "I-M-A-H-N-T"<br/>
+          <strong>Amalan wajib wudhuk (4):</strong> "S-T-M-S"<br/>
+          <strong>Fardhu wudhuk (6):</strong> "N-M-T-K-K-T"<br/>
+          Ingat: <em>Wudhuk = Kunci Solat yang Sah!</em> 🔑💧</p>
+        </div>
+
+        <button class="tip-toggle-btn" onclick="toggleTip(this)">❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat</button>
+        <div class="tip-box">
+          <div class="tip-box-title">💡 Formula Keseluruhan</div>
+          <p>Cerita pendek untuk ingat semua:<br/><br/>
+          <strong>"Wan Islam yang Mumayyiz, ambil Air Mutlak,<br/>
+          Hadas & Najis tiada, Tiada penghalang pun."</strong><br/>
+          ↑ Itulah 6 syarat wudhuk (I-M-A-H-N-T)<br/><br/>
+          Kemudian dia <strong>Solat, Tawaf, Menyentuh Mashaf, Sujud Tilawah</strong><br/>
+          ↑ Itulah 4 amalan wajib wudhuk (S-T-M-S)<br/><br/>
+          Caranya: <strong>Niat, Muka, Tangan, Kepala, Kaki — Tertib!</strong> 💧</p>
+        </div>
+      </div>
+      <div class="panel-nav">
+        <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
+        <div class="nav-center">
+          <button class="btn btn-understand" onclick="showEnding()">✅ Selesai Nota!</button>
+          <button class="btn btn-confused" onclick="toggleTipBtn(this)">❓ Saya Tak Faham</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ENDING ── -->
+  <div id="ending-section" style="display:none">
+    <div class="ending-card">
+      <div class="ending-emoji">🎉</div>
+      <h2>Tahniah, Kamu Berjaya!</h2>
+      <p>Kamu telah selesai membaca nota <strong>Wudhuk</strong>. Sekarang uji diri kamu dengan kuiz mini untuk pastikan kamu benar-benar faham semua tentang wudhuk!</p>
+      <div class="ending-btns">
+        <button class="btn-restart" onclick="restartNota()">🔄 Ulang Nota</button>
+        <button class="btn-quiz" onclick="startQuiz()">🎮 Game Nota — Kuiz Mini</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUIZ ── -->
+  <div id="quiz-section">
+    <div class="quiz-header">
+      <div>
+        <h3>🎮 Kuiz Mini — Wudhuk</h3>
+        <div class="quiz-progress-dots" id="quiz-dots"></div>
+      </div>
+      <div class="quiz-score">Skor: <span id="score-display">0</span>/<span id="total-display">8</span></div>
+    </div>
+    <div id="quiz-area"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="nota-nav">
+    <a href="../../subjek-badah.html">← Kembali ke Peta Minda</a>
+    <a href="tayammum.html">Topik Seterusnya: Tayammum →</a>
+  </div>
+
+</main>
+
+<footer>🌙 KAFA Learn · Ibadah Topik 1</footer>
+
+<!-- MOTIVATION POPUP -->
+<div class="popup-overlay" id="motivPopup">
+  <div class="popup-card">
+    <div class="popup-shimmer"></div>
+    <div class="popup-icon" id="popup-icon"></div>
+    <div class="popup-title" id="popup-title"></div>
+    <div class="popup-arabic" id="popup-arabic"></div>
+    <div class="popup-msg" id="popup-msg"></div>
+    <button class="btn-popup-close" onclick="closePopup()">✨ Teruskan!</button>
+  </div>
+</div>
+
+<script>
+/* ── STARS ── */
+(function(){
+  const c=document.getElementById('starsBg');
+  for(let i=0;i<90;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const sz=Math.random()*2.4+0.5;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--dur:${2+Math.random()*5}s;--op:${0.08+Math.random()*0.45};animation-delay:${Math.random()*5}s`;
+    c.appendChild(s);
+  }
+  // Water drops
+  for(let i=0;i<6;i++){
+    const d=document.createElement('div');
+    d.className='drop';
+    const sz=40+Math.random()*80;
+    d.style.cssText=`width:${sz}px;height:${sz*1.2}px;top:${10+Math.random()*80}%;left:${Math.random()*100}%;--dd:${5+Math.random()*6}s;animation-delay:${Math.random()*4}s`;
+    c.appendChild(d);
+  }
+})();
+
+/* ── PANEL LOGIC ── */
+let curPanel=1;
+const TOTAL=5;
+
+function updateProgress(){
+  document.getElementById('prog-cur').textContent=curPanel;
+  document.getElementById('prog-tot').textContent=TOTAL;
+  const pct=Math.round((curPanel/TOTAL)*100);
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-fill').style.width=pct+'%';
+}
+
+function showPanel(n){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('panel-'+n);
+  if(el){el.classList.add('active');}
+  curPanel=n;
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nextPanel(){if(curPanel<TOTAL)showPanel(curPanel+1);}
+function prevPanel(){if(curPanel>1)showPanel(curPanel-1);}
+
+function toggleTip(btn){
+  const box=btn.nextElementSibling;
+  box.classList.toggle('show');
+  btn.textContent=box.classList.contains('show')?'✅ Tutup Tip':'❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat';
+}
+
+function toggleTipBtn(btn){
+  const body=btn.closest('.panel-card').querySelector('.panel-body');
+  const tipBtn=body.querySelector('.tip-toggle-btn');
+  const tipBox=body.querySelector('.tip-box');
+  if(tipBox){
+    tipBox.classList.add('show');
+    if(tipBtn)tipBtn.textContent='✅ Tutup Tip';
+    tipBox.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
+
+function showEnding(){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector('.progress-wrap').style.display='none';
+  document.getElementById('ending-section').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function restartNota(){
+  document.getElementById('ending-section').style.display='none';
+  document.getElementById('quiz-section').style.display='none';
+  document.querySelector('.progress-wrap').style.display='block';
+  document.querySelectorAll('.tip-box').forEach(b=>b.classList.remove('show'));
+  document.querySelectorAll('.tip-toggle-btn').forEach(b=>b.textContent='❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat');
+  showPanel(1);
+}
+
+/* ── QUIZ DATA ── */
+const quizData=[
+  {
+    q:"Apakah maksud wudhuk dari segi syarak?",
+    opts:["Mandi dengan air sejuk","Perbuatan menggunakan air suci mensucikan pada anggota tertentu dengan niat","Membersihkan pakaian dari najis","Berdoa sebelum solat"],
+    ans:1,
+    exp:"Wudhuk dari segi syarak ialah perbuatan menggunakan air suci mensucikan pada anggota tertentu disertai niat untuk mengangkat hadas kecil."
+  },
+  {
+    q:"Berapakah bilangan fardhu (rukun) wudhuk yang wajib dilakukan?",
+    opts:["4 fardhu","5 fardhu","6 fardhu","8 fardhu"],
+    ans:2,
+    exp:"Fardhu wudhuk ada 6: Niat, Basuh muka, Basuh tangan hingga siku, Sapu kepala, Basuh kaki hingga buku lali, dan Tertib."
+  },
+  {
+    q:"Apakah yang dimaksudkan dengan 'Mumayyiz' sebagai syarat sah wudhuk?",
+    opts:["Orang tua yang berumur 60 tahun","Kanak-kanak yang sudah boleh membezakan baik dan buruk (±7 tahun)","Orang yang telah baligh","Orang yang sihat sempurna"],
+    ans:1,
+    exp:"Mumayyiz ialah kanak-kanak yang sudah boleh membezakan baik dan buruk, makan sendiri, berpakaian sendiri — lazimnya sekitar umur 7 tahun."
+  },
+  {
+    q:"Antara berikut, yang manakah TIDAK membatalkan wudhuk?",
+    opts:["Tidur nyenyak hingga tidak sedar","Keluar sesuatu dari qubul atau dubur","Minum air kosong","Hilang akal (pengsan)"],
+    ans:2,
+    exp:"Minum air kosong TIDAK membatalkan wudhuk. Yang membatalkan wudhuk ialah: keluar sesuatu dari qubul/dubur, tidur nyenyak, hilang akal, menyentuh kemaluan tanpa lapisan, atau bersentuhan kulit dengan bukan mahram."
+  },
+  {
+    q:"Dalam fardhu wudhuk, sehinggamana had membasuh tangan?",
+    opts:["Hingga pergelangan tangan sahaja","Hingga siku (termasuk siku)","Hingga bahu","Hingga ketiak"],
+    ans:1,
+    exp:"Dalam fardhu wudhuk, kedua-dua tangan dibasuh dari hujung jari hingga siku, dan siku turut dibasuh sekali."
+  },
+  {
+    q:"Apakah amalan yang memerlukan wudhuk secara WAJIB (bukan sunat)?",
+    opts:["Membaca Al-Quran tanpa menyentuh mashaf","Tidur","Tawaf mengelilingi Kaabah","Berzikir"],
+    ans:2,
+    exp:"Tawaf mengelilingi Kaabah memerlukan wudhuk secara wajib. Membaca Al-Quran tanpa menyentuh mashaf, tidur, dan berzikir hanya sunat sahaja berwudhuk."
+  },
+  {
+    q:"Apakah yang perlu dilakukan semasa fardhu wudhuk bagi anggota kepala?",
+    opts:["Membasuh seluruh kepala dengan air","Menyapu sebahagian kepala dengan air yang basah","Menyapu kedua-dua telinga","Membasuh rambut sebanyak 3 kali"],
+    ans:1,
+    exp:"Fardhu wudhuk bagi kepala ialah menyapu sebahagian kepala dengan air yang basah — walaupun satu helai rambut sudah memadai dari segi fardhu."
+  },
+  {
+    q:"Apakah maksud 'tertib' dalam fardhu wudhuk?",
+    opts:["Melakukan wudhuk dengan cepat","Mengikut susunan yang telah ditetapkan tanpa menukar urutan","Membasuh setiap anggota sebanyak 3 kali","Membaca niat dengan kuat"],
+    ans:1,
+    exp:"Tertib bermaksud mengikut susunan yang telah ditetapkan: Niat → Muka → Tangan → Kepala → Kaki. Urutan ini tidak boleh ditukar-tukar."
+  }
+];
+
+let qIdx=0,score=0,answered=false;
+
+function startQuiz(){
+  document.getElementById('ending-section').style.display='none';
+  document.getElementById('quiz-section').style.display='block';
+  qIdx=0;score=0;answered=false;
+  document.getElementById('total-display').textContent=quizData.length;
+  document.getElementById('score-display').textContent=0;
+  buildDots();
+  renderQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildDots(){
+  const c=document.getElementById('quiz-dots');
+  c.innerHTML='';
+  quizData.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='qdot'+(i===0?' current':'');
+    d.id='qdot-'+i;
+    c.appendChild(d);
+  });
+}
+
+function renderQ(){
+  answered=false;
+  const q=quizData[qIdx];
+  document.getElementById('score-display').textContent=score;
+  quizData.forEach((_,i)=>{
+    const d=document.getElementById('qdot-'+i);
+    if(d&&i===qIdx){d.className='qdot current';}
+  });
+  const area=document.getElementById('quiz-area');
+  area.innerHTML=`
+    <div class="quiz-card">
+      <div class="quiz-q-num">Soalan ${qIdx+1} daripada ${quizData.length}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQ(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback" id="qfeedback"></div>
+      <button class="btn-next-q" id="btn-next-q" onclick="nextQ()">${qIdx<quizData.length-1?'Soalan Seterusnya →':'Lihat Keputusan 🏆'}</button>
+    </div>
+  `;
+}
+
+function answerQ(i){
+  if(answered)return;
+  answered=true;
+  const q=quizData[qIdx];
+  const opts=document.querySelectorAll('.quiz-opt');
+  opts.forEach(o=>o.disabled=true);
+  const fb=document.getElementById('qfeedback');
+  const dot=document.getElementById('qdot-'+qIdx);
+  if(i===q.ans){
+    score++;
+    opts[i].classList.add('correct');
+    fb.className='quiz-feedback correct';
+    fb.textContent='✅ Betul! '+q.exp;
+    if(dot)dot.className='qdot correct';
+    document.getElementById('score-display').textContent=score;
+    showMotivation();
+  } else {
+    opts[i].classList.add('wrong');
+    opts[q.ans].classList.add('correct');
+    fb.className='quiz-feedback wrong';
+    fb.textContent='❌ Salah. Jawapan betul: '+q.opts[q.ans]+'. '+q.exp;
+    if(dot)dot.className='qdot wrong';
+  }
+  document.getElementById('btn-next-q').style.display='inline-block';
+}
+
+function nextQ(){
+  qIdx++;
+  if(qIdx>=quizData.length){showResult();return;}
+  renderQ();
+}
+
+/* Motivation popup */
+const motivData=[
+  {icon:'🌟',title:'Masha Allah!',arabic:'مَا شَاءَ اللَّهُ',msg:'Luar biasa! Jawapan kamu betul. Teruskan semangat belajar ini — <strong>ilmu adalah cahaya!</strong>'},
+  {icon:'🌙',title:'Subhanallah!',arabic:'سُبْحَانَ اللَّهِ',msg:'Hebat sekali! Kamu memahami pelajaran dengan baik. <strong>Allah SWT suka kepada orang yang berilmu!</strong>'},
+  {icon:'⭐',title:'Alhamdulillah!',arabic:'الْحَمْدُ لِلَّهِ',msg:'Syukur kerana dianugerahkan akal untuk belajar. <strong>Kamu makin bijak!</strong> Teruskan!'},
+  {icon:'💎',title:'Barakallah!',arabic:'بَارَكَ اللَّهُ فِيكَ',msg:'Allah memberkati usaha kamu! <strong>Jawapan betul menunjukkan kamu belajar dengan bersungguh-sungguh!</strong>'},
+];
+let lastMotiv=-1;
+
+function showMotivation(){
+  let idx;
+  do{idx=Math.floor(Math.random()*motivData.length);}while(idx===lastMotiv&&motivData.length>1);
+  lastMotiv=idx;
+  const m=motivData[idx];
+  document.getElementById('popup-icon').textContent=m.icon;
+  document.getElementById('popup-title').textContent=m.title;
+  document.getElementById('popup-arabic').textContent=m.arabic;
+  document.getElementById('popup-msg').innerHTML=m.msg;
+  document.getElementById('motivPopup').classList.add('show');
+}
+
+function closePopup(){
+  document.getElementById('motivPopup').classList.remove('show');
+}
+
+function showResult(){
+  const pct=Math.round((score/quizData.length)*100);
+  let msg,emoji;
+  if(pct===100){msg='Sempurna! Kamu pelajar cemerlang! 🏆';emoji='🥇';}
+  else if(pct>=75){msg='Sangat bagus! Hampir sempurna! ⭐';emoji='😊';}
+  else if(pct>=50){msg='Elok! Cuba semak nota dan cuba lagi. 📖';emoji='💪';}
+  else{msg='Jangan putus asa! Ulang nota dan cuba semula. 🌟';emoji='📚';}
+  document.getElementById('quiz-area').innerHTML=`
+    <div class="result-card">
+      <div style="font-size:3rem;margin-bottom:8px">${emoji}</div>
+      <div class="result-score">${score}/${quizData.length}</div>
+      <div class="result-msg">${msg}</div>
+      <div class="result-btns">
+        <button class="btn-restart" onclick="startQuiz()">🔄 Cuba Lagi</button>
+        <button class="btn-quiz" onclick="restartNota()">📖 Ulang Nota</button>
+      </div>
+    </div>
+  `;
+}
+
+/* Init */
+updateProgress();
+</script>
+</body>
+</html>

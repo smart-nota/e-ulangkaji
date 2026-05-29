@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ibadah KAFA: Hadas 🌿</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-mid: #12121a;
+  --bg-panel: #16161f;
+  --bg-card: #1c1c28;
+  --gold: #d4a017;
+  --gold-light: #f0c040;
+  --gold-glow: #ffe066;
+  --gold-dark: #a07810;
+  --gold-dim: rgba(212,160,23,0.18);
+  --text: #f5f0e8;
+  --text-soft: #c8c0a8;
+  --text-muted: #7a7060;
+  --blue-soft: rgba(100,160,255,0.12);
+  --blue-border: rgba(100,160,255,0.35);
+  --success: #2ecc71;
+  --danger: #e74c3c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--bg-deep);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(212,160,23,0.15), transparent 50%),
+    radial-gradient(rgba(255,255,255,0.12) 1px, transparent 0);
+  background-size: 100% 100%, 24px 24px;
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. PAGE HEADER */
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(18, 18, 26, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 2px solid var(--gold);
+}
+.page-header-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.back-btn {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.back-btn:hover {
+  transform: translateX(-3px);
+  color: var(--gold-glow);
+}
+.page-title-area h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.page-title-area span {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+/* MAIN CONTAINER */
+.main-container {
+  flex: 1;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+/* 4. PROGRESS BAR */
+.progress-container {
+  margin-bottom: 20px;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+.progress-bar-bg {
+  background: #222230;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  background: linear-gradient(90deg, var(--gold), var(--gold-glow));
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* 2. ESTETIK & GAYA - PANEL CONTAINER */
+.panel {
+  background: var(--bg-panel);
+  border: 3px solid var(--gold-dark);
+  border-radius: 18px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.5);
+  padding: 24px;
+  display: none;
+  animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+.panel.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* [A] Header Panel */
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(214,160,23,0.2);
+  padding-bottom: 12px;
+}
+.panel-num {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: var(--bg-deep);
+  font-weight: 900;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 0 8px var(--gold-dark);
+}
+.panel-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--gold-glow);
+}
+
+/* [B] Avatar Ustaz & Speech Bubble */
+.avatar-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.avatar-block {
+  text-align: center;
+  flex-shrink: 0;
+}
+.avatar-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+.avatar-label {
+  background: var(--gold-dark);
+  color: var(--bg-deep);
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+  display: inline-block;
+}
+.speech-bubble {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 14px 16px;
+  border-radius: 0 16px 16px 16px;
+  position: relative;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+}
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--bg-card) transparent transparent;
+}
+
+/* [C] Kandungan Utama Formatters */
+.content-area {
+  margin-bottom: 24px;
+}
+.fakta-box {
+  background: rgba(255,255,255,0.03);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-left: 3px solid var(--gold-light);
+}
+.fakta-title {
+  font-weight: 800;
+  color: var(--gold-light);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.nota-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.95rem;
+}
+.nota-table th, .nota-table td {
+  border: 1px solid var(--gold-dark);
+  padding: 10px 12px;
+  text-align: left;
+}
+.nota-table th {
+  background: var(--gold-dim);
+  color: var(--gold-glow);
+  font-weight: 800;
+}
+.nota-table td {
+  background: rgba(20,20,30,0.4);
+}
+.info-box {
+  background: rgba(212,160,23,0.06);
+  border-left: 5px solid var(--gold);
+  padding: 16px;
+  border-radius: 0 12px 12px 0;
+  margin: 16px 0;
+}
+.info-box h4 {
+  color: var(--gold-glow);
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+.step-list {
+  list-style: none;
+  margin: 12px 0;
+}
+.step-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+}
+.step-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--gold-dim);
+  color: var(--gold-light);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+.highlight-chip {
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-dark);
+  color: var(--gold-light);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.fun-fact {
+  background: var(--blue-soft);
+  border: 1px solid var(--blue-border);
+  padding: 14px;
+  border-radius: 12px;
+  margin: 16px 0;
+  display: flex;
+  gap: 12px;
+  font-size: 0.95rem;
+}
+
+/* [D] Kotak Tip Mudah Ingat */
+.tip-box {
+  background: #1e1b15;
+  border: 2px dashed var(--gold-light);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 16px;
+  display: none;
+  animation: fadeIn 0.3s ease forwards;
+}
+.tip-box.show {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+/* [E] Navigasi Panel */
+.panel-nav {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 16px;
+}
+.nav-left {
+  width: 20%;
+}
+.nav-center {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.btn {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.1s, box-shadow 0.2s;
+  font-size: 0.9rem;
+}
+.btn:active {
+  transform: scale(0.96);
+}
+.btn-back-panel {
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.btn-back-panel:hover {
+  color: var(--gold-glow);
+}
+.btn-understand {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  box-shadow: 0 4px 12px rgba(46,204,113,0.3);
+}
+.btn-understand:hover {
+  box-shadow: 0 6px 16px rgba(46,204,113,0.5);
+}
+.btn-confused {
+  background: #2c2c35;
+  color: var(--text-soft);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-confused:hover {
+  background: #363642;
+  color: var(--text);
+}
+
+/* 6. BAHAGIAN AKHIR - PANEL TAMAT */
+.end-panel {
+  text-align: center;
+  padding: 30px 16px;
+}
+.end-panel h3 {
+  font-size: 1.8rem;
+  color: var(--gold-glow);
+  margin-bottom: 12px;
+  font-weight: 900;
+}
+.end-panel p {
+  color: var(--text-soft);
+  margin-bottom: 24px;
+}
+.end-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-retry {
+  background: #34495e;
+  color: white;
+}
+.btn-game {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  color: var(--bg-deep);
+  box-shadow: 0 4px 15px var(--gold-dim);
+}
+
+/* 7. KUIZ MINI SEKSYEN */
+.quiz-section {
+  background: var(--bg-panel);
+  border: 3px solid var(--gold);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  display: none;
+}
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--gold-dim);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+.quiz-title {
+  font-weight: 800;
+  color: var(--gold-glow);
+  font-size: 1.1rem;
+}
+.quiz-score {
+  background: var(--gold-dim);
+  color: var(--gold-light);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.question-box {
+  margin-bottom: 20px;
+}
+.question-text {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.option-btn {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-soft);
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.option-btn:hover:not(:disabled) {
+  background: #252535;
+  border-color: var(--gold-dark);
+  color: var(--text);
+}
+.option-btn.correct {
+  background: var(--success) !important;
+  color: white !important;
+  border-color: var(--success) !important;
+  font-weight: 800;
+}
+.option-btn.wrong {
+  background: var(--danger) !important;
+  color: white !important;
+  border-color: var(--danger) !important;
+}
+.feedback-box {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  display: none;
+  font-size: 0.95rem;
+}
+.feedback-box.correct {
+  background: rgba(46,204,113,0.15);
+  color: #2ecc71;
+  border: 1px solid #2ecc71;
+}
+.feedback-box.wrong {
+  background: rgba(231,76,60,0.15);
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+.next-area {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-next {
+  background: var(--gold);
+  color: var(--bg-deep);
+  display: none;
+}
+.btn-next:hover {
+  background: var(--gold-light);
+}
+.dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #252535;
+}
+.dot.active { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+.dot.correct { background: var(--success); }
+.dot.wrong { background: var(--danger); }
+
+/* SKRIN KEPUTUSAN KUIZ */
+.result-card {
+  text-align: center;
+  padding: 20px 10px;
+}
+.score-big {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--gold-glow);
+  margin: 12px 0;
+  text-shadow: 0 0 15px var(--gold-dark);
+}
+
+/* KAD MOTIVASI PREMIUM POPUP */
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.82);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.popup-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.premium-card {
+  background: var(--bg-panel);
+  border: 3px solid var(--gold);
+  border-radius: 20px;
+  max-width: 420px;
+  width: 100%;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 0 30px var(--gold-dark);
+  transform: scale(0.7);
+  transition: transform 0.4s cubic-bezier(.175,.885,.32,1.275);
+  background-image: linear-gradient(135deg, rgba(214,160,23,0.1) 0%, transparent 100%);
+}
+.popup-overlay.show .premium-card {
+  transform: scale(1);
+}
+.shimmer-gold {
+  background: linear-gradient(90deg, #16161f 0%, #2a2415 50%, #16161f 100%);
+  background-size: 200% 100%;
+  animation: shimmerMove 3s infinite linear;
+}
+@keyframes shimmerMove {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.popup-icon {
+  font-size: 3.5rem;
+  margin-bottom: 8px;
+}
+.popup-title {
+  color: var(--gold-light);
+  font-weight: 900;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+.popup-arabic {
+  font-size: 1.6rem;
+  color: var(--text);
+  margin: 12px 0;
+  font-weight: 700;
+}
+.popup-msg {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* 8. NAVIGASI BAWAH HALAMAN */
+.nota-nav {
+  max-width: 700px;
+  width: 100%;
+  margin: 24px auto 12px auto;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.nota-nav a {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.nota-nav a:hover {
+  color: var(--gold-glow);
+  text-decoration: underline;
+}
+
+/* 9. FOOTER */
+footer {
+  text-align: center;
+  padding: 16px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: auto;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+@media(max-width: 480px) {
+  .panel { padding: 16px; }
+  .panel-title { font-size: 1.15rem; }
+  .avatar-icon { font-size: 2.5rem; }
+  .speech-bubble { font-size: 0.9rem; }
+  .btn { padding: 8px 14px; font-size: 0.85rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <a href="../../subjek-ibadah.html" class="back-btn">← IBADAH</a>
+    <div class="page-title-area">
+      <h2>🌿 Mengenal Hadas</h2>
+      <span>Topik 4 · Subjek Ibadah</span>
+    </div>
+  </div>
+</header>
+
+<div class="main-container">
+  
+  <div class="progress-container" id="prog-container">
+    <div class="progress-label">
+      <span id="prog-text">Panel 1/5</span>
+      <span>Nota Interaktif</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="prog-fill"></div>
+    </div>
+  </div>
+
+  <div class="panel active" id="p1">
+    <div class="panel-header">
+      <div class="panel-num">1</div>
+      <div class="panel-title">Kenali Hadas Kecil &amp; Besar</div>
+    </div>
+    <div class="avatar-section">
+      <div class="avatar-block">
+        <div class="avatar-icon">👨‍🏫</div>
+        <div class="avatar-label">USTAZ WAN</div>
+      </div>
+      <div class="speech-bubble">
+        Assalamualaikum semua! Hari ini Ustaz Wan nak kongsi topik sangat penting tentang <b>Hadas</b>. Hadas ini adalah kekotoran maknawi yang ada pada diri kita tau. Jom fahamkan!
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="fakta-box">
+        <div class="fakta-title">Maksud Hadas</div>
+        <p>Kekotoran maknawi (tidak nampak di mata kasar) pada diri seorang Muslim yang menghalangnya daripada beribadat seperti solat.</p>
+      </div>
+      
+      <table class="nota-table">
+        <thead>
+          <tr>
+            <th>Jenis Hadas</th>
+            <th>Sifatnya / Sebab Berlaku</th>
+            <th>Cara Suci</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Hadas Kecil</b></td>
+            <td>Berlaku sebab kentut, kencing, berak, atau tidur lena.</td>
+            <td>💧 Wuduk / Tayamum</td>
+          </tr>
+          <tr>
+            <td><b>Hadas Besar</b></td>
+            <td>Berlaku sebab keluar mani, haid (perempuan), atau nifas.</td>
+            <td>🧼 Mandi Wajib</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-box" id="tip1">
+      🔑 <b>Tip Mudah Ingat:</b> Bayangkan hadas seperti <b>"Kunci Pintu Ibadat"</b>. Kalau ada hadas, pintu solat terkunci. Kita kena ambil wuduk (untuk Hadas Kecil) atau mandi wajib (untuk Hadas Besar) untuk buka balik kunci pintu itu!
+    </div>
+    <div class="panel-nav">
+      <div class="nav-left"></div>
+      <div class="nav-center">
+        <button class="btn btn-understand" onclick="nextPanel(1)">✅ Saya Faham</button>
+        <button class="btn btn-confused" onclick="showTip(1)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p2">
+    <div class="panel-header">
+      <div class="panel-num">2</div>
+      <div class="panel-title">Hadas Kecil &amp; Perkara Membatalkan Wuduk</div>
+    </div>
+    <div class="avatar-section">
+      <div class="avatar-block">
+        <div class="avatar-icon">👨‍🏫</div>
+        <div class="avatar-label">USTAZ WAN</div>
+      </div>
+      <div class="speech-bubble">
+        Seterusnya, mari kita tengok apa yang menyebabkan kita terkena <b>Hadas Kecil</b> sehingga membatalkan wuduk kita. Ingat betul-betul ya!
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="info-box">
+        <h4>Sebab Terkena Hadas Kecil:</h4>
+        <ul class="step-list">
+          <li>Keluar sesuatu dari "pintu depan atau belakang" (contohnya kencing, berak, kentut).</li>
+          <li>Tidur yang tidak tetap punggung (seperti terlentang atau meniarap).</li>
+          <li>Hilang akal disebabkan pengsan atau mabuk.</li>
+          <li>Sentuh kemaluan sendiri atau orang lain dengan tapak tangan tanpa sebarang lapik.</li>
+        </ul>
+      </div>
+      
+      <div class="fakta-box">
+        <div class="fakta-title">🚫 Perkara yang Dilarang (Hadas Kecil):</div>
+        <p>Orang yang sedang dalam keadaan Hadas Kecil tidak dibenarkan untuk: <b>Solat, Tawaf, dan Memegang atau Membawa Al-Quran.</b></p>
+      </div>
+    </div>
+    <div class="tip-box" id="tip2">
+      💥 <b>Tip Mudah Ingat:</b> Ingat formula <b>3K + 1S</b>!<br>
+      <b>K</b>encing, <b>K</b>entut, <b>K</b>ompat (tidur lena) &amp; <b>S</b>entuh kemaluan = Wuduk batal serta-merta! Kena ambil wuduk baru.
+    </div>
+    <div class="panel-nav">
+      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(2)">←</button></div>
+      <div class="nav-center">
+        <button class="btn btn-understand" onclick="nextPanel(2)">✅ Saya Faham</button>
+        <button class="btn btn-confused" onclick="showTip(2)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p3">
+    <div class="panel-header">
+      <div class="panel-num">3</div>
+      <div class="panel-title">Hadas Besar &amp; Sebab-Sebabnya</div>
+    </div>
+    <div class="avatar-section">
+      <div class="avatar-block">
+        <div class="avatar-icon">👨‍🏫</div>
+        <div class="avatar-label">USTAZ WAN</div>
+      </div>
+      <div class="speech-bubble">
+        Sekarang, jom belajar tentang <b>Hadas Besar</b> pula. Ini lebih berat sedikit dan mempunyai larangan tambahan!
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="info-box">
+        <h4>Sebab Terkena Hadas Besar:</h4>
+        <p>• <b>Keluar Mani:</b> Tanda kanak-kanak lelaki atau perempuan sudah mula baligh (biasanya terjadi melalui mimpi).</p>
+        <p>• <b>Haid:</b> Darah semulajadi yang keluar dari rahim anak perempuan yang sihat setiap bulan apabila sudah cukup umur/baligh.</p>
+        <p>• <b>Mati:</b> Kecuali bagi mereka yang mati syahid (orang hidup yang perlu mandikan jenazah).</p>
+      </div>
+      
+      <div class="fun-fact">
+        <div>🛑</div>
+        <div><b>Larangan Hadas Besar:</b> Tidak boleh Solat, Tawaf, Pegang Al-Quran, Membaca Al-Quran, dan <b>Duduk di dalam Masjid</b>.</div>
+      </div>
+    </div>
+    <div class="tip-box" id="tip3">
+      👹 <b>Tip Mudah Ingat:</b> Hadas Besar ini kita umpamakan macam <b>"Gergasi Merah"</b>. Kita tak boleh masuk masjid atau pegang Al-Quran sehinggalah kita "sejukkan" badan kita dengan Mandi Wajib dari hujung rambut sampai hujung kaki!
+    </div>
+    <div class="panel-nav">
+      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(3)">←</button></div>
+      <div class="nav-center">
+        <button class="btn btn-understand" onclick="nextPanel(3)">✅ Saya Faham</button>
+        <button class="btn btn-confused" onclick="showTip(3)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p4">
+    <div class="panel-header">
+      <div class="panel-num">4</div>
+      <div class="panel-title">Cara Menyucikan Hadas</div>
+    </div>
+    <div class="avatar-section">
+      <div class="avatar-block">
+        <div class="avatar-icon">👨‍🏫</div>
+        <div class="avatar-label">USTAZ WAN</div>
+      </div>
+      <div class="speech-bubble">
+        Bagaimana pula kalau kita nak bersihkan diri daripada hadas? Mudah sahaja, ikut cara-cara yang betul mengikut jenis hadas ini!
+      </div>
+    </div>
+    <div class="content-area">
+      <table class="nota-table">
+        <thead>
+          <tr>
+            <th>💧 Untuk Hadas Kecil (Wuduk)</th>
+            <th>🧼 Untuk Hadas Besar (Mandi Wajib)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <ol style="margin-left: 16px; font-size: 0.9rem;">
+                <li>Niat &amp; Basuh muka.</li>
+                <li>Basuh tangan hingga siku.</li>
+                <li>Sapu sebahagian kepala.</li>
+                <li>Basuh kaki hingga buku lali.</li>
+              </ol>
+              <i style="font-size:0.8rem; color:var(--gold-light)">(Mesti ikut urutan/tertib)</i>
+            </td>
+            <td>
+              <ol style="margin-left: 16px; font-size: 0.9rem;">
+                <li>Niat mandi wajib bagi menghilangkan hadas besar.</li>
+                <li>Meratakan air mutlak ke <b>seluruh anggota badan</b> (pastikan tiada rambut atau kulit yang tertinggal/kering).</li>
+              </ol>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-box" id="tip4">
+      💡 <b>Tip Mudah Ingat:</b><br>
+      • <b>Hadas Kecil</b> ➡️ Cukup sekadar <b>Wuduk Sahaja</b> (Basuh muka, tangan, kepala, dan kaki).<br>
+      • <b>Hadas Besar</b> ➡️ Mesti <b>Mandi Basah Semua</b> (Dari hujung rambut paling atas sampai ujung kuku kaki)!
+    </div>
+    <div class="panel-nav">
+      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(4)">←</button></div>
+      <div class="nav-center">
+        <button class="btn btn-understand" onclick="nextPanel(4)">✅ Saya Faham</button>
+        <button class="btn btn-confused" onclick="showTip(4)">❓ Saya Tak Faham</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="p5">
+    <div class="panel-header">
+      <div class="panel-num">5</div>
+      <div class="panel-title">Ringkasan &amp; Nota Poket</div>
+    </div>
+    <div class="avatar-section">
+      <div class="avatar-block">
+        <div class="avatar-icon">👨‍🏫</div>
+        <div class="avatar-label">USTAZ WAN</div>
+      </div>
+      <div class="speech-bubble">
+        Alhamdulillah! Dah sampai ke panel terakhir. Mari kita imbas peta poket ini untuk ingatan super cepat sebelum kuiz bermula!
+      </div>
+    </div>
+    <div class="content-area">
+      <div class="info-box">
+        <h4>📌 NOTA POKET HADAS</h4>
+        <p>🍏 <b>Hadas</b> = Kekotoran spiritual/maknawi (bukan najis yang nampak di mata).</p>
+        <p>💧 <b>Hadas Kecil</b> = Selesai dan bersih semula dengan <b>Wuduk</b>.</p>
+        <p>🧼 <b>Hadas Besar</b> = Selesai dan bersih semula dengan <b>Mandi Wajib</b>.</p>
+        <p>❌ <b>Larangan Bersama</b> = <b>TIDAK BOLEH SOLAT · TAWAF · PEGANG AL-QURAN</b></p>
+      </div>
+      
+      <div class="chip-container">
+        <div class="highlight-chip">Hadas Kecil = Wuduk</div>
+        <div class="highlight-chip">Hadas Besar = Mandi Wajib</div>
+        <div class="highlight-chip">Tak Boleh Solat</div>
+        <div class="highlight-chip">Mesti Suci</div>
+      </div>
+    </div>
+    <div class="tip-box" id="tip5">
+      🧠 <b>Tip Mudah Ingat (Akronim H.A.D.A.S):</b><br>
+      • <b>H</b>ilang suci kerana kencing/kentut/haid.<br>
+      • <b>A</b>mbil wuduk atau mandi wajib untuk suci.<br>
+      • <b>D</b>ilarang solat dan pegang Al-Quran.<br>
+      • <b>A</b>ir mutlak mesti digunakan.<br>
+      • <b>S</b>olat semula selepas bersih!
+    </div>
+    <div class="panel-nav">
+      <div class="nav-left"><button class="btn-back-panel" onclick="prevPanel(5)">←</button></div>
+      <div class="nav-center">
+        <button class="btn btn-understand" onclick="nextPanel(5)">✅ Saya Sedia Untuk Kuiz!</button>
+        <button class="btn btn-confused" onclick="showTip(5)">❓ Formula Akronim</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel end-panel" id="panel-end">
+    <div class="avatar-icon" style="font-size:4rem; margin-bottom:10px;">🏆</div>
+    <h3>Masha Allah, Tahniah!</h3>
+    <p>Kamu telah berjaya menyelesaikan nota pembelajaran 'Hadas' bersama Ustaz Wan. Kamu memang hebat!</p>
+    <div class="end-buttons">
+      <button class="btn btn-retry" onclick="resetNotes()">🔄 Ulang Nota</button>
+      <button class="btn btn-game" onclick="startQuiz()">🎮 Game Nota — Kuiz Mini</button>
+    </div>
+  </div>
+
+  <div class="quiz-section" id="quiz-area">
+    <div class="quiz-header">
+      <div class="quiz-title" id="quiz-qnum">Soalan 1/6</div>
+      <div class="quiz-score" id="quiz-score-display">Skor: 0</div>
+    </div>
+    <div class="question-box">
+      <div class="question-text" id="q-text">Sila jawab soalan di bawah:</div>
+      <div class="options-grid" id="options-block">
+        </div>
+    </div>
+    <div class="feedback-box" id="feedback-block"></div>
+    <div class="next-area">
+      <button class="btn btn-next" id="btn-next-q" onclick="nextQuestion()">Soalan Seterusnya →</button>
+    </div>
+    <div class="dots-container" id="dots-block">
+      </div>
+  </div>
+
+</div>
+
+<div class="popup-overlay" id="motivPopup">
+  <div class="premium-card shimmer-gold">
+    <div class="popup-icon" id="popup-icon">✨</div>
+    <div class="popup-title" id="popup-title">Alhamdulillah!</div>
+    <div class="popup-arabic" id="popup-arabic">بَارَكَ اللهُ فِيْك</div>
+    <div class="popup-msg" id="popup-msg">Kamu memang pelajar yang hebat dan pintar!</div>
+    <button class="btn btn-understand" style="width:100%" onclick="closePopup()">✨ Teruskan!</button>
+  </div>
+</div>
+
+<div class="nota-nav" id="bottom-nav">
+  <a href="jenis-najis.html">← Topik Sebelum: Jenis Najis</a>
+  <a href="istinjak.html">Topik Seterusnya: Istinjak →</a>
+</div>
+
+<footer id="page-footer">🌙 KAFA Learn · Ibadah Topik 4</footer>
+
+<script>
+let currentPanel = 1;
+const totalPanels = 5;
+
+// Data Soalan Kuiz Mini (6 Soalan)
+const quizData = [
+  {
+    q: "Apakah maksud Hadas yang paling tepat?",
+    o: [
+      "Kekotoran nampak seperti tanah lumpur",
+      "Kekotoran maknawi pada diri Muslim yang menghalang ibadat",
+      "Air bersih yang mengalir di sungai",
+      "Makanan berkhasiat untuk kanak-kanak"
+    ],
+    a: 1,
+    p: "Hadas ialah kekotoran maknawi atau spiritual yang tidak nampak di mata tetapi menghalang kita daripada sah solat."
+  },
+  {
+    q: "Keluar angin dari dubur (kentut) menyebabkan seseorang terkena...",
+    o: [
+      "Hadas Besar",
+      "Hadas Kecil",
+      "Penyakit perut",
+      "Najis Ma'fuh"
+    ],
+    a: 1,
+    p: "Kentut adalah salah satu perkara yang membatalkan wuduk dan menyebabkan kita berada dalam keadaan Hadas Kecil."
+  },
+  {
+    q: "Bagaimanakah cara utama menyucikan diri daripada Hadas Kecil?",
+    o: [
+      "Mandi menggunakan sabun wangi",
+      "Mengambil Wuduk atau Tayamum",
+      "Membasuh baju sehingga bersih",
+      "Menyapu minyak wangi"
+    ],
+    a: 1,
+    p: "Hadas Kecil disucikan dengan cara berwuduk menggunakan air mutlak atau bertayamum jika tiada air."
+  },
+  {
+    q: "Perkara manakah yang menyebabkan seseorang terkena Hadas Besar?",
+    o: [
+      "Kencing atau berak",
+      "Tidur terlentang di atas katil",
+      "Keluar air mani atau haid",
+      "Menyentuh kucing jalanan"
+    ],
+    a: 2,
+    p: "Keluar mani (bagi lelaki/perempuan baligh) dan keluar darah haid (perempuan bulanan) adalah sebab utama terkena Hadas Besar."
+  },
+  {
+    q: "Apakah perkara yang DILARANG dilakukan oleh orang bersandarkan Hadas Kecil mahupun Hadas Besar?",
+    o: [
+      "Makan buah-buahan",
+      "Membaca buku sekolah",
+      "Solat, Tawaf, dan Memegang Al-Quran",
+      "Tidur di dalam bilik"
+    ],
+    a: 3,
+    o: [
+      "Makan dan minum",
+      "Tidur terlentang",
+      "Membaca buku cerita",
+      "Solat, Tawaf, dan Memegang Al-Quran"
+    ],
+    a: 3,
+    p: "Kedua-dua hadas melarang keras kita daripada mendirikan Solat, melakukan Tawaf, dan Memegang/Membawa kitab suci Al-Quran."
+  },
+  {
+    q: "Bagaimanakah cara menyucikan diri daripada Hadas Besar?",
+    o: [
+      "Basuh muka dan kaki sahaja",
+      "Mandi Wajib (meratakan air mutlak ke seluruh anggota badan)",
+      "Mengambil wuduk sebanyak 3 kali",
+      "Menukar baju baru yang bersih"
+    ],
+    a: 1,
+    p: "Hadas Besar wajib disucikan dengan cara Mandi Wajib, iaitu meratakan air mutlak ke seluruh badan dari hujung rambut hingga ujung kaki."
+  }
+];
+
+const motivData = [
+  { icon: "🏆", title: "Masha Allah!", arabic: "مَاشَاءَ الله", msg: "Hebat sekali! Jawapan kamu tepat dan bijak!" },
+  { icon: "🌟", title: "Subhanallah!", arabic: "سُبْحَانَ الله", msg: "Luar biasa! Teruskan fokus yang mantap ini!" },
+  { icon: "💖", title: "Alhamdulillah!", arabic: "الْحَمْدُ لله", msg: "Syukur! Otak kamu sangat cerdas hari ini!" },
+  { icon: "✨", title: "Barakallah!", arabic: "بَارَكَ اللهُ فِيْك", msg: "Semoga Allah memberkati ilmu agama yang kamu pelajari!" }
+];
+
+let currentQuestionIdx = 0;
+let score = 0;
+let answeredStatus = [];
+
+function updateProgress() {
+  if(currentPanel <= totalPanels) {
+    document.getElementById('prog-container').style.display = 'block';
+    const pct = ((currentPanel - 1) / (totalPanels - 1)) * 100;
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-text').textContent = `Panel ${currentPanel}/${totalPanels}`;
+  } else {
+    document.getElementById('prog-container').style.display = 'none';
+  }
+}
+
+function nextPanel(num) {
+  document.getElementById(`tip${num}`).classList.remove('show');
+  document.getElementById(`p${num}`).classList.remove('active');
+  
+  if(num < totalPanels) {
+    currentPanel = num + 1;
+    document.getElementById(`p${currentPanel}`).classList.add('active');
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    currentPanel = totalPanels + 1;
+    updateProgress();
+    document.getElementById('panel-end').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function prevPanel(num) {
+  document.getElementById(`tip${num}`).classList.remove('show');
+  document.getElementById(`p${num}`).classList.remove('active');
+  currentPanel = num - 1;
+  document.getElementById(`p${currentPanel}`).classList.add('active');
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showTip(num) {
+  document.getElementById(`tip${num}`).classList.add('show');
+}
+
+function resetNotes() {
+  document.getElementById('panel-end').classList.remove('active');
+  for(let i=1; i<=totalPanels; i++) {
+    document.getElementById(`tip${i}`).classList.remove('show');
+  }
+  currentPanel = 1;
+  document.getElementById('p1').classList.add('active');
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* LOGIK KUIZ MINI GAME */
+function startQuiz() {
+  document.getElementById('panel-end').classList.remove('active');
+  document.getElementById('bottom-nav').style.display = 'none';
+  document.getElementById('quiz-area').style.display = 'block';
+  
+  currentQuestionIdx = 0;
+  score = 0;
+  answeredStatus = [];
+  
+  initDots();
+  showQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function initDots() {
+  const container = document.getElementById('dots-block');
+  container.innerHTML = '';
+  for(let i=0; i<quizData.length; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    if(i === 0) dot.classList.add('active');
+    container.appendChild(dot);
+  }
+}
+
+function updateDots() {
+  const dots = document.querySelectorAll('#dots-block .dot');
+  dots.forEach((dot, idx) => {
+    dot.classList.remove('active', 'correct', 'wrong');
+    if(idx === currentQuestionIdx) {
+      dot.classList.add('active');
+    }
+    if(answeredStatus[idx] === 'correct') {
+      dot.classList.add('correct');
+    } else if(answeredStatus[idx] === 'wrong') {
+      dot.classList.add('wrong');
+    }
+  });
+}
+
+function showQuestion() {
+  const currentQ = quizData[currentQuestionIdx];
+  document.getElementById('quiz-qnum').textContent = `Soalan ${currentQuestionIdx + 1}/${quizData.length}`;
+  document.getElementById('quiz-score-display').textContent = `Skor: ${score}`;
+  document.getElementById('q-text').textContent = `${currentQuestionIdx + 1}. ${currentQ.q}`;
+  
+  const optionsBlock = document.getElementById('options-block');
+  optionsBlock.innerHTML = '';
+  
+  currentQ.o.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt;
+    btn.onclick = () => checkAnswer(idx);
+    optionsBlock.appendChild(btn);
+  });
+  
+  document.getElementById('feedback-block').style.display = 'none';
+  document.getElementById('btn-next-q').style.display = 'none';
+  updateDots();
+}
+
+let lastMotivIdx = -1;
+function triggerPremiumPopup() {
+  let idx;
+  do {
+    idx = Math.floor(Math.random() * motivData.length);
+  } while(idx === lastMotivIdx && motivData.length > 1);
+  lastMotivIdx = idx;
+  
+  const m = motivData[idx];
+  document.getElementById('popup-icon').textContent = m.icon;
+  document.getElementById('popup-title').textContent = m.title;
+  document.getElementById('popup-arabic').textContent = m.arabic;
+  document.getElementById('popup-msg').innerHTML = m.msg;
+  document.getElementById('motivPopup').classList.add('show');
+}
+
+function closePopup() {
+  document.getElementById('motivPopup').classList.remove('show');
+}
+
+function checkAnswer(selectedIdx) {
+  const currentQ = quizData[currentQuestionIdx];
+  const buttons = document.querySelectorAll('#options-block .option-btn');
+  
+  buttons.forEach(btn => btn.disabled = true);
+  
+  const feedbackBlock = document.getElementById('feedback-block');
+  feedbackBlock.style.display = 'block';
+  
+  if(selectedIdx === currentQ.a) {
+    buttons[selectedIdx].classList.add('correct');
+    feedbackBlock.className = 'feedback-box correct';
+    feedbackBlock.innerHTML = `🎉 Betul! <br><span style="font-weight:400">${currentQ.p}</span>`;
+    score++;
+    answeredStatus.push('correct');
+    document.getElementById('quiz-score-display').textContent = `Skor: ${score}`;
+    
+    setTimeout(triggerPremiumPopup, 350);
+  } else {
+    buttons[selectedIdx].classList.add('wrong');
+    buttons[currentQ.a].classList.add('correct');
+    feedbackBlock.className = 'feedback-box wrong';
+    feedbackBlock.innerHTML = `😢 Kurang Tepat! <br><span style="font-weight:400">${currentQ.p}</span>`;
+    answeredStatus.push('wrong');
+  }
+  
+  updateDots();
+  document.getElementById('btn-next-q').style.display = 'block';
+}
+
+function nextQuestion() {
+  if(currentQuestionIdx < quizData.length - 1) {
+    currentQuestionIdx++;
+    showQuestion();
+  } else {
+    showQuizResults();
+  }
+}
+
+function showQuizResults() {
+  const pct = Math.round((score / quizData.length) * 100);
+  let msg;
+  
+  if(pct === 100) {
+    msg = 'Sempurna! Kamu pelajar cemerlang! 🏆🥇';
+  } else if(pct >= 75) {
+    msg = 'Sangat bagus! Hampir sempurna! ⭐😊';
+  } else if(pct >= 50) {
+    msg = 'Elok! Cuba semak nota dan cuba lagi. 📖💪';
+  } else {
+    msg = 'Jangan putus asa! Ulang nota dan cuba semula. 🌟📚';
+  }
+  
+  const quizArea = document.getElementById('quiz-area');
+  quizArea.innerHTML = `
+    <div class="result-card">
+      <div style="font-size:3.5rem; margin-bottom:8px">🎉</div>
+      <h3 style="font-size:1.6rem; color:var(--gold-glow); font-weight:900;">Keputusan Penilaian</h3>
+      <div class="score-big">${score}/${quizData.length}</div>
+      <p style="margin-bottom:24px; font-weight:700; color:var(--text-soft);">${msg}</p>
+      <div class="end-buttons">
+        <button class="btn btn-game" onclick="location.reload()">🔄 Cuba Lagi</button>
+        <button class="btn btn-retry" onclick="location.reload()">📖 Ulang Nota</button>
+      </div>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Anak-Anak Nabi Muhammad SAW 🌟 KAFA Learn</title>
+<title>Anak-Anak Nabi Muhammad SAW 🌟 KAFA SKSG</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 :root {
@@ -102,13 +102,57 @@ body::before{
 .page-title-area h2{font-size:1rem;font-weight:800;color:var(--text);line-height:1.2}
 .page-title-area span{font-size:0.78rem;color:var(--text-muted);font-weight:600}
 
+/* NEW HERO DESIGN */
+.wrapper {
+  max-width: 780px;
+  margin: 20px auto 0;
+  padding: 0 16px;
+}
+.hero {
+  background: var(--bg-panel);
+  border: 2.5px solid var(--gold-dark);
+  border-radius: var(--radius);
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: var(--shadow), var(--shadow-gold);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.hero-emoji {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--gold-glow);
+  margin-bottom: 6px;
+}
+.hero p {
+  font-size: 1rem;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+.hero-chip {
+  display: inline-block;
+  background: rgba(212,160,23,0.15);
+  border: 1.5px solid var(--gold);
+  color: var(--gold-light);
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
 /* MAIN LAYOUT */
 main{
   position:relative;
   z-index:2;
   max-width:780px;
   margin:0 auto;
-  padding:28px 16px 60px;
+  padding:10px 16px 60px;
 }
 
 /* PROGRESS BAR */
@@ -327,6 +371,81 @@ main{
 .tip-box p{font-size:0.85rem;line-height:1.7;color:var(--text-soft)}
 .tip-box strong{color:var(--gold-glow)}
 
+/* Panel PANEL KUIZ (Khas dalam Panel) */
+.panel-quiz-container {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1.5px solid rgba(212,160,23,0.2);
+  border-radius: var(--radius-sm);
+}
+.panel-quiz-title {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.panel-q-item {
+  margin-bottom: 16px;
+}
+.panel-q-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.panel-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.panel-opt-btn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-soft);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  text-align: left;
+  transition: all 0.2s;
+}
+.panel-opt-btn:hover:not(:disabled) {
+  background: rgba(212,160,23,0.1);
+  border-color: var(--gold-dark);
+}
+.panel-opt-btn.correct {
+  background: rgba(76,175,110,0.18) !important;
+  border-color: var(--green) !important;
+  color: #8fe0a8 !important;
+}
+.panel-opt-btn.wrong {
+  background: rgba(224,85,85,0.18) !important;
+  border-color: var(--red) !important;
+  color: #f09090 !important;
+}
+.panel-feedback {
+  font-size: 0.78rem;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: none;
+}
+.panel-feedback.correct {
+  background: rgba(76,175,110,0.1);
+  color: #a0e0b8;
+  display: block;
+}
+.panel-feedback.wrong {
+  background: rgba(224,85,85,0.1);
+  color: #f0a0a0;
+  display: block;
+}
+
 /* Panel nav */
 .panel-nav{
   display:flex;align-items:center;gap:12px;
@@ -398,95 +517,6 @@ main{
   box-shadow:0 3px 16px rgba(212,160,23,0.35);
 }
 .btn-quiz:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,23,0.5)}
-
-/* QUIZ */
-#quiz-section{display:none}
-.quiz-header{
-  background:var(--bg-panel);
-  border:2px solid var(--gold-dark);
-  border-radius:var(--radius);
-  padding:16px 20px;
-  margin-bottom:16px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  flex-wrap:wrap;
-}
-.quiz-header h3{font-size:1rem;font-weight:800;color:var(--gold-glow)}
-.quiz-score{
-  font-size:0.85rem;font-weight:700;
-  color:var(--text-soft);
-}
-.quiz-score span{color:var(--gold-light);font-weight:900}
-.quiz-progress-dots{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.qdot{
-  width:10px;height:10px;border-radius:50%;
-  background:rgba(255,255,255,0.1);
-  transition:background 0.3s;
-}
-.qdot.current{background:var(--gold-light);box-shadow:0 0 6px rgba(240,192,64,0.6)}
-.qdot.correct{background:var(--green)}
-.qdot.wrong{background:var(--red)}
-
-.quiz-card{
-  background:var(--bg-panel);
-  border:2.5px solid var(--gold-dark);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:24px 22px;
-  animation:panelIn 0.4s ease both;
-}
-.quiz-q-num{font-size:0.75rem;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px}
-.quiz-q-text{font-size:1rem;font-weight:800;color:var(--text);line-height:1.6;margin-bottom:20px}
-.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
-.quiz-opt{
-  background:rgba(255,255,255,0.04);
-  border:1.5px solid rgba(255,255,255,0.1);
-  border-radius:var(--radius-sm);
-  padding:12px 16px;
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:0.88rem;
-  color:var(--text-soft);cursor:pointer;
-  text-align:left;
-  transition:all 0.2s;
-}
-.quiz-opt:hover:not(:disabled){background:rgba(212,160,23,0.1);border-color:var(--gold-dark);color:var(--text)}
-.quiz-opt.correct{background:rgba(76,175,110,0.18);border-color:var(--green);color:#8fe0a8}
-.quiz-opt.wrong{background:rgba(224,85,85,0.18);border-color:var(--red);color:#f09090}
-.quiz-opt:disabled{cursor:default}
-
-.quiz-feedback{
-  font-size:0.84rem;line-height:1.65;padding:10px 14px;
-  border-radius:var(--radius-sm);margin-bottom:14px;
-  display:none;
-}
-.quiz-feedback.correct{background:rgba(76,175,110,0.12);border-left:3px solid var(--green);color:#a0e0b8;display:block}
-.quiz-feedback.wrong{background:rgba(224,85,85,0.12);border-left:3px solid var(--red);color:#f0a0a0;display:block}
-
-.btn-next-q{
-  background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));
-  color:#0a0a0f;padding:11px 24px;border-radius:50px;
-  font-family:'Nunito',sans-serif;font-weight:900;font-size:0.88rem;
-  cursor:pointer;border:none;box-shadow:0 3px 14px rgba(212,160,23,0.3);
-  display:none;transition:all 0.2s;
-}
-.btn-next-q:hover{transform:translateY(-1px);box-shadow:0 5px 20px rgba(212,160,23,0.45)}
-
-/* Result */
-.result-card{
-  background:var(--bg-panel);
-  border:2.5px solid var(--gold-dark);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow),var(--shadow-gold);
-  padding:40px 28px;text-align:center;
-  animation:panelIn 0.4s ease both;
-}
-.result-score{
-  font-size:3rem;font-weight:900;
-  background:linear-gradient(135deg,var(--gold-dark),var(--gold-glow));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-  margin:8px 0;
-}
-.result-msg{font-size:1rem;font-weight:700;color:var(--text-soft);margin-bottom:24px;line-height:1.6}
-.result-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
 /* MOTIVATION POPUP */
 .popup-overlay{
@@ -567,8 +597,8 @@ footer{
   .panel-nav{padding:12px 16px 14px}
   .nota-table{font-size:0.75rem}
   .nota-table th,.nota-table td{padding:7px 8px}
-  .quiz-card{padding:18px 16px}
   .speech-bubble{font-size:0.82rem}
+  .hero h1 {font-size:1.5rem}
 }
 </style>
 </head>
@@ -580,11 +610,20 @@ footer{
   <div class="page-header-inner">
     <a href="../../subjek-sirah.html" class="back-btn">← Sirah</a>
     <div class="page-title-area">
-      <h2>👨‍👩‍👧‍👦 Anak-Anak Nabi Muhammad SAW</h2>
+      <h2>Anak-Anak Nabi Muhammad SAW</h2>
       <span>Topik 2 · Subjek Sirah</span>
     </div>
   </div>
 </header>
+
+<div class="wrapper">
+  <div class="hero">
+    <span class="hero-emoji">👨‍👩‍👧‍👦</span>
+    <h1>Anak-Anak Nabi Muhammad SAW</h1>
+    <p>Mengenali Zuriat dan Kesayangan Baginda Rasulullah SAW</p>
+    <span class="hero-chip">📖 Topik 2 · Sirah</span>
+  </div>
+</div>
 
 <main>
   <div class="progress-wrap">
@@ -595,7 +634,6 @@ footer{
     <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:20%"></div></div>
   </div>
 
-  <!-- ===== PANEL 1 ===== -->
   <div class="panel active" id="panel-1">
     <div class="panel-card">
       <div class="panel-header">
@@ -638,6 +676,41 @@ footer{
           → Jumlah = <strong>7</strong> orang anak<br/><br/>
           Bayangkan: <em>"Tiga lelaki, empat wanita, tujuh semua!"</em> 🎵</p>
         </div>
+
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">🎮 Kuiz Mini Panel 1 (Selesaikan untuk Terus)</div>
+          
+          <div class="panel-q-item" data-ans="2">
+            <p class="panel-q-text">1. Berapakah jumlah keseluruhan anak Nabi Muhammad SAW?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. 5 orang</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. 6 orang</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. 7 orang</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="0">
+            <p class="panel-q-text">2. Siapakah nama isteri Nabi SAW yang melahirkan 6 orang anak baginda?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Siti Khadijah RA</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Mariah Al-Qibtiyyah</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Siti Aisyah RA</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="1">
+            <p class="panel-q-text">3. Berapakah bilangan putera (anak lelaki) dan puteri (anak perempuan) Nabi SAW?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. 4 Putera & 3 Puteri</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. 3 Putera & 4 Puteri</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. 2 Putera & 5 Puteri</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
+
       </div>
       <div class="panel-nav">
         <div class="nav-left"><button class="nav-back hidden" onclick="prevPanel()">←</button></div>
@@ -649,7 +722,6 @@ footer{
     </div>
   </div>
 
-  <!-- ===== PANEL 2 ===== -->
   <div class="panel" id="panel-2">
     <div class="panel-card">
       <div class="panel-header">
@@ -697,6 +769,41 @@ footer{
           → <strong>I</strong>brahim (bongsu)<br/><br/>
           Cerita: <em>"Qasim Ambil Impian"</em> — ketiga-tiga mereka pergi ke syurga semasa kecil 🌟</p>
         </div>
+
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">🎮 Kuiz Mini Panel 2 (Selesaikan untuk Terus)</div>
+          
+          <div class="panel-q-item" data-ans="1">
+            <p class="panel-q-text">1. Siapakah putera sulung Nabi Muhammad SAW yang menyebabkan baginda digelar "Abu Qasim"?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Abdullah</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Al-Qasim</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Ibrahim</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="2">
+            <p class="panel-q-text">2. Putera baginda yang bernama Abdullah turut dikenali dengan gelaran...</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. As-Siddiq</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Abu Qasim</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. At-Tayyib & At-Tahir</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="0">
+            <p class="panel-q-text">3. Siapakah ibu kepada putera bongsu baginda, Ibrahim?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Mariah Al-Qibtiyyah</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Siti Khadijah RA</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Siti Aminah</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
+
       </div>
       <div class="panel-nav">
         <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
@@ -708,7 +815,6 @@ footer{
     </div>
   </div>
 
-  <!-- ===== PANEL 3 ===== -->
   <div class="panel" id="panel-3">
     <div class="panel-card">
       <div class="panel-header">
@@ -762,6 +868,41 @@ footer{
           Bayangkan: <em>"Zaman Rasul Ummah Faham"</em> 🌟<br/>
           Uthman = <strong>R</strong>uqayyah + <strong>U</strong>mmu Kulthum (2 puteri tengah)</p>
         </div>
+
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">🎮 Kuiz Mini Panel 3 (Selesaikan untuk Terus)</div>
+          
+          <div class="panel-q-item" data-ans="0">
+            <p class="panel-q-text">1. Siapakah anak perempuan sulung Nabi Muhammad SAW?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Zainab</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Ruqayyah</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Fatimah</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="1">
+            <p class="panel-q-text">2. Mengapakah Sayyidina Uthman bin Affan digelar "Dzun Nurain" (Pemilik Dua Cahaya)?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Kerana banyak bersedekah harta</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Kerana mengahwini dua puteri Nabi SAW</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Kerana menjadi penulis wahyu utama</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="2">
+            <p class="panel-q-text">3. Siapakah puteri bongsu Nabi Muhammad SAW yang amat dicintai baginda?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Ummu Kulthum</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Ruqayyah</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Fatimah Az-Zahra</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
+
       </div>
       <div class="panel-nav">
         <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
@@ -773,7 +914,6 @@ footer{
     </div>
   </div>
 
-  <!-- ===== PANEL 4 ===== -->
   <div class="panel" id="panel-4">
     <div class="panel-card">
       <div class="panel-header">
@@ -824,6 +964,41 @@ footer{
           Bayangkan: <em>Ali memilih Fatimah → lahirlah dua pahlawan Islam</em> 🌟<br/><br/>
           Az-Zahra = <em>Cahaya</em> → Fatimah membawa cahaya keturunan Nabi SAW!</p>
         </div>
+
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">🎮 Kuiz Mini Panel 4 (Selesaikan untuk Terus)</div>
+          
+          <div class="panel-q-item" data-ans="1">
+            <p class="panel-q-text">1. Apakah maksud gelaran "Az-Zahra" yang diberikan kepada Fatimah?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Yang Penyayang</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Yang Bercahaya</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Yang Berbudi Tinggi</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="0">
+            <p class="panel-q-text">2. Siapakah dua orang cucu Nabi SAW daripada Fatimah yang meneruskan keturunan baginda?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Hasan dan Husain</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Qasim dan Abdullah</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Ali dan Abul Ash</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="2">
+            <p class="panel-q-text">3. Bilakah Fatimah Az-Zahra wafat selepas pemergian Rasulullah SAW?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. 2 tahun selepas baginda</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. 1 bulan selepas baginda</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. 6 bulan selepas baginda</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
+
       </div>
       <div class="panel-nav">
         <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
@@ -835,7 +1010,6 @@ footer{
     </div>
   </div>
 
-  <!-- ===== PANEL 5 — RINGKASAN ===== -->
   <div class="panel" id="panel-5">
     <div class="panel-card">
       <div class="panel-header">
@@ -888,6 +1062,41 @@ footer{
           Puteri → <strong>"ZRUF"</strong> = Zainab, Ruqayyah, Ummu Kulthum, Fatimah<br/><br/>
           Lagu pendek: <em>"Q-A-I tiga lelaki, Z-R-U-F empat puteri — tujuh jumlahnya berseri!"</em> 🎵</p>
         </div>
+
+        <div class="panel-quiz-container">
+          <div class="panel-quiz-title">🎮 Kuiz Mini Panel 5 (Selesaikan untuk Terus)</div>
+          
+          <div class="panel-q-item" data-ans="2">
+            <p class="panel-q-text">1. Menggunakan formula akronim ringkasan, apakah maksud formula "Q.A.I" bagi putera Nabi SAW?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Quraish, Ali, Imran</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Qasim, Abu, Ibrahim</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Qasim, Abdullah, Ibrahim</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="0">
+            <p class="panel-q-text">2. Manakala bagi urutan puteri baginda, apakah akronim mudah ingat yang digunakan?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. Z.R.U.F (Zainab, Ruqayyah, Ummu Kulthum, Fatimah)</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. Z.A.U.F (Zainab, Aisyah, Ummu Kulthum, Fatimah)</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. Z.R.H.F (Zainab, Ruqayyah, Hafsah, Fatimah)</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+
+          <div class="panel-q-item" data-ans="1">
+            <p class="panel-q-text">3. Berapakah jumlah keseluruhan anak Nabi Muhammad SAW yang wafat ketika masih kecil?</p>
+            <div class="panel-options">
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 0)">A. 2 orang (anak lelaki sahaja)</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 1)">B. 3 orang (semua anak lelaki)</button>
+              <button class="panel-opt-btn" onclick="checkPanelAns(this, 2)">C. 4 orang (semua anak perempuan)</button>
+            </div>
+            <div class="panel-feedback"></div>
+          </div>
+        </div>
+
       </div>
       <div class="panel-nav">
         <div class="nav-left"><button class="nav-back" onclick="prevPanel()">←</button></div>
@@ -899,41 +1108,25 @@ footer{
     </div>
   </div>
 
-  <!-- ===== ENDING ===== -->
   <div id="ending-section" style="display:none">
     <div class="ending-card">
       <div class="ending-emoji">🎉</div>
       <h2>Tahniah, Kamu Berjaya!</h2>
-      <p>Kamu telah selesai membaca nota <strong>Anak-Anak Nabi Muhammad SAW</strong>. Sekarang uji diri kamu dengan kuiz mini untuk pastikan kamu benar-benar faham!</p>
+      <p>Kamu telah selesai membaca nota dan menjawab kuiz mini bagi setiap bab <strong>Anak-Anak Nabi Muhammad SAW</strong>. Syabas kerana berjaya menguasai topik ini!</p>
       <div class="ending-btns">
         <button class="btn-restart" onclick="restartNota()">🔄 Ulang Nota</button>
-        <button class="btn-quiz" onclick="startQuiz()">🎮 Game Nota — Kuiz Mini</button>
       </div>
     </div>
   </div>
 
-  <!-- ===== QUIZ ===== -->
-  <div id="quiz-section">
-    <div class="quiz-header">
-      <div>
-        <h3>🎮 Kuiz Mini — Anak-Anak Nabi SAW</h3>
-        <div class="quiz-progress-dots" id="quiz-dots"></div>
-      </div>
-      <div class="quiz-score">Skor: <span id="score-display">0</span>/<span id="total-display">8</span></div>
-    </div>
-    <div id="quiz-area"></div>
-  </div>
-
-  <!-- ===== BOTTOM NAV ===== -->
   <div class="nota-nav">
     <a href="biodata-nabi.html" class="prev">← Topik 1: Biodata Nabi</a>
     <a href="ibu-susuan-1.html" class="next">Topik 3: Ibu Susuan Pertama →</a>
   </div>
 </main>
 
-<footer>🌙 KAFA Learn · Sirah Topik 2</footer>
+<footer>🌙 KAFA SKSG · Sirah Topik 2</footer>
 
-<!-- MOTIVATION POPUP -->
 <div class="popup-overlay" id="motivPopup">
   <div class="popup-card">
     <div class="popup-shimmer"></div>
@@ -993,7 +1186,6 @@ function toggleTip(btn){
 }
 
 function toggleTipBtn(btn){
-  // Find the tip-toggle-btn and tip-box in same panel-body
   const body = btn.closest('.panel-card').querySelector('.panel-body');
   const tipBtn = body.querySelector('.tip-toggle-btn');
   const tipBox = body.querySelector('.tip-box');
@@ -1013,156 +1205,52 @@ function showEnding(){
 
 function restartNota(){
   document.getElementById('ending-section').style.display='none';
-  document.getElementById('quiz-section').style.display='none';
   document.querySelector('.progress-wrap').style.display='block';
-  // Reset all tips
   document.querySelectorAll('.tip-box').forEach(b=>b.classList.remove('show'));
   document.querySelectorAll('.tip-toggle-btn').forEach(b=>b.textContent='❓ Saya Tak Faham — Tunjukkan Tip Mudah Ingat');
+  
+  // Reset kesemua soalan kuiz panel
+  document.querySelectorAll('.panel-opt-btn').forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove('correct', 'wrong');
+  });
+  document.querySelectorAll('.panel-feedback').forEach(fb => {
+    fb.style.display = 'none';
+    fb.className = 'panel-feedback';
+  });
+
   showPanel(1);
 }
 
-// ===== QUIZ DATA =====
-const quizData = [
-  {
-    q: "Berapa jumlah anak Nabi Muhammad SAW?",
-    opts: ["5 orang","6 orang","7 orang","8 orang"],
-    ans: 2,
-    exp: "Nabi SAW dikurniakan 7 orang anak — 3 putera dan 4 puteri."
-  },
-  {
-    q: "Siapakah ibu kepada Ibrahim, putera bongsu Nabi SAW?",
-    opts: ["Siti Khadijah RA","Siti Aisyah RA","Mariah Al-Qibtiyyah","Siti Hafsah RA"],
-    ans: 2,
-    exp: "Ibrahim adalah anak Nabi SAW daripada Mariah Al-Qibtiyyah — satu-satunya anak daripada beliau."
-  },
-  {
-    q: "Siapakah putera sulung Nabi Muhammad SAW?",
-    opts: ["Abdullah","Ibrahim","Al-Qasim","Hasan"],
-    ans: 2,
-    exp: "Al-Qasim adalah anak sulung Nabi SAW. Itulah sebabnya Nabi SAW dipanggil 'Abu Qasim'."
-  },
-  {
-    q: "Apakah gelaran Sayyidina Uthman bin Affan RA yang bermaksud 'pemilik dua cahaya'?",
-    opts: ["Dzul Jalal","Dzun Nurain","Al-Amin","As-Siddiq"],
-    ans: 1,
-    exp: "Uthman bin Affan RA bergelar 'Dzun Nurain' kerana berkahwin dengan dua puteri Nabi SAW iaitu Ruqayyah dan Ummu Kulthum."
-  },
-  {
-    q: "Apakah maksud gelaran 'Az-Zahra' bagi Fatimah Az-Zahra?",
-    opts: ["Yang Mulia","Yang Bercahaya","Yang Cantik","Yang Sabar"],
-    ans: 1,
-    exp: "Az-Zahra bermaksud 'Yang Bercahaya'. Fatimah mendapat gelaran ini kerana kemuliaan dan kecantikan akhlaknya."
-  },
-  {
-    q: "Siapakah suami Fatimah Az-Zahra?",
-    opts: ["Uthman bin Affan","Abul Ash bin Rabi'","Ali bin Abi Talib","Zubair bin Awwam"],
-    ans: 2,
-    exp: "Fatimah Az-Zahra berkahwin dengan Ali bin Abi Talib RA, sepupu Nabi SAW."
-  },
-  {
-    q: "Berapa orang putera Nabi SAW yang lahir daripada Siti Khadijah RA?",
-    opts: ["1 orang","2 orang","3 orang","4 orang"],
-    ans: 1,
-    exp: "Al-Qasim dan Abdullah adalah dua putera Nabi SAW daripada Siti Khadijah. Ibrahim pula daripada Mariah Al-Qibtiyyah."
-  },
-  {
-    q: "Melalui siapakah keturunan Rasulullah SAW diteruskan sehingga ke hari ini?",
-    opts: ["Ruqayyah","Zainab","Abdullah","Fatimah Az-Zahra"],
-    ans: 3,
-    exp: "Keturunan Nabi SAW diteruskan melalui Fatimah Az-Zahra dan cucunda baginda, Hasan dan Husain."
-  }
-];
+// ===== INTERACTIVE PANEL KUIZ LOGIC =====
+function checkPanelAns(btn, selectedIdx) {
+  const qItem = btn.closest('.panel-q-item');
+  const correctIdx = parseInt(qItem.getAttribute('data-ans'));
+  const options = qItem.querySelectorAll('.panel-opt-btn');
+  const feedback = qItem.querySelector('.panel-feedback');
 
-let qIdx=0, score=0, answered=false;
+  // Kunci butang pilihan agar tidak boleh ditekan lagi bagi soalan ini
+  options.forEach(opt => opt.disabled = true);
 
-function startQuiz(){
-  document.getElementById('ending-section').style.display='none';
-  document.getElementById('quiz-section').style.display='block';
-  qIdx=0; score=0; answered=false;
-  document.getElementById('total-display').textContent=quizData.length;
-  buildDots();
-  renderQ();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function buildDots(){
-  const c=document.getElementById('quiz-dots');
-  c.innerHTML='';
-  quizData.forEach((_,i)=>{
-    const d=document.createElement('div');
-    d.className='qdot'+(i===0?' current':'');
-    d.id='qdot-'+i;
-    c.appendChild(d);
-  });
-}
-
-function renderQ(){
-  answered=false;
-  const q=quizData[qIdx];
-  document.getElementById('score-display').textContent=score;
-  // Update dots
-  quizData.forEach((_,i)=>{
-    const d=document.getElementById('qdot-'+i);
-    if(d){
-      d.className='qdot';
-      if(i<qIdx){ /* will be set after answer */ }
-      if(i===qIdx) d.classList.add('current');
-    }
-  });
-
-  const area=document.getElementById('quiz-area');
-  area.innerHTML=`
-    <div class="quiz-card">
-      <div class="quiz-q-num">Soalan ${qIdx+1} daripada ${quizData.length}</div>
-      <div class="quiz-q-text">${q.q}</div>
-      <div class="quiz-options">
-        ${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="answerQ(${i})">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
-      </div>
-      <div class="quiz-feedback" id="qfeedback"></div>
-      <button class="btn-next-q" id="btn-next-q" onclick="nextQ()">${qIdx<quizData.length-1?'Soalan Seterusnya →':'Lihat Keputusan 🏆'}</button>
-    </div>
-  `;
-}
-
-function answerQ(i){
-  if(answered) return;
-  answered=true;
-  const q=quizData[qIdx];
-  const opts=document.querySelectorAll('.quiz-opt');
-  opts.forEach(o=>o.disabled=true);
-  const fb=document.getElementById('qfeedback');
-  const dot=document.getElementById('qdot-'+qIdx);
-
-  if(i===q.ans){
-    score++;
-    opts[i].classList.add('correct');
-    fb.className='quiz-feedback correct';
-    fb.textContent='✅ Betul! '+q.exp;
-    if(dot) dot.className='qdot correct';
-    document.getElementById('score-display').textContent=score;
+  if (selectedIdx === correctIdx) {
+    btn.classList.add('correct');
+    feedback.className = 'panel-feedback correct';
+    feedback.textContent = '✅ Cemerlang! Jawapan anda betul.';
     showMotivation();
   } else {
-    opts[i].classList.add('wrong');
-    opts[q.ans].classList.add('correct');
-    fb.className='quiz-feedback wrong';
-    fb.textContent='❌ Salah. Jawapan betul: '+q.opts[q.ans]+'. '+q.exp;
-    if(dot) dot.className='qdot wrong';
+    btn.classList.add('wrong');
+    options[correctIdx].classList.add('correct');
+    feedback.className = 'panel-feedback wrong';
+    feedback.textContent = '❌ Kurang tepat. Sila rujuk nota di atas semula ya!';
   }
-  document.getElementById('btn-next-q').style.display='inline-block';
 }
 
-function nextQ(){
-  qIdx++;
-  if(qIdx>=quizData.length){ showResult(); return; }
-  renderQ();
-}
-
-// Motivation popup
+// Motivation popup data & logic
 const motivData=[
   {icon:'🌟',title:'Masha Allah!',arabic:'ما شاء الله',msg:'Luar biasa! Jawapan kamu betul. Teruskan semangat belajar ini — ilmu adalah cahaya!'},
   {icon:'🌙',title:'Subhanallah!',arabic:'سبحان الله',msg:'Hebat sekali! Kamu memahami pelajaran dengan baik. Allah SWT suka kepada orang yang berilmu!'},
   {icon:'⭐',title:'Alhamdulillah!',arabic:'الحمد لله',msg:'Bagus! Syukur kerana dianugerahkan akal untuk belajar. Kamu makin bijak!'},
-  {icon:'💎',title:'Barakallah!',arabic:'بارك الله فيك',msg:'Allah memberkati usaha kamu! Jawapan betul menunjukkan kamu belajar dengan bersungguh-sungguh!'},
+  {icon:'💎',title:'Barakallah!',arabic:'بارك الله فيk',msg:'Allah memberkati usaha kamu! Jawapan betul menunjukkan kamu belajar dengan bersungguh-sungguh!'},
 ];
 let lastMotiv=-1;
 
@@ -1181,31 +1269,7 @@ function closePopup(){
   document.getElementById('motivPopup').classList.remove('show');
 }
 
-function showResult(){
-  const pct=Math.round((score/quizData.length)*100);
-  let msg,emoji;
-  if(pct===100){msg='Sempurna! Kamu pelajar cemerlang! 🏆';emoji='🥇';}
-  else if(pct>=75){msg='Sangat bagus! Hampir sempurna! ⭐';emoji='😊';}
-  else if(pct>=50){msg='Elok! Cuba semak nota dan cuba lagi. 📖';emoji='💪';}
-  else{msg='Jangan putus asa! Ulang nota dan cuba semula. 🌟';emoji='📚';}
-
-  document.getElementById('quiz-area').innerHTML=`
-    <div class="result-card">
-      <div style="font-size:3rem;margin-bottom:8px">${emoji}</div>
-      <div class="result-score">${score}/${quizData.length}</div>
-      <div class="result-msg">${msg}</div>
-      <div class="result-btns">
-        <button class="btn-restart" onclick="startQuiz()">🔄 Cuba Lagi</button>
-        <button class="btn-quiz" onclick="restartNota()">📖 Ulang Nota</button>
-      </div>
-    </div>
-  `;
-  document.getElementById('quiz-dots').querySelectorAll('.qdot').forEach(d=>{
-    if(d.classList.contains('current')) d.classList.remove('current');
-  });
-}
-
-// Init
+// Init progress
 updateProgress();
 </script>
 </body>
